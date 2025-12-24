@@ -1,0 +1,1908 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Guide 2: Martech Stack & ABM</title>
+  <style>
+    :root {
+      --nav-width: 260px;
+      --content-max-width: 820px;
+      --font-body: system-ui, -apple-system, sans-serif;
+      --font-mono: 'SF Mono', Consolas, monospace;
+      
+      --bg-primary: #ffffff;
+      --bg-secondary: #f8f9fa;
+      --bg-code: #1e1e1e;
+      --text-primary: #1a1a1a;
+      --text-secondary: #6b7280;
+      --text-code: #d4d4d4;
+      --border-color: #e5e7eb;
+      --accent: #2563eb;
+      --accent-hover: #1d4ed8;
+      
+      --callout-warning-bg: #fef3c7;
+      --callout-warning-border: #f59e0b;
+      --callout-tip-bg: #d1fae5;
+      --callout-tip-border: #10b981;
+      --callout-caution-bg: #fee2e2;
+      --callout-caution-border: #ef4444;
+      --callout-info-bg: #dbeafe;
+      --callout-info-border: #3b82f6;
+      --callout-success-bg: #dcfce7;
+      --callout-success-border: #22c55e;
+    }
+
+    [data-theme="dark"] {
+      --bg-primary: #111827;
+      --bg-secondary: #1f2937;
+      --bg-code: #0d1117;
+      --text-primary: #f9fafb;
+      --text-secondary: #9ca3af;
+      --border-color: #374151;
+      --accent: #60a5fa;
+      --accent-hover: #93c5fd;
+      
+      --callout-warning-bg: #422006;
+      --callout-warning-border: #f59e0b;
+      --callout-tip-bg: #022c22;
+      --callout-tip-border: #10b981;
+      --callout-caution-bg: #450a0a;
+      --callout-caution-border: #ef4444;
+      --callout-info-bg: #172554;
+      --callout-info-border: #3b82f6;
+      --callout-success-bg: #052e16;
+      --callout-success-border: #22c55e;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: var(--font-body);
+      background: var(--bg-primary);
+      color: var(--text-primary);
+      line-height: 1.6;
+    }
+
+    .nav {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: var(--nav-width);
+      height: 100vh;
+      background: var(--bg-secondary);
+      border-right: 1px solid var(--border-color);
+      padding: 1.5rem;
+      overflow-y: auto;
+      z-index: 100;
+    }
+
+    .nav-title {
+      font-size: 0.875rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      color: var(--text-secondary);
+      margin-bottom: 1rem;
+    }
+
+    .nav-list { list-style: none; }
+    .nav-list li { margin-bottom: 0.25rem; }
+
+    .nav-list a {
+      display: block;
+      padding: 0.4rem 0.75rem;
+      color: var(--text-primary);
+      text-decoration: none;
+      border-radius: 4px;
+      font-size: 0.875rem;
+      transition: background 0.15s;
+    }
+
+    .nav-list a:hover,
+    .nav-list a.active {
+      background: var(--accent);
+      color: white;
+    }
+
+    .theme-toggle {
+      position: absolute;
+      bottom: 1.5rem;
+      left: 1.5rem;
+      right: 1.5rem;
+    }
+
+    .theme-toggle button {
+      width: 100%;
+      padding: 0.5rem;
+      background: var(--bg-primary);
+      border: 1px solid var(--border-color);
+      border-radius: 4px;
+      color: var(--text-primary);
+      cursor: pointer;
+      font-size: 0.875rem;
+    }
+
+    .theme-toggle button:hover { border-color: var(--accent); }
+
+    .main {
+      margin-left: var(--nav-width);
+      padding: 3rem;
+      min-height: 100vh;
+    }
+
+    .content {
+      max-width: var(--content-max-width);
+      margin: 0 auto;
+    }
+
+    h1, h2, h3, h4 { font-weight: 600; line-height: 1.3; }
+    h1 { font-size: 2.25rem; margin-bottom: 1.5rem; }
+    h2 { font-size: 1.5rem; margin: 2.5rem 0 1rem; padding-top: 1.5rem; border-top: 1px solid var(--border-color); }
+    h3 { font-size: 1.25rem; margin: 2rem 0 0.75rem; }
+    h4 { font-size: 1.1rem; margin: 1.5rem 0 0.5rem; }
+    p { margin-bottom: 1rem; }
+
+    .anchor-link {
+      color: var(--text-secondary);
+      text-decoration: none;
+      margin-left: 0.5rem;
+      opacity: 0;
+      transition: opacity 0.15s;
+    }
+
+    h2:hover .anchor-link,
+    h3:hover .anchor-link { opacity: 1; }
+    .anchor-link:hover { color: var(--accent); }
+
+    .callout {
+      padding: 1rem 1.25rem;
+      border-radius: 6px;
+      border-left: 4px solid;
+      margin: 1.5rem 0;
+    }
+
+    .callout-warning { background: var(--callout-warning-bg); border-color: var(--callout-warning-border); }
+    .callout-tip { background: var(--callout-tip-bg); border-color: var(--callout-tip-border); }
+    .callout-caution { background: var(--callout-caution-bg); border-color: var(--callout-caution-border); }
+    .callout-info { background: var(--callout-info-bg); border-color: var(--callout-info-border); }
+    .callout-success { background: var(--callout-success-bg); border-color: var(--callout-success-border); }
+
+    .code-block {
+      position: relative;
+      background: var(--bg-code);
+      border-radius: 8px;
+      margin: 1.5rem 0;
+    }
+
+    .code-block::before {
+      content: attr(data-language);
+      position: absolute;
+      top: 0.5rem;
+      left: 1rem;
+      font-size: 0.75rem;
+      color: var(--text-secondary);
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+
+    .code-block pre {
+      padding: 2.5rem 1rem 1rem;
+      overflow-x: auto;
+      margin: 0;
+    }
+
+    .code-block code {
+      font-family: var(--font-mono);
+      font-size: 0.875rem;
+      color: var(--text-code);
+      line-height: 1.5;
+    }
+
+    .copy-btn {
+      position: absolute;
+      top: 0.5rem;
+      right: 0.5rem;
+      padding: 0.375rem 0.75rem;
+      background: transparent;
+      border: 1px solid #4b5563;
+      border-radius: 4px;
+      color: #9ca3af;
+      font-size: 0.75rem;
+      cursor: pointer;
+      transition: all 0.15s;
+    }
+
+    .copy-btn:hover { background: #374151; color: white; }
+    .copy-btn.copied { background: var(--callout-success-border); border-color: var(--callout-success-border); color: white; }
+
+    code:not(.code-block code) {
+      font-family: var(--font-mono);
+      font-size: 0.875em;
+      background: var(--bg-secondary);
+      padding: 0.2em 0.4em;
+      border-radius: 4px;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 1.5rem 0;
+      font-size: 0.9375rem;
+    }
+
+    th, td {
+      padding: 0.75rem 1rem;
+      text-align: left;
+      border: 1px solid var(--border-color);
+    }
+
+    th { background: var(--bg-secondary); font-weight: 600; }
+    tbody tr:nth-child(even) { background: var(--bg-secondary); }
+
+    .collapsible {
+      border: 1px solid var(--border-color);
+      border-radius: 6px;
+      margin: 1.5rem 0;
+    }
+
+    .collapsible summary {
+      padding: 1rem;
+      cursor: pointer;
+      font-weight: 500;
+      background: var(--bg-secondary);
+      border-radius: 6px;
+      list-style: none;
+    }
+
+    .collapsible summary::before {
+      content: '▶';
+      display: inline-block;
+      margin-right: 0.5rem;
+      transition: transform 0.2s;
+    }
+
+    .collapsible[open] summary::before { transform: rotate(90deg); }
+    .collapsible[open] summary { border-radius: 6px 6px 0 0; }
+    .collapsible > *:not(summary) { padding: 1rem; }
+
+    ul, ol { margin: 1rem 0; padding-left: 1.5rem; }
+    li { margin-bottom: 0.5rem; }
+
+    .footer {
+      margin-top: 4rem;
+      padding-top: 2rem;
+      border-top: 1px solid var(--border-color);
+      color: var(--text-secondary);
+      font-size: 0.875rem;
+    }
+
+    .diagram {
+      background: var(--bg-secondary);
+      border: 1px solid var(--border-color);
+      border-radius: 8px;
+      padding: 1.5rem;
+      margin: 1.5rem 0;
+      font-family: var(--font-mono);
+      font-size: 0.8rem;
+      overflow-x: auto;
+      white-space: pre;
+      line-height: 1.4;
+    }
+
+    @media print {
+      .nav, .theme-toggle, .copy-btn { display: none; }
+      .main { margin-left: 0; padding: 1rem; }
+      .code-block, .callout, table { break-inside: avoid; }
+    }
+
+    @media (max-width: 768px) {
+      .nav {
+        position: static;
+        width: 100%;
+        height: auto;
+        border-right: none;
+        border-bottom: 1px solid var(--border-color);
+      }
+      .main { margin-left: 0; }
+      .theme-toggle { position: static; margin-top: 1rem; }
+    }
+  </style>
+</head>
+<body>
+  <nav class="nav">
+    <div class="nav-title">Contents</div>
+    <ul class="nav-list">
+      <li><a href="#stack-layers">Stack Layers</a></li>
+      <li><a href="#crm">CRM Systems</a></li>
+      <li><a href="#map">Marketing Automation</a></li>
+      <li><a href="#cdp">Customer Data Platforms</a></li>
+      <li><a href="#analytics">Analytics Platforms</a></li>
+      <li><a href="#intent">Intent Data</a></li>
+      <li><a href="#enrichment">Enrichment Tools</a></li>
+      <li><a href="#integrations">Integration Patterns</a></li>
+      <li><a href="#identity">Identity Resolution</a></li>
+      <li><a href="#data-hygiene">Data Hygiene</a></li>
+      <li><a href="#privacy">Privacy & Consent</a></li>
+      <li><a href="#vendors">Vendor Landscape</a></li>
+      <li><a href="#abm">Account-Based Marketing</a></li>
+      <li><a href="#auditing">Stack Auditing</a></li>
+    </ul>
+    <div class="theme-toggle">
+      <button onclick="toggleTheme()">Toggle Dark Mode</button>
+    </div>
+  </nav>
+
+  <main class="main">
+    <div class="content">
+      <h1>Guide 2: Martech Stack & ABM</h1>
+      
+      <div class="callout callout-info">
+        <strong>Series: B2B Marketing for Analysts</strong><br>
+        This is Guide 2 of 3. The series includes: <strong>Guide 1: B2B Marketing Fundamentals</strong> → <strong>Guide 2: Martech Stack & ABM</strong> (this guide) → <strong>Guide 3: Marketing Analytics & Attribution</strong>. A companion Jupyter notebook provides hands-on exercises with realistic data.
+      </div>
+      
+      <p>This guide covers the technology infrastructure that powers modern B2B marketing: what each system does, how they connect, and how to evaluate and manage them. We'll also cover Account-Based Marketing (ABM) as it's become inseparable from modern martech strategy.</p>
+
+      <div class="callout callout-warning">
+        <strong>Prerequisite:</strong> This guide assumes familiarity with the B2B funnel, lead lifecycle, MQL/SQL definitions, and sales/marketing handoffs from Guide 1.
+      </div>
+
+      <!-- Section 1: Stack Layers -->
+      <section id="stack-layers">
+        <h2>Stack Layers <a href="#stack-layers" class="anchor-link">#</a></h2>
+        
+        <p>A martech stack isn't a random collection of tools. It's an architecture with distinct layers, each serving a specific purpose. Understanding these layers helps you diagnose problems, identify gaps, and evaluate new tools.</p>
+
+        <h3>The Four-Layer Model</h3>
+
+        <div class="diagram">
+┌─────────────────────────────────────────────────────────────────────┐
+│                         MEASUREMENT LAYER                           │
+│   Attribution • Reporting • Dashboards • BI Tools • Data Science   │
+└─────────────────────────────────────────────────────────────────────┘
+                                    ▲
+                                    │
+┌─────────────────────────────────────────────────────────────────────┐
+│                         ACTIVATION LAYER                            │
+│     MAP • Ad Platforms • Email • Chat • Sales Engagement           │
+└─────────────────────────────────────────────────────────────────────┘
+                                    ▲
+                                    │
+┌─────────────────────────────────────────────────────────────────────┐
+│                          STORAGE LAYER                              │
+│              CRM • CDP • Data Warehouse • Data Lake                │
+└─────────────────────────────────────────────────────────────────────┘
+                                    ▲
+                                    │
+┌─────────────────────────────────────────────────────────────────────┐
+│                        COLLECTION LAYER                             │
+│   Website Tracking • Forms • Enrichment • Intent • CRM Sync        │
+└─────────────────────────────────────────────────────────────────────┘
+        </div>
+
+        <h4>Layer 1: Collection</h4>
+        <p>Where data enters your stack. This includes website tracking (page views, form submissions), third-party data (enrichment, intent signals), CRM activity logging, and event data from your product.</p>
+
+        <h4>Layer 2: Storage</h4>
+        <p>Where data lives. The CRM stores relationship data (contacts, accounts, opportunities). A CDP unifies customer profiles across sources. A data warehouse holds everything for analysis.</p>
+
+        <h4>Layer 3: Activation</h4>
+        <p>Where you act on data. Marketing automation sends emails based on behavior. Ad platforms target specific audiences. Sales engagement tools sequence outreach.</p>
+
+        <h4>Layer 4: Measurement</h4>
+        <p>Where you understand what's working. Attribution connects marketing touches to revenue. Dashboards visualize performance. BI tools enable ad-hoc analysis.</p>
+
+        <div class="callout callout-tip">
+          <strong>In Practice:</strong> Most stack problems are layer mismatches—trying to measure with an activation tool, or store data in a collection tool. When evaluating a new tool, first identify which layer it belongs to.
+        </div>
+      </section>
+
+      <!-- Section 2: CRM -->
+      <section id="crm">
+        <h2>Core Systems: CRM <a href="#crm" class="anchor-link">#</a></h2>
+
+        <p>The CRM (Customer Relationship Management) is the system of record for customer relationships. In B2B, it's where sales lives and where revenue is tracked. Marketing needs to work with it, but rarely owns it.</p>
+
+        <h3>What Lives in the CRM</h3>
+
+        <table>
+          <thead>
+            <tr>
+              <th>Object</th>
+              <th>What It Represents</th>
+              <th>Key Fields</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><strong>Lead</strong></td>
+              <td>An individual person before they're associated with an opportunity</td>
+              <td>Name, email, company, source, status, score</td>
+            </tr>
+            <tr>
+              <td><strong>Contact</strong></td>
+              <td>An individual person associated with an account</td>
+              <td>Name, email, title, role, account relationship</td>
+            </tr>
+            <tr>
+              <td><strong>Account</strong></td>
+              <td>A company you're selling to or have sold to</td>
+              <td>Name, industry, employee count, revenue, tier</td>
+            </tr>
+            <tr>
+              <td><strong>Opportunity</strong></td>
+              <td>A potential deal in progress</td>
+              <td>Amount, stage, close date, probability, owner</td>
+            </tr>
+            <tr>
+              <td><strong>Activity</strong></td>
+              <td>Interactions (calls, emails, meetings)</td>
+              <td>Type, date, notes, associated records</td>
+            </tr>
+          </tbody>
+        </table>
+
+        <h3>Lead vs Contact: The Conversion Point</h3>
+        <p>In Salesforce (the most common B2B CRM), leads and contacts are separate objects. When a lead becomes sales-ready and gets associated with a real opportunity, it gets "converted" into a Contact + Account + Opportunity. This is a critical handoff moment.</p>
+
+        <div class="callout callout-warning">
+          <strong>Common Mistake:</strong> Treating lead conversion as a data migration event rather than a business process. The conversion should happen when there's a real opportunity, not just when marketing deems someone "qualified." Premature conversion creates noise in the pipeline.
+        </div>
+
+        <h3>How Marketing Uses the CRM</h3>
+
+        <p><strong>Reading data:</strong> Campaign performance (which leads became opportunities), account intelligence (what's the status of key targets), pipeline reporting (what's marketing's contribution).</p>
+
+        <p><strong>Writing data:</strong> Syncing leads from MAP, updating lead sources, recording campaign membership, passing lead scores.</p>
+
+        <h3>Salesforce Object Relationships</h3>
+
+        <div class="diagram">
+                    ┌──────────────┐
+                    │    Lead      │ ─────── Pre-conversion
+                    └──────────────┘
+                           │
+                    [Conversion]
+                           │
+                           ▼
+┌──────────────┐    ┌──────────────┐    ┌──────────────┐
+│   Account    │◄───│   Contact    │───►│ Opportunity  │
+└──────────────┘    └──────────────┘    └──────────────┘
+       │                   │                    │
+       │                   │                    │
+       ▼                   ▼                    ▼
+┌──────────────────────────────────────────────────────┐
+│                     Activities                        │
+│            (Calls, Emails, Meetings, Tasks)          │
+└──────────────────────────────────────────────────────┘
+        </div>
+
+        <div class="callout callout-info">
+          <strong>HubSpot Difference:</strong> HubSpot uses a unified contact model instead of Salesforce's lead/contact split. All people are "Contacts" from the start, associated with "Companies." This is simpler but can make funnel analysis messier since there's no clean conversion event.
+        </div>
+      </section>
+
+      <!-- Section 3: MAP -->
+      <section id="map">
+        <h2>Core Systems: Marketing Automation Platform <a href="#map" class="anchor-link">#</a></h2>
+
+        <p>The MAP is marketing's operational hub. It manages email campaigns, lead scoring, nurture programs, and the mechanics of turning anonymous visitors into known leads.</p>
+
+        <h3>Core MAP Functions</h3>
+
+        <h4>1. Email Marketing</h4>
+        <p>Not just sending emails, but managing the entire lifecycle: building emails, defining audiences, scheduling sends, handling bounces/unsubscribes, and tracking engagement. The MAP maintains email deliverability reputation—critical infrastructure.</p>
+
+        <h4>2. Lead Scoring</h4>
+        <p>Assigning numerical values to leads based on fit (demographic/firmographic match) and engagement (behavioral signals). A lead with score 85 (opened 5 emails, visited pricing page, from target company) gets treated differently than score 12 (downloaded one whitepaper three months ago).</p>
+
+        <div class="code-block" data-language="example scoring model">
+          <button class="copy-btn">Copy</button>
+          <pre><code>DEMOGRAPHIC SCORING (Fit)
+  Job title contains "Director" or "VP": +15
+  Company size 200-2000 employees: +10
+  Industry = Target vertical: +10
+  Location = Serviceable region: +5
+  
+BEHAVIORAL SCORING (Engagement)
+  Pricing page visit: +20
+  Demo request form: +30
+  Whitepaper download: +5
+  Email open: +1
+  Email click: +3
+  Webinar attendance: +15
+  
+DECAY
+  No activity 30 days: -10
+  No activity 60 days: -20
+  
+THRESHOLDS
+  MQL threshold: 50 points
+  Sales-ready threshold: 75 points</code></pre>
+        </div>
+
+        <h4>3. Nurture Programs</h4>
+        <p>Automated sequences that move leads through the funnel. Unlike one-off campaigns, nurtures are persistent—leads enter based on triggers and progress based on behavior.</p>
+
+        <div class="callout callout-tip">
+          <strong>In Practice:</strong> The best nurtures are short (3-5 touches), behavior-based (not just time-based), and have clear exit conditions. A 12-email drip that fires regardless of engagement is just spam.
+        </div>
+
+        <h4>4. Forms and Landing Pages</h4>
+        <p>MAPs include form builders and landing page creators. Forms are critical—they're where anonymous visitors become known leads. Progressive profiling (asking different questions each time) builds profiles over multiple conversions without friction.</p>
+
+        <h4>5. Campaign Management</h4>
+        <p>Tracking which marketing activities influenced which leads. Campaign membership links leads to the programs that touched them, enabling attribution and ROI analysis.</p>
+
+        <h3>MAP-CRM Sync</h3>
+        <p>The MAP and CRM must stay synchronized. Typically:</p>
+        <ul>
+          <li>New leads created in MAP sync to CRM as Leads</li>
+          <li>Lead field updates sync bidirectionally</li>
+          <li>CRM opportunity data syncs back to MAP for reporting</li>
+          <li>Campaign membership syncs to CRM for sales visibility</li>
+        </ul>
+
+        <div class="callout callout-caution">
+          <strong>Sync Failures:</strong> When MAP-CRM sync breaks, marketing and sales see different data. Common causes: field mapping errors, duplicate records blocking sync, API rate limits. Monitor sync logs weekly.
+        </div>
+
+        <h3>HubSpot vs Marketo</h3>
+
+        <table>
+          <thead>
+            <tr>
+              <th>Aspect</th>
+              <th>HubSpot</th>
+              <th>Marketo</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><strong>Target</strong></td>
+              <td>SMB to mid-market</td>
+              <td>Mid-market to enterprise</td>
+            </tr>
+            <tr>
+              <td><strong>Learning curve</strong></td>
+              <td>Lower, more intuitive UI</td>
+              <td>Steeper, more powerful</td>
+            </tr>
+            <tr>
+              <td><strong>CRM</strong></td>
+              <td>Built-in CRM included</td>
+              <td>Requires separate CRM</td>
+            </tr>
+            <tr>
+              <td><strong>Flexibility</strong></td>
+              <td>Opinionated, less customizable</td>
+              <td>Highly customizable</td>
+            </tr>
+            <tr>
+              <td><strong>Pricing model</strong></td>
+              <td>Contact-based tiers</td>
+              <td>Database size + features</td>
+            </tr>
+            <tr>
+              <td><strong>Best for</strong></td>
+              <td>Teams wanting all-in-one</td>
+              <td>Teams needing complex workflows</td>
+            </tr>
+          </tbody>
+        </table>
+      </section>
+
+      <!-- Section 4: CDP -->
+      <section id="cdp">
+        <h2>Core Systems: Customer Data Platform <a href="#cdp" class="anchor-link">#</a></h2>
+
+        <p>A CDP creates unified customer profiles by collecting data from multiple sources and resolving identity across them. It answers: "Is the person who visited our website the same as the contact in Salesforce who opened our email?"</p>
+
+        <h3>When You Need a CDP</h3>
+
+        <p><strong>You probably need a CDP if:</strong></p>
+        <ul>
+          <li>You have data in 5+ disconnected systems</li>
+          <li>You can't answer "how many unique customers do we have?"</li>
+          <li>Marketing automation can't access product usage data</li>
+          <li>You're doing ABM and need to unify contact + account views</li>
+          <li>Personalization requires data that lives in different systems</li>
+        </ul>
+
+        <p><strong>You probably don't need a CDP if:</strong></p>
+        <ul>
+          <li>You're a small team with HubSpot as your only system</li>
+          <li>Your CRM handles all your data needs</li>
+          <li>You don't have the resources to maintain it</li>
+          <li>You haven't maxed out your existing tools</li>
+        </ul>
+
+        <h3>What CDPs Actually Do</h3>
+
+        <h4>1. Data Collection</h4>
+        <p>Ingest data from websites (via JavaScript SDK), mobile apps, backend systems (via API/webhooks), and third-party tools (via integrations). The CDP maintains event streams—every action a user takes.</p>
+
+        <h4>2. Identity Resolution</h4>
+        <p>Match anonymous sessions to known users when they identify themselves (form fill, login). Merge duplicate profiles. Handle multiple email addresses, devices, and identifiers for the same person.</p>
+
+        <h4>3. Profile Unification</h4>
+        <p>Create a single view of each customer/account combining data from all sources. The unified profile includes: demographics, firmographics, behavioral history, product usage, support tickets, purchase history.</p>
+
+        <h4>4. Audience Building</h4>
+        <p>Define segments using any combination of unified profile data. "Enterprise accounts in fintech who've viewed pricing in the last 30 days but haven't started a trial."</p>
+
+        <h4>5. Activation</h4>
+        <p>Push audiences to downstream tools: ad platforms (for targeting), MAP (for email campaigns), personalization engines (for website content), data warehouse (for analysis).</p>
+
+        <div class="diagram">
+┌────────────────────────────────────────────────────────────────────┐
+│                        DATA SOURCES                                 │
+│  Website │ Mobile App │ CRM │ MAP │ Product │ Support │ Billing    │
+└────────────────────────────────────────────────────────────────────┘
+                              │
+                              ▼
+┌────────────────────────────────────────────────────────────────────┐
+│                           CDP                                       │
+│  ┌─────────────┐  ┌─────────────┐  ┌─────────────────────────────┐ │
+│  │  Collect    │─►│  Resolve    │─►│    Unified Profile          │ │
+│  │  Events     │  │  Identity   │  │  Demographics + Behavior +  │ │
+│  └─────────────┘  └─────────────┘  │  Product + Support + ...    │ │
+│                                    └─────────────────────────────┘ │
+│                                                 │                   │
+│                                    ┌────────────┴────────────┐     │
+│                                    │    Audience Builder     │     │
+│                                    └────────────┬────────────┘     │
+└────────────────────────────────────────────────────────────────────┘
+                              │
+                              ▼
+┌────────────────────────────────────────────────────────────────────┐
+│                       DESTINATIONS                                  │
+│     Ad Platforms │ MAP │ Personalization │ Data Warehouse │ BI     │
+└────────────────────────────────────────────────────────────────────┘
+        </div>
+
+        <h3>CDP Vendors</h3>
+
+        <table>
+          <thead>
+            <tr>
+              <th>Vendor</th>
+              <th>Positioning</th>
+              <th>Notes</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Segment</td>
+              <td>Developer-first, event streaming</td>
+              <td>Strong integrations, owned by Twilio</td>
+            </tr>
+            <tr>
+              <td>mParticle</td>
+              <td>Mobile-first, real-time</td>
+              <td>Strong in app-heavy businesses</td>
+            </tr>
+            <tr>
+              <td>Tealium</td>
+              <td>Enterprise, tag management heritage</td>
+              <td>Complex but powerful</td>
+            </tr>
+            <tr>
+              <td>Rudderstack</td>
+              <td>Warehouse-native, open source option</td>
+              <td>Good for data team-led orgs</td>
+            </tr>
+          </tbody>
+        </table>
+
+        <div class="callout callout-warning">
+          <strong>CDP vs Data Warehouse:</strong> A CDP is for activation (pushing audiences to tools). A data warehouse is for analysis (querying historical data). Some teams try to use warehouses as CDPs via "reverse ETL"—this works for simple use cases but lacks real-time capabilities.
+        </div>
+      </section>
+
+      <!-- Section 5: Analytics -->
+      <section id="analytics">
+        <h2>Analytics Platforms <a href="#analytics" class="anchor-link">#</a></h2>
+
+        <p>Product and web analytics tools track user behavior. In B2B, they're critical for understanding the digital journey but have significant limitations around account-level analysis and connecting to revenue.</p>
+
+        <h3>GA4 (Google Analytics 4)</h3>
+
+        <p><strong>What it does:</strong> Tracks website sessions, page views, events, conversions. Free (up to limits). The default starting point for web analytics.</p>
+
+        <p><strong>B2B limitations:</strong></p>
+        <ul>
+          <li>User-based, not account-based—you see individuals, not companies</li>
+          <li>Can't connect to CRM pipeline without extra work</li>
+          <li>Limited data retention (14 months standard)</li>
+          <li>Aggregated/sampled data makes exact counts difficult</li>
+          <li>Cross-device tracking requires user login</li>
+        </ul>
+
+        <p><strong>Best for:</strong> Traffic analysis, channel performance, basic conversion tracking, SEO analysis.</p>
+
+        <h3>Mixpanel / Amplitude</h3>
+
+        <p><strong>What they do:</strong> Product analytics—tracking in-app behavior, feature usage, user journeys. Built for SaaS products with logged-in users.</p>
+
+        <p><strong>B2B applications:</strong></p>
+        <ul>
+          <li>Product-led growth: track trial → activation → conversion</li>
+          <li>Feature engagement: which features correlate with retention</li>
+          <li>Onboarding completion: where users drop off</li>
+        </ul>
+
+        <p><strong>B2B limitations:</strong></p>
+        <ul>
+          <li>Still user-centric, not account-centric by default</li>
+          <li>Requires implementation in your product (not just marketing site)</li>
+          <li>Pricing scales with event volume—can get expensive</li>
+        </ul>
+
+        <div class="callout callout-tip">
+          <strong>In Practice:</strong> Most B2B teams use GA4 for marketing site + Mixpanel/Amplitude for product. The gap between them—connecting marketing touches to product engagement—is where CDPs or custom data work comes in.
+        </div>
+
+        <h3>Making Analytics Work for B2B</h3>
+
+        <p>To make standard analytics tools useful for B2B:</p>
+
+        <ol>
+          <li><strong>Identify users early:</strong> Gate valuable content to capture email, then associate sessions with known contacts</li>
+          <li><strong>Use IP-to-company enrichment:</strong> Tools like Clearbit Reveal or 6sense can identify company from IP address (works for ~30-40% of traffic)</li>
+          <li><strong>Pass data to warehouse:</strong> Export analytics data to your warehouse, join with CRM data there</li>
+          <li><strong>Track key business events:</strong> Beyond page views—demo requests, pricing page visits, docs page engagement, trial signups</li>
+        </ol>
+      </section>
+
+      <!-- Section 6: Intent Data -->
+      <section id="intent">
+        <h2>Intent Data Platforms <a href="#intent" class="anchor-link">#</a></h2>
+
+        <p>Intent data tries to answer: "Which companies are researching solutions like ours right now?" It's a signal, not a prediction—useful for prioritization, not replacement for qualification.</p>
+
+        <h3>How Intent Data is Collected</h3>
+
+        <h4>1st Party Intent</h4>
+        <p>Behavior on YOUR properties: website visits, content downloads, email engagement, product usage. You own this data completely.</p>
+
+        <h4>2nd Party Intent</h4>
+        <p>Behavior on partner properties: review sites like G2, publisher content networks. Shared under data partnerships.</p>
+
+        <h4>3rd Party Intent</h4>
+        <p>Behavior across the web: content consumption patterns inferred from publisher networks, ad exchanges, data co-ops. Companies like Bombora aggregate signals from thousands of sites.</p>
+
+        <h3>How It Works (Simplified)</h3>
+
+        <div class="diagram">
+1. Data providers track content consumption across publisher networks
+2. They categorize content by topic (e.g., "marketing automation," "CRM")
+3. They identify company from IP address or device graph
+4. They calculate "surge" scores—is this company researching this topic
+   more than their baseline?
+5. They deliver weekly/daily signals: "Acme Corp is surging on CRM topics"
+        </div>
+
+        <h3>Major Intent Providers</h3>
+
+        <table>
+          <thead>
+            <tr>
+              <th>Provider</th>
+              <th>Primary Approach</th>
+              <th>Notes</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Bombora</td>
+              <td>Publisher co-op (B2B content sites)</td>
+              <td>Largest B2B intent data set</td>
+            </tr>
+            <tr>
+              <td>6sense</td>
+              <td>Multi-source + AI predictions</td>
+              <td>Full ABM platform, not just intent</td>
+            </tr>
+            <tr>
+              <td>Demandbase</td>
+              <td>Multi-source + advertising</td>
+              <td>Strong in display ad activation</td>
+            </tr>
+            <tr>
+              <td>G2</td>
+              <td>Review site behavior</td>
+              <td>Narrow but high-quality signal</td>
+            </tr>
+            <tr>
+              <td>TrustRadius</td>
+              <td>Review site behavior</td>
+              <td>Enterprise-focused reviews</td>
+            </tr>
+          </tbody>
+        </table>
+
+        <h3>Using Intent Data</h3>
+
+        <p><strong>Good use cases:</strong></p>
+        <ul>
+          <li>Prioritizing outbound: call surging accounts first</li>
+          <li>ABM targeting: focus ad spend on accounts showing intent</li>
+          <li>Lead scoring: boost scores for contacts at high-intent accounts</li>
+          <li>Timing campaigns: reach out when accounts are actively researching</li>
+        </ul>
+
+        <p><strong>Bad use cases:</strong></p>
+        <ul>
+          <li>Using as sole qualification criterion</li>
+          <li>Expecting individual contact-level precision</li>
+          <li>Treating all "high intent" accounts as ready to buy</li>
+        </ul>
+
+        <div class="callout callout-caution">
+          <strong>Reality Check:</strong> Intent data is noisy. A "surge" might mean one person at a 10,000-employee company read one article. Match rates between intent signals and your target accounts are often 20-40%. It's a prioritization input, not a magic bullet.
+        </div>
+
+        <h3>Evaluating Intent Data Quality</h3>
+        <p>Ask vendors:</p>
+        <ul>
+          <li>What's your data collection methodology?</li>
+          <li>What's the match rate to my target account list?</li>
+          <li>How fresh is the signal? (daily vs weekly vs monthly)</li>
+          <li>What's the minimum company size you can reliably identify?</li>
+          <li>Can you show lift in conversion rates from intent-prioritized outreach?</li>
+        </ul>
+      </section>
+
+      <!-- Section 7: Enrichment -->
+      <section id="enrichment">
+        <h2>Enrichment Tools <a href="#enrichment" class="anchor-link">#</a></h2>
+
+        <p>Enrichment tools fill in missing data about leads and accounts. From an email address, they can append job title, company name, company size, industry, technologies used, funding status, and more.</p>
+
+        <h3>What Gets Enriched</h3>
+
+        <table>
+          <thead>
+            <tr>
+              <th>Data Type</th>
+              <th>Examples</th>
+              <th>Use Case</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><strong>Contact</strong></td>
+              <td>Job title, department, phone, LinkedIn URL</td>
+              <td>Personalization, scoring</td>
+            </tr>
+            <tr>
+              <td><strong>Firmographic</strong></td>
+              <td>Employee count, revenue, industry, HQ location</td>
+              <td>ICP fit, segmentation</td>
+            </tr>
+            <tr>
+              <td><strong>Technographic</strong></td>
+              <td>Software/tools they use (tech stack)</td>
+              <td>Competitive targeting, integrations</td>
+            </tr>
+            <tr>
+              <td><strong>News/Signals</strong></td>
+              <td>Funding rounds, leadership changes, hiring</td>
+              <td>Trigger-based outreach</td>
+            </tr>
+          </tbody>
+        </table>
+
+        <h3>Major Enrichment Vendors</h3>
+
+        <table>
+          <thead>
+            <tr>
+              <th>Vendor</th>
+              <th>Strength</th>
+              <th>Data Quality</th>
+              <th>Price Range</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>ZoomInfo</td>
+              <td>Contact data breadth</td>
+              <td>Variable, large dataset</td>
+              <td>$$$$ (15K-100K+/yr)</td>
+            </tr>
+            <tr>
+              <td>Clearbit</td>
+              <td>Real-time API, dev-friendly</td>
+              <td>Good, focused on tech</td>
+              <td>$$$ (12K-50K+/yr)</td>
+            </tr>
+            <tr>
+              <td>Apollo</td>
+              <td>Affordable, sales-focused</td>
+              <td>Good for the price</td>
+              <td>$$ (5K-20K/yr)</td>
+            </tr>
+            <tr>
+              <td>Cognism</td>
+              <td>GDPR compliance, EU data</td>
+              <td>Strong in Europe</td>
+              <td>$$$ (15K-50K/yr)</td>
+            </tr>
+            <tr>
+              <td>Lusha</td>
+              <td>Chrome extension, SMB</td>
+              <td>Variable</td>
+              <td>$ (1K-10K/yr)</td>
+            </tr>
+          </tbody>
+        </table>
+
+        <h3>Enrichment Patterns</h3>
+
+        <h4>Form Fill Enrichment</h4>
+        <p>When a lead submits a form with just email, call enrichment API in real-time to append data before passing to CRM/MAP. Reduces form fields needed (higher conversion) while maintaining data completeness.</p>
+
+        <h4>Batch Enrichment</h4>
+        <p>Periodically enrich your entire database to fill gaps and refresh stale data. Run monthly or quarterly. Important because job titles change, companies get acquired, people move.</p>
+
+        <h4>Reverse IP Enrichment</h4>
+        <p>Identify company from IP address for anonymous website visitors. Match rate is typically 30-40%. Doesn't identify the individual person, just the company.</p>
+
+        <div class="callout callout-warning">
+          <strong>Common Mistake:</strong> Treating enriched data as truth. Enrichment data has error rates—titles may be outdated, company sizes may be wrong, phone numbers may be stale. Build processes assuming 10-20% of enriched data has issues.
+        </div>
+
+        <h3>Cost vs. Quality Tradeoffs</h3>
+
+        <p>No enrichment vendor has perfect data. The decision usually comes down to:</p>
+
+        <ul>
+          <li><strong>Match rate:</strong> What percentage of your records can they enrich?</li>
+          <li><strong>Accuracy:</strong> Of enriched records, what percentage is correct?</li>
+          <li><strong>Freshness:</strong> How recently was the data verified?</li>
+          <li><strong>Coverage:</strong> Do they have data for your target segments? (SMB vs enterprise, US vs international, specific industries)</li>
+        </ul>
+
+        <div class="callout callout-tip">
+          <strong>Practical Approach:</strong> Before signing a contract, give vendors a sample of 500-1000 records. Manually verify a subset of their enrichment. This reveals real match rates and accuracy better than any sales deck.
+        </div>
+      </section>
+
+      <!-- Section 8: Integrations -->
+      <section id="integrations">
+        <h2>Integration Patterns and Data Flows <a href="#integrations" class="anchor-link">#</a></h2>
+
+        <p>Tools don't work in isolation. Understanding how they connect—and where those connections fail—is essential for stack management.</p>
+
+        <h3>Integration Types</h3>
+
+        <h4>Native Integrations</h4>
+        <p>Built-in connections between vendors (e.g., HubSpot ↔ Salesforce). Usually easiest to set up, but limited in customization. The vendor controls what syncs and how.</p>
+
+        <h4>API Integrations</h4>
+        <p>Custom connections via REST APIs. Maximum flexibility, but requires development resources. You control the logic, but you also own the maintenance.</p>
+
+        <h4>iPaaS (Integration Platforms)</h4>
+        <p>Tools like Zapier, Workato, Tray.io that connect apps without code. Middle ground between native and custom. Good for medium-complexity needs.</p>
+
+        <h4>Reverse ETL</h4>
+        <p>Push data from your data warehouse to operational tools. Tools like Census, Hightouch, Rudderstack enable this. Useful when warehouse becomes source of truth for segments/scores.</p>
+
+        <h3>Common Integration Patterns</h3>
+
+        <div class="diagram">
+PATTERN 1: Standard MAP-CRM Sync
+┌─────────────────────────────────────────────────────────────────────┐
+│                                                                     │
+│    MAP (HubSpot/Marketo)  ◄─────────────►  CRM (Salesforce)        │
+│                                                                     │
+│    • New leads sync to CRM                                          │
+│    • Field updates sync bidirectionally                            │
+│    • Campaign membership syncs to CRM                              │
+│    • Opportunity data syncs to MAP for reporting                   │
+│                                                                     │
+└─────────────────────────────────────────────────────────────────────┘
+
+PATTERN 2: CDP as Hub
+┌─────────────────────────────────────────────────────────────────────┐
+│                                                                     │
+│    Website ──┐                                 ┌── Ad Platforms     │
+│    Product ──┼──►  CDP  ◄──►  Data Warehouse  ├── MAP              │
+│    CRM ──────┘                                 └── Personalization │
+│                                                                     │
+└─────────────────────────────────────────────────────────────────────┘
+
+PATTERN 3: Warehouse-Centric (Reverse ETL)
+┌─────────────────────────────────────────────────────────────────────┐
+│                                                                     │
+│    Sources ──►  Warehouse  ──►  Reverse ETL  ──►  Destinations     │
+│                     │                                               │
+│                     │                                               │
+│    CRM, MAP,    Modeling &    Census,         CRM, MAP,            │
+│    Product      Scoring       Hightouch       Ad platforms         │
+│                                                                     │
+└─────────────────────────────────────────────────────────────────────┘
+        </div>
+
+        <h3>Common Integration Failures</h3>
+
+        <table>
+          <thead>
+            <tr>
+              <th>Failure Mode</th>
+              <th>Symptom</th>
+              <th>Fix</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Field mapping mismatch</td>
+              <td>Data appears in wrong fields or gets truncated</td>
+              <td>Audit field mappings, check data types</td>
+            </tr>
+            <tr>
+              <td>Duplicate records</td>
+              <td>Same person appears multiple times, sync errors</td>
+              <td>Define merge rules, dedupe before syncing</td>
+            </tr>
+            <tr>
+              <td>API rate limits</td>
+              <td>Sync falls behind, data delay</td>
+              <td>Batch requests, spread over time</td>
+            </tr>
+            <tr>
+              <td>Missing required fields</td>
+              <td>Records fail to sync</td>
+              <td>Add default values, validate before sync</td>
+            </tr>
+            <tr>
+              <td>Circular updates</td>
+              <td>Infinite sync loops, performance issues</td>
+              <td>Define source of truth per field</td>
+            </tr>
+          </tbody>
+        </table>
+
+        <div class="callout callout-tip">
+          <strong>Best Practice:</strong> Document your integrations. Create a diagram showing every data flow, what triggers each sync, and which direction data flows. When something breaks (it will), this documentation is invaluable.
+        </div>
+      </section>
+
+      <!-- Section 9: Identity Resolution -->
+      <section id="identity">
+        <h2>Identity Resolution and Account Matching <a href="#identity" class="anchor-link">#</a></h2>
+
+        <p>This is the hardest problem in B2B martech. The same person appears in your systems multiple times with different identifiers. The same company appears under different names. Solving this enables everything else—attribution, personalization, ABM.</p>
+
+        <h3>The Identity Problem</h3>
+
+        <p>One person might appear in your stack as:</p>
+
+        <div class="code-block" data-language="example">
+          <button class="copy-btn">Copy</button>
+          <pre><code>Website: Cookie ID abc123 (anonymous)
+Website: Cookie ID xyz789 (different device)
+Form fill: <a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="1872777076366b75716c7058797b757d367b7775">[email&#160;protected]</a>
+Email click: <a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="acc6dfc1c5d8c4eccdcfc1c982cfc3c1">[email&#160;protected]</a> (typo in their system)
+Product signup: <a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="640e0b0c0a24050709014a0d0b">[email&#160;protected]</a> (personal domain)
+CRM: John Smith at Acme Inc
+LinkedIn: John T. Smith, Acme Corporation</code></pre>
+        </div>
+
+        <p>Are these all the same person? Probably. How do you know? That's identity resolution.</p>
+
+        <h3>Identity Resolution Approaches</h3>
+
+        <h4>Deterministic Matching</h4>
+        <p>Use exact identifiers: same email = same person. Simple but limited—misses cases where identifiers differ.</p>
+
+        <h4>Probabilistic Matching</h4>
+        <p>Use signals that strongly suggest identity: same name + same company + similar email pattern = likely same person. More powerful but can create false positives.</p>
+
+        <h4>Graph-Based</h4>
+        <p>Build a graph of connections: if cookie A logged in as email X, and email X is associated with account Y, then cookie A belongs to a person at account Y. CDPs typically use this approach.</p>
+
+        <h3>Contact-to-Account Matching</h3>
+
+        <p>Even harder than person matching is matching contacts to accounts. Challenges:</p>
+
+        <ul>
+          <li><strong>Email domains don't match:</strong> Person uses gmail.com, not company domain</li>
+          <li><strong>Subsidiaries:</strong> "Acme Widgets" is part of "Acme Corp" but has different domain</li>
+          <li><strong>Rebrands:</strong> Company changed name but old references persist</li>
+          <li><strong>Common names:</strong> Multiple companies named "Apex Technologies"</li>
+        </ul>
+
+        <h3>Practical Matching Logic</h3>
+
+        <div class="code-block" data-language="pseudocode">
+          <button class="copy-btn">Copy</button>
+          <pre><code>function matchContactToAccount(contact):
+    # Step 1: Email domain match
+    domain = extractDomain(contact.email)
+    if domain not in GENERIC_DOMAINS:  # gmail, yahoo, etc.
+        matches = findAccountsByDomain(domain)
+        if matches.length == 1:
+            return matches[0]
+    
+    # Step 2: Company name fuzzy match
+    if contact.companyName:
+        matches = fuzzyMatchAccountName(contact.companyName)
+        if matches.length == 1 and matches[0].score > 0.9:
+            return matches[0]
+    
+    # Step 3: Enrichment lookup
+    enrichedData = enrichmentAPI.lookup(contact.email)
+    if enrichedData.companyId:
+        account = findAccountByEnrichmentId(enrichedData.companyId)
+        if account:
+            return account
+    
+    # Step 4: Manual review queue
+    return addToReviewQueue(contact)</code></pre>
+        </div>
+
+        <div class="callout callout-warning">
+          <strong>Generic Domains:</strong> About 20-30% of B2B leads use personal email (gmail, yahoo, outlook). You cannot match these by domain. Either require work email on forms (loses conversions) or accept that some leads won't auto-match to accounts.
+        </div>
+
+        <h3>Deduplication</h3>
+
+        <p>The flip side of identity resolution: finding and merging duplicate records.</p>
+
+        <p><strong>Matching criteria for duplicates:</strong></p>
+        <ul>
+          <li>Exact email match (easiest)</li>
+          <li>Same name + same company (probable duplicate)</li>
+          <li>Same name + similar email domain (possible duplicate)</li>
+          <li>Same phone number (strong signal)</li>
+        </ul>
+
+        <p><strong>Merge rules:</strong> When merging duplicates, you need rules for which value wins. Common approach: prefer most recently updated, but keep older created date. Always preserve the record with most activity/history.</p>
+
+        <div class="callout callout-tip">
+          <strong>Prevention > Cure:</strong> Dedupe at point of entry. Check for existing records before creating new ones in forms and imports. Deduping after the fact is painful—leads lose history, campaign membership gets confused, sales complains about missing data.
+        </div>
+      </section>
+
+      <!-- Section 10: Data Hygiene -->
+      <section id="data-hygiene">
+        <h2>Data Hygiene and Governance <a href="#data-hygiene" class="anchor-link">#</a></h2>
+
+        <p>Data quality degrades constantly. People change jobs, companies get acquired, emails become invalid. Without active maintenance, your database becomes unusable within 2-3 years.</p>
+
+        <h3>Data Decay Rates</h3>
+
+        <table>
+          <thead>
+            <tr>
+              <th>Data Element</th>
+              <th>Annual Decay Rate</th>
+              <th>Impact</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Email validity</td>
+              <td>22-25%</td>
+              <td>Bounces, deliverability harm</td>
+            </tr>
+            <tr>
+              <td>Phone numbers</td>
+              <td>15-20%</td>
+              <td>Failed sales calls</td>
+            </tr>
+            <tr>
+              <td>Job titles</td>
+              <td>20-25%</td>
+              <td>Wrong persona targeting</td>
+            </tr>
+            <tr>
+              <td>Company employment</td>
+              <td>15-20%</td>
+              <td>Emailing churned contacts</td>
+            </tr>
+            <tr>
+              <td>Company data (size, etc.)</td>
+              <td>5-10%</td>
+              <td>Wrong segmentation</td>
+            </tr>
+          </tbody>
+        </table>
+
+        <p>That 22-25% email decay means if you don't actively clean your list, a quarter of it becomes invalid each year.</p>
+
+        <h3>Data Quality Dimensions</h3>
+
+        <h4>Completeness</h4>
+        <p>Are required fields filled in? Track fill rates by field. Target: >90% for critical fields (email, company), >70% for enrichment fields (industry, size).</p>
+
+        <h4>Accuracy</h4>
+        <p>Are values correct? Harder to measure—requires sampling and manual verification. Watch for obvious errors: job title "asdfasdf", company "test company".</p>
+
+        <h4>Consistency</h4>
+        <p>Same thing, same way. "United States" vs "US" vs "USA" vs "U.S.A." all meaning the same thing but breaking reports. Picklists help.</p>
+
+        <h4>Timeliness</h4>
+        <p>How fresh is the data? A lead from 2019 has probably changed jobs. Track last_verified dates and re-verify stale records.</p>
+
+        <h3>Normalization Essentials</h3>
+
+        <p><strong>Country/State:</strong> Use ISO codes (US, not "United States"). Pick one format and convert everything.</p>
+
+        <p><strong>Job titles:</strong> Standardize to levels (Individual Contributor, Manager, Director, VP, C-level) and functions (Marketing, Sales, IT, Finance). Raw titles are too varied for segmentation.</p>
+
+        <p><strong>Industry:</strong> Map to a standard taxonomy (NAICS, SIC, or your own). "Tech" and "Technology" and "Software" should resolve to the same value.</p>
+
+        <p><strong>Company names:</strong> Harder. "IBM" vs "International Business Machines" vs "IBM Corp." Consider using domain as canonical identifier instead.</p>
+
+        <div class="code-block" data-language="example normalization">
+          <button class="copy-btn">Copy</button>
+          <pre><code>Before normalization:
+  title: "sr. marketing manager, digital"
+  country: "United States of America"
+  industry: "Tech/SaaS"
+  
+After normalization:
+  title_raw: "sr. marketing manager, digital"
+  title_level: "Manager"
+  title_function: "Marketing"
+  country_code: "US"
+  industry: "Software"</code></pre>
+        </div>
+
+        <h3>Governance Practices</h3>
+
+        <ul>
+          <li><strong>Field ownership:</strong> Who can edit which fields? Marketing shouldn't modify sales fields and vice versa.</li>
+          <li><strong>Validation rules:</strong> Enforce formats at point of entry (email format, phone format, required fields).</li>
+          <li><strong>Regular audits:</strong> Monthly or quarterly data quality reviews. Check fill rates, uniqueness, validity.</li>
+          <li><strong>Archival policy:</strong> What happens to old, unengaged leads? Define aging rules and suppress/archive accordingly.</li>
+        </ul>
+
+        <div class="callout callout-caution">
+          <strong>Common Failure:</strong> Treating data hygiene as a one-time project. "We cleaned the database" is meaningless if decay isn't addressed continuously. Build hygiene into ongoing processes: validate on entry, enrich regularly, dedupe continuously.
+        </div>
+      </section>
+
+      <!-- Section 11: Privacy -->
+      <section id="privacy">
+        <h2>Privacy and Consent <a href="#privacy" class="anchor-link">#</a></h2>
+
+        <p>Privacy regulations and browser changes are reshaping what's possible in martech. This section covers practical impacts, not legal advice—consult legal for compliance specifics.</p>
+
+        <h3>Key Regulations</h3>
+
+        <h4>GDPR (EU)</h4>
+        <p>Requires explicit consent for processing personal data, including marketing. Key practical impacts:</p>
+        <ul>
+          <li>Can't email EU contacts without documented opt-in</li>
+          <li>Must honor deletion requests ("right to be forgotten")</li>
+          <li>Can't transfer EU data to countries without adequate protection (affects tool selection)</li>
+          <li>Consent must be freely given, specific, informed—pre-checked boxes don't count</li>
+        </ul>
+
+        <h4>CCPA/CPRA (California)</h4>
+        <p>Gives consumers rights over their data, less restrictive than GDPR. Key impacts:</p>
+        <ul>
+          <li>Must provide "do not sell my data" option</li>
+          <li>Must disclose what data you collect</li>
+          <li>Opt-out model (vs. GDPR's opt-in)—can market until they say stop</li>
+        </ul>
+
+        <h4>Other Regulations</h4>
+        <p>LGPD (Brazil), PIPEDA (Canada), state laws proliferating in US. Trend is toward more restriction, not less.</p>
+
+        <h3>Cookie Deprecation</h3>
+
+        <p>Third-party cookies (used for cross-site tracking and ad targeting) are being blocked by browsers:</p>
+
+        <table>
+          <thead>
+            <tr>
+              <th>Browser</th>
+              <th>Status</th>
+              <th>Impact</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Safari</td>
+              <td>Blocked since 2020</td>
+              <td>~20% of traffic affected</td>
+            </tr>
+            <tr>
+              <td>Firefox</td>
+              <td>Blocked</td>
+              <td>~5% of traffic</td>
+            </tr>
+            <tr>
+              <td>Chrome</td>
+              <td>Evolving (Privacy Sandbox)</td>
+              <td>~65% of traffic—this is the big one</td>
+            </tr>
+          </tbody>
+        </table>
+
+        <p><strong>What breaks without third-party cookies:</strong></p>
+        <ul>
+          <li>Retargeting ads (can't follow users across sites)</li>
+          <li>Cross-site attribution (can't connect ad impression to website visit)</li>
+          <li>Third-party data enrichment (can't match anonymous visitors)</li>
+          <li>Multi-touch attribution (harder to track the full journey)</li>
+        </ul>
+
+        <h3>Practical Implications for B2B Marketing</h3>
+
+        <h4>Consent Management</h4>
+        <p>You need a system to capture, store, and respect consent preferences. Cookie consent banners are the visible part, but you also need:</p>
+        <ul>
+          <li>Consent stored in your database (not just cookie)</li>
+          <li>Ability to suppress marketing to non-consented contacts</li>
+          <li>Audit trail of consent (when, how, what they agreed to)</li>
+          <li>Integration with your MAP to respect preferences</li>
+        </ul>
+
+        <h4>First-Party Data Strategy</h4>
+        <p>As third-party data becomes less available, first-party data becomes more valuable:</p>
+        <ul>
+          <li>Invest in capturing email/identity earlier in the journey</li>
+          <li>Build direct relationships (newsletters, communities, events)</li>
+          <li>Capture zero-party data (preferences explicitly shared)</li>
+          <li>Product usage data (for SaaS) becomes key signal</li>
+        </ul>
+
+        <h4>Attribution Challenges</h4>
+        <p>Multi-touch attribution depends on tracking. As tracking becomes harder:</p>
+        <ul>
+          <li>Self-reported attribution ("how did you hear about us?") becomes more important</li>
+          <li>Marketing mix modeling (statistical approach) gains relevance</li>
+          <li>Lift testing and incrementality become gold standard</li>
+          <li>Accept that you won't have perfect visibility—build for directional insight</li>
+        </ul>
+
+        <div class="callout callout-info">
+          <strong>Realistic View:</strong> Perfect tracking is ending. The companies that win will be those that build direct relationships, capture first-party data thoughtfully, and accept measurement uncertainty rather than pretending they have perfect attribution.
+        </div>
+      </section>
+
+      <!-- Section 12: Vendors -->
+      <section id="vendors">
+        <h2>Vendor Landscape <a href="#vendors" class="anchor-link">#</a></h2>
+
+        <p>Understanding what major vendors actually do differently helps you evaluate options and understand what you're working with.</p>
+
+        <h3>CRM: Salesforce vs HubSpot</h3>
+
+        <table>
+          <thead>
+            <tr>
+              <th>Aspect</th>
+              <th>Salesforce</th>
+              <th>HubSpot CRM</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><strong>Data model</strong></td>
+              <td>Lead/Contact split, highly customizable</td>
+              <td>Unified contacts, simpler model</td>
+            </tr>
+            <tr>
+              <td><strong>Customization</strong></td>
+              <td>Nearly unlimited (custom objects, Apex code)</td>
+              <td>Limited (but covers most needs)</td>
+            </tr>
+            <tr>
+              <td><strong>Admin overhead</strong></td>
+              <td>High—usually need dedicated admin</td>
+              <td>Lower—most teams self-manage</td>
+            </tr>
+            <tr>
+              <td><strong>Reporting</strong></td>
+              <td>Powerful but complex</td>
+              <td>Simpler, good defaults</td>
+            </tr>
+            <tr>
+              <td><strong>Ecosystem</strong></td>
+              <td>Massive AppExchange, every tool integrates</td>
+              <td>Growing, but smaller</td>
+            </tr>
+            <tr>
+              <td><strong>Best for</strong></td>
+              <td>Complex sales processes, enterprise</td>
+              <td>Simpler needs, smaller teams</td>
+            </tr>
+            <tr>
+              <td><strong>Typical cost</strong></td>
+              <td>$150-300/user/month + implementation</td>
+              <td>Free-$120/user/month</td>
+            </tr>
+          </tbody>
+        </table>
+
+        <h3>MAP: HubSpot vs Marketo vs Pardot</h3>
+
+        <table>
+          <thead>
+            <tr>
+              <th>Aspect</th>
+              <th>HubSpot Marketing</th>
+              <th>Marketo</th>
+              <th>Pardot</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><strong>Owner</strong></td>
+              <td>HubSpot</td>
+              <td>Adobe</td>
+              <td>Salesforce</td>
+            </tr>
+            <tr>
+              <td><strong>Best for</strong></td>
+              <td>All-in-one, SMB-mid</td>
+              <td>Complex programs, enterprise</td>
+              <td>Salesforce-native shops</td>
+            </tr>
+            <tr>
+              <td><strong>Learning curve</strong></td>
+              <td>Low</td>
+              <td>High</td>
+              <td>Medium</td>
+            </tr>
+            <tr>
+              <td><strong>Workflow power</strong></td>
+              <td>Good</td>
+              <td>Excellent (Smart Campaigns)</td>
+              <td>Moderate</td>
+            </tr>
+            <tr>
+              <td><strong>CRM integration</strong></td>
+              <td>Native HubSpot, good SFDC sync</td>
+              <td>Good SFDC sync</td>
+              <td>Native to SFDC</td>
+            </tr>
+            <tr>
+              <td><strong>Analytics</strong></td>
+              <td>Built-in, good</td>
+              <td>Good, better with BI</td>
+              <td>Requires SFDC reporting</td>
+            </tr>
+            <tr>
+              <td><strong>Typical cost</strong></td>
+              <td>$800-3,200+/month</td>
+              <td>$1,200-4,000+/month</td>
+              <td>$1,250-4,000+/month</td>
+            </tr>
+          </tbody>
+        </table>
+
+        <h3>ABM Platforms: 6sense vs Demandbase</h3>
+
+        <table>
+          <thead>
+            <tr>
+              <th>Aspect</th>
+              <th>6sense</th>
+              <th>Demandbase</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><strong>Core strength</strong></td>
+              <td>AI predictions, intent modeling</td>
+              <td>Advertising, account identification</td>
+            </tr>
+            <tr>
+              <td><strong>Intent data</strong></td>
+              <td>Multi-source, AI-enhanced</td>
+              <td>Multi-source, strong coverage</td>
+            </tr>
+            <tr>
+              <td><strong>Advertising</strong></td>
+              <td>Available but not primary</td>
+              <td>Core competency, DSP included</td>
+            </tr>
+            <tr>
+              <td><strong>Sales features</strong></td>
+              <td>Strong (sales intelligence module)</td>
+              <td>Growing</td>
+            </tr>
+            <tr>
+              <td><strong>Pricing model</strong></td>
+              <td>Platform + modules</td>
+              <td>Platform + ad spend</td>
+            </tr>
+            <tr>
+              <td><strong>Typical cost</strong></td>
+              <td>$60K-200K+/year</td>
+              <td>$50K-200K+/year</td>
+            </tr>
+          </tbody>
+        </table>
+
+        <h3>Evaluation Framework</h3>
+
+        <p>When evaluating any vendor:</p>
+
+        <ol>
+          <li><strong>Define requirements first.</strong> What problem are you solving? What does success look like?</li>
+          <li><strong>Check integration capabilities.</strong> Does it connect to your existing stack? Native or API-only?</li>
+          <li><strong>Understand the data model.</strong> Where does data live? Can you get it out if needed?</li>
+          <li><strong>Calculate total cost.</strong> License + implementation + ongoing admin + integrations.</li>
+          <li><strong>Talk to actual users.</strong> Not reference customers vendor provides—find people on LinkedIn.</li>
+          <li><strong>Run a pilot.</strong> Before annual contract, test with real use cases.</li>
+        </ol>
+
+        <div class="callout callout-warning">
+          <strong>Vendor Lock-in:</strong> Every tool you adopt is a dependency. Consider: how hard would it be to switch? How portable is your data and configuration? The best tool in the world isn't worth it if you can't leave.
+        </div>
+      </section>
+
+      <!-- Section 13: ABM -->
+      <section id="abm">
+        <h2>Account-Based Marketing <a href="#abm" class="anchor-link">#</a></h2>
+
+        <p>ABM flips the funnel. Instead of generating leads and hoping some turn into good accounts, you start with target accounts and focus marketing resources on them. It's not a tool—it's a strategy that uses many tools.</p>
+
+        <h3>ABM vs Traditional Demand Gen</h3>
+
+        <table>
+          <thead>
+            <tr>
+              <th>Aspect</th>
+              <th>Traditional Demand Gen</th>
+              <th>ABM</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><strong>Starting point</strong></td>
+              <td>Cast wide net, qualify down</td>
+              <td>Start with target account list</td>
+            </tr>
+            <tr>
+              <td><strong>Unit of analysis</strong></td>
+              <td>Lead</td>
+              <td>Account (buying committee)</td>
+            </tr>
+            <tr>
+              <td><strong>Metrics</strong></td>
+              <td>Lead volume, MQLs</td>
+              <td>Account engagement, pipeline per account</td>
+            </tr>
+            <tr>
+              <td><strong>Personalization</strong></td>
+              <td>Segment-level</td>
+              <td>Account or industry-level</td>
+            </tr>
+            <tr>
+              <td><strong>Sales alignment</strong></td>
+              <td>Handoff-based</td>
+              <td>Continuous collaboration</td>
+            </tr>
+            <tr>
+              <td><strong>Best for</strong></td>
+              <td>High volume, lower ACV</td>
+              <td>Enterprise, high ACV, named accounts</td>
+            </tr>
+          </tbody>
+        </table>
+
+        <h3>Account Tiering</h3>
+
+        <p>Not all accounts get the same treatment. Standard tiering:</p>
+
+        <table>
+          <thead>
+            <tr>
+              <th>Tier</th>
+              <th>Typical Size</th>
+              <th>Treatment</th>
+              <th>Resources</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><strong>Tier 1</strong></td>
+              <td>10-50 accounts</td>
+              <td>1:1 programs, custom content</td>
+              <td>High-touch, dedicated teams</td>
+            </tr>
+            <tr>
+              <td><strong>Tier 2</strong></td>
+              <td>50-500 accounts</td>
+              <td>1:Few programs, industry content</td>
+              <td>Scaled personalization</td>
+            </tr>
+            <tr>
+              <td><strong>Tier 3</strong></td>
+              <td>500-2000+ accounts</td>
+              <td>1:Many programs, targeted ads</td>
+              <td>Programmatic, automated</td>
+            </tr>
+          </tbody>
+        </table>
+
+        <h3>ABM Orchestration</h3>
+
+        <p>ABM requires coordinating multiple channels for the same accounts:</p>
+
+        <div class="diagram">
+Account: Acme Corp (Tier 1)
+Timeline: Q1 Campaign
+
+Week 1-2:  Display ads to Acme IPs (awareness)
+           Send direct mail to 3 key contacts
+           
+Week 3-4:  Personalized email sequence to contacts
+           LinkedIn ads to Acme employee audience
+           Sales outreach begins
+           
+Week 5-6:  Retargeting based on website engagement
+           Custom landing page for Acme
+           Executive dinner invite
+           
+Week 7-8:  Demo follow-up
+           Case study sharing
+           Technical evaluation content
+        </div>
+
+        <h3>ABM Tech Stack Components</h3>
+
+        <ul>
+          <li><strong>Account data/targeting:</strong> 6sense, Demandbase, Terminus (identify, score, target accounts)</li>
+          <li><strong>Account-based advertising:</strong> LinkedIn, display through ABM platforms</li>
+          <li><strong>Personalization:</strong> Mutiny, Intellimize (customize web experience per account)</li>
+          <li><strong>Direct mail:</strong> Sendoso, Postal.io (physical touches at scale)</li>
+          <li><strong>Sales engagement:</strong> Outreach, Salesloft (coordinate sales plays)</li>
+          <li><strong>Intent signals:</strong> Bombora, G2 (prioritize accounts showing buying signals)</li>
+        </ul>
+
+        <h3>ABM Measurement</h3>
+
+        <p>ABM changes how you measure. Lead volume is less relevant when you're targeting 200 specific accounts.</p>
+
+        <p><strong>Key ABM metrics:</strong></p>
+
+        <ul>
+          <li><strong>Account coverage:</strong> % of target accounts with known contacts</li>
+          <li><strong>Account engagement:</strong> Multi-person engagement within account (not just one contact)</li>
+          <li><strong>Pipeline per account:</strong> Average pipeline generated from target accounts</li>
+          <li><strong>Velocity:</strong> How fast do engaged accounts move through pipeline?</li>
+          <li><strong>Target account pipeline %:</strong> What portion of total pipeline is from target accounts?</li>
+          <li><strong>Win rate:</strong> Do target accounts close at higher rates?</li>
+        </ul>
+
+        <div class="callout callout-tip">
+          <strong>In Practice:</strong> ABM works when sales and marketing agree on target accounts and collaborate continuously. It fails when marketing picks accounts unilaterally and throws leads over the wall. If your sales team isn't bought in, ABM is just expensive advertising.
+        </div>
+
+        <h3>Common ABM Mistakes</h3>
+
+        <ul>
+          <li><strong>Too many Tier 1 accounts:</strong> If you have 500 "Tier 1" accounts, you have zero Tier 1 accounts. 1:1 doesn't scale.</li>
+          <li><strong>No sales buy-in:</strong> Marketing can't run ABM alone. Sales must commit to working the accounts.</li>
+          <li><strong>Lead metrics for ABM:</strong> Reporting MQL volume for an ABM program misses the point.</li>
+          <li><strong>No account-level tracking:</strong> If your systems can't aggregate contacts to accounts, you can't measure ABM.</li>
+          <li><strong>Spray and pray with ads:</strong> Running ads to target accounts isn't ABM—it's just targeting. ABM requires orchestration.</li>
+        </ul>
+      </section>
+
+      <!-- Section 14: Auditing -->
+      <section id="auditing">
+        <h2>Evaluating and Auditing a Stack <a href="#auditing" class="anchor-link">#</a></h2>
+
+        <p>Whether you're new to a company or looking to optimize, knowing how to assess an existing martech stack is a critical skill.</p>
+
+        <h3>Stack Audit Framework</h3>
+
+        <h4>Step 1: Inventory</h4>
+        <p>Document every tool. For each:</p>
+        <ul>
+          <li>What does it do? (Primary function)</li>
+          <li>Who owns it? (Department, person)</li>
+          <li>What does it cost? (License, implementation, ongoing)</li>
+          <li>How many users? (Active users vs licensed)</li>
+          <li>What data does it hold?</li>
+          <li>What does it connect to?</li>
+        </ul>
+
+        <h4>Step 2: Map Data Flows</h4>
+        <p>Create a diagram showing how data moves between systems. For each flow:</p>
+        <ul>
+          <li>What triggers the flow? (Real-time, scheduled, manual)</li>
+          <li>What data moves?</li>
+          <li>Which direction? (One-way or bidirectional)</li>
+          <li>What's the integration method? (Native, API, iPaaS)</li>
+        </ul>
+
+        <h4>Step 3: Identify Gaps and Overlaps</h4>
+
+        <table>
+          <thead>
+            <tr>
+              <th>Question</th>
+              <th>Red Flag</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Do multiple tools do the same thing?</td>
+              <td>Paying for redundant functionality</td>
+            </tr>
+            <tr>
+              <td>Is any capability missing?</td>
+              <td>Gaps requiring workarounds or manual effort</td>
+            </tr>
+            <tr>
+              <td>Are tools actually being used?</td>
+              <td>Shelfware eating budget</td>
+            </tr>
+            <tr>
+              <td>Do integrations work reliably?</td>
+              <td>Sync failures, data discrepancies</td>
+            </tr>
+            <tr>
+              <td>Can you get data out for analysis?</td>
+              <td>Data trapped in silos</td>
+            </tr>
+          </tbody>
+        </table>
+
+        <h4>Step 4: Assess Data Quality</h4>
+        <p>Pull key metrics from primary systems:</p>
+
+        <div class="code-block" data-language="data quality checks">
+          <button class="copy-btn">Copy</button>
+          <pre><code>CRM Health Check:
+- Total leads: _____ (how many are recent?)
+- Duplicate rate: _____% (check email uniqueness)
+- Fill rate for key fields: _____% (title, company, industry)
+- Leads with no activity in 12+ months: _____%
+- Records with invalid emails: _____% (run verification)
+
+MAP Health Check:
+- Total contacts: _____
+- Marketable (opted-in, valid): _____
+- Bounce rate on recent sends: _____% (>3% is problem)
+- Unsubscribe rate trend: _____ (increasing = problem)
+- Email deliverability score: _____</code></pre>
+        </div>
+
+        <h4>Step 5: Evaluate Against Needs</h4>
+        <p>Stack should support strategy. Ask:</p>
+        <ul>
+          <li>What are marketing's goals for next 12 months?</li>
+          <li>What programs are planned?</li>
+          <li>What data/capabilities do those programs require?</li>
+          <li>Does current stack enable or block those programs?</li>
+        </ul>
+
+        <h3>Common Stack Problems</h3>
+
+        <table>
+          <thead>
+            <tr>
+              <th>Problem</th>
+              <th>Symptoms</th>
+              <th>Typical Cause</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Tool sprawl</td>
+              <td>10+ point solutions, no one knows all of them</td>
+              <td>Acquisitions without consolidation</td>
+            </tr>
+            <tr>
+              <td>Data silos</td>
+              <td>Can't answer basic questions, conflicting reports</td>
+              <td>No integration strategy</td>
+            </tr>
+            <tr>
+              <td>Shelfware</td>
+              <td>Paying for tools nobody uses</td>
+              <td>Bought for specific project, never adopted</td>
+            </tr>
+            <tr>
+              <td>Single points of failure</td>
+              <td>One person knows how everything works</td>
+              <td>No documentation, no cross-training</td>
+            </tr>
+            <tr>
+              <td>Scaling limits</td>
+              <td>Hitting API limits, slow syncs, growing costs</td>
+              <td>Outgrew original architecture</td>
+            </tr>
+          </tbody>
+        </table>
+
+        <h3>Making Recommendations</h3>
+
+        <p>After audit, recommendations should be:</p>
+
+        <ol>
+          <li><strong>Prioritized:</strong> What's urgent vs. important vs. nice-to-have?</li>
+          <li><strong>Costed:</strong> What does it cost to fix? (Money, time, risk)</li>
+          <li><strong>Sequenced:</strong> What order makes sense? (Dependencies, quick wins)</li>
+          <li><strong>Realistic:</strong> What can actually get done given resources?</li>
+        </ol>
+
+        <div class="callout callout-tip">
+          <strong>Template for recommendations:</strong>
+          <ol>
+            <li><strong>Quick wins:</strong> Low effort, high impact (do now)</li>
+            <li><strong>Foundation fixes:</strong> Required for everything else (do next)</li>
+            <li><strong>Strategic investments:</strong> Major initiatives (plan carefully)</li>
+            <li><strong>Cleanup:</strong> Tech debt, decommissioning (ongoing)</li>
+          </ol>
+        </div>
+
+        <details class="collapsible">
+          <summary>Example Audit Findings Summary</summary>
+          <div>
+            <p><strong>Current State:</strong> 14 marketing tools, $280K annual spend, 3 people maintaining.</p>
+            
+            <p><strong>Key Issues:</strong></p>
+            <ul>
+              <li>CRM and MAP show different lead counts (12% discrepancy)</li>
+              <li>Two tools do email, one unused but contracted through December</li>
+              <li>No attribution—can't connect marketing to revenue</li>
+              <li>Data quality: 28% of emails invalid, 40% missing job title</li>
+            </ul>
+
+            <p><strong>Recommendations:</strong></p>
+            <ol>
+              <li>Quick win: Run email validation, suppress invalids (2 days, saves deliverability)</li>
+              <li>Foundation: Fix CRM-MAP sync, establish single source of truth (2 weeks)</li>
+              <li>Strategic: Implement attribution model using existing tools (6-8 weeks)</li>
+              <li>Cleanup: Cancel redundant email tool at renewal, save $18K/year</li>
+            </ol>
+          </div>
+        </details>
+      </section>
+
+      <footer class="footer">
+        Last updated: December 2024
+      </footer>
+    </div>
+  </main>
+
+  <script>
+    function toggleTheme() {
+      const html = document.documentElement;
+      const current = html.getAttribute('data-theme');
+      const next = current === 'dark' ? 'light' : 'dark';
+      html.setAttribute('data-theme', next);
+      localStorage.setItem('theme', next);
+    }
+
+    const savedTheme = localStorage.getItem('theme');
+    if (savedTheme) {
+      document.documentElement.setAttribute('data-theme', savedTheme);
+    } else if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
+      document.documentElement.setAttribute('data-theme', 'dark');
+    }
+
+    document.querySelectorAll('.copy-btn').forEach(btn => {
+      btn.addEventListener('click', async () => {
+        const code = btn.closest('.code-block').querySelector('code').textContent;
+        await navigator.clipboard.writeText(code);
+        btn.textContent = 'Copied!';
+        btn.classList.add('copied');
+        setTimeout(() => {
+          btn.textContent = 'Copy';
+          btn.classList.remove('copied');
+        }, 2000);
+      });
+    });
+
+    const sections = document.querySelectorAll('section[id]');
+    const navLinks = document.querySelectorAll('.nav-list a');
+
+    function updateActi

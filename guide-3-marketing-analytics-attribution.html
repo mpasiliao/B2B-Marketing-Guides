@@ -1,0 +1,1694 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Guide 3: Marketing Analytics & Attribution</title>
+  <style>
+    :root {
+      --nav-width: 260px;
+      --content-max-width: 850px;
+      --font-body: system-ui, -apple-system, sans-serif;
+      --font-mono: 'SF Mono', Consolas, monospace;
+      
+      /* Light theme */
+      --bg-primary: #ffffff;
+      --bg-secondary: #f8f9fa;
+      --bg-code: #1e1e1e;
+      --text-primary: #1a1a1a;
+      --text-secondary: #6b7280;
+      --text-code: #d4d4d4;
+      --border-color: #e5e7eb;
+      --accent: #2563eb;
+      --accent-hover: #1d4ed8;
+      
+      /* Callout colors */
+      --callout-warning-bg: #fef3c7;
+      --callout-warning-border: #f59e0b;
+      --callout-tip-bg: #d1fae5;
+      --callout-tip-border: #10b981;
+      --callout-caution-bg: #fee2e2;
+      --callout-caution-border: #ef4444;
+      --callout-info-bg: #dbeafe;
+      --callout-info-border: #3b82f6;
+      --callout-success-bg: #dcfce7;
+      --callout-success-border: #22c55e;
+    }
+
+    [data-theme="dark"] {
+      --bg-primary: #111827;
+      --bg-secondary: #1f2937;
+      --bg-code: #0d1117;
+      --text-primary: #f9fafb;
+      --text-secondary: #9ca3af;
+      --border-color: #374151;
+      --accent: #60a5fa;
+      --accent-hover: #93c5fd;
+      
+      --callout-warning-bg: #422006;
+      --callout-warning-border: #f59e0b;
+      --callout-tip-bg: #022c22;
+      --callout-tip-border: #10b981;
+      --callout-caution-bg: #450a0a;
+      --callout-caution-border: #ef4444;
+      --callout-info-bg: #172554;
+      --callout-info-border: #3b82f6;
+      --callout-success-bg: #052e16;
+      --callout-success-border: #22c55e;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: var(--font-body);
+      background: var(--bg-primary);
+      color: var(--text-primary);
+      line-height: 1.6;
+    }
+
+    /* Navigation */
+    .nav {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: var(--nav-width);
+      height: 100vh;
+      background: var(--bg-secondary);
+      border-right: 1px solid var(--border-color);
+      padding: 1.5rem;
+      overflow-y: auto;
+      z-index: 100;
+    }
+
+    .nav-title {
+      font-size: 0.875rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      color: var(--text-secondary);
+      margin-bottom: 1rem;
+    }
+
+    .nav-list {
+      list-style: none;
+    }
+
+    .nav-list li { margin-bottom: 0.25rem; }
+
+    .nav-list a {
+      display: block;
+      padding: 0.5rem 0.75rem;
+      color: var(--text-primary);
+      text-decoration: none;
+      border-radius: 4px;
+      font-size: 0.875rem;
+      transition: background 0.15s;
+    }
+
+    .nav-list a:hover,
+    .nav-list a.active {
+      background: var(--accent);
+      color: white;
+    }
+
+    /* Theme toggle */
+    .theme-toggle {
+      position: absolute;
+      bottom: 1.5rem;
+      left: 1.5rem;
+      right: 1.5rem;
+    }
+
+    .theme-toggle button {
+      width: 100%;
+      padding: 0.5rem;
+      background: var(--bg-primary);
+      border: 1px solid var(--border-color);
+      border-radius: 4px;
+      color: var(--text-primary);
+      cursor: pointer;
+      font-size: 0.875rem;
+    }
+
+    .theme-toggle button:hover {
+      border-color: var(--accent);
+    }
+
+    /* Main content */
+    .main {
+      margin-left: var(--nav-width);
+      padding: 3rem;
+      min-height: 100vh;
+    }
+
+    .content {
+      max-width: var(--content-max-width);
+      margin: 0 auto;
+    }
+
+    /* Typography */
+    h1, h2, h3, h4 { font-weight: 600; line-height: 1.3; }
+    h1 { font-size: 2.25rem; margin-bottom: 1.5rem; }
+    h2 { font-size: 1.5rem; margin: 2.5rem 0 1rem; padding-top: 1.5rem; border-top: 1px solid var(--border-color); }
+    h3 { font-size: 1.25rem; margin: 2rem 0 0.75rem; }
+    h4 { font-size: 1.1rem; margin: 1.5rem 0 0.5rem; }
+    p { margin-bottom: 1rem; }
+
+    /* Anchor links */
+    .anchor-link {
+      color: var(--text-secondary);
+      text-decoration: none;
+      margin-left: 0.5rem;
+      opacity: 0;
+      transition: opacity 0.15s;
+    }
+
+    h2:hover .anchor-link,
+    h3:hover .anchor-link {
+      opacity: 1;
+    }
+
+    .anchor-link:hover { color: var(--accent); }
+
+    /* Callouts */
+    .callout {
+      padding: 1rem 1.25rem;
+      border-radius: 6px;
+      border-left: 4px solid;
+      margin: 1.5rem 0;
+    }
+
+    .callout-warning { background: var(--callout-warning-bg); border-color: var(--callout-warning-border); }
+    .callout-tip { background: var(--callout-tip-bg); border-color: var(--callout-tip-border); }
+    .callout-caution { background: var(--callout-caution-bg); border-color: var(--callout-caution-border); }
+    .callout-info { background: var(--callout-info-bg); border-color: var(--callout-info-border); }
+    .callout-success { background: var(--callout-success-bg); border-color: var(--callout-success-border); }
+
+    /* Code blocks */
+    .code-block {
+      position: relative;
+      background: var(--bg-code);
+      border-radius: 8px;
+      margin: 1.5rem 0;
+    }
+
+    .code-block::before {
+      content: attr(data-language);
+      position: absolute;
+      top: 0.5rem;
+      left: 1rem;
+      font-size: 0.75rem;
+      color: var(--text-secondary);
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+
+    .code-block pre {
+      padding: 2.5rem 1rem 1rem;
+      overflow-x: auto;
+      margin: 0;
+    }
+
+    .code-block code {
+      font-family: var(--font-mono);
+      font-size: 0.875rem;
+      color: var(--text-code);
+      line-height: 1.5;
+    }
+
+    .copy-btn {
+      position: absolute;
+      top: 0.5rem;
+      right: 0.5rem;
+      padding: 0.375rem 0.75rem;
+      background: transparent;
+      border: 1px solid #4b5563;
+      border-radius: 4px;
+      color: #9ca3af;
+      font-size: 0.75rem;
+      cursor: pointer;
+      transition: all 0.15s;
+    }
+
+    .copy-btn:hover {
+      background: #374151;
+      color: white;
+    }
+
+    .copy-btn.copied {
+      background: var(--callout-success-border);
+      border-color: var(--callout-success-border);
+      color: white;
+    }
+
+    /* Inline code */
+    code:not(.code-block code) {
+      font-family: var(--font-mono);
+      font-size: 0.875em;
+      background: var(--bg-secondary);
+      padding: 0.2em 0.4em;
+      border-radius: 4px;
+    }
+
+    /* Tables */
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 1.5rem 0;
+      font-size: 0.9375rem;
+    }
+
+    th, td {
+      padding: 0.75rem 1rem;
+      text-align: left;
+      border: 1px solid var(--border-color);
+    }
+
+    th {
+      background: var(--bg-secondary);
+      font-weight: 600;
+    }
+
+    tbody tr:nth-child(even) {
+      background: var(--bg-secondary);
+    }
+
+    /* Collapsible sections */
+    .collapsible {
+      border: 1px solid var(--border-color);
+      border-radius: 6px;
+      margin: 1.5rem 0;
+    }
+
+    .collapsible summary {
+      padding: 1rem;
+      cursor: pointer;
+      font-weight: 500;
+      background: var(--bg-secondary);
+      border-radius: 6px;
+      list-style: none;
+    }
+
+    .collapsible summary::before {
+      content: '▶';
+      display: inline-block;
+      margin-right: 0.5rem;
+      transition: transform 0.2s;
+    }
+
+    .collapsible[open] summary::before {
+      transform: rotate(90deg);
+    }
+
+    .collapsible[open] summary {
+      border-radius: 6px 6px 0 0;
+    }
+
+    .collapsible > *:not(summary) {
+      padding: 1rem;
+    }
+
+    /* Lists */
+    ul, ol {
+      margin: 1rem 0;
+      padding-left: 1.5rem;
+    }
+
+    li { margin-bottom: 0.5rem; }
+
+    /* Footer */
+    .footer {
+      margin-top: 4rem;
+      padding-top: 2rem;
+      border-top: 1px solid var(--border-color);
+      color: var(--text-secondary);
+      font-size: 0.875rem;
+    }
+
+    /* Prereq banner */
+    .prereq-banner {
+      background: linear-gradient(135deg, var(--callout-info-bg), var(--bg-secondary));
+      border: 2px solid var(--callout-info-border);
+      border-radius: 8px;
+      padding: 1.25rem 1.5rem;
+      margin-bottom: 2rem;
+    }
+
+    .prereq-banner strong {
+      color: var(--callout-info-border);
+    }
+
+    /* Formula boxes */
+    .formula-box {
+      background: var(--bg-secondary);
+      border: 1px solid var(--border-color);
+      border-radius: 8px;
+      padding: 1.25rem;
+      margin: 1rem 0;
+      font-family: var(--font-mono);
+      font-size: 0.95rem;
+      text-align: center;
+    }
+
+    /* Print styles */
+    @media print {
+      .nav, .theme-toggle, .copy-btn { display: none; }
+      .main { margin-left: 0; padding: 1rem; }
+      .code-block { break-inside: avoid; }
+      .callout { break-inside: avoid; }
+      table { break-inside: avoid; }
+    }
+
+    /* Mobile responsive */
+    @media (max-width: 768px) {
+      .nav {
+        position: static;
+        width: 100%;
+        height: auto;
+        border-right: none;
+        border-bottom: 1px solid var(--border-color);
+      }
+      .main { margin-left: 0; }
+      .theme-toggle { position: static; margin-top: 1rem; }
+    }
+  </style>
+</head>
+<body>
+  <nav class="nav">
+    <div class="nav-title">Contents</div>
+    <ul class="nav-list">
+      <li><a href="#statistical-foundations">Statistical Foundations</a></li>
+      <li><a href="#first-touch">First-Touch Attribution</a></li>
+      <li><a href="#last-touch">Last-Touch Attribution</a></li>
+      <li><a href="#linear">Linear Attribution</a></li>
+      <li><a href="#time-decay">Time-Decay Attribution</a></li>
+      <li><a href="#position-based">Position-Based Attribution</a></li>
+      <li><a href="#account-vs-contact">Account vs Contact Level</a></li>
+      <li><a href="#sourced-influenced">Sourced vs Influenced</a></li>
+      <li><a href="#mta-challenges">MTA Challenges in B2B</a></li>
+      <li><a href="#dark-funnel">Self-Reported & Dark Funnel</a></li>
+      <li><a href="#incrementality">Incrementality Testing</a></li>
+      <li><a href="#experimentation">Experimentation Design</a></li>
+      <li><a href="#measurement-frameworks">Measurement Frameworks</a></li>
+      <li><a href="#cohort-analysis">Cohort Analysis</a></li>
+      <li><a href="#mmm">Marketing Mix Modeling</a></li>
+      <li><a href="#stakeholder-reporting">Stakeholder Reporting</a></li>
+    </ul>
+    <div class="theme-toggle">
+      <button onclick="toggleTheme()">Toggle Dark Mode</button>
+    </div>
+  </nav>
+
+  <main class="main">
+    <div class="content">
+      <h1>Guide 3: Marketing Analytics & Attribution</h1>
+      
+      <div class="callout callout-info">
+        <strong>Series: B2B Marketing for Analysts</strong><br>
+        This is Guide 3 of 3. The series includes: <strong>Guide 1: B2B Marketing Fundamentals</strong> → <strong>Guide 2: Martech Stack & ABM</strong> → <strong>Guide 3: Marketing Analytics & Attribution</strong> (this guide). A companion Jupyter notebook provides hands-on exercises with realistic data.
+      </div>
+      
+      <div class="prereq-banner">
+        <strong>Prerequisites:</strong> This guide builds on both earlier guides. From Guide 1: funnel stages (MQL, SQL, etc.), conversion metrics, and lead lifecycle. From Guide 2: CRM, MAP, touchpoint tracking, and how data flows between systems. You should understand what a touchpoint record looks like and how marketing automation tracks engagement before diving into attribution.
+      </div>
+
+      <!-- Section 1: Statistical Foundations -->
+      <section id="statistical-foundations">
+        <h2>Statistical Foundations <a href="#statistical-foundations" class="anchor-link">#</a></h2>
+        
+        <p>Before you start making claims about what's working in your marketing, you need enough statistical literacy to avoid embarrassing yourself. This section covers the minimum you need to know.</p>
+
+        <h3>Sample Size</h3>
+        <p>Sample size determines whether your data is meaningful or noise. The core question: how many observations do you need before you can trust a pattern?</p>
+
+        <p>For conversion rate analysis, use this rule of thumb: you need at least 100 conversions (not visitors—conversions) per variant to detect meaningful differences. If your baseline conversion rate is 2%, you need ~5,000 visitors per variant to detect a 20% relative lift with 80% power.</p>
+
+        <div class="callout callout-warning">
+          <strong>Common mistake:</strong> Running an A/B test for a week, seeing one variant at 3.2% and another at 2.8%, and declaring a winner. With 50 conversions per variant, that difference is pure noise. You've learned nothing.
+        </div>
+
+        <h3>Statistical Significance</h3>
+        <p>Statistical significance answers: "What's the probability that the difference I'm seeing happened by random chance?"</p>
+
+        <p>The standard threshold is p &lt; 0.05, meaning there's less than a 5% probability the result occurred by chance. In practice:</p>
+
+        <ul>
+          <li><strong>p = 0.05:</strong> 1 in 20 chance this is random noise</li>
+          <li><strong>p = 0.01:</strong> 1 in 100 chance this is random noise</li>
+          <li><strong>p = 0.10:</strong> 1 in 10 chance—not significant, don't make decisions on this</li>
+        </ul>
+
+        <div class="formula-box">
+          Z = (p₁ - p₂) / √[p(1-p)(1/n₁ + 1/n₂)]<br>
+          <small>where p = pooled conversion rate, n = sample sizes</small>
+        </div>
+
+        <h3>Confidence Intervals</h3>
+        <p>A confidence interval gives you a range where the true value likely falls. A 95% confidence interval means: if you repeated this experiment 100 times, 95 of those intervals would contain the true value.</p>
+
+        <p><strong>Example:</strong> Your landing page has a 4.2% conversion rate with a 95% CI of [3.8%, 4.6%]. This means you're confident the true rate is somewhere in that range. If a proposed change shows 4.5% ± 0.5%, the confidence intervals overlap—you can't claim improvement.</p>
+
+        <div class="callout callout-tip">
+          <strong>In practice:</strong> When your CMO asks "did this campaign work?", your answer should include confidence intervals. "Conversion rate improved from 3.2% to 4.1%, 95% CI [3.6%, 4.6%], p = 0.02" is a defensible answer. "It went up" is not.
+        </div>
+
+        <h3>Quick Calculator Reference</h3>
+        <p>For A/B test sample size calculation:</p>
+
+        <div class="code-block" data-language="formula">
+          <button class="copy-btn">Copy</button>
+          <pre><code>n = 2 × [(Zα + Zβ)² × p(1-p)] / (MDE)²
+
+Where:
+- Zα = 1.96 for 95% confidence
+- Zβ = 0.84 for 80% power  
+- p = baseline conversion rate
+- MDE = minimum detectable effect (relative)
+
+Example: 3% baseline, want to detect 20% lift
+n = 2 × [(1.96 + 0.84)² × 0.03 × 0.97] / (0.006)²
+n ≈ 4,500 per variant</code></pre>
+        </div>
+
+        <table>
+          <thead>
+            <tr>
+              <th>Baseline Rate</th>
+              <th>Detect 10% Lift</th>
+              <th>Detect 20% Lift</th>
+              <th>Detect 50% Lift</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>1%</td>
+              <td>~156,000/variant</td>
+              <td>~39,000/variant</td>
+              <td>~6,300/variant</td>
+            </tr>
+            <tr>
+              <td>3%</td>
+              <td>~51,000/variant</td>
+              <td>~13,000/variant</td>
+              <td>~2,100/variant</td>
+            </tr>
+            <tr>
+              <td>5%</td>
+              <td>~30,000/variant</td>
+              <td>~7,600/variant</td>
+              <td>~1,200/variant</td>
+            </tr>
+            <tr>
+              <td>10%</td>
+              <td>~14,300/variant</td>
+              <td>~3,600/variant</td>
+              <td>~580/variant</td>
+            </tr>
+          </tbody>
+        </table>
+      </section>
+
+      <!-- Section 2: First-Touch Attribution -->
+      <section id="first-touch">
+        <h2>First-Touch Attribution <a href="#first-touch" class="anchor-link">#</a></h2>
+
+        <p>First-touch attribution assigns 100% of conversion credit to the first marketing touchpoint that introduced a lead to your company.</p>
+
+        <h3>Implementation Logic</h3>
+        <p>For each converted lead or opportunity:</p>
+        <ol>
+          <li>Query all touchpoints associated with the contact(s)</li>
+          <li>Sort by timestamp ascending</li>
+          <li>Take the earliest touchpoint</li>
+          <li>Assign full credit to that touchpoint's channel/campaign</li>
+        </ol>
+
+        <div class="code-block" data-language="sql">
+          <button class="copy-btn">Copy</button>
+          <pre><code>-- First-touch attribution query
+WITH first_touches AS (
+  SELECT 
+    contact_id,
+    channel,
+    campaign,
+    ROW_NUMBER() OVER (PARTITION BY contact_id ORDER BY touch_timestamp ASC) as rn
+  FROM touchpoints
+)
+SELECT 
+  o.opportunity_id,
+  o.amount,
+  ft.channel as first_touch_channel,
+  ft.campaign as first_touch_campaign
+FROM opportunities o
+JOIN contacts c ON o.primary_contact_id = c.contact_id
+JOIN first_touches ft ON c.contact_id = ft.contact_id AND ft.rn = 1</code></pre>
+        </div>
+
+        <h3>When First-Touch Is Appropriate</h3>
+        <ul>
+          <li><strong>Brand awareness analysis:</strong> Understanding which channels introduce new audiences</li>
+          <li><strong>Top-of-funnel optimization:</strong> When you're focused on demand generation, not conversion</li>
+          <li><strong>New market entry:</strong> Measuring which channels are reaching previously untapped audiences</li>
+        </ul>
+
+        <h3>Limitations</h3>
+        <p>First-touch ignores everything that happened after initial discovery. A lead might find you through organic search, then attend three webinars, download five ebooks, and talk to sales six times before buying—and first-touch says "organic search gets all the credit."</p>
+
+        <div class="callout callout-caution">
+          <strong>Watch out:</strong> First-touch heavily favors awareness channels (content, organic, paid social) and systematically undervalues conversion channels (sales emails, demos, bottom-funnel content). If you use first-touch for budget allocation, you'll over-invest in top-funnel and starve the channels that actually close deals.
+        </div>
+
+        <h3>Real-World Example</h3>
+        <p>A $150K enterprise deal closes. The buying journey:</p>
+        <ul>
+          <li>Day 1: CTO reads your blog post (organic search)</li>
+          <li>Day 30: CTO attends webinar</li>
+          <li>Day 45: VP Engineering downloads whitepaper</li>
+          <li>Day 60: CTO requests demo from LinkedIn ad</li>
+          <li>Day 90: Sales does 5 calls, sends proposal</li>
+          <li>Day 120: Deal closes</li>
+        </ul>
+        <p><strong>First-touch attribution:</strong> Organic search = $150K pipeline sourced. LinkedIn, webinar, and whitepaper = $0.</p>
+      </section>
+
+      <!-- Section 3: Last-Touch Attribution -->
+      <section id="last-touch">
+        <h2>Last-Touch Attribution <a href="#last-touch" class="anchor-link">#</a></h2>
+
+        <p>Last-touch attribution assigns 100% of conversion credit to the final touchpoint before conversion. This is the default model in most analytics tools because it's simple to implement and matches how conversions are tracked.</p>
+
+        <h3>Implementation Logic</h3>
+
+        <div class="code-block" data-language="sql">
+          <button class="copy-btn">Copy</button>
+          <pre><code>-- Last-touch attribution query
+WITH last_touches AS (
+  SELECT 
+    contact_id,
+    channel,
+    campaign,
+    ROW_NUMBER() OVER (PARTITION BY contact_id ORDER BY touch_timestamp DESC) as rn
+  FROM touchpoints
+  WHERE touch_timestamp <= (SELECT created_date FROM opportunities WHERE contact_id = touchpoints.contact_id)
+)
+SELECT 
+  o.opportunity_id,
+  o.amount,
+  lt.channel as last_touch_channel,
+  lt.campaign as last_touch_campaign
+FROM opportunities o
+JOIN contacts c ON o.primary_contact_id = c.contact_id
+JOIN last_touches lt ON c.contact_id = lt.contact_id AND lt.rn = 1</code></pre>
+        </div>
+
+        <h3>When Last-Touch Is Appropriate</h3>
+        <ul>
+          <li><strong>Conversion optimization:</strong> Understanding what finally triggers action</li>
+          <li><strong>Short sales cycles:</strong> If your cycle is &lt;7 days, last-touch may be close to complete</li>
+          <li><strong>Direct response campaigns:</strong> When measuring immediate ROI of conversion-focused campaigns</li>
+        </ul>
+
+        <h3>Limitations</h3>
+        <p>Last-touch is blind to the journey. It treats a cold lead who just showed up as equivalent to a nurtured lead who's been engaging for 6 months. The "last touch" often isn't what convinced them—it's just what triggered the form fill.</p>
+
+        <div class="callout callout-info">
+          <strong>In practice:</strong> Last-touch often over-credits branded search, retargeting, and email—channels that catch people who were already convinced. If 80% of your last touches are "direct" or "branded search," that tells you people know your brand, not that those channels are valuable.
+        </div>
+
+        <h3>Real-World Example</h3>
+        <p>Same $150K deal from before:</p>
+        <p><strong>Last-touch attribution:</strong> Sales email = $150K pipeline sourced. Every marketing touchpoint that built awareness and interest = $0.</p>
+        <p>This is why sales teams love last-touch and marketing teams hate it.</p>
+      </section>
+
+      <!-- Section 4: Linear Attribution -->
+      <section id="linear">
+        <h2>Linear Attribution <a href="#linear" class="anchor-link">#</a></h2>
+
+        <p>Linear attribution divides credit equally across all touchpoints in the conversion path. If there are 10 touchpoints, each gets 10% of the credit.</p>
+
+        <h3>Implementation Logic</h3>
+
+        <div class="code-block" data-language="sql">
+          <button class="copy-btn">Copy</button>
+          <pre><code>-- Linear attribution calculation
+WITH touch_counts AS (
+  SELECT 
+    contact_id,
+    COUNT(*) as total_touches
+  FROM touchpoints
+  GROUP BY contact_id
+)
+SELECT 
+  t.channel,
+  t.campaign,
+  SUM(o.amount / tc.total_touches) as attributed_revenue
+FROM touchpoints t
+JOIN touch_counts tc ON t.contact_id = tc.contact_id
+JOIN opportunities o ON t.contact_id = o.primary_contact_id
+WHERE o.is_won = true
+GROUP BY t.channel, t.campaign</code></pre>
+        </div>
+
+        <h3>When Linear Is Appropriate</h3>
+        <ul>
+          <li><strong>Long, complex journeys:</strong> When you genuinely don't know which touches matter most</li>
+          <li><strong>Baseline comparison:</strong> As a neutral starting point before adding assumptions</li>
+          <li><strong>Team alignment:</strong> When you need a model everyone can accept as "fair"</li>
+        </ul>
+
+        <h3>Limitations</h3>
+        <p>Linear attribution treats all touches as equally valuable. A 2-second ad impression gets the same credit as a 45-minute sales call. That's almost certainly wrong, but at least it's transparent about its assumptions.</p>
+
+        <div class="callout callout-tip">
+          <strong>Pro tip:</strong> Linear attribution is useful for identifying channels that appear frequently in successful journeys but get ignored by first/last-touch. If webinars show up in 70% of won deals but get minimal first/last touch credit, linear will reveal their importance.
+        </div>
+
+        <h3>Real-World Example</h3>
+        <p>The $150K deal with 10 touchpoints:</p>
+        <table>
+          <thead>
+            <tr><th>Touch</th><th>Channel</th><th>Credit</th></tr>
+          </thead>
+          <tbody>
+            <tr><td>1</td><td>Organic search</td><td>$15,000</td></tr>
+            <tr><td>2</td><td>Webinar</td><td>$15,000</td></tr>
+            <tr><td>3</td><td>Whitepaper download</td><td>$15,000</td></tr>
+            <tr><td>4</td><td>LinkedIn ad</td><td>$15,000</td></tr>
+            <tr><td>5</td><td>Demo request</td><td>$15,000</td></tr>
+            <tr><td>6-10</td><td>Sales calls/emails</td><td>$75,000</td></tr>
+          </tbody>
+        </table>
+      </section>
+
+      <!-- Section 5: Time-Decay Attribution -->
+      <section id="time-decay">
+        <h2>Time-Decay Attribution <a href="#time-decay" class="anchor-link">#</a></h2>
+
+        <p>Time-decay attribution gives more credit to touchpoints closer to conversion. The assumption: recent interactions are more influential than older ones.</p>
+
+        <h3>Implementation Logic</h3>
+        <p>Standard time-decay uses a half-life model. Common half-life values are 7 or 14 days, meaning touches from 7 (or 14) days before conversion get half the weight of the most recent touch.</p>
+
+        <div class="code-block" data-language="python">
+          <button class="copy-btn">Copy</button>
+          <pre><code># Time-decay attribution with 7-day half-life
+import math
+
+def calculate_time_decay_weight(days_before_conversion, half_life=7):
+    return math.pow(2, -days_before_conversion / half_life)
+
+# Example: touches at 28, 14, 7, and 0 days before conversion
+touches = [28, 14, 7, 0]
+weights = [calculate_time_decay_weight(d) for d in touches]
+# weights = [0.0625, 0.25, 0.5, 1.0]
+
+# Normalize to sum to 1
+total = sum(weights)
+normalized = [w/total for w in weights]
+# normalized ≈ [0.034, 0.138, 0.276, 0.552]</code></pre>
+        </div>
+
+        <h3>When Time-Decay Is Appropriate</h3>
+        <ul>
+          <li><strong>Short consideration phases:</strong> When buying decisions happen quickly after serious evaluation</li>
+          <li><strong>Recency-driven behavior:</strong> Products where the most recent research influences the decision</li>
+          <li><strong>High-velocity sales:</strong> When older touches are genuinely less relevant</li>
+        </ul>
+
+        <h3>Limitations</h3>
+        <p>Time-decay assumes recency equals importance. But the first touchpoint that introduced your brand might be the most important even though it happened 90 days ago. In enterprise B2B, the executive who approved budget might have engaged once early and never again—time-decay would give them almost zero credit.</p>
+
+        <div class="callout callout-warning">
+          <strong>Common mistake:</strong> Using time-decay in long B2B cycles without adjusting the half-life. A 7-day half-life means a touch from 28 days ago gets 6% weight. In a 180-day sales cycle, everything in the first 3 months becomes invisible. Extend your half-life to 30-60 days for enterprise deals.
+        </div>
+      </section>
+
+      <!-- Section 6: Position-Based Attribution -->
+      <section id="position-based">
+        <h2>Position-Based Attribution <a href="#position-based" class="anchor-link">#</a></h2>
+
+        <p>Position-based (also called U-shaped or bathtub) attribution gives heavy weight to first and last touches, with the remainder distributed across middle touches. The typical split is 40% first, 40% last, 20% distributed among the middle.</p>
+
+        <h3>Implementation Logic</h3>
+
+        <div class="code-block" data-language="python">
+          <button class="copy-btn">Copy</button>
+          <pre><code># Position-based attribution (40/20/40)
+def position_based_attribution(touches, deal_value, first_weight=0.4, last_weight=0.4):
+    n = len(touches)
+    if n == 1:
+        return {touches[0]: deal_value}
+    if n == 2:
+        return {touches[0]: deal_value * 0.5, touches[1]: deal_value * 0.5}
+    
+    middle_weight = (1 - first_weight - last_weight) / (n - 2)
+    attribution = {}
+    
+    attribution[touches[0]] = deal_value * first_weight
+    attribution[touches[-1]] = deal_value * last_weight
+    
+    for touch in touches[1:-1]:
+        attribution[touch] = deal_value * middle_weight
+    
+    return attribution
+
+# Example with 6 touches, $100K deal
+touches = ['organic', 'webinar', 'whitepaper', 'linkedin', 'demo', 'sales_call']
+result = position_based_attribution(touches, 100000)
+# organic: $40K, webinar-demo: $5K each, sales_call: $40K</code></pre>
+        </div>
+
+        <h3>When Position-Based Is Appropriate</h3>
+        <ul>
+          <li><strong>B2B with clear conversion triggers:</strong> When you know first and last touches are disproportionately important</li>
+          <li><strong>Balanced view:</strong> When you want to credit both acquisition and conversion</li>
+          <li><strong>Account-based motions:</strong> When initial account penetration and final conversion are distinct, valuable events</li>
+        </ul>
+
+        <h3>Limitations</h3>
+        <p>The 40/40/20 split is arbitrary. It might match reality, or it might not. You're baking in assumptions about what matters without data to support them.</p>
+
+        <p>Position-based also creates weird incentives: middle-funnel content gets systematically undervalued. If your nurture content is what actually convinces people, you'll never see it.</p>
+
+        <div class="callout callout-info">
+          <strong>Variant: W-shaped attribution</strong> adds a third peak at the opportunity creation moment (when a lead becomes an opportunity). Split: 30% first touch, 30% opportunity creation, 30% close, 10% middle. This better reflects B2B journeys where becoming a qualified opportunity is a distinct milestone.
+        </div>
+      </section>
+
+      <!-- Section 7: Account-Level vs Contact-Level -->
+      <section id="account-vs-contact">
+        <h2>Account-Level vs Contact-Level Attribution <a href="#account-vs-contact" class="anchor-link">#</a></h2>
+
+        <p>This is where B2B attribution gets genuinely hard. In B2C, one person makes the purchase decision—you attribute to their touchpoints. In B2B, a buying committee of 6-10 people might be involved, each with their own journey.</p>
+
+        <h3>The Problem</h3>
+        <p>Consider this enterprise deal:</p>
+        <ul>
+          <li>CTO found you through organic search, attended a webinar</li>
+          <li>VP Engineering downloaded three whitepapers</li>
+          <li>Procurement lead came direct to the website (no marketing attribution)</li>
+          <li>End users attended a workshop</li>
+          <li>CFO only engaged during final contract review</li>
+        </ul>
+        <p>If you only attribute to the "primary contact" (usually whoever filled out the first form), you miss most of the story.</p>
+
+        <h3>Contact-Level Attribution</h3>
+        <p>Assigns credit based on individual contact journeys. Each contact gets their own first-touch, last-touch, etc.</p>
+
+        <p><strong>Pros:</strong> Granular, maps to how MAP tracks engagement.</p>
+
+        <p><strong>Cons:</strong> Ignores account context. The CFO's single engagement might be more important than the intern's 50 email opens.</p>
+
+        <h3>Account-Level Attribution</h3>
+        <p>Aggregates all contact touchpoints to the account level, then attributes the opportunity to the account's collective journey.</p>
+
+        <div class="code-block" data-language="sql">
+          <button class="copy-btn">Copy</button>
+          <pre><code>-- Account-level first touch
+WITH account_touches AS (
+  SELECT 
+    a.account_id,
+    t.channel,
+    t.campaign,
+    t.touch_timestamp,
+    ROW_NUMBER() OVER (PARTITION BY a.account_id ORDER BY t.touch_timestamp ASC) as rn
+  FROM accounts a
+  JOIN contacts c ON a.account_id = c.account_id
+  JOIN touchpoints t ON c.contact_id = t.contact_id
+)
+SELECT 
+  o.opportunity_id,
+  o.amount,
+  at.channel as account_first_touch_channel
+FROM opportunities o
+JOIN account_touches at ON o.account_id = at.account_id AND at.rn = 1</code></pre>
+        </div>
+
+        <div class="callout callout-tip">
+          <strong>Best practice:</strong> Build both views. Use contact-level for channel performance (which channels engage which personas). Use account-level for pipeline attribution (which channels influence deals). They answer different questions.
+        </div>
+
+        <h3>Handling the Buying Committee</h3>
+        <p>Advanced approach: weight contact contributions by role. Example weights:</p>
+        <table>
+          <thead>
+            <tr><th>Role</th><th>Weight</th><th>Rationale</th></tr>
+          </thead>
+          <tbody>
+            <tr><td>Economic Buyer</td><td>3x</td><td>Has budget authority</td></tr>
+            <tr><td>Champion</td><td>2x</td><td>Drives internal advocacy</td></tr>
+            <tr><td>Technical Evaluator</td><td>1.5x</td><td>Influences requirements</td></tr>
+            <tr><td>End User</td><td>1x</td><td>Volume engagement, less authority</td></tr>
+            <tr><td>Blocker</td><td>2x</td><td>Engagement here prevents derailment</td></tr>
+          </tbody>
+        </table>
+      </section>
+
+      <!-- Section 8: Sourced vs Influenced Pipeline -->
+      <section id="sourced-influenced">
+        <h2>Sourced vs Influenced Pipeline <a href="#sourced-influenced" class="anchor-link">#</a></h2>
+
+        <p>This distinction determines how marketing takes credit for revenue—and causes more arguments than almost any other metric.</p>
+
+        <h3>Sourced Pipeline</h3>
+        <p><strong>Definition:</strong> Pipeline where marketing created the initial opportunity. The first touchpoint that brought the account/contact into the funnel was a marketing touchpoint.</p>
+
+        <p>Sourced pipeline is marketing's "I found this deal" claim. If the first touch was an inbound lead from a webinar, content download, or paid campaign, marketing "sourced" that pipeline.</p>
+
+        <div class="formula-box">
+          Sourced Pipeline = Σ (Opportunity Amount)<br>
+          where first touchpoint on primary contact = marketing channel
+        </div>
+
+        <h3>Influenced Pipeline</h3>
+        <p><strong>Definition:</strong> Pipeline where marketing touched any contact on the account at any point before the deal closed (or before opportunity creation, depending on your definition).</p>
+
+        <p>Influenced pipeline is marketing's "I helped this deal" claim. Even if sales found the account through outbound, if marketing nurtured the champion or provided content that moved the deal forward, marketing "influenced" that pipeline.</p>
+
+        <div class="formula-box">
+          Influenced Pipeline = Σ (Opportunity Amount)<br>
+          where any marketing touchpoint exists on any contact before close
+        </div>
+
+        <h3>The Math Problem</h3>
+        <p>Sourced and influenced have a double-counting problem:</p>
+        <ul>
+          <li>A deal can be both sourced AND influenced by marketing</li>
+          <li>Multiple campaigns can "influence" the same deal</li>
+          <li>You can't add sourced + influenced to get total marketing contribution</li>
+        </ul>
+
+        <div class="callout callout-caution">
+          <strong>The common argument:</strong> Marketing says "We influenced $50M in pipeline!" Sales says "You took credit for deals we brought in through cold outbound." Both can be technically correct. Influenced is a weak claim—it includes deals where marketing sent one email that was never opened. Set minimum engagement thresholds.
+        </div>
+
+        <h3>Practical Thresholds</h3>
+        <p>To make influenced meaningful, add qualification criteria:</p>
+        <table>
+          <thead>
+            <tr><th>Influence Level</th><th>Criteria</th></tr>
+          </thead>
+          <tbody>
+            <tr><td>Light touch</td><td>Any marketing interaction (email sent, ad impression)</td></tr>
+            <tr><td>Engaged</td><td>Active engagement (email clicked, content downloaded, webinar attended)</td></tr>
+            <tr><td>Heavy influence</td><td>3+ engaged touches OR high-value touch (demo request, sales conversation initiated by marketing)</td></tr>
+          </tbody>
+        </table>
+
+        <p>Report on "heavily influenced" pipeline, not "technically touched" pipeline. It's more credible and more useful.</p>
+
+        <h3>Example Calculation</h3>
+        <div class="code-block" data-language="sql">
+          <button class="copy-btn">Copy</button>
+          <pre><code>-- Sourced pipeline by channel
+SELECT 
+  first_touch.channel,
+  SUM(o.amount) as sourced_pipeline,
+  COUNT(DISTINCT o.opportunity_id) as sourced_opps
+FROM opportunities o
+JOIN (
+  SELECT contact_id, channel,
+    ROW_NUMBER() OVER (PARTITION BY contact_id ORDER BY touch_timestamp) as rn
+  FROM touchpoints
+) first_touch ON o.primary_contact_id = first_touch.contact_id AND first_touch.rn = 1
+GROUP BY first_touch.channel;
+
+-- Influenced pipeline by channel (with engagement threshold)
+SELECT 
+  t.channel,
+  SUM(DISTINCT o.amount) as influenced_pipeline,
+  COUNT(DISTINCT o.opportunity_id) as influenced_opps
+FROM opportunities o
+JOIN contacts c ON o.account_id = c.account_id
+JOIN touchpoints t ON c.contact_id = t.contact_id
+WHERE t.touch_timestamp < o.close_date
+  AND t.engagement_type IN ('click', 'download', 'attend', 'demo_request')  -- engagement threshold
+GROUP BY t.channel;</code></pre>
+        </div>
+      </section>
+
+      <!-- Section 9: MTA Challenges in B2B -->
+      <section id="mta-challenges">
+        <h2>Multi-Touch Attribution Challenges in B2B <a href="#mta-challenges" class="anchor-link">#</a></h2>
+
+        <p>Multi-touch attribution (MTA) sounds elegant in theory. In B2B practice, it's a mess. Here's what makes it hard and how to cope.</p>
+
+        <h3>Challenge 1: Long Sales Cycles</h3>
+        <p>Enterprise deals take 6-18 months. Your tracking breaks over this period:</p>
+        <ul>
+          <li>Cookies expire (7 days in Safari, increasingly restricted everywhere)</li>
+          <li>People change jobs, email addresses</li>
+          <li>UTM parameters get lost in forwards and copy/pastes</li>
+          <li>Tracking code changes mid-journey</li>
+        </ul>
+
+        <div class="callout callout-warning">
+          <strong>Reality check:</strong> Studies suggest 40-60% of B2B touchpoints are invisible to tracking. Your attribution model is working with incomplete data. Always.
+        </div>
+
+        <h3>Challenge 2: Offline Touches</h3>
+        <p>Major B2B touchpoints happen offline:</p>
+        <ul>
+          <li>Trade show conversations</li>
+          <li>Sales calls and meetings</li>
+          <li>Executive briefings</li>
+          <li>Conference presentations</li>
+          <li>Word-of-mouth referrals</li>
+        </ul>
+
+        <p>You can log these manually, but compliance is spotty and timing is imprecise. An event touchpoint might get logged days after it happened.</p>
+
+        <h3>Challenge 3: Multiple Devices and Identities</h3>
+        <p>B2B buyers use personal phones, work laptops, home computers, and sometimes different email addresses. Without robust identity resolution, one person looks like three anonymous visitors plus one known contact.</p>
+
+        <h3>Challenge 4: The Dark Funnel</h3>
+        <p>Huge amounts of B2B research happen in places you can't track:</p>
+        <ul>
+          <li>Slack communities and private channels</li>
+          <li>LinkedIn DMs</li>
+          <li>Podcasts listened to in cars</li>
+          <li>Peer recommendations over lunch</li>
+          <li>Review sites with anonymized traffic</li>
+          <li>Private browsing windows</li>
+        </ul>
+
+        <p>When a lead finally fills out a form, they might already be 80% of the way to a decision—and you have no idea why.</p>
+
+        <h3>Coping Strategies</h3>
+        <ol>
+          <li><strong>Accept imperfection:</strong> Attribution is directionally useful, not precisely accurate. Treat it as signal, not source of truth.</li>
+          <li><strong>Triangulate:</strong> Use multiple attribution models and look for patterns that appear across all of them.</li>
+          <li><strong>Supplement with qualitative:</strong> Self-reported attribution (covered next section) fills gaps.</li>
+          <li><strong>Focus on relative performance:</strong> Even if absolute numbers are wrong, relative comparisons between channels may be valid.</li>
+          <li><strong>Invest in identity:</strong> Better identity resolution reduces fragmentation. It doesn't eliminate it, but it helps.</li>
+        </ol>
+      </section>
+
+      <!-- Section 10: Dark Funnel and Self-Reported -->
+      <section id="dark-funnel">
+        <h2>Self-Reported Attribution and the Dark Funnel <a href="#dark-funnel" class="anchor-link">#</a></h2>
+
+        <p>Self-reported attribution—asking leads "How did you hear about us?"—is low-tech but surprisingly valuable. It captures what tracking can't.</p>
+
+        <h3>Implementation</h3>
+        <p>Add a free-text or dropdown field to your lead forms:</p>
+
+        <div class="code-block" data-language="html">
+          <button class="copy-btn">Copy</button>
+          <pre><code>&lt;!-- Option 1: Free text (higher quality signal, harder to analyze) --&gt;
+&lt;label&gt;How did you first hear about us?&lt;/label&gt;
+&lt;input type="text" name="how_did_you_hear" /&gt;
+
+&lt;!-- Option 2: Dropdown + Other (easier to analyze, may constrain responses) --&gt;
+&lt;label&gt;How did you first hear about us?&lt;/label&gt;
+&lt;select name="how_did_you_hear"&gt;
+  &lt;option value=""&gt;Please select...&lt;/option&gt;
+  &lt;option value="google_search"&gt;Google search&lt;/option&gt;
+  &lt;option value="colleague"&gt;Colleague or friend&lt;/option&gt;
+  &lt;option value="linkedin"&gt;LinkedIn&lt;/option&gt;
+  &lt;option value="podcast"&gt;Podcast&lt;/option&gt;
+  &lt;option value="review_site"&gt;G2/Capterra/review site&lt;/option&gt;
+  &lt;option value="event"&gt;Event or conference&lt;/option&gt;
+  &lt;option value="other"&gt;Other (please specify)&lt;/option&gt;
+&lt;/select&gt;</code></pre>
+        </div>
+
+        <h3>What Self-Reported Reveals</h3>
+        <p>Compare self-reported to first-touch tracked. The gaps are revealing:</p>
+
+        <table>
+          <thead>
+            <tr><th>Self-Reported</th><th>First-Touch Tracked</th><th>Interpretation</th></tr>
+          </thead>
+          <tbody>
+            <tr><td>"Podcast"</td><td>Direct</td><td>Podcast works; you can't track it</td></tr>
+            <tr><td>"Colleague told me"</td><td>Organic search</td><td>Word-of-mouth matters; search captured the hand-raiser</td></tr>
+            <tr><td>"LinkedIn"</td><td>LinkedIn Ad</td><td>Tracking worked correctly</td></tr>
+            <tr><td>"Been following for years"</td><td>Email</td><td>Long brand-building journey collapsed to re-engagement</td></tr>
+            <tr><td>"G2 reviews"</td><td>Direct</td><td>Review sites drive consideration; you can't track it</td></tr>
+          </tbody>
+        </table>
+
+        <h3>Analysis Approach</h3>
+
+        <div class="code-block" data-language="sql">
+          <button class="copy-btn">Copy</button>
+          <pre><code>-- Compare self-reported vs tracked first touch
+SELECT 
+  l.self_reported_source,
+  first_touch.channel as tracked_first_touch,
+  COUNT(*) as leads,
+  SUM(CASE WHEN o.is_won = true THEN 1 ELSE 0 END) as won_deals,
+  SUM(CASE WHEN o.is_won = true THEN o.amount ELSE 0 END) as revenue
+FROM leads l
+LEFT JOIN (
+  SELECT contact_id, channel,
+    ROW_NUMBER() OVER (PARTITION BY contact_id ORDER BY touch_timestamp) as rn
+  FROM touchpoints
+) first_touch ON l.contact_id = first_touch.contact_id AND first_touch.rn = 1
+LEFT JOIN opportunities o ON l.lead_id = o.primary_lead_id
+GROUP BY l.self_reported_source, first_touch.channel
+ORDER BY leads DESC;</code></pre>
+        </div>
+
+        <div class="callout callout-tip">
+          <strong>Pro tip:</strong> If 30% of your self-reported responses are "podcast" or "colleague" but tracking shows 0% from those sources, you've identified your dark funnel. Don't stop doing those things just because you can't measure them.
+        </div>
+
+        <h3>Data Quality Notes</h3>
+        <p>Self-reported data has biases:</p>
+        <ul>
+          <li><strong>Recency bias:</strong> People remember recent touches, not the true first</li>
+          <li><strong>Salience bias:</strong> Memorable experiences (events, podcasts) get over-reported</li>
+          <li><strong>Social desirability:</strong> "Colleague recommended" sounds better than "I saw an ad"</li>
+          <li><strong>Attention:</strong> Some people just pick the first option</li>
+        </ul>
+        <p>Use it as one input, not the only input. Triangulate with tracked data.</p>
+      </section>
+
+      <!-- Section 11: Incrementality -->
+      <section id="incrementality">
+        <h2>Incrementality and Lift Testing <a href="#incrementality" class="anchor-link">#</a></h2>
+
+        <p>Attribution tells you which touchpoints were present before conversion. Incrementality tells you which touchpoints actually caused conversion. This is the difference between correlation and causation.</p>
+
+        <h3>The Core Question</h3>
+        <p>"Would this conversion have happened anyway, without this marketing touch?"</p>
+
+        <p>If you run a retargeting ad and someone converts, attribution says the ad worked. But that person might have converted anyway—they were already on your site, already interested. The ad got credit for something it didn't cause.</p>
+
+        <h3>Holdout Testing</h3>
+        <p>The gold standard: randomly withhold a channel from a subset of your audience and measure the difference in conversion rates.</p>
+
+        <div class="code-block" data-language="text">
+          <button class="copy-btn">Copy</button>
+          <pre><code>Test Group A (control): No retargeting ads
+Test Group B (exposed): Sees retargeting ads
+
+Results:
+Group A conversion rate: 4.2%
+Group B conversion rate: 5.1%
+
+Incremental lift: 5.1% - 4.2% = 0.9 percentage points
+Lift %: 0.9 / 4.2 = 21.4% relative improvement
+
+If Group B had 100,000 people:
+- Total conversions: 5,100
+- Conversions that would have happened anyway: 4,200
+- Incremental conversions: 900
+- Attribution would have credited: 5,100
+- True incrementality: 900</code></pre>
+        </div>
+
+        <h3>Geo Experiments</h3>
+        <p>When you can't hold out individuals (e.g., TV, billboards, or when user-level holdout is impractical), run geo experiments:</p>
+        <ol>
+          <li>Select matched pairs of regions with similar characteristics</li>
+          <li>Run the campaign in test regions, not control regions</li>
+          <li>Compare conversion rates between test and control</li>
+        </ol>
+
+        <div class="callout callout-info">
+          <strong>Example:</strong> Test LinkedIn advertising in Dallas, Austin, Phoenix. Hold out Denver, San Antonio, Albuquerque. If the test cities show 15% higher lead volume than control cities, you've measured incremental lift.
+        </div>
+
+        <h3>When Attribution Isn't Enough</h3>
+        <p>Use incrementality testing when:</p>
+        <ul>
+          <li><strong>Retargeting:</strong> Attribution always looks great because you're targeting warm audiences</li>
+          <li><strong>Brand campaigns:</strong> Hard to track but may drive lift across all channels</li>
+          <li><strong>High-spend channels:</strong> Before increasing budget on a channel, verify it's truly incremental</li>
+          <li><strong>Channel overlap:</strong> When people see multiple channels, which ones matter?</li>
+        </ul>
+
+        <h3>Implementation Requirements</h3>
+        <table>
+          <thead>
+            <tr><th>Requirement</th><th>Why It Matters</th></tr>
+          </thead>
+          <tbody>
+            <tr><td>Random assignment</td><td>Non-random creates selection bias</td></tr>
+            <tr><td>Sufficient sample size</td><td>Need statistical power to detect lift</td></tr>
+            <tr><td>Clean holdout</td><td>Control can't be exposed through other paths</td></tr>
+            <tr><td>Long enough test period</td><td>Must capture full conversion cycle</td></tr>
+            <tr><td>Stable baseline</td><td>No other major changes during test</td></tr>
+          </tbody>
+        </table>
+
+        <div class="callout callout-caution">
+          <strong>Warning:</strong> Incrementality tests are expensive. You're deliberately not marketing to some potential customers. Only run them when the insight justifies the cost, typically for high-spend channels or strategic decisions.
+        </div>
+      </section>
+
+      <!-- Section 12: Experimentation Design -->
+      <section id="experimentation">
+        <h2>Experimentation Design <a href="#experimentation" class="anchor-link">#</a></h2>
+
+        <p>Beyond incrementality testing, marketing analytics requires rigorous experimentation for optimization. Here's how to design experiments that actually work.</p>
+
+        <h3>A/B Testing Campaigns</h3>
+        <p>Core elements of a valid A/B test:</p>
+
+        <ol>
+          <li><strong>Single variable:</strong> Change one thing. If you change headline AND image AND CTA, you don't know what worked.</li>
+          <li><strong>Random assignment:</strong> Visitors must be randomly assigned to variants, not based on any characteristic.</li>
+          <li><strong>Adequate sample:</strong> Calculate required sample size before starting (see Statistical Foundations).</li>
+          <li><strong>Pre-registered hypothesis:</strong> Decide what you're measuring and what counts as success before seeing data.</li>
+          <li><strong>Run to completion:</strong> Don't peek and stop early when you see a winner.</li>
+        </ol>
+
+        <div class="code-block" data-language="text">
+          <button class="copy-btn">Copy</button>
+          <pre><code>Test Plan Template:
+
+Hypothesis: Changing the CTA from "Request Demo" to "See It In Action" will 
+            increase demo request rate by ≥15%.
+
+Primary metric: Demo request conversion rate
+Secondary metrics: Form start rate, page bounce rate
+
+Sample size needed: 5,200 visitors per variant (for 80% power, α=0.05)
+Expected duration: ~3 weeks at current traffic levels
+
+Success criteria: Variant B conversion rate > Variant A by ≥15% with p < 0.05
+Decision: If success criteria met, implement Variant B. Otherwise, keep A.</code></pre>
+        </div>
+
+        <h3>Holdout Group Design</h3>
+        <p>For channel-level incrementality tests:</p>
+
+        <table>
+          <thead>
+            <tr><th>Component</th><th>Recommendation</th></tr>
+          </thead>
+          <tbody>
+            <tr><td>Holdout size</td><td>10-20% of audience (balance power vs. opportunity cost)</td></tr>
+            <tr><td>Assignment method</td><td>Random by user ID hash or geo</td></tr>
+            <tr><td>Duration</td><td>1.5-2x your average conversion cycle</td></tr>
+            <tr><td>Measurement</td><td>Primary: conversions. Secondary: pipeline, revenue</td></tr>
+          </tbody>
+        </table>
+
+        <h3>Common Experiment Mistakes</h3>
+
+        <div class="callout callout-caution">
+          <strong>Mistake 1: Peeking and stopping early</strong><br>
+          You check results after 3 days, see variant B winning (p=0.03), and call the test. Problem: with multiple looks, your actual false positive rate is much higher than 5%. Let tests run to planned completion.
+        </div>
+
+        <div class="callout callout-caution">
+          <strong>Mistake 2: Too many variants</strong><br>
+          Running A/B/C/D/E means you need 5x the sample for the same power. With 5 variants and 1000 visitors each, you can't detect anything meaningful. Stick to 2-3 variants max.
+        </div>
+
+        <div class="callout callout-caution">
+          <strong>Mistake 3: Wrong success metric</strong><br>
+          You optimize for click-through rate, get 40% more clicks, and declare victory. But conversion rate dropped 20%—you attracted curious clickers who don't convert. Optimize for the metric that matters to the business.
+        </div>
+
+        <div class="callout callout-caution">
+          <strong>Mistake 4: Selection bias in holdout</strong><br>
+          "Let's hold out our smallest accounts" creates biased results. Holdout must be random, or your results don't generalize.
+        </div>
+
+        <h3>Sequential Testing (When You Need to Peek)</h3>
+        <p>If you must monitor results during a test, use sequential testing methods that adjust for multiple comparisons. Tools like Google Optimize and Optimizely use these methods. The tradeoff: you need ~20-30% more sample for the same power.</p>
+      </section>
+
+      <!-- Section 13: Measurement Frameworks -->
+      <section id="measurement-frameworks">
+        <h2>Measurement Frameworks <a href="#measurement-frameworks" class="anchor-link">#</a></h2>
+
+        <p>A measurement framework defines what you track, why, and how it maps to business outcomes. Without one, you're collecting data without purpose.</p>
+
+        <h3>Building a Measurement Plan</h3>
+        <p>Start with business objectives and work backward:</p>
+
+        <div class="code-block" data-language="text">
+          <button class="copy-btn">Copy</button>
+          <pre><code>Business Objective: Grow ARR by 40% YoY
+  ↓
+Marketing Goal: Generate $20M in sourced pipeline
+  ↓
+Strategy: Increase enterprise lead volume by 60%
+  ↓
+Tactics: Expand paid search, launch account-based campaigns
+  ↓
+Metrics: Enterprise MQLs, MQL→SQL rate, sourced pipeline by channel</code></pre>
+        </div>
+
+        <h3>Metrics by Funnel Stage</h3>
+
+        <table>
+          <thead>
+            <tr><th>Stage</th><th>Leading Indicators</th><th>Lagging Indicators</th></tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><strong>Awareness</strong></td>
+              <td>Impressions, reach, share of voice, brand search volume</td>
+              <td>Aided/unaided awareness (requires surveys)</td>
+            </tr>
+            <tr>
+              <td><strong>Engagement</strong></td>
+              <td>Website visits, time on site, content downloads, email opens</td>
+              <td>Marketing Qualified Leads (MQLs)</td>
+            </tr>
+            <tr>
+              <td><strong>Consideration</strong></td>
+              <td>Demo requests, pricing page visits, high-intent content engagement</td>
+              <td>Sales Qualified Leads (SQLs), Opportunities created</td>
+            </tr>
+            <tr>
+              <td><strong>Decision</strong></td>
+              <td>Proposal views, contract opens, negotiation engagement</td>
+              <td>Closed-won deals, Revenue</td>
+            </tr>
+          </tbody>
+        </table>
+
+        <h3>Leading vs Lagging Indicators</h3>
+        <p><strong>Leading indicators</strong> predict future outcomes. They're actionable—you can intervene quickly. But they may not correlate with revenue.</p>
+
+        <p><strong>Lagging indicators</strong> confirm outcomes. They're what matters, but by the time you see them, it's too late to change course.</p>
+
+        <div class="callout callout-tip">
+          <strong>In practice:</strong> Report lagging indicators to executives (revenue, pipeline). Use leading indicators for team management (MQLs, engagement). Validate that your leading indicators actually predict lagging outcomes—if MQL volume doesn't correlate with pipeline, it's not a useful leading indicator.
+        </div>
+
+        <h3>Full Measurement Framework Template</h3>
+
+        <table>
+          <thead>
+            <tr>
+              <th>Objective</th>
+              <th>KPI</th>
+              <th>Target</th>
+              <th>Data Source</th>
+              <th>Frequency</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Drive awareness</td>
+              <td>Brand search volume</td>
+              <td>+20% YoY</td>
+              <td>Google Search Console</td>
+              <td>Monthly</td>
+            </tr>
+            <tr>
+              <td>Generate demand</td>
+              <td>Marketing Sourced Pipeline</td>
+              <td>$20M/quarter</td>
+              <td>Salesforce</td>
+              <td>Weekly</td>
+            </tr>
+            <tr>
+              <td>Improve efficiency</td>
+              <td>CAC</td>
+              <td>&lt;$15,000</td>
+              <td>Finance + CRM</td>
+              <td>Monthly</td>
+            </tr>
+            <tr>
+              <td>Enable sales</td>
+              <td>MQL→SQL rate</td>
+              <td>&gt;25%</td>
+              <td>MAP + CRM</td>
+              <td>Weekly</td>
+            </tr>
+            <tr>
+              <td>Prove ROI</td>
+              <td>Marketing-sourced revenue</td>
+              <td>$8M/quarter</td>
+              <td>CRM</td>
+              <td>Monthly</td>
+            </tr>
+          </tbody>
+        </table>
+      </section>
+
+      <!-- Section 14: Cohort Analysis -->
+      <section id="cohort-analysis">
+        <h2>Cohort Analysis and Pipeline Contribution <a href="#cohort-analysis" class="anchor-link">#</a></h2>
+
+        <p>Cohort analysis groups leads by when they entered your funnel, then tracks their progression over time. It reveals patterns that aggregate metrics hide.</p>
+
+        <h3>Why Cohorts Matter</h3>
+        <p>Aggregate conversion rates can be misleading. Imagine:</p>
+        <ul>
+          <li>January: 1,000 leads, 10% convert = 100 customers</li>
+          <li>February: 2,000 leads, 5% convert = 100 customers</li>
+          <li>Combined: 3,000 leads, 6.7% convert = 200 customers</li>
+        </ul>
+        <p>The aggregate rate looks fine, but something changed between January and February. Cohort analysis catches this.</p>
+
+        <h3>Building a Cohort Table</h3>
+
+        <div class="code-block" data-language="sql">
+          <button class="copy-btn">Copy</button>
+          <pre><code>-- Lead cohort progression
+WITH cohorts AS (
+  SELECT 
+    DATE_TRUNC('month', created_date) as cohort_month,
+    lead_id,
+    created_date,
+    mql_date,
+    sql_date,
+    opp_created_date,
+    closed_won_date
+  FROM leads
+)
+SELECT 
+  cohort_month,
+  COUNT(lead_id) as total_leads,
+  COUNT(mql_date) as mqls,
+  COUNT(sql_date) as sqls,
+  COUNT(opp_created_date) as opportunities,
+  COUNT(closed_won_date) as closed_won,
+  ROUND(100.0 * COUNT(mql_date) / COUNT(lead_id), 1) as lead_to_mql_rate,
+  ROUND(100.0 * COUNT(sql_date) / NULLIF(COUNT(mql_date), 0), 1) as mql_to_sql_rate,
+  ROUND(100.0 * COUNT(closed_won_date) / NULLIF(COUNT(opp_created_date), 0), 1) as opp_to_win_rate
+FROM cohorts
+GROUP BY cohort_month
+ORDER BY cohort_month;</code></pre>
+        </div>
+
+        <h3>Cohort Heatmap</h3>
+        <p>A cohort heatmap shows how each cohort progresses week-over-week or month-over-month:</p>
+
+        <table>
+          <thead>
+            <tr><th>Cohort</th><th>Month 0</th><th>Month 1</th><th>Month 2</th><th>Month 3</th><th>Month 4</th></tr>
+          </thead>
+          <tbody>
+            <tr><td>Jan</td><td>1,000</td><td>180 MQL</td><td>45 SQL</td><td>15 Opp</td><td>5 Won</td></tr>
+            <tr><td>Feb</td><td>1,200</td><td>200 MQL</td><td>40 SQL</td><td>10 Opp</td><td>-</td></tr>
+            <tr><td>Mar</td><td>1,500</td><td>250 MQL</td><td>50 SQL</td><td>-</td><td>-</td></tr>
+            <tr><td>Apr</td><td>1,100</td><td>170 MQL</td><td>-</td><td>-</td><td>-</td></tr>
+          </tbody>
+        </table>
+
+        <div class="callout callout-info">
+          <strong>What this reveals:</strong> February's cohort converted to MQL at a higher rate than January (16.7% vs 18%), but SQL conversion dropped (22.5% vs 20%). Something changed in lead quality or sales process.
+        </div>
+
+        <h3>Pipeline Contribution Report</h3>
+        <p>Calculating marketing's pipeline contribution by channel:</p>
+
+        <div class="code-block" data-language="sql">
+          <button class="copy-btn">Copy</button>
+          <pre><code>-- Monthly pipeline contribution by source channel
+SELECT 
+  DATE_TRUNC('month', o.created_date) as month,
+  COALESCE(first_touch.channel, 'Unknown') as source_channel,
+  COUNT(DISTINCT o.opportunity_id) as opportunities,
+  SUM(o.amount) as pipeline_created,
+  SUM(CASE WHEN o.is_won THEN o.amount ELSE 0 END) as revenue_won
+FROM opportunities o
+LEFT JOIN (
+  SELECT 
+    contact_id, 
+    channel,
+    ROW_NUMBER() OVER (PARTITION BY contact_id ORDER BY touch_timestamp) as rn
+  FROM touchpoints
+) first_touch ON o.primary_contact_id = first_touch.contact_id AND first_touch.rn = 1
+WHERE o.created_date >= DATE_TRUNC('year', CURRENT_DATE)
+GROUP BY 1, 2
+ORDER BY month, pipeline_created DESC;</code></pre>
+        </div>
+
+        <h3>Vintage Analysis</h3>
+        <p>Vintage analysis tracks how pipeline created in a given period eventually converts to revenue. Essential for understanding marketing's lagged contribution:</p>
+
+        <div class="code-block" data-language="sql">
+          <button class="copy-btn">Copy</button>
+          <pre><code>-- Pipeline vintage: how much of each quarter's pipeline has converted?
+SELECT 
+  DATE_TRUNC('quarter', o.created_date) as pipeline_quarter,
+  SUM(o.amount) as total_pipeline,
+  SUM(CASE WHEN o.is_won THEN o.amount ELSE 0 END) as won_revenue,
+  SUM(CASE WHEN o.stage = 'Closed Lost' THEN o.amount ELSE 0 END) as lost_pipeline,
+  SUM(CASE WHEN o.stage NOT IN ('Closed Won', 'Closed Lost') THEN o.amount ELSE 0 END) as open_pipeline,
+  ROUND(100.0 * SUM(CASE WHEN o.is_won THEN o.amount ELSE 0 END) / SUM(o.amount), 1) as win_rate
+FROM opportunities o
+GROUP BY 1
+ORDER BY 1;</code></pre>
+        </div>
+      </section>
+
+      <!-- Section 15: Marketing Mix Modeling -->
+      <section id="mmm">
+        <h2>Marketing Mix Modeling Basics <a href="#mmm" class="anchor-link">#</a></h2>
+
+        <p>Marketing Mix Modeling (MMM) is a statistical approach that measures marketing effectiveness using aggregate data. Unlike attribution (which tracks individual journeys), MMM uses regression analysis on historical spend and outcomes.</p>
+
+        <h3>What MMM Is</h3>
+        <p>MMM builds a statistical model that predicts business outcomes (revenue, conversions) based on marketing inputs (spend by channel, timing, external factors). The model coefficients tell you how much each input contributes to the outcome.</p>
+
+        <div class="formula-box">
+          Revenue = β₀ + β₁(Paid Search) + β₂(LinkedIn) + β₃(Events) + β₄(Seasonality) + ε
+        </div>
+
+        <h3>When to Use MMM vs Attribution</h3>
+
+        <table>
+          <thead>
+            <tr><th>Factor</th><th>Use Attribution</th><th>Use MMM</th></tr>
+          </thead>
+          <tbody>
+            <tr><td>Tracking coverage</td><td>Most journeys trackable</td><td>Significant dark funnel</td></tr>
+            <tr><td>Channel mix</td><td>Primarily digital</td><td>Includes offline (TV, events, OOH)</td></tr>
+            <tr><td>Decision timeframe</td><td>Tactical, weekly</td><td>Strategic, quarterly</td></tr>
+            <tr><td>Data requirements</td><td>User-level touchpoints</td><td>Aggregate spend + outcomes</td></tr>
+            <tr><td>Sales cycle</td><td>Shorter cycles where tracking persists</td><td>Long cycles where tracking breaks</td></tr>
+          </tbody>
+        </table>
+
+        <h3>Data Requirements</h3>
+        <p>MMM needs historical data, typically 2-3 years minimum:</p>
+        <ul>
+          <li><strong>Marketing spend:</strong> Weekly or monthly spend by channel</li>
+          <li><strong>Business outcomes:</strong> Revenue, conversions, leads by same time period</li>
+          <li><strong>External factors:</strong> Seasonality, economic indicators, competitor activity</li>
+          <li><strong>Price/promotion:</strong> If relevant, pricing changes and promotional periods</li>
+        </ul>
+
+        <div class="callout callout-warning">
+          <strong>Limitation:</strong> MMM requires variation in spend. If you've spent $50K/month on LinkedIn every month for 3 years, there's no variation to model. You need historical experiments (spend changes) for MMM to work.
+        </div>
+
+        <h3>Key Concepts</h3>
+
+        <p><strong>Adstock:</strong> Marketing doesn't work instantly. An ad seen today might influence a purchase next month. Adstock models this carryover effect. A typical adstock decay rate is 0.3-0.5 (30-50% of impact carries to the next period).</p>
+
+        <p><strong>Diminishing returns:</strong> The first $10K on a channel has more impact than the 10th $10K. MMM can model this non-linear relationship to find optimal spend levels.</p>
+
+        <p><strong>Saturation:</strong> Beyond some point, additional spend produces minimal incremental impact. MMM identifies where you're hitting saturation by channel.</p>
+
+        <h3>Limitations</h3>
+        <ul>
+          <li><strong>Correlation vs causation:</strong> MMM finds correlations. It can't prove causation without experimental validation.</li>
+          <li><strong>Historical data:</strong> Models the past, which may not predict the future if market conditions change.</li>
+          <li><strong>Aggregation:</strong> Can't tell you which specific campaigns or creatives worked—only channel-level performance.</li>
+          <li><strong>Complexity:</strong> Requires statistical expertise to build and validate properly.</li>
+        </ul>
+
+        <div class="callout callout-tip">
+          <strong>In practice:</strong> Most B2B companies under $100M ARR don't need MMM. Attribution, incrementality tests, and cohort analysis cover most use cases. Consider MMM when you have significant offline spend, long sales cycles that break tracking, or when you need board-level confidence in marketing ROI.
+        </div>
+      </section>
+
+      <!-- Section 16: Stakeholder Reporting -->
+      <section id="stakeholder-reporting">
+        <h2>Reporting for Different Stakeholders <a href="#stakeholder-reporting" class="anchor-link">#</a></h2>
+
+        <p>The same data tells different stories to different audiences. What the CMO needs isn't what the demand gen manager needs isn't what finance needs.</p>
+
+        <h3>CMO / Executive Team</h3>
+        <p><strong>They care about:</strong> Marketing's contribution to revenue, efficiency of spend, progress toward goals.</p>
+
+        <p><strong>Report format:</strong> Monthly or quarterly executive summary, 1-2 pages max.</p>
+
+        <p><strong>Key metrics:</strong></p>
+        <ul>
+          <li>Marketing-sourced pipeline and revenue</li>
+          <li>Marketing-influenced pipeline and revenue</li>
+          <li>CAC and CAC payback period</li>
+          <li>Marketing ROI (revenue / spend)</li>
+          <li>Progress vs. targets (pipeline coverage, lead goals)</li>
+        </ul>
+
+        <div class="code-block" data-language="text">
+          <button class="copy-btn">Copy</button>
+          <pre><code>CMO Dashboard - Q3 Summary
+
+Pipeline Performance
+├── Sourced: $18.2M (91% of $20M target)
+├── Influenced: $42.5M (touching 78% of all pipeline)
+└── Won Revenue: $5.1M from marketing-sourced opps
+
+Efficiency Metrics
+├── CAC: $12,400 (↓8% QoQ)
+├── Payback: 11 months
+└── Marketing spend: $2.8M
+
+Key Insight: LinkedIn sourced pipeline up 45% after ABM launch.
+Risk: Events pipeline down 30%—conference cancellation impact.</code></pre>
+        </div>
+
+        <h3>Demand Gen Manager</h3>
+        <p><strong>They care about:</strong> Campaign performance, channel optimization, lead quality.</p>
+
+        <p><strong>Report format:</strong> Weekly operational dashboard with drill-down capability.</p>
+
+        <p><strong>Key metrics:</strong></p>
+        <ul>
+          <li>Lead volume by source and campaign</li>
+          <li>MQL and SQL conversion rates by channel</li>
+          <li>Cost per lead, cost per MQL, cost per SQL</li>
+          <li>Campaign performance vs. benchmarks</li>
+          <li>Funnel velocity by segment</li>
+        </ul>
+
+        <div class="code-block" data-language="text">
+          <button class="copy-btn">Copy</button>
+          <pre><code>Demand Gen Weekly - Week 47
+
+Lead Volume: 342 new leads (↑12% WoW)
+├── Paid Search: 128 (CPL: $145)
+├── LinkedIn: 89 (CPL: $210)  
+├── Content Syndication: 67 (CPL: $95)
+└── Organic: 58 (CPL: $0)
+
+Conversion Rates
+├── Lead→MQL: 24% (target: 25%)
+├── MQL→SQL: 18% (target: 20%) ⚠️
+└── SQL→Opp: 35% (target: 30%) ✓
+
+Action Items:
+- MQL→SQL down: review lead scoring with sales
+- LinkedIn CPL creeping up: test new audiences</code></pre>
+        </div>
+
+        <h3>Finance / CFO</h3>
+        <p><strong>They care about:</strong> Spend efficiency, budget adherence, ROI, forecasting accuracy.</p>
+
+        <p><strong>Report format:</strong> Monthly financial review with YoY and budget comparisons.</p>
+
+        <p><strong>Key metrics:</strong></p>
+        <ul>
+          <li>Actual vs. budgeted spend by category</li>
+          <li>Cost per acquisition (CAC) trend</li>
+          <li>LTV:CAC ratio</li>
+          <li>Marketing as % of revenue</li>
+          <li>Pipeline coverage ratio</li>
+        </ul>
+
+        <div class="callout callout-tip">
+          <strong>Finance tip:</strong> Finance doesn't trust "influenced" metrics. Lead with sourced pipeline and revenue. Show clear cause-and-effect. If you claim $10M in sourced pipeline, be able to explain exactly how marketing generated those opportunities.
+        </div>
+
+        <h3>Sales Leadership</h3>
+        <p><strong>They care about:</strong> Lead quality, handoff efficiency, what's working for their team.</p>
+
+        <p><strong>Report format:</strong> Weekly pipeline review, lead quality scorecard.</p>
+
+        <p><strong>Key metrics:</strong></p>
+        <ul>
+          <li>MQL volume by segment and territory</li>
+          <li>MQL→SQL conversion by sales rep</li>
+          <li>Average time from MQL to first contact</li>
+          <li>Lead quality scores and feedback</li>
+          <li>Sourced vs. sales-generated pipeline split</li>
+        </ul>
+
+        <h3>Report Design Principles</h3>
+        <ol>
+          <li><strong>Lead with the answer:</strong> Don't make them dig. Put the key number first.</li>
+          <li><strong>Compare to something:</strong> A number without context is meaningless. Show vs. target, vs. last period, vs. benchmark.</li>
+          <li><strong>Highlight exceptions:</strong> What's off track? What needs attention?</li>
+          <li><strong>Enable action:</strong> Every metric should suggest what to do next.</li>
+          <li><strong>Match the cadence:</strong> Executives don't need daily updates. Ops teams do.</li>
+        </ol>
+
+        <div class="callout callout-info">
+          <strong>The golden rule:</strong> Before building a report, ask: "What decision will this data inform?" If you can't answer that, you don't need the report.
+        </div>
+
+        <h3>Attribution Model Selection by Audience</h3>
+        <table>
+          <thead>
+            <tr><th>Audience</th><th>Recommended Model</th><th>Rationale</th></tr>
+          </thead>
+          <tbody>
+            <tr><td>CMO/Board</td><td>First-touch (sourced)</td><td>Clear, defensible, ties to lead gen</td></tr>
+            <tr><td>Demand Gen</td><td>Multi-touch (linear or position)</td><td>Shows full funnel contribution</td></tr>
+            <tr><td>Finance</td><td>First-touch (sourced)</td><td>Conservative, auditable</td></tr>
+            <tr><td>Sales</td><td>Last-touch</td><td>Shows what triggered the hand-raise</td></tr>
+            <tr><td>Content Team</td><td>Linear or time-decay</td><td>Credits mid-funnel contribution</td></tr>
+          </tbody>
+        </table>
+      </section>
+
+      <footer class="footer">
+        Last updated: December 2024 | Guide 3 of 3 in the B2B Marketing for Analysts series
+      </footer>
+    </div>
+  </main>
+
+  <script>
+    // Theme toggle with persistence
+    function toggleTheme() {
+      const html = document.documentElement;
+      const current = html.getAttribute('data-theme');
+      const next = current === 'dark' ? 'light' : 'dark';
+      html.setAttribute('data-theme', next);
+      localStorage.setItem('theme', next);
+    }
+
+    // Load saved theme
+    const savedTheme = localStorage.getItem('theme');
+    if (savedTheme) {
+      document.documentElement.setAttribute('data-theme', savedTheme);
+    } else if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
+      document.documentElement.setAttribute('data-theme', 'dark');
+    }
+
+    // Copy button functionality
+    document.querySelectorAll('.copy-btn').forEach(btn => {
+      btn.addEventListener('click', async () => {
+        const code = btn.closest('.code-block').querySelector('code').textContent;
+        await navigator.clipboard.writeText(code);
+        btn.textContent = 'Copied!';
+        btn.classList.add('copied');
+        setTimeout(() => {
+          btn.textContent = 'Copy';
+          btn.classList.remove('copied');
+        }, 2000);
+      });
+    });
+
+    // Active nav highlighting
+    const sections = document.querySelectorAll('section[id]');
+    const navLinks = document.querySelectorAll('.nav-list a');
+
+    function updateActiveNav() {
+      let current = '';
+      sections.forEach(section => {
+        const top = section.offsetTop - 100;
+        if (window.scrollY >= top) {
+          current = section.getAttribute('id');
+        }
+      });
+      navLinks.forEach(link => {
+        link.classList.toggle('active', link.getAttribute('href') === '#' + current);
+      });
+    }
+
+    window.addEventListener('scroll', updateActiveNav);
+    updateActiveNav();
+  </script>
+</body>
+</html>
