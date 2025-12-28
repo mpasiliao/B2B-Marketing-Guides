@@ -277,18 +277,38 @@
       font-size: 0.875rem;
     }
 
-    .diagram {
+    .diagram-svg {
       background: var(--bg-secondary);
       border: 1px solid var(--border-color);
       border-radius: 8px;
       padding: 1.5rem;
       margin: 1.5rem 0;
-      font-family: var(--font-mono);
-      font-size: 0.8rem;
       overflow-x: auto;
-      white-space: pre;
-      line-height: 1.4;
     }
+
+    .diagram-svg svg {
+      display: block;
+      max-width: 100%;
+      height: auto;
+    }
+
+    /* SVG theme colors - light mode */
+    .diagram-svg .box-fill { fill: #f1f5f9; }
+    .diagram-svg .box-stroke { stroke: #cbd5e1; }
+    .diagram-svg .box-highlight { stroke: #2563eb; }
+    .diagram-svg .text-title { fill: #2563eb; }
+    .diagram-svg .text-primary { fill: #1e293b; }
+    .diagram-svg .text-secondary { fill: #64748b; }
+    .diagram-svg .arrow { stroke: #94a3b8; }
+
+    /* SVG theme colors - dark mode */
+    [data-theme="dark"] .diagram-svg .box-fill { fill: #1e293b; }
+    [data-theme="dark"] .diagram-svg .box-stroke { stroke: #4b5563; }
+    [data-theme="dark"] .diagram-svg .box-highlight { stroke: #60a5fa; }
+    [data-theme="dark"] .diagram-svg .text-title { fill: #60a5fa; }
+    [data-theme="dark"] .diagram-svg .text-primary { fill: #f9fafb; }
+    [data-theme="dark"] .diagram-svg .text-secondary { fill: #9ca3af; }
+    [data-theme="dark"] .diagram-svg .arrow { stroke: #6b7280; }
 
     @media print {
       .nav, .theme-toggle, .copy-btn { display: none; }
@@ -356,29 +376,37 @@
 
         <h3>The Four-Layer Model</h3>
 
-        <div class="diagram">
-┌─────────────────────────────────────────────────────────────────────┐
-│                         MEASUREMENT LAYER                           │
-│   Attribution • Reporting • Dashboards • BI Tools • Data Science   │
-└─────────────────────────────────────────────────────────────────────┘
-                                    ▲
-                                    │
-┌─────────────────────────────────────────────────────────────────────┐
-│                         ACTIVATION LAYER                            │
-│     MAP • Ad Platforms • Email • Chat • Sales Engagement           │
-└─────────────────────────────────────────────────────────────────────┘
-                                    ▲
-                                    │
-┌─────────────────────────────────────────────────────────────────────┐
-│                          STORAGE LAYER                              │
-│              CRM • CDP • Data Warehouse • Data Lake                │
-└─────────────────────────────────────────────────────────────────────┘
-                                    ▲
-                                    │
-┌─────────────────────────────────────────────────────────────────────┐
-│                        COLLECTION LAYER                             │
-│   Website Tracking • Forms • Enrichment • Intent • CRM Sync        │
-└─────────────────────────────────────────────────────────────────────┘
+        <div class="diagram-svg">
+          <svg viewBox="0 0 500 300" xmlns="http://www.w3.org/2000/svg">
+            <!-- Measurement Layer -->
+            <rect x="10" y="10" width="480" height="55" rx="4" class="box-fill box-stroke"/>
+            <text x="250" y="32" text-anchor="middle" class="text-title" font-size="12" font-weight="600">MEASUREMENT LAYER</text>
+            <text x="250" y="50" text-anchor="middle" class="text-secondary" font-size="10">Attribution • Reporting • Dashboards • BI Tools • Data Science</text>
+            
+            <!-- Arrow 1 -->
+            <path d="M250 65 L250 78 M245 73 L250 65 L255 73" class="arrow" fill="none" stroke-width="2"/>
+            
+            <!-- Activation Layer -->
+            <rect x="10" y="83" width="480" height="55" rx="4" class="box-fill box-stroke"/>
+            <text x="250" y="105" text-anchor="middle" class="text-title" font-size="12" font-weight="600">ACTIVATION LAYER</text>
+            <text x="250" y="123" text-anchor="middle" class="text-secondary" font-size="10">MAP • Ad Platforms • Email • Chat • Sales Engagement</text>
+            
+            <!-- Arrow 2 -->
+            <path d="M250 138 L250 151 M245 146 L250 138 L255 146" class="arrow" fill="none" stroke-width="2"/>
+            
+            <!-- Storage Layer -->
+            <rect x="10" y="156" width="480" height="55" rx="4" class="box-fill box-stroke"/>
+            <text x="250" y="178" text-anchor="middle" class="text-title" font-size="12" font-weight="600">STORAGE LAYER</text>
+            <text x="250" y="196" text-anchor="middle" class="text-secondary" font-size="10">CRM • CDP • Data Warehouse • Data Lake</text>
+            
+            <!-- Arrow 3 -->
+            <path d="M250 211 L250 224 M245 219 L250 211 L255 219" class="arrow" fill="none" stroke-width="2"/>
+            
+            <!-- Collection Layer -->
+            <rect x="10" y="229" width="480" height="55" rx="4" class="box-fill box-stroke"/>
+            <text x="250" y="251" text-anchor="middle" class="text-title" font-size="12" font-weight="600">COLLECTION LAYER</text>
+            <text x="250" y="269" text-anchor="middle" class="text-secondary" font-size="10">Website Tracking • Forms • Enrichment • Intent • CRM Sync</text>
+          </svg>
         </div>
 
         <h4>Layer 1: Collection</h4>
@@ -458,24 +486,43 @@
 
         <h3>Salesforce Object Relationships</h3>
 
-        <div class="diagram">
-                    ┌──────────────┐
-                    │    Lead      │ ─────── Pre-conversion
-                    └──────────────┘
-                           │
-                    [Conversion]
-                           │
-                           ▼
-┌──────────────┐    ┌──────────────┐    ┌──────────────┐
-│   Account    │◄───│   Contact    │───►│ Opportunity  │
-└──────────────┘    └──────────────┘    └──────────────┘
-       │                   │                    │
-       │                   │                    │
-       ▼                   ▼                    ▼
-┌──────────────────────────────────────────────────────┐
-│                     Activities                        │
-│            (Calls, Emails, Meetings, Tasks)          │
-└──────────────────────────────────────────────────────┘
+        <div class="diagram-svg">
+          <svg viewBox="0 0 420 240" xmlns="http://www.w3.org/2000/svg">
+            <!-- Lead box -->
+            <rect x="150" y="10" width="100" height="40" rx="4" class="box-fill box-stroke"/>
+            <text x="200" y="35" text-anchor="middle" class="text-primary" font-size="12">Lead</text>
+            <text x="270" y="35" class="text-secondary" font-size="10">Pre-conversion</text>
+            <line x1="250" y1="30" x2="265" y2="30" class="arrow" stroke-width="1"/>
+            
+            <!-- Arrow down with label -->
+            <path d="M200 50 L200 65" class="arrow" fill="none" stroke-width="2"/>
+            <text x="200" y="80" text-anchor="middle" class="text-secondary" font-size="10">[Conversion]</text>
+            <path d="M200 85 L200 100 M195 95 L200 100 L205 95" class="arrow" fill="none" stroke-width="2"/>
+            
+            <!-- Three boxes row -->
+            <rect x="20" y="105" width="100" height="40" rx="4" class="box-fill box-stroke"/>
+            <text x="70" y="130" text-anchor="middle" class="text-primary" font-size="12">Account</text>
+            
+            <rect x="150" y="105" width="100" height="40" rx="4" class="box-fill box-stroke"/>
+            <text x="200" y="130" text-anchor="middle" class="text-primary" font-size="12">Contact</text>
+            
+            <rect x="280" y="105" width="110" height="40" rx="4" class="box-fill box-stroke"/>
+            <text x="335" y="130" text-anchor="middle" class="text-primary" font-size="12">Opportunity</text>
+            
+            <!-- Horizontal connectors -->
+            <path d="M120 125 L150 125 M125 120 L120 125 L125 130" class="arrow" fill="none" stroke-width="1.5"/>
+            <path d="M250 125 L280 125 M275 120 L280 125 L275 130" class="arrow" fill="none" stroke-width="1.5"/>
+            
+            <!-- Arrows down to Activities -->
+            <path d="M70 145 L70 165" class="arrow" fill="none" stroke-width="1.5"/>
+            <path d="M200 145 L200 165" class="arrow" fill="none" stroke-width="1.5"/>
+            <path d="M335 145 L335 165" class="arrow" fill="none" stroke-width="1.5"/>
+            
+            <!-- Activities box -->
+            <rect x="20" y="170" width="370" height="50" rx="4" class="box-fill box-stroke"/>
+            <text x="205" y="192" text-anchor="middle" class="text-primary" font-size="12">Activities</text>
+            <text x="205" y="208" text-anchor="middle" class="text-secondary" font-size="10">(Calls, Emails, Meetings, Tasks)</text>
+          </svg>
         </div>
 
         <div class="callout callout-info">
@@ -635,31 +682,51 @@ THRESHOLDS
         <h4>5. Activation</h4>
         <p>Push audiences to downstream tools: ad platforms (for targeting), MAP (for email campaigns), personalization engines (for website content), data warehouse (for analysis).</p>
 
-        <div class="diagram">
-┌────────────────────────────────────────────────────────────────────┐
-│                        DATA SOURCES                                 │
-│  Website │ Mobile App │ CRM │ MAP │ Product │ Support │ Billing    │
-└────────────────────────────────────────────────────────────────────┘
-                              │
-                              ▼
-┌────────────────────────────────────────────────────────────────────┐
-│                           CDP                                       │
-│  ┌─────────────┐  ┌─────────────┐  ┌─────────────────────────────┐ │
-│  │  Collect    │─►│  Resolve    │─►│    Unified Profile          │ │
-│  │  Events     │  │  Identity   │  │  Demographics + Behavior +  │ │
-│  └─────────────┘  └─────────────┘  │  Product + Support + ...    │ │
-│                                    └─────────────────────────────┘ │
-│                                                 │                   │
-│                                    ┌────────────┴────────────┐     │
-│                                    │    Audience Builder     │     │
-│                                    └────────────┬────────────┘     │
-└────────────────────────────────────────────────────────────────────┘
-                              │
-                              ▼
-┌────────────────────────────────────────────────────────────────────┐
-│                       DESTINATIONS                                  │
-│     Ad Platforms │ MAP │ Personalization │ Data Warehouse │ BI     │
-└────────────────────────────────────────────────────────────────────┘
+        <div class="diagram-svg">
+          <svg viewBox="0 0 500 340" xmlns="http://www.w3.org/2000/svg">
+            <!-- Data Sources -->
+            <rect x="10" y="10" width="480" height="50" rx="4" class="box-fill box-stroke"/>
+            <text x="250" y="30" text-anchor="middle" class="text-title" font-size="11" font-weight="600">DATA SOURCES</text>
+            <text x="250" y="48" text-anchor="middle" class="text-secondary" font-size="10">Website | Mobile App | CRM | MAP | Product | Support | Billing</text>
+            
+            <!-- Arrow down -->
+            <path d="M250 60 L250 75 M245 70 L250 75 L255 70" class="arrow" fill="none" stroke-width="2"/>
+            
+            <!-- CDP outer box -->
+            <rect x="10" y="80" width="480" height="175" rx="4" class="box-fill box-highlight" stroke-width="2"/>
+            <text x="250" y="100" text-anchor="middle" class="text-title" font-size="13" font-weight="600">CDP</text>
+            
+            <!-- Inner boxes -->
+            <rect x="30" y="115" width="95" height="50" rx="3" class="box-fill box-stroke"/>
+            <text x="77" y="138" text-anchor="middle" class="text-primary" font-size="10">Collect</text>
+            <text x="77" y="152" text-anchor="middle" class="text-primary" font-size="10">Events</text>
+            
+            <path d="M125 140 L145 140 M140 135 L145 140 L140 145" class="arrow" fill="none" stroke-width="1.5"/>
+            
+            <rect x="150" y="115" width="95" height="50" rx="3" class="box-fill box-stroke"/>
+            <text x="197" y="138" text-anchor="middle" class="text-primary" font-size="10">Resolve</text>
+            <text x="197" y="152" text-anchor="middle" class="text-primary" font-size="10">Identity</text>
+            
+            <path d="M245 140 L265 140 M260 135 L265 140 L260 145" class="arrow" fill="none" stroke-width="1.5"/>
+            
+            <rect x="270" y="110" width="200" height="60" rx="3" class="box-fill box-stroke"/>
+            <text x="370" y="132" text-anchor="middle" class="text-primary" font-size="10" font-weight="600">Unified Profile</text>
+            <text x="370" y="148" text-anchor="middle" class="text-secondary" font-size="9">Demographics + Behavior +</text>
+            <text x="370" y="162" text-anchor="middle" class="text-secondary" font-size="9">Product + Support + ...</text>
+            
+            <!-- Audience Builder -->
+            <path d="M370 170 L370 190 M365 185 L370 190 L375 185" class="arrow" fill="none" stroke-width="1.5"/>
+            <rect x="270" y="195" width="200" height="40" rx="3" class="box-fill box-stroke"/>
+            <text x="370" y="220" text-anchor="middle" class="text-primary" font-size="11">Audience Builder</text>
+            
+            <!-- Arrow out -->
+            <path d="M250 255 L250 275 M245 270 L250 275 L255 270" class="arrow" fill="none" stroke-width="2"/>
+            
+            <!-- Destinations -->
+            <rect x="10" y="280" width="480" height="50" rx="4" class="box-fill box-stroke"/>
+            <text x="250" y="300" text-anchor="middle" class="text-title" font-size="11" font-weight="600">DESTINATIONS</text>
+            <text x="250" y="318" text-anchor="middle" class="text-secondary" font-size="10">Ad Platforms | MAP | Personalization | Data Warehouse | BI</text>
+          </svg>
         </div>
 
         <h3>CDP Vendors</h3>
@@ -775,13 +842,29 @@ THRESHOLDS
 
         <h3>How It Works (Simplified)</h3>
 
-        <div class="diagram">
-1. Data providers track content consumption across publisher networks
-2. They categorize content by topic (e.g., "marketing automation," "CRM")
-3. They identify company from IP address or device graph
-4. They calculate "surge" scores—is this company researching this topic
-   more than their baseline?
-5. They deliver weekly/daily signals: "Acme Corp is surging on CRM topics"
+        <div class="diagram-svg">
+          <svg viewBox="0 0 500 200" xmlns="http://www.w3.org/2000/svg">
+            <!-- Step boxes -->
+            <rect x="10" y="10" width="480" height="35" rx="4" class="box-fill box-stroke"/>
+            <text x="20" y="32" class="text-title" font-size="10" font-weight="600">1.</text>
+            <text x="40" y="32" class="text-primary" font-size="10">Data providers track content consumption across publisher networks</text>
+            
+            <rect x="10" y="50" width="480" height="35" rx="4" class="box-fill box-stroke"/>
+            <text x="20" y="72" class="text-title" font-size="10" font-weight="600">2.</text>
+            <text x="40" y="72" class="text-primary" font-size="10">They categorize content by topic (e.g., "marketing automation," "CRM")</text>
+            
+            <rect x="10" y="90" width="480" height="35" rx="4" class="box-fill box-stroke"/>
+            <text x="20" y="112" class="text-title" font-size="10" font-weight="600">3.</text>
+            <text x="40" y="112" class="text-primary" font-size="10">They identify company from IP address or device graph</text>
+            
+            <rect x="10" y="130" width="480" height="35" rx="4" class="box-fill box-stroke"/>
+            <text x="20" y="152" class="text-title" font-size="10" font-weight="600">4.</text>
+            <text x="40" y="152" class="text-primary" font-size="10">They calculate "surge" scores—is this company researching more than baseline?</text>
+            
+            <rect x="10" y="170" width="480" height="35" rx="4" class="box-fill box-highlight" stroke-width="2"/>
+            <text x="20" y="192" class="text-title" font-size="10" font-weight="600">5.</text>
+            <text x="40" y="192" class="text-primary" font-size="10">They deliver signals: "Acme Corp is surging on CRM topics"</text>
+          </svg>
         </div>
 
         <h3>Major Intent Providers</h3>
@@ -993,38 +1076,110 @@ THRESHOLDS
 
         <h3>Common Integration Patterns</h3>
 
-        <div class="diagram">
-PATTERN 1: Standard MAP-CRM Sync
-┌─────────────────────────────────────────────────────────────────────┐
-│                                                                     │
-│    MAP (HubSpot/Marketo)  ◄─────────────►  CRM (Salesforce)        │
-│                                                                     │
-│    • New leads sync to CRM                                          │
-│    • Field updates sync bidirectionally                            │
-│    • Campaign membership syncs to CRM                              │
-│    • Opportunity data syncs to MAP for reporting                   │
-│                                                                     │
-└─────────────────────────────────────────────────────────────────────┘
+        <h4>Pattern 1: Standard MAP-CRM Sync</h4>
+        <div class="diagram-svg">
+          <svg viewBox="0 0 500 140" xmlns="http://www.w3.org/2000/svg">
+            <rect x="10" y="10" width="480" height="125" rx="4" class="box-fill box-stroke"/>
+            
+            <!-- MAP box -->
+            <rect x="40" y="30" width="150" height="45" rx="4" class="box-fill box-stroke"/>
+            <text x="115" y="50" text-anchor="middle" class="text-title" font-size="11" font-weight="600">MAP</text>
+            <text x="115" y="65" text-anchor="middle" class="text-secondary" font-size="9">(HubSpot/Marketo)</text>
+            
+            <!-- Bidirectional arrow -->
+            <path d="M190 52 L280 52" class="arrow" fill="none" stroke-width="2"/>
+            <path d="M195 47 L190 52 L195 57" class="arrow" fill="none" stroke-width="2"/>
+            <path d="M275 47 L280 52 L275 57" class="arrow" fill="none" stroke-width="2"/>
+            
+            <!-- CRM box -->
+            <rect x="280" y="30" width="150" height="45" rx="4" class="box-fill box-stroke"/>
+            <text x="355" y="50" text-anchor="middle" class="text-title" font-size="11" font-weight="600">CRM</text>
+            <text x="355" y="65" text-anchor="middle" class="text-secondary" font-size="9">(Salesforce)</text>
+            
+            <!-- Bullet points -->
+            <text x="50" y="95" class="text-secondary" font-size="9">• New leads sync to CRM</text>
+            <text x="50" y="108" class="text-secondary" font-size="9">• Field updates sync bidirectionally</text>
+            <text x="260" y="95" class="text-secondary" font-size="9">• Campaign membership syncs to CRM</text>
+            <text x="260" y="108" class="text-secondary" font-size="9">• Opportunity data syncs to MAP</text>
+          </svg>
+        </div>
 
-PATTERN 2: CDP as Hub
-┌─────────────────────────────────────────────────────────────────────┐
-│                                                                     │
-│    Website ──┐                                 ┌── Ad Platforms     │
-│    Product ──┼──►  CDP  ◄──►  Data Warehouse  ├── MAP              │
-│    CRM ──────┘                                 └── Personalization │
-│                                                                     │
-└─────────────────────────────────────────────────────────────────────┘
+        <h4>Pattern 2: CDP as Hub</h4>
+        <div class="diagram-svg">
+          <svg viewBox="0 0 500 130" xmlns="http://www.w3.org/2000/svg">
+            <rect x="10" y="10" width="480" height="110" rx="4" class="box-fill box-stroke"/>
+            
+            <!-- Sources -->
+            <text x="40" y="35" class="text-secondary" font-size="10">Website</text>
+            <text x="40" y="55" class="text-secondary" font-size="10">Product</text>
+            <text x="40" y="75" class="text-secondary" font-size="10">CRM</text>
+            
+            <!-- Arrows to CDP -->
+            <path d="M90 35 L130 55" class="arrow" fill="none" stroke-width="1.5"/>
+            <path d="M90 55 L130 55" class="arrow" fill="none" stroke-width="1.5"/>
+            <path d="M90 75 L130 55" class="arrow" fill="none" stroke-width="1.5"/>
+            
+            <!-- CDP box -->
+            <rect x="135" y="35" width="70" height="40" rx="4" class="box-fill box-highlight" stroke-width="2"/>
+            <text x="170" y="60" text-anchor="middle" class="text-title" font-size="11" font-weight="600">CDP</text>
+            
+            <!-- Bidirectional arrow to Warehouse -->
+            <path d="M205 55 L250 55" class="arrow" fill="none" stroke-width="1.5"/>
+            <path d="M210 50 L205 55 L210 60" class="arrow" fill="none" stroke-width="1.5"/>
+            <path d="M245 50 L250 55 L245 60" class="arrow" fill="none" stroke-width="1.5"/>
+            
+            <!-- Data Warehouse box -->
+            <rect x="255" y="35" width="110" height="40" rx="4" class="box-fill box-stroke"/>
+            <text x="310" y="52" text-anchor="middle" class="text-primary" font-size="9">Data</text>
+            <text x="310" y="65" text-anchor="middle" class="text-primary" font-size="9">Warehouse</text>
+            
+            <!-- Arrows to destinations -->
+            <path d="M365 45 L400 35" class="arrow" fill="none" stroke-width="1.5"/>
+            <path d="M365 55 L400 55" class="arrow" fill="none" stroke-width="1.5"/>
+            <path d="M365 65 L400 75" class="arrow" fill="none" stroke-width="1.5"/>
+            
+            <!-- Destinations -->
+            <text x="410" y="38" class="text-secondary" font-size="10">Ad Platforms</text>
+            <text x="410" y="58" class="text-secondary" font-size="10">MAP</text>
+            <text x="410" y="78" class="text-secondary" font-size="10">Personalization</text>
+          </svg>
+        </div>
 
-PATTERN 3: Warehouse-Centric (Reverse ETL)
-┌─────────────────────────────────────────────────────────────────────┐
-│                                                                     │
-│    Sources ──►  Warehouse  ──►  Reverse ETL  ──►  Destinations     │
-│                     │                                               │
-│                     │                                               │
-│    CRM, MAP,    Modeling &    Census,         CRM, MAP,            │
-│    Product      Scoring       Hightouch       Ad platforms         │
-│                                                                     │
-└─────────────────────────────────────────────────────────────────────┘
+        <h4>Pattern 3: Warehouse-Centric (Reverse ETL)</h4>
+        <div class="diagram-svg">
+          <svg viewBox="0 0 500 130" xmlns="http://www.w3.org/2000/svg">
+            <rect x="10" y="10" width="480" height="110" rx="4" class="box-fill box-stroke"/>
+            
+            <!-- Sources -->
+            <rect x="30" y="30" width="80" height="55" rx="4" class="box-fill box-stroke"/>
+            <text x="70" y="50" text-anchor="middle" class="text-primary" font-size="10">Sources</text>
+            <text x="70" y="65" text-anchor="middle" class="text-secondary" font-size="8">CRM, MAP,</text>
+            <text x="70" y="77" text-anchor="middle" class="text-secondary" font-size="8">Product</text>
+            
+            <path d="M110 57 L135 57 M130 52 L135 57 L130 62" class="arrow" fill="none" stroke-width="2"/>
+            
+            <!-- Warehouse -->
+            <rect x="140" y="30" width="90" height="55" rx="4" class="box-fill box-highlight" stroke-width="2"/>
+            <text x="185" y="50" text-anchor="middle" class="text-title" font-size="10">Warehouse</text>
+            <text x="185" y="65" text-anchor="middle" class="text-secondary" font-size="8">Modeling &</text>
+            <text x="185" y="77" text-anchor="middle" class="text-secondary" font-size="8">Scoring</text>
+            
+            <path d="M230 57 L260 57 M255 52 L260 57 L255 62" class="arrow" fill="none" stroke-width="2"/>
+            
+            <!-- Reverse ETL -->
+            <rect x="265" y="30" width="90" height="55" rx="4" class="box-fill box-stroke"/>
+            <text x="310" y="50" text-anchor="middle" class="text-primary" font-size="10">Reverse ETL</text>
+            <text x="310" y="65" text-anchor="middle" class="text-secondary" font-size="8">Census,</text>
+            <text x="310" y="77" text-anchor="middle" class="text-secondary" font-size="8">Hightouch</text>
+            
+            <path d="M355 57 L385 57 M380 52 L385 57 L380 62" class="arrow" fill="none" stroke-width="2"/>
+            
+            <!-- Destinations -->
+            <rect x="390" y="30" width="80" height="55" rx="4" class="box-fill box-stroke"/>
+            <text x="430" y="50" text-anchor="middle" class="text-primary" font-size="10">Destinations</text>
+            <text x="430" y="65" text-anchor="middle" class="text-secondary" font-size="8">CRM, MAP,</text>
+            <text x="430" y="77" text-anchor="middle" class="text-secondary" font-size="8">Ad platforms</text>
+          </svg>
         </div>
 
         <h3>Common Integration Failures</h3>
@@ -1085,9 +1240,9 @@ PATTERN 3: Warehouse-Centric (Reverse ETL)
           <button class="copy-btn">Copy</button>
           <pre><code>Website: Cookie ID abc123 (anonymous)
 Website: Cookie ID xyz789 (different device)
-Form fill: <a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="1872777076366b75716c7058797b757d367b7775">[email&#160;protected]</a>
-Email click: <a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="acc6dfc1c5d8c4eccdcfc1c982cfc3c1">[email&#160;protected]</a> (typo in their system)
-Product signup: <a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="640e0b0c0a24050709014a0d0b">[email&#160;protected]</a> (personal domain)
+Form fill: <a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="52383d3a3c7c213f3b263a1233313f377c313d3f">[email&#160;protected]</a>
+Email click: <a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="214b524c4855496140424c440f424e4c">[email&#160;protected]</a> (typo in their system)
+Product signup: <a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="dfb5b0b7b19fbebcb2baf1b6b0">[email&#160;protected]</a> (personal domain)
 CRM: John Smith at Acme Inc
 LinkedIn: John T. Smith, Acme Corporation</code></pre>
         </div>
@@ -1632,24 +1787,38 @@ After normalization:
 
         <p>ABM requires coordinating multiple channels for the same accounts:</p>
 
-        <div class="diagram">
-Account: Acme Corp (Tier 1)
-Timeline: Q1 Campaign
-
-Week 1-2:  Display ads to Acme IPs (awareness)
-           Send direct mail to 3 key contacts
-           
-Week 3-4:  Personalized email sequence to contacts
-           LinkedIn ads to Acme employee audience
-           Sales outreach begins
-           
-Week 5-6:  Retargeting based on website engagement
-           Custom landing page for Acme
-           Executive dinner invite
-           
-Week 7-8:  Demo follow-up
-           Case study sharing
-           Technical evaluation content
+        <div class="diagram-svg">
+          <svg viewBox="0 0 520 260" xmlns="http://www.w3.org/2000/svg">
+            <!-- Header -->
+            <rect x="10" y="10" width="500" height="35" rx="4" class="box-fill box-highlight" stroke-width="2"/>
+            <text x="260" y="32" text-anchor="middle" class="text-title" font-size="12" font-weight="600">Account: Acme Corp (Tier 1) — Q1 Campaign</text>
+            
+            <!-- Timeline line -->
+            <line x1="70" y1="60" x2="70" y2="245" class="arrow" stroke-width="2"/>
+            
+            <!-- Week 1-2 -->
+            <circle cx="70" cy="75" r="5" class="box-highlight" fill="currentColor"/>
+            <text x="85" y="72" class="text-title" font-size="10" font-weight="600">Week 1-2</text>
+            <rect x="85" y="80" width="410" height="35" rx="3" class="box-fill box-stroke"/>
+            <text x="95" y="95" class="text-primary" font-size="9">• Display ads to Acme IPs (awareness)</text>
+            <text x="95" y="108" class="text-primary" font-size="9">• Send direct mail to 3 key contacts</text>
+            
+            <!-- Week 3-4 -->
+            <circle cx="70" cy="130" r="5" class="box-highlight" fill="currentColor"/>
+            <text x="85" y="127" class="text-title" font-size="10" font-weight="600">Week 3-4</text>
+            <rect x="85" y="135" width="410" height="45" rx="3" class="box-fill box-stroke"/>
+            <text x="95" y="150" class="text-primary" font-size="9">• Personalized email sequence to contacts</text>
+            <text x="95" y="163" class="text-primary" font-size="9">• LinkedIn ads to Acme employee audience</text>
+            <text x="95" y="176" class="text-secondary" font-size="9">• Sales outreach begins</text>
+            
+            <!-- Week 5-6 -->
+            <circle cx="70" cy="195" r="5" class="box-highlight" fill="currentColor"/>
+            <text x="85" y="192" class="text-title" font-size="10" font-weight="600">Week 5-6</text>
+            <rect x="85" y="200" width="410" height="45" rx="3" class="box-fill box-stroke"/>
+            <text x="95" y="215" class="text-primary" font-size="9">• Retargeting based on website engagement</text>
+            <text x="95" y="228" class="text-primary" font-size="9">• Custom landing page for Acme</text>
+            <text x="95" y="241" class="text-secondary" font-size="9">• Executive dinner invite</text>
+          </svg>
         </div>
 
         <h3>ABM Tech Stack Components</h3>
@@ -1905,4 +2074,21 @@ MAP Health Check:
     const sections = document.querySelectorAll('section[id]');
     const navLinks = document.querySelectorAll('.nav-list a');
 
-    function updateActi
+    function updateActiveNav() {
+      let current = '';
+      sections.forEach(section => {
+        const top = section.offsetTop - 100;
+        if (window.scrollY >= top) {
+          current = section.getAttribute('id');
+        }
+      });
+      navLinks.forEach(link => {
+        link.classList.toggle('active', link.getAttribute('href') === '#' + current);
+      });
+    }
+
+    window.addEventListener('scroll', updateActiveNav);
+    updateActiveNav();
+  </script>
+</body>
+</html>
