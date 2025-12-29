@@ -4,34 +4,64 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Guide 2: Martech Stack & ABM</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
   <style>
     :root {
-      --nav-width: 260px;
-      --content-max-width: 820px;
-      --font-body: system-ui, -apple-system, sans-serif;
+      --nav-width: 280px;
+      --content-max-width: 860px;
+      --font-body: 'Inter', system-ui, -apple-system, sans-serif;
       --font-mono: 'SF Mono', Consolas, monospace;
-      
+      --font-narrative: 'Georgia', serif;
+
+      /* Design System Colors */
+      --navy: #1e3a5f;
+      --navy-light: #2d4a6f;
+      --coral: #e07a5f;
+      --coral-light: #e89a84;
+      --teal: #2a9d8f;
+      --teal-light: #3ab5a5;
+      --amber: #e9c46a;
+      --amber-light: #f0d68a;
+      --cream: #faf8f5;
+      --cream-dark: #f0ede8;
+
+      /* Light theme */
       --bg-primary: #ffffff;
       --bg-secondary: #f8f9fa;
+      --bg-tertiary: var(--cream);
       --bg-code: #1e1e1e;
       --text-primary: #1a1a1a;
       --text-secondary: #6b7280;
       --text-code: #d4d4d4;
       --border-color: #e5e7eb;
-      --accent: #2563eb;
-      --accent-hover: #1d4ed8;
-      
+      --accent: var(--navy);
+      --accent-hover: var(--navy-light);
+
+      /* Component-specific */
+      --hero-bg: linear-gradient(135deg, var(--navy) 0%, var(--navy-light) 100%);
+      --tldr-bg: var(--cream);
+      --tldr-border: var(--teal);
+      --scenario-bg: #fff;
+      --scenario-border: var(--coral);
+      --quiz-bg: var(--cream);
+      --quiz-border: var(--navy);
+      --deep-dive-bg: #eff6ff;
+      --deep-dive-border: var(--navy);
+
+      /* Callout colors */
       --callout-warning-bg: #fef3c7;
-      --callout-warning-border: #f59e0b;
+      --callout-warning-border: var(--amber);
       --callout-tip-bg: #d1fae5;
-      --callout-tip-border: #10b981;
+      --callout-tip-border: var(--teal);
       --callout-caution-bg: #fee2e2;
       --callout-caution-border: #ef4444;
-      --callout-info-bg: #dbeafe;
-      --callout-info-border: #3b82f6;
+      --callout-info-bg: #e8f0fa;
+      --callout-info-border: var(--navy);
       --callout-success-bg: #dcfce7;
-      --callout-success-border: #22c55e;
+      --callout-success-border: var(--teal);
     }
+
+    
 
     * { box-sizing: border-box; margin: 0; padding: 0; }
 
@@ -39,7 +69,8 @@
       font-family: var(--font-body);
       background: var(--bg-primary);
       color: var(--text-primary);
-      line-height: 1.6;
+      line-height: 1.7;
+      font-size: 18px;
     }
 
     .nav {
@@ -82,6 +113,12 @@
       background: var(--accent);
       color: white;
     }
+
+    
+
+    
+
+    
 
     .main {
       margin-left: var(--nav-width);
@@ -260,9 +297,16 @@
     .diagram-svg .arrow { stroke: #94a3b8; }
 
     /* SVG theme colors - dark mode */
+    
+    
+    
+    
+    
+    
+    
 
     @media print {
-      .nav, .copy-btn { display: none; }
+      .nav, 
       .main { margin-left: 0; padding: 1rem; }
       .code-block, .callout, table { break-inside: avoid; }
     }
@@ -276,23 +320,12 @@
         border-bottom: 1px solid var(--border-color);
       }
       .main { margin-left: 0; }
+      
     }
 
     /* ===== NEW DESIGN SYSTEM ===== */
-    :root {
-      --navy: #1e3a5f;
-      --coral: #e07a5f;
-      --teal: #2a9d8f;
-      --amber: #e9c46a;
-      --cream: #faf8f5;
-      --hero-gradient: linear-gradient(135deg, var(--navy) 0%, #2d5a8a 100%);
-      --tldr-bg: #f0fdf4;
-      --tldr-border: var(--teal);
-      --scenario-bg: linear-gradient(135deg, #fef7ed 0%, #fff7ed 100%);
-      --scenario-border: var(--coral);
-      --deep-dive-bg: #eff6ff;
-      --deep-dive-border: var(--navy);
-    }
+
+    
 
     /* Progress Tracker */
     .progress-container {
@@ -318,230 +351,539 @@
 
     /* Hero Cards */
     .hero-card {
-      background: var(--hero-gradient);
-      border-radius: 16px;
-      padding: 2.5rem;
-      margin-bottom: 2rem;
+      background: var(--hero-bg);
       color: white;
+      padding: 2.5rem;
+      border-radius: 12px;
+      margin-bottom: 2rem;
       text-align: center;
     }
+    .hero-title {
+      color: white;
+      margin: 0 0 0.5rem 0;
+      padding: 0;
+      border: none;
+      font-size: 1.75rem;
+    }
+
 
     .hero-card h2 {
       color: white;
-      border: none;
-      margin: 0.5rem 0;
-      padding: 0;
-      font-size: 2rem;
+      margin-bottom: 0.5rem;
     }
 
-    .hero-card .anchor-link { color: rgba(255,255,255,0.5); }
-    .hero-card .anchor-link:hover { color: white; }
+    .hero-card .anchor-link {
+      color: rgba(255,255,255,0.5);
+    }
+
+    .hero-card .anchor-link:hover {
+      color: white;
+    }
 
     .hero-icon {
-      width: 64px;
-      height: 64px;
-      margin: 0 auto 1rem;
-      background: rgba(255,255,255,0.15);
-      border-radius: 50%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      color: var(--amber);
+      margin-bottom: 1rem;
+    }
+
+    .hero-icon svg {
+      stroke: white;
     }
 
     .hero-subtitle {
-      color: rgba(255,255,255,0.85);
+      opacity: 0.9;
       font-size: 1.1rem;
-      margin: 0;
     }
 
     /* TL;DR Box */
+    /* TL;DR Box - Unified Styling */
     .tldr-box {
       background: var(--tldr-bg);
-      border: 2px solid var(--tldr-border);
-      border-radius: 12px;
-      padding: 1.5rem;
-      margin: 1.5rem 0;
+      border-left: 4px solid var(--tldr-border);
+      padding: 1.5rem 2rem;
+      border-radius: 0 8px 8px 0;
+      margin: 2rem 0;
     }
 
+    .tldr-box-header,
     .tldr-header {
       display: flex;
       align-items: center;
       gap: 0.5rem;
       margin-bottom: 1rem;
-      color: var(--teal);
-      font-weight: 600;
     }
 
-    .tldr-icon { display: flex; }
-    .tldr-title { font-size: 1rem; text-transform: uppercase; letter-spacing: 0.05em; }
-    .tldr-list { margin: 0; padding-left: 1.25rem; }
-    .tldr-list li { margin-bottom: 0.5rem; }
-    .tldr-list li:last-child { margin-bottom: 0; }
+    .tldr-box-header-icon,
+    .tldr-icon {
+      font-size: 1.25rem;
+    }
 
-    /* Scenario Cards */
+    .tldr-box-header-title,
+    .tldr-title,
+    .tldr-label {
+      font-weight: 700;
+      font-size: 1rem;
+      text-transform: uppercase;
+      letter-spacing: 0.03em;
+      color: var(--teal);
+    }
+
+    .tldr-box ul,
+    .tldr-list,
+    .tldr-content ul {
+      margin: 0;
+      padding-left: 1.25rem;
+    }
+
+    .tldr-box li,
+    .tldr-list li,
+    .tldr-content li {
+      margin-bottom: 0.5rem;
+    }
+
+    .tldr-box li:last-child,
+    .tldr-list li:last-child,
+    .tldr-content li:last-child {
+      margin-bottom: 0;
+    }
+
+    .tldr-content p {
+      margin: 0;
+      color: var(--text-primary);
+    }
+
+
+    /* Scenario Card - Unified Styling */
     .scenario-card {
       background: var(--scenario-bg);
-      border-left: 4px solid var(--scenario-border);
-      border-radius: 0 12px 12px 0;
-      padding: 1.5rem;
-      margin: 1.5rem 0;
+      border: 2px solid var(--scenario-border);
+      border-radius: 12px;
+      padding: 0;
+      margin: 2.5rem 0;
+      overflow: hidden;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.08);
     }
 
     .scenario-header {
-      display: flex;
-      align-items: center;
-      gap: 0.5rem;
-      margin-bottom: 1rem;
-      color: var(--coral);
-      font-weight: 600;
-    }
-
-    .scenario-icon { display: flex; }
-    .scenario-label { font-size: 0.875rem; text-transform: uppercase; letter-spacing: 0.05em; }
-    .scenario-content p { margin-bottom: 0.75rem; }
-    .scenario-content p:last-child { margin-bottom: 0; }
-
-    /* Role Tags */
-    .role-tag {
-      display: inline-block;
-      padding: 0.125rem 0.5rem;
-      border-radius: 4px;
-      font-size: 0.8rem;
-      font-weight: 600;
-      margin-right: 0.25rem;
-    }
-
-    .role-mops { background: #dbeafe; color: #1e40af; }
-    .role-sales { background: #fce7f3; color: #9d174d; }
-    .role-demand { background: #d1fae5; color: #065f46; }
-    .role-content { background: #fef3c7; color: #92400e; }
-    .role-exec { background: #ede9fe; color: #5b21b6; }
-    .role-analytics { background: #cffafe; color: #0e7490; }
-
-    /* Deep Dive Accordion */
-    .deep-dive {
-      background: var(--deep-dive-bg);
-      border: 1px solid var(--deep-dive-border);
-      border-radius: 12px;
-      margin: 2rem 0;
-    }
-
-    .deep-dive-toggle {
+      background: var(--coral);
+      color: white;
+      padding: 1rem 1.5rem;
       display: flex;
       align-items: center;
       gap: 0.75rem;
-      padding: 1.25rem;
-      cursor: pointer;
-      font-weight: 600;
-      color: var(--navy);
-      list-style: none;
+      font-weight: 700;
+      font-size: 1rem;
     }
 
-    .deep-dive-toggle::-webkit-details-marker { display: none; }
+    .scenario-header svg {
+      stroke: white;
+      flex-shrink: 0;
+      width: 24px;
+      height: 24px;
+    }
 
-    .deep-dive-icon {
+    .scenario-header-icon,
+    .scenario-icon {
+      font-size: 1.25rem;
+    }
+
+    .scenario-header-title,
+    .scenario-label {
+      font-weight: 700;
+      font-size: 1rem;
+      color: white;
+    }
+
+    .scenario-body,
+    .scenario-content {
+      padding: 1.5rem 2rem;
+    }
+
+    .scenario-character {
       display: flex;
-      transition: transform 0.2s;
+      align-items: center;
+      gap: 1rem;
+      margin-bottom: 1rem;
     }
 
-    .deep-dive[open] .deep-dive-icon { transform: rotate(45deg); }
-    .deep-dive-content { padding: 0 1.25rem 1.25rem; }
-    .deep-dive-content > *:first-child { margin-top: 0; }
+    .scenario-avatar {
+      width: 48px;
+      height: 48px;
+      background: var(--coral);
+      color: white;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 700;
+      font-size: 0.875rem;
+      flex-shrink: 0;
+    }
 
-    /* Quick Reference Cards */
-    .quick-reference {
+    .scenario-character-info h4 {
+      margin: 0 0 0.25rem 0;
+      font-size: 1rem;
+    }
+
+    .scenario-character-role {
+      margin: 0;
+      color: var(--text-secondary);
+      font-size: 0.875rem;
+    }
+
+
+        .role-tag {
+      display: inline-block;
+      padding: 0.25rem 0.5rem;
+      border-radius: 4px;
+      font-size: 0.75rem;
+      font-weight: 600;
+      margin-right: 0.5rem;
+    }
+
+    .role-analytics { background: #dbeafe; color: #1e40af; }
+    .role-content { background: #fef3c7; color: #92400e; }
+    .role-demand { background: #d1fae5; color: #065f46; }
+    .role-demand-gen { background: #d1fae5; color: #065f46; }
+    .role-mops { background: #fce7f3; color: #9d174d; }
+    .role-product { background: #ede9fe; color: #5b21b6; }
+
+    .scenario-quote {
+      font-family: var(--font-narrative);
+      font-style: italic;
+      font-size: 1.1rem;
+      color: var(--text-primary);
+      margin: 1rem 0;
+      padding: 1rem 1.5rem;
+      border-left: 3px solid var(--coral);
       background: var(--bg-secondary);
-      border: 1px solid var(--border-color);
-      border-radius: 12px;
-      margin: 1.5rem 0;
+      border-radius: 0 8px 8px 0;
+    }
+
+    .scenario-narrative {
+      margin: 1rem 0;
+    }
+
+    .scenario-narrative p {
+      margin-bottom: 1rem;
+    }
+
+    .scenario-narrative p:last-child {
+      margin-bottom: 0;
+    }
+
+    .scenario-takeaway {
+      background: rgba(224, 122, 95, 0.1);
+      border: 1px solid var(--coral);
+      border-radius: 8px;
+      padding: 1rem 1.5rem;
+      margin-top: 1rem;
+    }
+
+    .scenario-takeaway strong {
+      color: var(--coral);
+    }
+
+    .scenario-takeaway-header {
+      font-weight: 700;
+      color: var(--coral);
+      margin-bottom: 0.5rem;
+    }
+
+    .scenario-takeaway p {
+      margin: 0;
+    }
+
+
+    .role-product { background: #ede9fe; color: #5b21b6; }
+    .role-mops { background: #fce7f3; color: #9d174d; }
+    .role-sales { background: #fee2e2; color: #991b1b; }
+    .role-cmo { background: #e0e7ff; color: #3730a3; }
+    .role-cfo { background: #ecfccb; color: #3f6212; }
+    .role-executive { background: #f3e8ff; color: #6b21a8; }
+
+
+    /* Role Tags */
+
+    .role-exec { background: #ede9fe; color: #5b21b6; }
+    .role-analytics { background: #cffafe; color: #0e7490; }
+
+    
+    
+    
+    
+    
+    
+
+    /* Deep Dive Accordion */
+    /* Deep Dive - Unified Styling */
+    .deep-dive {
+      border: 2px solid var(--navy);
+      border-radius: 8px;
+      margin: 2rem 0;
+      background: var(--bg-primary);
       overflow: hidden;
     }
 
+    .deep-dive summary,
+    .deep-dive .deep-dive-toggle {
+      padding: 1rem 1.5rem;
+      cursor: pointer;
+      font-weight: 600;
+      background: var(--bg-secondary);
+      list-style: none;
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      color: var(--navy);
+    }
+
+    .deep-dive summary::-webkit-details-marker,
+    .deep-dive-toggle::-webkit-details-marker {
+      display: none;
+    }
+
+    .deep-dive summary::before,
+    .deep-dive-toggle::before {
+      content: "🔍";
+      font-size: 1.1rem;
+    }
+
+    .deep-dive summary svg,
+    .deep-dive-toggle svg {
+      display: none;
+    }
+
+    .deep-dive[open] summary,
+    .deep-dive[open] .deep-dive-toggle {
+      border-bottom: 1px solid var(--border-color);
+    }
+
+    .deep-dive-icon {
+      display: none;
+    }
+
+    .deep-dive-content {
+      padding: 1.5rem;
+    }
+
+    .deep-dive-content p {
+      margin-bottom: 1rem;
+    }
+
+    .deep-dive-content p:last-child {
+      margin-bottom: 0;
+    }
+
+    .deep-dive-content ul,
+    .deep-dive-content ol {
+      margin: 1rem 0;
+      padding-left: 1.5rem;
+    }
+
+    .deep-dive-content li {
+      margin-bottom: 0.5rem;
+    }
+
+
+    /* Quick Reference Cards */
+    /* Quick Reference - Unified Styling */
+    .quick-ref,
+    .quick-reference {
+      background: var(--cream);
+      border: 2px solid var(--navy);
+      border-radius: 12px;
+      margin: 2rem 0;
+      overflow: hidden;
+    }
+
+    .quick-ref-header,
     .quick-reference-header {
       display: flex;
       align-items: center;
       gap: 0.5rem;
-      padding: 1rem 1.25rem;
+      padding: 1rem 1.5rem;
       background: var(--navy);
       color: white;
-      font-weight: 600;
-      font-size: 0.9rem;
+      font-weight: 700;
     }
 
-    .quick-reference-content { padding: 1rem 1.25rem; }
-    .quick-reference-content table { margin: 0; }
-    .quick-reference-content p:last-child { margin-bottom: 0; }
+    .quick-ref-header-icon,
+    .quick-reference-icon {
+      font-size: 1.1rem;
+    }
 
-    /* Knowledge Checks */
-    .knowledge-check {
-      background: var(--bg-secondary);
-      border: 2px solid var(--amber);
-      border-radius: 12px;
+    .quick-ref-header-title,
+    .quick-reference-title {
+      font-weight: 700;
+      font-size: 1rem;
+    }
+
+    .quick-ref-content,
+    .quick-reference-content {
       padding: 1.5rem;
-      margin: 2rem 0;
+    }
+
+    .quick-ref table,
+    .quick-reference-content table {
+      margin: 0;
+    }
+
+    .quick-ref-content p:last-child,
+    .quick-reference-content p:last-child {
+      margin-bottom: 0;
+    }
+
+
+    .knowledge-check {
+      background: var(--quiz-bg);
+      border: 2px solid var(--quiz-border);
+      border-radius: 12px;
+      padding: 0;
+      margin: 3rem 0;
+      overflow: hidden;
     }
 
     .knowledge-check-header {
-      display: flex;
-      align-items: center;
-      gap: 0.5rem;
-      color: #92400e;
-      font-weight: 600;
-      margin-bottom: 1rem;
-    }
-
-    .knowledge-check-question {
-      font-weight: 500;
-      margin-bottom: 1rem;
-    }
-
-    .quiz-options { display: flex; flex-direction: column; gap: 0.5rem; margin-bottom: 1rem; }
-
-    .quiz-option {
+      background: var(--navy);
+      color: white;
+      padding: 1rem 1.5rem;
       display: flex;
       align-items: center;
       gap: 0.75rem;
-      padding: 0.75rem 1rem;
+      font-weight: 700;
+      font-size: 1rem;
+      text-transform: uppercase;
+      letter-spacing: 0.03em;
+    }
+
+    .knowledge-check-header svg {
+      stroke: white;
+      flex-shrink: 0;
+    }
+
+    .knowledge-check-question,
+    .quiz-question {
+      font-weight: 600;
+      font-size: 1.1rem;
+      margin: 1.5rem 2rem;
+    }
+
+    .quiz-options {
+      list-style: none;
+      padding: 0;
+      margin: 0 2rem 1.5rem 2rem;
+      display: flex;
+      flex-direction: column;
+      gap: 0.75rem;
+    }
+
+    .quiz-option {
+      display: flex;
+      align-items: flex-start;
+      gap: 0.75rem;
+      padding: 1rem;
       background: var(--bg-primary);
-      border: 1px solid var(--border-color);
+      border: 2px solid var(--border-color);
       border-radius: 8px;
       cursor: pointer;
       transition: all 0.15s;
     }
 
-    .quiz-option:hover { border-color: var(--amber); }
-    .quiz-option.correct { background: #dcfce7; border-color: #22c55e; }
-    .quiz-option.incorrect { background: #fee2e2; border-color: #ef4444; }
+    .quiz-option:hover {
+      border-color: var(--navy);
+      background: var(--bg-secondary);
+    }
+
+    .quiz-option input {
+      margin-top: 0.2rem;
+      accent-color: var(--navy);
+    }
+
+    .quiz-option input:checked + span {
+      font-weight: 600;
+    }
+
+    .quiz-option.correct {
+      border-color: var(--teal);
+      background: rgba(42, 157, 143, 0.1);
+    }
+
+    .quiz-option.incorrect {
+      border-color: #ef4444;
+      background: rgba(239, 68, 68, 0.1);
+    }
 
     .quiz-btn {
       background: var(--navy);
       color: white;
       border: none;
-      padding: 0.75rem 1.5rem;
+      padding: 0.875rem 2rem;
       border-radius: 8px;
       font-weight: 600;
+      font-size: 1rem;
       cursor: pointer;
       transition: background 0.15s;
+      margin: 0 2rem 1.5rem 2rem;
     }
 
-    .quiz-btn:hover { background: #2d5a8a; }
-    .quiz-btn:disabled { opacity: 0.5; cursor: not-allowed; }
+    .quiz-btn:hover {
+      background: var(--navy-light);
+    }
+
+    .quiz-btn:disabled {
+      background: var(--text-secondary);
+      cursor: not-allowed;
+    }
+
+    .quiz-btn.retry-mode {
+      background: #f59e0b;
+      color: white;
+    }
+
+    .quiz-btn.retry-mode:hover {
+      background: #d97706;
+    }
+
+    .wrong-explanation {
+      margin-bottom: 1rem;
+      padding: 0.75rem;
+      background: rgba(239, 68, 68, 0.1);
+      border-radius: 6px;
+      border-left: 3px solid #ef4444;
+    }
 
     .quiz-feedback {
-      display: none;
-      margin-top: 1rem;
-      padding: 1rem;
+      margin: 0 2rem 1.5rem 2rem;
+      padding: 1.25rem;
       border-radius: 8px;
+      display: none;
     }
 
-    .quiz-feedback.show { display: block; }
-    .quiz-feedback.correct { background: #dcfce7; }
-    .quiz-feedback.incorrect { background: #fee2e2; }
+    .quiz-feedback.show {
+      display: block;
+    }
 
-    .feedback-correct, .feedback-incorrect { display: none; margin: 0; }
-    .quiz-feedback.correct .feedback-correct { display: block; }
-    .quiz-feedback.incorrect .feedback-incorrect { display: block; }
+    .quiz-feedback.correct {
+      background: rgba(42, 157, 143, 0.15);
+      border: 1px solid var(--teal);
+    }
+
+    .quiz-feedback.incorrect {
+      background: rgba(239, 68, 68, 0.1);
+      border: 1px solid #ef4444;
+    }
+
+    .feedback-correct, .feedback-incorrect {
+      display: none;
+      margin: 0;
+    }
+
+    .quiz-feedback.correct .feedback-correct {
+      display: block;
+    }
+
+    .quiz-feedback.incorrect .feedback-incorrect {
+      display: block;
+    }
 
     /* Next Up Link */
     .next-up-link { margin: 2rem 0; }
@@ -551,7 +893,7 @@
       align-items: center;
       gap: 1rem;
       padding: 1.25rem;
-      background: var(--hero-gradient);
+      background: var(--hero-bg);
       border-radius: 12px;
       color: white;
       text-decoration: none;
@@ -577,7 +919,7 @@
 
     /* Guide Completion Card */
     .guide-completion-card {
-      background: var(--hero-gradient);
+      background: var(--hero-bg);
       color: white;
       border-radius: 12px;
       padding: 2rem;
@@ -644,7 +986,7 @@
       <li><a href="#abm">Account-Based Marketing</a></li>
       <li><a href="#auditing">Stack Auditing</a></li>
     </ul>
-</nav>
+  </nav>
 
   <main class="main">
     <div class="content">
@@ -665,15 +1007,7 @@
       <section id="stack-layers">
         <!-- Hero Card -->
         <div class="hero-card">
-          <div class="hero-icon">
-            <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-              <rect x="2" y="2" width="20" height="8" rx="2" ry="2"/>
-              <rect x="2" y="14" width="20" height="8" rx="2" ry="2"/>
-              <line x1="6" y1="6" x2="6.01" y2="6"/>
-              <line x1="6" y1="18" x2="6.01" y2="18"/>
-            </svg>
-          </div>
-          <h2>Stack Layers <a href="#stack-layers" class="anchor-link">#</a></h2>
+          <h2 class="hero-title">Stack Layers</h2>
           <p class="hero-subtitle">Understanding the architecture of modern martech</p>
         </div>
 
@@ -700,20 +1034,32 @@
         <!-- Scenario Card -->
         <div class="scenario-card">
           <div class="scenario-header">
-            <span class="scenario-icon">
-              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                <path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/>
-                <circle cx="9" cy="7" r="4"/>
-                <path d="M22 21v-2a4 4 0 0 0-3-3.87"/>
-                <path d="M16 3.13a4 4 0 0 1 0 7.75"/>
-              </svg>
-            </span>
-            <span class="scenario-label">NovaTech Scenario</span>
+            <span class="scenario-header-icon">📍</span>
+            <span class="scenario-header-title">Scenario: The Architecture Question</span>
           </div>
-          <div class="scenario-content">
-            <p><span class="role-tag role-mops">Maya Chen (MOps)</span> is helping evaluate a new tool that promises to "accelerate pipeline." The vendor demo is impressive, but Maya's first question isn't about features—it's about architecture.</p>
-            <p>"Which layer does this live in?" she asks. The vendor says it "integrates with everything." Maya pushes: "Does it collect data, store data, activate campaigns, or measure results?" Turns out it's trying to do all four—a red flag for complexity and overlap with existing tools.</p>
-            <p><strong>Lesson:</strong> Understanding layers helps you evaluate tools and diagnose problems faster.</p>
+          <div class="scenario-body">
+            <div class="scenario-character">
+              <div class="scenario-avatar">MC</div>
+              <div class="scenario-character-info">
+                <h4>Maya Chen</h4>
+                <p class="scenario-character-role">Marketing Ops Manager, NovaTech</p>
+              </div>
+            </div>
+
+            <div class="scenario-quote">
+              "Does it collect data, store data, activate campaigns, or measure results?"
+            </div>
+
+            <div class="scenario-narrative">
+              <p>Maya Chen is helping evaluate a new tool that promises to "accelerate pipeline." The vendor demo is impressive, but Maya's first question isn't about features—it's about architecture. "Which layer does this live in?" she asks. The vendor says it "integrates with everything." Maya pushes: "Does it collect data, store data, activate campaigns, or measure results?" Turns out it's trying to do all four—a red flag for complexity and overlap with existing tools.</p>
+            </div>
+
+            <div class="scenario-takeaway">
+              <div class="scenario-takeaway-header">
+                <span>💡</span> THE TAKEAWAY
+              </div>
+              <p>Understanding layers helps you evaluate tools and diagnose problems faster.</p>
+            </div>
           </div>
         </div>
 
@@ -834,11 +1180,11 @@
           <p class="knowledge-check-question">A vendor says their tool "captures website behavior, stores unified profiles, sends personalized emails, and provides attribution reports." What's the likely problem with this tool?</p>
           <div class="quiz-options">
             <label class="quiz-option">
-              <input type="radio" name="layers-quiz" value="a">
+              <input type="radio" name="layers-quiz" value="a" data-explanation="Price alone doesn't indicate value or fit. The core issue is capability depth, not cost.">
               <span>It's too expensive for what it does</span>
             </label>
             <label class="quiz-option">
-              <input type="radio" name="layers-quiz" value="b">
+              <input type="radio" name="layers-quiz" value="b" data-explanation="Feature count isn't the problem. Tools spanning all layers typically sacrifice depth for breadth.">
               <span>It's missing an important feature</span>
             </label>
             <label class="quiz-option">
@@ -846,7 +1192,7 @@
               <span>It spans all four layers, suggesting shallow capability in each</span>
             </label>
             <label class="quiz-option">
-              <input type="radio" name="layers-quiz" value="d">
+              <input type="radio" name="layers-quiz" value="d" data-explanation="CRM compatibility is a practical concern but not the red flag here. Layer sprawl is the issue.">
               <span>It only works with specific CRMs</span>
             </label>
           </div>
@@ -862,15 +1208,7 @@
       <section id="crm">
         <!-- Hero Card -->
         <div class="hero-card">
-          <div class="hero-icon">
-            <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-              <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/>
-              <circle cx="9" cy="7" r="4"/>
-              <path d="M23 21v-2a4 4 0 0 0-3-3.87"/>
-              <path d="M16 3.13a4 4 0 0 1 0 7.75"/>
-            </svg>
-          </div>
-          <h2>Core Systems: CRM <a href="#crm" class="anchor-link">#</a></h2>
+          <h2 class="hero-title">Core Systems: CRM</h2>
           <p class="hero-subtitle">The system of record for customer relationships</p>
         </div>
 
@@ -897,20 +1235,25 @@
         <!-- Scenario Card -->
         <div class="scenario-card">
           <div class="scenario-header">
-            <span class="scenario-icon">
-              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                <path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/>
-                <circle cx="9" cy="7" r="4"/>
-                <path d="M22 21v-2a4 4 0 0 0-3-3.87"/>
-                <path d="M16 3.13a4 4 0 0 1 0 7.75"/>
-              </svg>
-            </span>
-            <span class="scenario-label">NovaTech Scenario</span>
+            <span class="scenario-header-icon">📍</span>
+            <span class="scenario-header-title">Scenario: The CRM Conversion Decision</span>
           </div>
-          <div class="scenario-content">
-            <p><span class="role-tag role-sales">Derek Williams (Sales)</span> notices that pipeline reports show 300 "opportunities" but only 50 are real deals. The rest are leads that got converted prematurely by an over-eager SDR.</p>
-            <p><span class="role-tag role-mops">Maya Chen (MOps)</span> helps clean up the mess and implements a rule: "No conversion without a discovery call completed." Now lead conversion is a business process, not just data entry.</p>
-            <p><strong>Key insight:</strong> The CRM's lead conversion isn't just moving data—it's a formal handoff that should reflect a real business event.</p>
+          <div class="scenario-body">
+            <div class="scenario-character">
+              <div class="scenario-avatar">DW</div>
+              <div class="scenario-character-info">
+                <h4>Derek Williams</h4>
+                <p class="scenario-character-role">Demand Gen Manager, NovaTech</p>
+              </div>
+            </div>
+
+            <div class="scenario-quote">
+              "No conversion without a discovery call completed."
+            </div>
+
+            <div class="scenario-narrative">
+              <p>Derek Williams notices that pipeline reports show 300 "opportunities" but only 50 are real deals. The rest are leads that got converted prematurely by an over-eager SDR. Derek helps clean up the mess and implements a rule: Now lead conversion is a business process, not just data entry. Key insight: The CRM's lead conversion isn't just moving data—it's a formal handoff that should reflect a real business event.</p>
+            </div>
           </div>
         </div>
 
@@ -1053,7 +1396,7 @@
           <p class="knowledge-check-question">In Salesforce, when should a Lead be "converted" to a Contact + Account + Opportunity?</p>
           <div class="quiz-options">
             <label class="quiz-option">
-              <input type="radio" name="crm-quiz" value="a">
+              <input type="radio" name="crm-quiz" value="a" data-explanation="MQL scoring is automated and may not reflect real buying intent. Converting too early floods CRM with unqualified records.">
               <span>When marketing scores them as an MQL</span>
             </label>
             <label class="quiz-option">
@@ -1061,11 +1404,11 @@
               <span>When there's a real opportunity (discovery call, qualified interest)</span>
             </label>
             <label class="quiz-option">
-              <input type="radio" name="crm-quiz" value="c">
+              <input type="radio" name="crm-quiz" value="c" data-explanation="Form fills show interest, not intent. Converting too early pollutes CRM with unqualified records.">
               <span>Immediately when they fill out any form</span>
             </label>
             <label class="quiz-option">
-              <input type="radio" name="crm-quiz" value="d">
+              <input type="radio" name="crm-quiz" value="d" data-explanation="Time-based conversion is arbitrary. Intent signals matter more than calendar days.">
               <span>After 30 days in the system</span>
             </label>
           </div>
@@ -1081,13 +1424,7 @@
       <section id="map">
         <!-- Hero Card -->
         <div class="hero-card">
-          <div class="hero-icon">
-            <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-              <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/>
-              <polyline points="22,6 12,13 2,6"/>
-            </svg>
-          </div>
-          <h2>Marketing Automation Platform <a href="#map" class="anchor-link">#</a></h2>
+          <h2 class="hero-title">Marketing Automation Platform</h2>
           <p class="hero-subtitle">Marketing's operational hub for campaigns, scoring, and nurtures</p>
         </div>
 
@@ -1114,20 +1451,25 @@
         <!-- Scenario Card -->
         <div class="scenario-card">
           <div class="scenario-header">
-            <span class="scenario-icon">
-              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                <path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/>
-                <circle cx="9" cy="7" r="4"/>
-                <path d="M22 21v-2a4 4 0 0 0-3-3.87"/>
-                <path d="M16 3.13a4 4 0 0 1 0 7.75"/>
-              </svg>
-            </span>
-            <span class="scenario-label">NovaTech Scenario</span>
+            <span class="scenario-header-icon">📍</span>
+            <span class="scenario-header-title">Scenario: The Lead Scoring Calibration</span>
           </div>
-          <div class="scenario-content">
-            <p><span class="role-tag role-mops">Maya Chen (MOps)</span> notices that sales is complaining about lead quality. "All these MQLs are garbage!" Derek says. Maya digs into the scoring model and finds the problem: leads get 30 points just for downloading a whitepaper, but the MQL threshold is only 50.</p>
-            <p>She rebuilds the scoring model: high-intent actions (pricing page, demo request) get more weight, content downloads get less. She adds decay rules so old scores don't persist. MQL-to-SQL rate jumps from 12% to 41%.</p>
-            <p><strong>Key insight:</strong> Lead scoring isn't set-and-forget—it needs continuous tuning based on actual outcomes.</p>
+          <div class="scenario-body">
+            <div class="scenario-character">
+              <div class="scenario-avatar">MC</div>
+              <div class="scenario-character-info">
+                <h4>Maya Chen</h4>
+                <p class="scenario-character-role">Marketing Ops Manager, NovaTech</p>
+              </div>
+            </div>
+
+            <div class="scenario-quote">
+              "All these MQLs are garbage!"
+            </div>
+
+            <div class="scenario-narrative">
+              <p>Maya Chen notices that sales is complaining about lead quality. "Half these MQLs are junk," Derek says. Maya digs into the scoring model and finds the problem: leads get 30 points just for downloading a whitepaper, but the MQL threshold is only 50. She rebuilds the scoring model: high-intent actions (pricing page, demo request) get more weight, content downloads get less. She adds decay rules so old scores don't persist. MQL-to-SQL rate jumps from 12% to 41%. Key insight: Lead scoring isn't set-and-forget—it needs continuous tuning based on actual outcomes.</p>
+            </div>
           </div>
         </div>
 
@@ -1290,11 +1632,11 @@ THRESHOLDS
           <p class="knowledge-check-question">Your lead scoring model gives +30 points for whitepaper downloads, but your MQL threshold is 50 points. Sales complains MQLs are "garbage." What's the most likely fix?</p>
           <div class="quiz-options">
             <label class="quiz-option">
-              <input type="radio" name="map-quiz" value="a">
+              <input type="radio" name="map-quiz" value="a" data-explanation="Lowering thresholds sends even less qualified leads to sales, making the problem worse.">
               <span>Lower the MQL threshold to 30 points</span>
             </label>
             <label class="quiz-option">
-              <input type="radio" name="map-quiz" value="b">
+              <input type="radio" name="map-quiz" value="b" data-explanation="This overcorrects—some MQLs are valuable. The issue is quality calibration, not the concept.">
               <span>Stop sending MQLs to sales entirely</span>
             </label>
             <label class="quiz-option">
@@ -1302,7 +1644,7 @@ THRESHOLDS
               <span>Reduce points for low-intent actions, increase for high-intent (pricing, demo)</span>
             </label>
             <label class="quiz-option">
-              <input type="radio" name="map-quiz" value="d">
+              <input type="radio" name="map-quiz" value="d" data-explanation="More content doesn't solve quality issues. The scoring model needs calibration.">
               <span>Create more whitepapers to download</span>
             </label>
           </div>
@@ -1318,14 +1660,7 @@ THRESHOLDS
       <section id="cdp">
         <!-- Hero Card -->
         <div class="hero-card">
-          <div class="hero-icon">
-            <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-              <ellipse cx="12" cy="5" rx="9" ry="3"/>
-              <path d="M21 12c0 1.66-4 3-9 3s-9-1.34-9-3"/>
-              <path d="M3 5v14c0 1.66 4 3 9 3s9-1.34 9-3V5"/>
-            </svg>
-          </div>
-          <h2>Customer Data Platform <a href="#cdp" class="anchor-link">#</a></h2>
+          <h2 class="hero-title">Customer Data Platform</h2>
           <p class="hero-subtitle">Unified customer profiles across all your data sources</p>
         </div>
 
@@ -1352,20 +1687,25 @@ THRESHOLDS
         <!-- Scenario Card -->
         <div class="scenario-card">
           <div class="scenario-header">
-            <span class="scenario-icon">
-              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                <path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/>
-                <circle cx="9" cy="7" r="4"/>
-                <path d="M22 21v-2a4 4 0 0 0-3-3.87"/>
-                <path d="M16 3.13a4 4 0 0 1 0 7.75"/>
-              </svg>
-            </span>
-            <span class="scenario-label">NovaTech Scenario</span>
+            <span class="scenario-header-icon">📍</span>
+            <span class="scenario-header-title">Scenario: The CDP Investment</span>
           </div>
-          <div class="scenario-content">
-            <p><span class="role-tag role-mops">Maya Chen (MOps)</span> gets a request from <span class="role-tag role-demand">Sarah Park (Demand Gen)</span>: "I need to target enterprise accounts that have used our free trial but haven't talked to sales." Simple, right?</p>
-            <p>Except: Trial data lives in the product database. Account size is in Salesforce. Sales activity is in Outreach. Website behavior is in the MAP. Maya spends 3 days stitching together spreadsheets.</p>
-            <p>After implementing Segment as their CDP, this query takes 5 minutes. All data flows to unified profiles, and Sarah can build the audience herself.</p>
+          <div class="scenario-body">
+            <div class="scenario-character">
+              <div class="scenario-avatar">MC</div>
+              <div class="scenario-character-info">
+                <h4>Maya Chen</h4>
+                <p class="scenario-character-role">Marketing Ops Manager, NovaTech</p>
+              </div>
+            </div>
+
+            <div class="scenario-quote">
+              "I need to target enterprise accounts that have used our free trial but haven't talked to sales."
+            </div>
+
+            <div class="scenario-narrative">
+              <p>Maya Chen gets a request from Sarah Park: "I need a list of trial users at companies with 500+ employees who haven't talked to sales." Simple, right? Except: Trial data lives in the product database. Account size is in Salesforce. Sales activity is in Outreach. Website behavior is in the MAP. Maya spends 3 days stitching together spreadsheets. After implementing Segment as their CDP, this query takes 5 minutes. All data flows to unified profiles, and Sarah can build the audience herself.</p>
+            </div>
           </div>
         </div>
 
@@ -1524,7 +1864,7 @@ THRESHOLDS
           <p class="knowledge-check-question">Marketing wants to target "enterprise accounts using our free trial who haven't talked to sales." Trial data is in the product DB, account size in CRM, sales activity in Outreach. What's the best solution?</p>
           <div class="quiz-options">
             <label class="quiz-option">
-              <input type="radio" name="cdp-quiz" value="a">
+              <input type="radio" name="cdp-quiz" value="a" data-explanation="Manual exports are error-prone, time-consuming, and create stale data. This doesn't scale.">
               <span>Export CSVs from each system and merge in Excel weekly</span>
             </label>
             <label class="quiz-option">
@@ -1532,11 +1872,11 @@ THRESHOLDS
               <span>Implement a CDP to unify data and enable self-serve audience building</span>
             </label>
             <label class="quiz-option">
-              <input type="radio" name="cdp-quiz" value="c">
+              <input type="radio" name="cdp-quiz" value="c" data-explanation="Custom CRM integrations are brittle and expensive. Purpose-built CDPs handle this better.">
               <span>Build everything into the CRM with custom integrations</span>
             </label>
             <label class="quiz-option">
-              <input type="radio" name="cdp-quiz" value="d">
+              <input type="radio" name="cdp-quiz" value="d" data-explanation="Ignoring account fit wastes ABM resources on poor-fit accounts unlikely to convert.">
               <span>Just target all trial users regardless of account size</span>
             </label>
           </div>
@@ -1552,14 +1892,7 @@ THRESHOLDS
       <section id="analytics">
         <!-- Hero Card -->
         <div class="hero-card">
-          <div class="hero-icon">
-            <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-              <line x1="18" y1="20" x2="18" y2="10"/>
-              <line x1="12" y1="20" x2="12" y2="4"/>
-              <line x1="6" y1="20" x2="6" y2="14"/>
-            </svg>
-          </div>
-          <h2>Analytics Platforms <a href="#analytics" class="anchor-link">#</a></h2>
+          <h2 class="hero-title">Analytics Platforms</h2>
           <p class="hero-subtitle">Tracking user behavior across web and product</p>
         </div>
 
@@ -1586,20 +1919,25 @@ THRESHOLDS
         <!-- Scenario Card -->
         <div class="scenario-card">
           <div class="scenario-header">
-            <span class="scenario-icon">
-              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                <path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/>
-                <circle cx="9" cy="7" r="4"/>
-                <path d="M22 21v-2a4 4 0 0 0-3-3.87"/>
-                <path d="M16 3.13a4 4 0 0 1 0 7.75"/>
-              </svg>
-            </span>
-            <span class="scenario-label">NovaTech Scenario</span>
+            <span class="scenario-header-icon">📍</span>
+            <span class="scenario-header-title">Scenario: Priya Sharma's Scenario</span>
           </div>
-          <div class="scenario-content">
-            <p><span class="role-tag role-analytics">Priya Sharma (Analytics)</span> is asked: "How many of our closed-won deals visited the pricing page before talking to sales?"</p>
-            <p>GA4 shows 10,000 pricing page views last quarter. But it can't tell her which of those became opportunities, let alone which closed. The data lives in different silos.</p>
-            <p>After setting up Clearbit Reveal for IP identification and piping data to Snowflake, she can finally answer: "73% of closed-won deals had 3+ pricing page visits before their first sales call."</p>
+          <div class="scenario-body">
+            <div class="scenario-character">
+              <div class="scenario-avatar">PS</div>
+              <div class="scenario-character-info">
+                <h4>Priya Sharma</h4>
+                <p class="scenario-character-role">Data Analyst, NovaTech</p>
+              </div>
+            </div>
+
+            <div class="scenario-quote">
+              "How many of our closed-won deals visited the pricing page before talking to sales?"
+            </div>
+
+            <div class="scenario-narrative">
+              <p>Priya Sharma is asked: "Which pricing page visitors became customers?" GA4 shows 10,000 pricing page views last quarter. But it can't tell her which of those became opportunities, let alone which closed. The data lives in different silos. After setting up Clearbit Reveal for IP identification and piping data to Snowflake, she can finally answer: "73% of closed-won deals had 3+ pricing page visits before their first sales call."</p>
+            </div>
           </div>
         </div>
 
@@ -1685,11 +2023,11 @@ THRESHOLDS
           <p class="knowledge-check-question">Your CMO asks: "How many of our closed deals visited the pricing page before becoming opportunities?" GA4 shows 10,000 pricing page views. Why can't you answer the question directly?</p>
           <div class="quiz-options">
             <label class="quiz-option">
-              <input type="radio" name="analytics-quiz" value="a">
+              <input type="radio" name="analytics-quiz" value="a" data-explanation="GA4 tracks all pages by default. The issue isn't tracking capability, it's context.">
               <span>GA4 doesn't track pricing pages</span>
             </label>
             <label class="quiz-option">
-              <input type="radio" name="analytics-quiz" value="b">
+              <input type="radio" name="analytics-quiz" value="b" data-explanation="2-week-old data is quite fresh for B2B analysis. Recency isn't the issue here.">
               <span>The data is too old to be accurate</span>
             </label>
             <label class="quiz-option">
@@ -1697,7 +2035,7 @@ THRESHOLDS
               <span>GA4 tracks users, not accounts, and can't connect to CRM deal data</span>
             </label>
             <label class="quiz-option">
-              <input type="radio" name="analytics-quiz" value="d">
+              <input type="radio" name="analytics-quiz" value="d" data-explanation="Pricing page visits are one of the strongest buying signals in B2B. They indicate serious evaluation, not casual browsing.">
               <span>Pricing page visits aren't important for B2B</span>
             </label>
           </div>
@@ -1713,14 +2051,7 @@ THRESHOLDS
       <section id="intent">
         <!-- Hero Card -->
         <div class="hero-card">
-          <div class="hero-icon">
-            <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-              <circle cx="12" cy="12" r="10"/>
-              <circle cx="12" cy="12" r="6"/>
-              <circle cx="12" cy="12" r="2"/>
-            </svg>
-          </div>
-          <h2>Intent Data Platforms <a href="#intent" class="anchor-link">#</a></h2>
+          <h2 class="hero-title">Intent Data Platforms</h2>
           <p class="hero-subtitle">Identifying companies researching solutions like yours</p>
         </div>
 
@@ -1747,20 +2078,21 @@ THRESHOLDS
         <!-- Scenario Card -->
         <div class="scenario-card">
           <div class="scenario-header">
-            <span class="scenario-icon">
-              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                <path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/>
-                <circle cx="9" cy="7" r="4"/>
-                <path d="M22 21v-2a4 4 0 0 0-3-3.87"/>
-                <path d="M16 3.13a4 4 0 0 1 0 7.75"/>
-              </svg>
-            </span>
-            <span class="scenario-label">NovaTech Scenario</span>
+            <span class="scenario-header-icon">📍</span>
+            <span class="scenario-header-title">Scenario: Reading Intent Signals</span>
           </div>
-          <div class="scenario-content">
-            <p><span class="role-tag role-sales">Derek Williams (Sales)</span> has 500 accounts to call but only time for 50. Bombora shows 47 accounts are "surging" on topics related to NovaTech's solution.</p>
-            <p>He calls the surging accounts first. Connect rate is 2x higher than his baseline, and 3 accounts are already evaluating competitors. Without intent data, he might have reached them after they'd already shortlisted.</p>
-            <p><strong>The lesson:</strong> Intent data doesn't guarantee a sale—but it helps you be in the room at the right time.</p>
+          <div class="scenario-body">
+            <div class="scenario-character">
+              <div class="scenario-avatar">DW</div>
+              <div class="scenario-character-info">
+                <h4>Derek Williams</h4>
+                <p class="scenario-character-role">Demand Gen Manager, NovaTech</p>
+              </div>
+            </div>
+
+            <div class="scenario-narrative">
+              <p>Derek Williams has 500 accounts to call but only time for 50. Bombora shows 47 accounts are "surging" on topics related to NovaTech's solution. He calls the surging accounts first. Connect rate is 2x higher than his baseline, and 3 accounts are already evaluating competitors. Without intent data, he might have reached them after they'd already shortlisted. The lesson: Intent data doesn't guarantee a sale—but it helps you be in the room at the right time.</p>
+            </div>
           </div>
         </div>
 
@@ -1894,7 +2226,7 @@ THRESHOLDS
           <p class="knowledge-check-question">A 10,000-person enterprise account shows "high intent" on your target topics. What does this signal reliably tell you?</p>
           <div class="quiz-options">
             <label class="quiz-option">
-              <input type="radio" name="intent-quiz" value="a">
+              <input type="radio" name="intent-quiz" value="a" data-explanation="Intent signals indicate research, not purchase readiness. Many researching accounts never buy.">
               <span>The company is ready to buy and should be treated as a hot lead</span>
             </label>
             <label class="quiz-option">
@@ -1902,11 +2234,11 @@ THRESHOLDS
               <span>Someone at the company is researching the topic—prioritize outreach to learn more</span>
             </label>
             <label class="quiz-option">
-              <input type="radio" name="intent-quiz" value="c">
+              <input type="radio" name="intent-quiz" value="c" data-explanation="Intent signals show research activity, not committee alignment. Multiple people researching doesn't mean they're coordinated or even aware of each other.">
               <span>The entire buying committee is aligned and evaluating solutions</span>
             </label>
             <label class="quiz-option">
-              <input type="radio" name="intent-quiz" value="d">
+              <input type="radio" name="intent-quiz" value="d" data-explanation="Intent data shows research activity, not competitive positioning. You can't infer shortlisting from page visits alone.">
               <span>They've already shortlisted your competitors</span>
             </label>
           </div>
@@ -1922,7 +2254,6 @@ THRESHOLDS
       <section id="enrichment">
         <!-- Hero Card -->
         <div class="hero-card">
-          <div class="hero-number">07</div>
           <h2 class="hero-title">Enrichment Tools</h2>
           <p class="hero-subtitle">Turn minimal data into complete profiles for better targeting and personalization</p>
         </div>
@@ -1941,15 +2272,25 @@ THRESHOLDS
         <!-- Scenario Card -->
         <div class="scenario-card">
           <div class="scenario-header">
-            <span class="scenario-icon">🎬</span>
-            <span class="scenario-label">NovaTech Scenario</span>
+            <span class="scenario-header-icon">📍</span>
+            <span class="scenario-header-title">Scenario: The Enrichment Trade-off</span>
           </div>
-          <div class="scenario-content">
+          <div class="scenario-body">
             <div class="scenario-character">
-              <span class="role-tag role-demand-gen">Demand Gen</span>
-              <strong>Sarah Park</strong>
+              <div class="scenario-avatar">DG</div>
+              <div class="scenario-character-info">
+                <h4>Demand Gen</h4>
+                <p class="scenario-character-role">NovaTech Team</p>
+              </div>
             </div>
-            <p>Sarah is frustrated. Forms with 10 fields get a 3% conversion rate. "Just ask for email," marketing suggests—but then sales complains they have no context. Sarah proposes a solution: capture email only, use Clearbit's API to enrich in real-time, then route based on company size. Her test: conversion jumps to 8%, and ICP leads still get all the data sales needs. "We let the technology do the work instead of the prospect."</p>
+
+            <div class="scenario-quote">
+              "We let the technology do the work instead of the prospect."
+            </div>
+
+            <div class="scenario-narrative">
+              <p>Sarah is frustrated. Forms with 10 fields get a 3% conversion rate. "Just ask for email," marketing suggests—but then sales complains they have no context. Sarah proposes a solution: capture email only, use Clearbit's API to enrich in real-time, then route based on company size. Her test: conversion jumps to 8%, and ICP leads still get all the data sales needs.</p>
+            </div>
           </div>
         </div>
 
@@ -2093,7 +2434,7 @@ THRESHOLDS
           <p class="knowledge-check-question">Sarah's form conversion increased from 3% to 8% by reducing fields and using enrichment. What's the main risk of this approach?</p>
           <div class="quiz-options">
             <label class="quiz-option">
-              <input type="radio" name="enrichment-quiz" value="a">
+              <input type="radio" name="enrichment-quiz" value="a" data-explanation="Enrichment adds data, it doesn't reduce it. The tradeoff is in other areas.">
               <span>Sales will have less data about leads</span>
             </label>
             <label class="quiz-option">
@@ -2101,11 +2442,11 @@ THRESHOLDS
               <span>Enriched data isn't always accurate, so some lead profiles will have errors</span>
             </label>
             <label class="quiz-option">
-              <input type="radio" name="enrichment-quiz" value="c">
+              <input type="radio" name="enrichment-quiz" value="c" data-explanation="Good enrichment tools work asynchronously and don't impact form UX.">
               <span>The enrichment API will slow down form submission</span>
             </label>
             <label class="quiz-option">
-              <input type="radio" name="enrichment-quiz" value="d">
+              <input type="radio" name="enrichment-quiz" value="d" data-explanation="Research consistently shows form length reduces conversion. Enrichment replaces fields, improving user experience.">
               <span>Prospects prefer filling out more fields</span>
             </label>
           </div>
@@ -2121,7 +2462,6 @@ THRESHOLDS
       <section id="integrations">
         <!-- Hero Card -->
         <div class="hero-card">
-          <div class="hero-number">08</div>
           <h2 class="hero-title">Integration Patterns and Data Flows</h2>
           <p class="hero-subtitle">How tools connect—and where those connections fail</p>
         </div>
@@ -2140,15 +2480,25 @@ THRESHOLDS
         <!-- Scenario Card -->
         <div class="scenario-card">
           <div class="scenario-header">
-            <span class="scenario-icon">🎬</span>
-            <span class="scenario-label">NovaTech Scenario</span>
+            <span class="scenario-header-icon">📍</span>
+            <span class="scenario-header-title">Scenario: The Integration Audit</span>
           </div>
-          <div class="scenario-content">
+          <div class="scenario-body">
             <div class="scenario-character">
-              <span class="role-tag role-mops">Marketing Ops</span>
-              <strong>Maya Chen</strong>
+              <div class="scenario-avatar">MO</div>
+              <div class="scenario-character-info">
+                <h4>Marketing Ops</h4>
+                <p class="scenario-character-role">NovaTech Team</p>
+              </div>
             </div>
-            <p>Maya inherited a stack where "everything is connected" but nobody knows how. Sales says lead scores are wrong. Marketing says campaign data isn't in Salesforce. The attribution team says nothing matches. Maya's first project: document every integration. Two weeks later, she has a diagram showing 47 data flows—and discovers 8 are broken. "Half our problems weren't bugs," she reports. "They were undocumented integrations that someone turned off months ago."</p>
+
+            <div class="scenario-quote">
+              "They were undocumented integrations that someone turned off months ago."
+            </div>
+
+            <div class="scenario-narrative">
+              <p>Maya inherited a stack where "everything is connected" but nobody knows how. Sales says lead scores are wrong. Marketing says campaign data isn't in Salesforce. The attribution team says nothing matches. Maya's first project: document every integration. Two weeks later, she has a diagram showing 47 data flows—and discovers 8 are broken. "Half our problems weren't bugs," she reports.</p>
+            </div>
           </div>
         </div>
 
@@ -2387,11 +2737,11 @@ THRESHOLDS
           <p class="knowledge-check-question">Maya discovered 8 broken integrations while documenting NovaTech's stack. What's the most likely root cause of these failures going unnoticed?</p>
           <div class="quiz-options">
             <label class="quiz-option">
-              <input type="radio" name="integrations-quiz" value="a">
+              <input type="radio" name="integrations-quiz" value="a" data-explanation="Tool design wasn't necessarily the issue. Operational ownership was the gap.">
               <span>The integration tools were poorly designed</span>
             </label>
             <label class="quiz-option">
-              <input type="radio" name="integrations-quiz" value="b">
+              <input type="radio" name="integrations-quiz" value="b" data-explanation="Integration count wasn't the root cause. Unmanaged integrations of any number can fail.">
               <span>There were too many integrations to manage</span>
             </label>
             <label class="quiz-option">
@@ -2399,7 +2749,7 @@ THRESHOLDS
               <span>No one was monitoring integrations or owned the documentation</span>
             </label>
             <label class="quiz-option">
-              <input type="radio" name="integrations-quiz" value="d">
+              <input type="radio" name="integrations-quiz" value="d" data-explanation="Staffing wasn't the root cause—lack of ownership was. Even small teams can maintain integrations with proper processes.">
               <span>The team was understaffed</span>
             </label>
           </div>
@@ -2415,7 +2765,6 @@ THRESHOLDS
       <section id="identity">
         <!-- Hero Card -->
         <div class="hero-card">
-          <div class="hero-number">09</div>
           <h2 class="hero-title">Identity Resolution and Account Matching</h2>
           <p class="hero-subtitle">The hardest problem in B2B martech—connecting the dots across systems</p>
         </div>
@@ -2434,15 +2783,25 @@ THRESHOLDS
         <!-- Scenario Card -->
         <div class="scenario-card">
           <div class="scenario-header">
-            <span class="scenario-icon">🎬</span>
-            <span class="scenario-label">NovaTech Scenario</span>
+            <span class="scenario-header-icon">📍</span>
+            <span class="scenario-header-title">Scenario: The Duplicate Problem</span>
           </div>
-          <div class="scenario-content">
+          <div class="scenario-body">
             <div class="scenario-character">
-              <span class="role-tag role-analytics">Analytics</span>
-              <strong>Priya Sharma</strong>
+              <div class="scenario-avatar">PS</div>
+              <div class="scenario-character-info">
+                <h4>Priya Sharma</h4>
+                <p class="scenario-character-role">Data Analyst, NovaTech</p>
+              </div>
             </div>
-            <p>Priya is trying to build a report showing which accounts are most engaged. Problem: the same person—John Smith at Acme—shows up five times in the database. He's <a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="8fe5fce2e6fbe7cfeeece2eaa1ece0e2">[email&#160;protected]</a>, <a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="90fafff8febee3fdf9e4f8d0f1f3fdf5bef3fffd">[email&#160;protected]</a>, <a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="4f253c22263b270f28222e2623612c2022">[email&#160;protected]</a> (personal), and two duplicates with typos. "Our 'top engaged account' report is fiction," Priya tells the team. "Acme looks like 5 accounts, not 1. Until we solve identity, every account-level metric is wrong."</p>
+
+            <div class="scenario-quote">
+              "Acme looks like 5 accounts, not 1. Until we solve identity, every account-level metric is wrong."
+            </div>
+
+            <div class="scenario-narrative">
+              <p>Priya is trying to build a report showing which accounts are most engaged. Problem: the same person—John Smith at Acme—shows up five times in the database. He's [email&#160;protected], [email&#160;protected], [email&#160;protected] (personal), and two duplicates with typos. "Our 'top engaged account' report is fiction," Priya tells the team.</p>
+            </div>
           </div>
         </div>
 
@@ -2569,7 +2928,7 @@ LinkedIn: John T. Smith, Acme Corporation</code></pre>
           <p class="knowledge-check-question">Priya discovered Acme appears as 5 separate accounts due to identity issues. What should be NovaTech's first step to fix this?</p>
           <div class="quiz-options">
             <label class="quiz-option">
-              <input type="radio" name="identity-quiz" value="a">
+              <input type="radio" name="identity-quiz" value="a" data-explanation="Blind merging can destroy data. You need rules about which record's data takes precedence.">
               <span>Merge all 5 records into one immediately</span>
             </label>
             <label class="quiz-option">
@@ -2577,11 +2936,11 @@ LinkedIn: John T. Smith, Acme Corporation</code></pre>
               <span>Implement duplicate checking at form submission to prevent future duplicates</span>
             </label>
             <label class="quiz-option">
-              <input type="radio" name="identity-quiz" value="c">
+              <input type="radio" name="identity-quiz" value="c" data-explanation="This doesn't prevent duplicates—people can have multiple work emails or change jobs.">
               <span>Require all leads to use work email addresses</span>
             </label>
             <label class="quiz-option">
-              <input type="radio" name="identity-quiz" value="d">
+              <input type="radio" name="identity-quiz" value="d" data-explanation="CDPs help but don't automatically solve identity. You still need governance rules and data quality processes.">
               <span>Purchase a CDP to solve identity automatically</span>
             </label>
           </div>
@@ -2597,7 +2956,6 @@ LinkedIn: John T. Smith, Acme Corporation</code></pre>
       <section id="data-hygiene">
         <!-- Hero Card -->
         <div class="hero-card">
-          <div class="hero-number">10</div>
           <h2 class="hero-title">Data Hygiene and Governance</h2>
           <p class="hero-subtitle">Fighting the constant decay of your database</p>
         </div>
@@ -2616,15 +2974,25 @@ LinkedIn: John T. Smith, Acme Corporation</code></pre>
         <!-- Scenario Card -->
         <div class="scenario-card">
           <div class="scenario-header">
-            <span class="scenario-icon">🎬</span>
-            <span class="scenario-label">NovaTech Scenario</span>
+            <span class="scenario-header-icon">📍</span>
+            <span class="scenario-header-title">Scenario: The MQL Quality Crisis</span>
           </div>
-          <div class="scenario-content">
+          <div class="scenario-body">
             <div class="scenario-character">
-              <span class="role-tag role-mops">Marketing Ops</span>
-              <strong>Maya Chen</strong>
+              <div class="scenario-avatar">MO</div>
+              <div class="scenario-character-info">
+                <h4>Marketing Ops</h4>
+                <p class="scenario-character-role">NovaTech Team</p>
+              </div>
             </div>
-            <p>Maya runs NovaTech's first database audit. The results are grim: 28% of emails bounce, 40% of records have no job title, and "United States" appears 17 different ways. "We've been scoring leads based on garbage data," she tells James. "No wonder sales says our MQLs are low quality—half of them probably don't work at those companies anymore." Maya proposes a data quality roadmap: immediate cleanup, then ongoing hygiene built into every process.</p>
+
+            <div class="scenario-quote">
+              "No wonder sales says our MQLs are low quality—half of them probably don't work at those companies anymore."
+            </div>
+
+            <div class="scenario-narrative">
+              <p>Maya runs NovaTech's first database audit. The results are grim: 28% of emails bounce, 40% of records have no job title, and "United States" appears 17 different ways. "We've been scoring leads based on garbage data," she tells James. Maya proposes a data quality roadmap: immediate cleanup, then ongoing hygiene built into every process.</p>
+            </div>
           </div>
         </div>
 
@@ -2757,19 +3125,19 @@ After normalization:
           <p class="knowledge-check-question">Maya's audit found 28% email bounce rate and 17 variations of "United States." Which data quality dimension addresses the country variation problem?</p>
           <div class="quiz-options">
             <label class="quiz-option">
-              <input type="radio" name="hygiene-quiz" value="a">
+              <input type="radio" name="hygiene-quiz" value="a" data-explanation="Completeness measures if fields are filled, not if the data is right. Wrong data in every field is still bad.">
               <span>Completeness</span>
             </label>
             <label class="quiz-option">
-              <input type="radio" name="hygiene-quiz" value="b">
+              <input type="radio" name="hygiene-quiz" value="b" data-explanation="Accuracy measures whether data is correct. The question asks about filling all fields—that's completeness, not accuracy.">
               <span>Accuracy</span>
             </label>
             <label class="quiz-option">
-              <input type="radio" name="hygiene-quiz" value="c">
+              <input type="radio" name="hygiene-quiz" value="c" data-explanation="Consistency is about format standardization, not correctness of the actual values.">
               <span>Consistency</span>
             </label>
             <label class="quiz-option">
-              <input type="radio" name="hygiene-quiz" value="d">
+              <input type="radio" name="hygiene-quiz" value="d" data-explanation="Timeliness (currency) measures how up-to-date data is. Having all fields filled is about completeness, not recency.">
               <span>Timeliness</span>
             </label>
           </div>
@@ -2785,7 +3153,6 @@ After normalization:
       <section id="privacy">
         <!-- Hero Card -->
         <div class="hero-card">
-          <div class="hero-number">11</div>
           <h2 class="hero-title">Privacy and Consent</h2>
           <p class="hero-subtitle">Navigating regulations and the end of third-party cookies</p>
         </div>
@@ -2804,15 +3171,25 @@ After normalization:
         <!-- Scenario Card -->
         <div class="scenario-card">
           <div class="scenario-header">
-            <span class="scenario-icon">🎬</span>
-            <span class="scenario-label">NovaTech Scenario</span>
+            <span class="scenario-header-icon">📍</span>
+            <span class="scenario-header-title">Scenario: The Attribution Challenge</span>
           </div>
-          <div class="scenario-content">
+          <div class="scenario-body">
             <div class="scenario-character">
-              <span class="role-tag role-analytics">Analytics</span>
-              <strong>Priya Sharma</strong>
+              <div class="scenario-avatar">PS</div>
+              <div class="scenario-character-info">
+                <h4>Priya Sharma</h4>
+                <p class="scenario-character-role">Data Analyst, NovaTech</p>
+              </div>
             </div>
-            <p>Priya's attribution model suddenly shows 40% of web conversions as "direct/unknown." "Safari and Firefox are blocking our tracking," she explains to James. "And Chrome changes are coming." James asks for the "real" numbers. Priya has to be honest: "There are no 'real' numbers anymore. We need to shift strategy—capture first-party data earlier, ask 'how did you hear about us' on forms, and accept that perfect attribution is over."</p>
+
+            <div class="scenario-quote">
+              "There are no 'real' numbers anymore. We need to shift strategy—capture first-party data earlier, ask 'how did you hear about us' on forms, and accept that perfect attribution is over."
+            </div>
+
+            <div class="scenario-narrative">
+              <p>Priya's attribution model suddenly shows 40% of web conversions as "direct/unknown." "Safari and Firefox are blocking our tracking," she explains to James. "And Chrome changes are coming." James asks for the "real" numbers. Priya has to be honest: "There are no 'real' numbers anymore. We need to adapt—first-party data, self-reported attribution, and statistical modeling."</p>
+            </div>
           </div>
         </div>
 
@@ -2931,15 +3308,15 @@ After normalization:
           <p class="knowledge-check-question">Priya's attribution shows 40% of conversions as "direct/unknown" due to browser tracking restrictions. What's the best strategic response?</p>
           <div class="quiz-options">
             <label class="quiz-option">
-              <input type="radio" name="privacy-quiz" value="a">
+              <input type="radio" name="privacy-quiz" value="a" data-explanation="Workarounds violate user expectations and may breach regulations. First-party data is the path forward.">
               <span>Find workarounds to restore third-party cookie tracking</span>
             </label>
             <label class="quiz-option">
-              <input type="radio" name="privacy-quiz" value="b">
+              <input type="radio" name="privacy-quiz" value="b" data-explanation="Proportional allocation assumes unknowns behave like knowns—a flawed assumption. First-party data collection is more reliable.">
               <span>Allocate the unknown conversions proportionally across known channels</span>
             </label>
             <label class="quiz-option">
-              <input type="radio" name="privacy-quiz" value="c">
+              <input type="radio" name="privacy-quiz" value="c" data-explanation="Ignoring unknowns underreports performance and misses valuable signals. Build first-party data to capture these.">
               <span>Ignore the unknown conversions and report only known channels</span>
             </label>
             <label class="quiz-option">
@@ -2959,7 +3336,6 @@ After normalization:
       <section id="vendors">
         <!-- Hero Card -->
         <div class="hero-card">
-          <div class="hero-number">12</div>
           <h2 class="hero-title">Vendor Landscape</h2>
           <p class="hero-subtitle">Understanding what major platforms actually do differently</p>
         </div>
@@ -2978,15 +3354,25 @@ After normalization:
         <!-- Scenario Card -->
         <div class="scenario-card">
           <div class="scenario-header">
-            <span class="scenario-icon">🎬</span>
-            <span class="scenario-label">NovaTech Scenario</span>
+            <span class="scenario-header-icon">📍</span>
+            <span class="scenario-header-title">Scenario: The Integration Audit</span>
           </div>
-          <div class="scenario-content">
+          <div class="scenario-body">
             <div class="scenario-character">
-              <span class="role-tag role-cmo">CMO</span>
-              <strong>James Okonkwo</strong>
+              <div class="scenario-avatar">JO</div>
+              <div class="scenario-character-info">
+                <h4>James Okonkwo</h4>
+                <p class="scenario-character-role">NovaTech Team</p>
+              </div>
             </div>
-            <p>James is evaluating whether to switch from HubSpot to Marketo. The sales pitch was compelling—more sophisticated campaigns, better Salesforce integration. Maya runs the numbers: $40K/year more in licensing, $80K implementation, plus they'd need to hire a dedicated admin. "Marketo is more powerful," Maya reports, "but we're not using 60% of HubSpot's features. We'd be paying for complexity we don't need." James decides to maximize HubSpot first: "Let's hit the ceiling before we build a bigger room."</p>
+
+            <div class="scenario-quote">
+              "but we're not using 60% of HubSpot's features. We'd be paying for complexity we don't need."
+            </div>
+
+            <div class="scenario-narrative">
+              <p>James is evaluating whether to switch from HubSpot to Marketo. The sales pitch was compelling—more sophisticated campaigns, better Salesforce integration. Maya runs the numbers: $40K/year more in licensing, $80K implementation, plus they'd need to hire a dedicated admin. "Marketo is more powerful," Maya reports, James decides to maximize HubSpot first: "Let's hit the ceiling before we build a bigger room."</p>
+            </div>
           </div>
         </div>
 
@@ -3181,7 +3567,7 @@ After normalization:
           <p class="knowledge-check-question">James decided not to switch from HubSpot to Marketo after Maya's analysis. What was the key insight that drove this decision?</p>
           <div class="quiz-options">
             <label class="quiz-option">
-              <input type="radio" name="vendors-quiz" value="a">
+              <input type="radio" name="vendors-quiz" value="a" data-explanation="Price wasn't mentioned as a factor. The decision was about complexity management and existing feature utilization.">
               <span>Marketo's price was too high for NovaTech's budget</span>
             </label>
             <label class="quiz-option">
@@ -3189,11 +3575,11 @@ After normalization:
               <span>They weren't using most of HubSpot's existing features, so complexity wasn't the problem</span>
             </label>
             <label class="quiz-option">
-              <input type="radio" name="vendors-quiz" value="c">
+              <input type="radio" name="vendors-quiz" value="c" data-explanation="Support quality wasn't the deciding factor. The choice was about matching tool complexity to team capacity.">
               <span>HubSpot has better customer support than Marketo</span>
             </label>
             <label class="quiz-option">
-              <input type="radio" name="vendors-quiz" value="d">
+              <input type="radio" name="vendors-quiz" value="d" data-explanation="Integration wasn't the issue—both platforms integrate well. The decision was about managing complexity with limited resources.">
               <span>Marketo doesn't integrate with their existing tools</span>
             </label>
           </div>
@@ -3209,7 +3595,6 @@ After normalization:
       <section id="abm">
         <!-- Hero Card -->
         <div class="hero-card">
-          <div class="hero-number">13</div>
           <h2 class="hero-title">Account-Based Marketing</h2>
           <p class="hero-subtitle">Flip the funnel—start with target accounts, not lead volume</p>
         </div>
@@ -3228,15 +3613,25 @@ After normalization:
         <!-- Scenario Card -->
         <div class="scenario-card">
           <div class="scenario-header">
-            <span class="scenario-icon">🎬</span>
-            <span class="scenario-label">NovaTech Scenario</span>
+            <span class="scenario-header-icon">📍</span>
+            <span class="scenario-header-title">Scenario: The Architecture Question</span>
           </div>
-          <div class="scenario-content">
+          <div class="scenario-body">
             <div class="scenario-character">
-              <span class="role-tag role-demand-gen">Demand Gen</span>
-              <strong>Sarah Park</strong>
+              <div class="scenario-avatar">DG</div>
+              <div class="scenario-character-info">
+                <h4>Demand Gen</h4>
+                <p class="scenario-character-role">NovaTech Team</p>
+              </div>
             </div>
-            <p>Sarah proposes an ABM pilot. "We're generating 500 MQLs a month, but only 12 become customers. Let's flip it: pick 50 target accounts, coordinate everything around them." Derek is skeptical: "You want me to ignore inbound leads?" Sarah clarifies: "No—we still run demand gen. But for these 50 accounts, we add a layer: display ads, direct mail, personalized content, coordinated outreach. Same budget, focused effort." Three months later, the pilot accounts convert at 3x the normal rate.</p>
+
+            <div class="scenario-quote">
+              "No—we still run demand gen. But for these 50 accounts, we add a layer: display ads, direct mail, personalized content, coordinated outreach. Same budget, focused effort."
+            </div>
+
+            <div class="scenario-narrative">
+              <p>Sarah proposes an ABM pilot. "We're generating 500 MQLs a month, but only 12 become customers. Let's flip it: pick 50 target accounts, coordinate everything around them." Derek is skeptical: "You want me to ignore inbound leads?" Sarah clarifies: Three months later, the pilot accounts convert at 3x the normal rate.</p>
+            </div>
           </div>
         </div>
 
@@ -3464,11 +3859,11 @@ After normalization:
           <p class="knowledge-check-question">Sarah's ABM pilot showed 3x higher conversion for target accounts. What was the most critical success factor?</p>
           <div class="quiz-options">
             <label class="quiz-option">
-              <input type="radio" name="abm-quiz" value="a">
+              <input type="radio" name="abm-quiz" value="a" data-explanation="Technology enables ABM but doesn't define it. ABM fundamentally means coordinated, account-focused go-to-market.">
               <span>Using advanced ABM technology platforms</span>
             </label>
             <label class="quiz-option">
-              <input type="radio" name="abm-quiz" value="b">
+              <input type="radio" name="abm-quiz" value="b" data-explanation="Budget alone doesn't make ABM. The key is coordination across channels and alignment with sales, not spending more.">
               <span>Increasing budget for the target accounts</span>
             </label>
             <label class="quiz-option">
@@ -3476,7 +3871,7 @@ After normalization:
               <span>Coordinating multiple channels around the same accounts with sales collaboration</span>
             </label>
             <label class="quiz-option">
-              <input type="radio" name="abm-quiz" value="d">
+              <input type="radio" name="abm-quiz" value="d" data-explanation="ABM works at any company size. The defining feature is account-level coordination, not target segment size.">
               <span>Choosing only enterprise-size companies as targets</span>
             </label>
           </div>
@@ -3492,7 +3887,6 @@ After normalization:
       <section id="auditing">
         <!-- Hero Card -->
         <div class="hero-card">
-          <div class="hero-number">14</div>
           <h2 class="hero-title">Evaluating and Auditing a Stack</h2>
           <p class="hero-subtitle">How to assess what you have and plan what you need</p>
         </div>
@@ -3511,15 +3905,25 @@ After normalization:
         <!-- Scenario Card -->
         <div class="scenario-card">
           <div class="scenario-header">
-            <span class="scenario-icon">🎬</span>
-            <span class="scenario-label">NovaTech Scenario</span>
+            <span class="scenario-header-icon">📍</span>
+            <span class="scenario-header-title">Scenario: The Attribution Challenge</span>
           </div>
-          <div class="scenario-content">
+          <div class="scenario-body">
             <div class="scenario-character">
-              <span class="role-tag role-mops">Marketing Ops</span>
-              <strong>Maya Chen</strong>
+              <div class="scenario-avatar">MO</div>
+              <div class="scenario-character-info">
+                <h4>Marketing Ops</h4>
+                <p class="scenario-character-role">NovaTech Team</p>
+              </div>
             </div>
-            <p>Maya presents her first stack audit to leadership. "We have 14 marketing tools costing $280K annually. Three people maintain them. Key findings: CRM and MAP show 12% lead count discrepancy. Two tools do email—one hasn't been used in six months but we're paying until December. And we have no attribution—we literally cannot connect marketing to revenue." Her recommendations: run email validation immediately (quick win), fix CRM-MAP sync (foundation), implement attribution model (strategic). "And cancel that redundant tool at renewal—that's $18K back."</p>
+
+            <div class="scenario-quote">
+              "We have 14 marketing tools costing $280K annually. Three people maintain them. Key findings: CRM and MAP show 12% lead count discrepancy. Two tools do email—one hasn't been used in six months but we're paying until December. And we have no attribution—we literally cannot connect marketing to revenue."
+            </div>
+
+            <div class="scenario-narrative">
+              <p>Maya presents her first stack audit to leadership. Her recommendations: run email validation immediately (quick win), fix CRM-MAP sync (foundation), implement attribution model (strategic). "And cancel that redundant tool at renewal—that's $18K back."</p>
+            </div>
           </div>
         </div>
 
@@ -3697,15 +4101,15 @@ MAP Health Check:
               <span>Other improvements (like attribution) depend on having accurate, synced data first</span>
             </label>
             <label class="quiz-option">
-              <input type="radio" name="auditing-quiz" value="b">
+              <input type="radio" name="auditing-quiz" value="b" data-explanation="Cost isn't why you prioritize. Data sync issues block other improvements—attribution can't work on bad data.">
               <span>It's the most expensive problem to fix</span>
             </label>
             <label class="quiz-option">
-              <input type="radio" name="auditing-quiz" value="c">
+              <input type="radio" name="auditing-quiz" value="c" data-explanation="Duration doesn't determine priority. Foundation issues (like data sync) must be fixed first regardless of timeline.">
               <span>It will take the longest time to complete</span>
             </label>
             <label class="quiz-option">
-              <input type="radio" name="auditing-quiz" value="d">
+              <input type="radio" name="auditing-quiz" value="d" data-explanation="Leadership requests don't override technical dependencies. Data foundation issues must be fixed before attribution works.">
               <span>Leadership specifically requested it</span>
             </label>
           </div>
@@ -3748,13 +4152,14 @@ MAP Health Check:
       </section>
 
       <footer class="footer">
-        Last updated: December 2024
+        Last updated: December 2025
       </footer>
     </div>
   </main>
 
-  <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
-document.querySelectorAll('.copy-btn').forEach(btn => {
+  <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script> 
+
+    document.querySelectorAll('.copy-btn').forEach(btn => {
       btn.addEventListener('click', async () => {
         const code = btn.closest('.code-block').querySelector('code').textContent;
         await navigator.clipboard.writeText(code);
@@ -3806,37 +4211,87 @@ document.querySelectorAll('.copy-btn').forEach(btn => {
         const correctAnswer = quiz.dataset.answer;
 
         btn.addEventListener('click', () => {
+          if (btn.classList.contains('retry-mode')) {
+            // Reset quiz state
+            options.forEach(opt => {
+              opt.classList.remove('correct', 'incorrect');
+              const input = opt.querySelector('input');
+              if (input) input.checked = false;
+            });
+            feedback.classList.remove('show', 'correct', 'incorrect');
+            const wrongExp = feedback.querySelector('.wrong-explanation');
+            if (wrongExp) wrongExp.remove();
+            btn.textContent = 'Check Answer';
+            btn.classList.remove('retry-mode');
+            return;
+          }
+
           const selected = quiz.querySelector('input[type="radio"]:checked');
           if (!selected) return;
 
           const selectedValue = selected.value;
           const isCorrect = selectedValue === correctAnswer;
 
+          // Clear previous states
           options.forEach(opt => {
             opt.classList.remove('correct', 'incorrect');
           });
 
+          // Mark selected option
           const selectedOption = selected.closest('.quiz-option');
-          selectedOption.classList.add(isCorrect ? 'correct' : 'incorrect');
+          if (selectedOption) {
+            selectedOption.classList.add(isCorrect ? 'correct' : 'incorrect');
+          }
 
+          // If incorrect, also show the correct answer
           if (!isCorrect) {
             options.forEach(opt => {
               const input = opt.querySelector('input');
-              if (input.value === correctAnswer) {
+              if (input && input.value === correctAnswer) {
                 opt.classList.add('correct');
               }
             });
           }
 
+          // Show feedback
           feedback.classList.remove('correct', 'incorrect');
           feedback.classList.add('show', isCorrect ? 'correct' : 'incorrect');
 
-          btn.disabled = true;
-          options.forEach(opt => {
-            opt.querySelector('input').disabled = true;
-          });
+          // Add wrong answer explanation if available
+          const wrongExplanation = selected.dataset.explanation;
+          if (!isCorrect && wrongExplanation) {
+            const existingWrongExp = feedback.querySelector('.wrong-explanation');
+            if (existingWrongExp) existingWrongExp.remove();
+            const wrongExpDiv = document.createElement('p');
+            wrongExpDiv.className = 'wrong-explanation';
+            wrongExpDiv.innerHTML = '<strong>Why this is wrong:</strong> ' + wrongExplanation;
+            feedback.insertAdjacentElement('afterbegin', wrongExpDiv);
+          }
+
+          // Show retry button for both correct and incorrect
+          btn.textContent = 'Try Again';
+          btn.classList.add('retry-mode');
         });
       });
     }
 
-    document.addEventListener('DOMContentLoaded', initQuiz
+    document.addEventListener('DOMContentLoaded', initQuizzes);
+
+    document.addEventListener('DOMContentLoaded', initQuizzes);
+
+    // Smooth scroll for anchor links
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+      anchor.addEventListener('click', function(e) {
+        e.preventDefault();
+        const target = document.querySelector(this.getAttribute('href'));
+        if (target) {
+          target.scrollIntoView({
+            behavior: 'smooth',
+            block: 'start'
+          });
+        }
+      });
+    });
+  </script>
+</body>
+</html>

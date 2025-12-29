@@ -4,6 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Guide 1: B2B Marketing Fundamentals</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
   <style>
     :root {
       --nav-width: 280px;
@@ -302,37 +303,6 @@
        ============================================ */
 
     /* 1. Section Hero Card */
-    .section-hero {
-      background: var(--hero-bg);
-      color: white;
-      padding: 2rem 2.5rem;
-      border-radius: 12px;
-      margin-bottom: 2rem;
-      display: flex;
-      align-items: center;
-      gap: 1.5rem;
-    }
-
-    .section-hero-icon {
-      font-size: 3rem;
-      flex-shrink: 0;
-    }
-
-    .section-hero-content h2 {
-      color: white;
-      margin: 0 0 0.5rem 0;
-      padding: 0;
-      border: none;
-      font-size: 1.75rem;
-    }
-
-    .section-hero-content p {
-      margin: 0;
-      opacity: 0.9;
-      font-size: 1.1rem;
-    }
-
-    /* Hero Card (alternate style) */
     .hero-card {
       background: var(--hero-bg);
       color: white;
@@ -342,21 +312,12 @@
       text-align: center;
     }
 
-    .hero-card h2 {
+    .hero-title {
       color: white;
-      margin: 1rem 0 0.5rem 0;
+      margin: 0 0 0.5rem 0;
       padding: 0;
       border: none;
       font-size: 1.75rem;
-    }
-
-    .hero-card .anchor-link {
-      color: rgba(255,255,255,0.6);
-    }
-
-    .hero-icon {
-      color: var(--amber);
-      margin-bottom: 0.5rem;
     }
 
     .hero-subtitle {
@@ -401,6 +362,7 @@
     }
 
     /* 3. Scenario Card */
+    /* Scenario Card - Unified Styling */
     .scenario-card {
       background: var(--scenario-bg);
       border: 2px solid var(--scenario-border);
@@ -418,99 +380,133 @@
       display: flex;
       align-items: center;
       gap: 0.75rem;
+      font-weight: 700;
+      font-size: 1rem;
     }
 
-    .scenario-header-icon {
+    .scenario-header svg {
+      stroke: white;
+      flex-shrink: 0;
+      width: 24px;
+      height: 24px;
+    }
+
+    .scenario-header-icon,
+    .scenario-icon {
       font-size: 1.25rem;
     }
 
-    .scenario-header-title {
+    .scenario-header-title,
+    .scenario-label {
       font-weight: 700;
       font-size: 1rem;
-      text-transform: uppercase;
-      letter-spacing: 0.03em;
+      color: white;
     }
 
-    .scenario-body {
+    .scenario-body,
+    .scenario-content {
       padding: 1.5rem 2rem;
     }
 
     .scenario-character {
       display: flex;
-      align-items: flex-start;
+      align-items: center;
       gap: 1rem;
-      margin-bottom: 1.5rem;
-      padding-bottom: 1.5rem;
-      border-bottom: 1px solid var(--border-color);
+      margin-bottom: 1rem;
     }
 
     .scenario-avatar {
-      width: 60px;
-      height: 60px;
-      border-radius: 50%;
-      background: var(--navy);
+      width: 48px;
+      height: 48px;
+      background: var(--coral);
       color: white;
+      border-radius: 50%;
       display: flex;
       align-items: center;
       justify-content: center;
       font-weight: 700;
-      font-size: 1.25rem;
+      font-size: 0.875rem;
       flex-shrink: 0;
     }
 
     .scenario-character-info h4 {
       margin: 0 0 0.25rem 0;
-      font-size: 1.1rem;
+      font-size: 1rem;
     }
 
     .scenario-character-role {
-      color: var(--text-secondary);
-      font-size: 0.9rem;
       margin: 0;
+      color: var(--text-secondary);
+      font-size: 0.875rem;
     }
+
 
     .scenario-quote {
       font-family: var(--font-narrative);
       font-style: italic;
-      font-size: 1.15rem;
+      font-size: 1.1rem;
       color: var(--text-primary);
-      margin: 1.5rem 0;
+      margin: 1rem 0;
       padding: 1rem 1.5rem;
       border-left: 3px solid var(--coral);
       background: var(--bg-secondary);
+      border-radius: 0 8px 8px 0;
     }
 
     .scenario-narrative {
-      font-size: 1rem;
-      line-height: 1.8;
+      margin: 1rem 0;
     }
 
     .scenario-narrative p {
       margin-bottom: 1rem;
     }
 
+    .scenario-narrative p:last-child {
+      margin-bottom: 0;
+    }
+
     .scenario-takeaway {
-      background: var(--cream);
+      background: rgba(224, 122, 95, 0.1);
+      border: 1px solid var(--coral);
+      border-radius: 8px;
       padding: 1rem 1.5rem;
-      margin: 1.5rem -2rem -1.5rem -2rem;
-      border-top: 1px solid var(--border-color);
+      margin-top: 1rem;
+    }
+
+    .scenario-takeaway strong {
+      color: var(--coral);
     }
 
     .scenario-takeaway-header {
-      display: flex;
-      align-items: center;
-      gap: 0.5rem;
       font-weight: 700;
       color: var(--coral);
       margin-bottom: 0.5rem;
-      font-size: 0.85rem;
-      text-transform: uppercase;
     }
 
     .scenario-takeaway p {
       margin: 0;
-      font-weight: 500;
     }
+
+    .role-tag {
+      display: inline-block;
+      padding: 0.25rem 0.5rem;
+      border-radius: 4px;
+      font-size: 0.75rem;
+      font-weight: 600;
+      margin-right: 0.5rem;
+    }
+
+    .role-analytics { background: #dbeafe; color: #1e40af; }
+    .role-content { background: #fef3c7; color: #92400e; }
+    .role-demand { background: #d1fae5; color: #065f46; }
+    .role-demand-gen { background: #d1fae5; color: #065f46; }
+    .role-product { background: #ede9fe; color: #5b21b6; }
+    .role-mops { background: #fce7f3; color: #9d174d; }
+    .role-sales { background: #fee2e2; color: #991b1b; }
+    .role-cmo { background: #e0e7ff; color: #3730a3; }
+    .role-cfo { background: #ecfccb; color: #3f6212; }
+    .role-executive { background: #f3e8ff; color: #6b21a8; }
+
 
     /* 4. Deep Dive Accordion */
     .deep-dive {
@@ -664,6 +660,21 @@
       background: var(--text-secondary);
       cursor: not-allowed;
     }
+    .quiz-btn.retry-mode {
+      background: #f59e0b;
+      color: white;
+    }
+    .quiz-btn.retry-mode:hover {
+      background: #d97706;
+    }
+    .wrong-explanation {
+      margin-bottom: 1rem;
+      padding: 0.75rem;
+      background: rgba(239, 68, 68, 0.1);
+      border-radius: 6px;
+      border-left: 3px solid #ef4444;
+    }
+
 
     .quiz-feedback {
       margin-top: 1.5rem;
@@ -703,27 +714,51 @@
     }
 
     /* 6. Quick Reference Card */
-    .quick-ref {
+    /* Quick Reference - Unified Styling */
+    .quick-ref,
+    .quick-reference {
       background: var(--cream);
-      border: 1px solid var(--border-color);
+      border: 2px solid var(--navy);
       border-radius: 12px;
-      padding: 1.5rem 2rem;
       margin: 2rem 0;
+      overflow: hidden;
     }
 
-    .quick-ref-header {
+    .quick-ref-header,
+    .quick-reference-header {
       display: flex;
       align-items: center;
       gap: 0.5rem;
+      padding: 1rem 1.5rem;
+      background: var(--navy);
+      color: white;
       font-weight: 700;
-      color: var(--navy);
-      margin-bottom: 1rem;
+    }
+
+    .quick-ref-header-icon,
+    .quick-reference-icon {
       font-size: 1.1rem;
     }
 
-    .quick-ref table {
+    .quick-ref-header-title,
+    .quick-reference-title {
+      font-weight: 700;
+      font-size: 1rem;
+    }
+
+    .quick-ref-content,
+    .quick-reference-content {
+      padding: 1.5rem;
+    }
+
+    .quick-ref table,
+    .quick-reference-content table {
       margin: 0;
-      font-size: 0.95rem;
+    }
+
+    .quick-ref-content p:last-child,
+    .quick-reference-content p:last-child {
+      margin-bottom: 0;
     }
 
     /* 7. Progress Tracker */
@@ -744,38 +779,6 @@
       transition: width 0.1s;
     }
 
-    /* 8. Role Tag */
-    .role-tag {
-      display: inline-flex;
-      align-items: center;
-      gap: 0.35rem;
-      padding: 0.25rem 0.75rem;
-      border-radius: 100px;
-      font-size: 0.75rem;
-      font-weight: 600;
-      text-transform: uppercase;
-      letter-spacing: 0.03em;
-    }
-
-    .role-tag.analyst {
-      background: rgba(42, 157, 143, 0.15);
-      color: var(--teal);
-    }
-
-    .role-tag.marketer {
-      background: rgba(224, 122, 95, 0.15);
-      color: var(--coral);
-    }
-
-    .role-tag.executive {
-      background: rgba(30, 58, 95, 0.15);
-      color: var(--navy);
-    }
-
-    .role-tag.all {
-      background: rgba(233, 196, 106, 0.25);
-      color: #b8860b;
-    }
 
     /* 9. Next Up Link */
     .next-up {
@@ -908,7 +911,7 @@
         grid-template-columns: 1fr;
       }
 
-      .section-hero {
+      .hero-card {
         flex-direction: column;
         text-align: center;
       }
@@ -991,12 +994,9 @@
       <section id="b2b-vs-b2c">
 
         <!-- Hero Card -->
-        <div class="section-hero">
-          <div class="section-hero-icon">🔄</div>
-          <div class="section-hero-content">
-            <h2>B2B vs B2C Differences</h2>
-            <p>Why everything you learned about consumer marketing needs to be rethought for B2B.</p>
-          </div>
+        <div class="hero-card">
+          <h2 class="hero-title">B2B vs B2C Differences</h2>
+          <p class="hero-subtitle">Why everything you learned about consumer marketing needs to be rethought for B2B.</p>
         </div>
 
         <!-- TL;DR Box -->
@@ -1207,13 +1207,13 @@
             <ul class="quiz-options">
               <li class="quiz-option">
                 <label>
-                  <input type="radio" name="q1" value="a">
+                  <input type="radio" name="q1" value="a" data-explanation="With a $50K ACV, B2B sales cycles typically take 3-6 months. Judging campaign performance after only 6 weeks doesn't account for the natural buying timeline.">
                   <span>The campaign is underperforming and should be paused</span>
                 </label>
               </li>
               <li class="quiz-option">
                 <label>
-                  <input type="radio" name="q1" value="b">
+                  <input type="radio" name="q1" value="b" data-explanation="Channel switching based on 6-week results ignores that B2B attribution takes time. LinkedIn is highly effective for B2B—the measurement window is the problem, not the channel.">
                   <span>LinkedIn doesn't work for B2B—we should try Google Ads instead</span>
                 </label>
               </li>
@@ -1225,7 +1225,7 @@
               </li>
               <li class="quiz-option">
                 <label>
-                  <input type="radio" name="q1" value="d">
+                  <input type="radio" name="q1" value="d" data-explanation="Price reduction doesn't address the measurement issue and would hurt margins. The problem is evaluation timing, not the product or pricing strategy.">
                   <span>Lower the price to shorten the sales cycle</span>
                 </label>
               </li>
@@ -1245,12 +1245,9 @@
       <section id="icp-personas">
 
         <!-- Hero Card -->
-        <div class="section-hero">
-          <div class="section-hero-icon">🎯</div>
-          <div class="section-hero-content">
-            <h2>ICP & Buyer Personas</h2>
-            <p>Define who you're selling to—at the company level and the human level.</p>
-          </div>
+        <div class="hero-card">
+          <h2 class="hero-title">ICP & Buyer Personas</h2>
+          <p class="hero-subtitle">Define who you're selling to—at the company level and the human level.</p>
         </div>
 
         <!-- TL;DR Box -->
@@ -1473,7 +1470,7 @@
             <ul class="quiz-options">
               <li class="quiz-option">
                 <label>
-                  <input type="radio" name="q2" value="a">
+                  <input type="radio" name="q2" value="a" data-explanation="Volume without quality wastes sales time. 80% of leads outside your ICP will have low conversion rates and distract from high-value prospects.">
                   <span>Celebrate the lead volume and pass them all to sales</span>
                 </label>
               </li>
@@ -1485,13 +1482,13 @@
               </li>
               <li class="quiz-option">
                 <label>
-                  <input type="radio" name="q2" value="c">
+                  <input type="radio" name="q2" value="c" data-explanation="Chasing volume by expanding to poor-fit segments dilutes focus and typically lowers win rates and deal sizes. Stick to your proven ICP.">
                   <span>Expand your ICP to include small businesses since there's clearly demand</span>
                 </label>
               </li>
               <li class="quiz-option">
                 <label>
-                  <input type="radio" name="q2" value="d">
+                  <input type="radio" name="q2" value="d" data-explanation="Product decisions shouldn't be driven by one campaign's mistargeted leads. This creates operational complexity without validated demand.">
                   <span>Create a new product tier for small businesses</span>
                 </label>
               </li>
@@ -1511,12 +1508,9 @@
       <section id="buying-committee">
 
         <!-- Hero Card -->
-        <div class="section-hero">
-          <div class="section-hero-icon">👥</div>
-          <div class="section-hero-content">
-            <h2>Buying Committee / Decision-Making Unit</h2>
-            <p>B2B deals involve 3-10+ people. Know who they are and what they need.</p>
-          </div>
+        <div class="hero-card">
+          <h2 class="hero-title">Buying Committee / Decision-Making Unit</h2>
+          <p class="hero-subtitle">B2B deals involve 3-10+ people. Know who they are and what they need.</p>
         </div>
 
         <!-- TL;DR Box -->
@@ -1697,13 +1691,13 @@
             <ul class="quiz-options">
               <li class="quiz-option">
                 <label>
-                  <input type="radio" name="q3" value="a">
+                  <input type="radio" name="q3" value="a" data-explanation="While analysts can be champions, they lack budget authority and organizational influence. Deals can stall when the actual decision-maker isn't engaged.">
                   <span>No risk—junior analysts are great champions</span>
                 </label>
               </li>
               <li class="quiz-option">
                 <label>
-                  <input type="radio" name="q3" value="b">
+                  <input type="radio" name="q3" value="b" data-explanation="This is too absolute—analysts can influence decisions and become champions. The risk is about deal velocity and authority, not dismissing the lead entirely.">
                   <span>The analyst will never become a customer</span>
                 </label>
               </li>
@@ -1715,7 +1709,7 @@
               </li>
               <li class="quiz-option">
                 <label>
-                  <input type="radio" name="q3" value="d">
+                  <input type="radio" name="q3" value="d" data-explanation="Completely disqualifying wastes the account opportunity. Use the analyst to reach decision-makers, don't abandon.">
                   <span>Disqualify the lead since they're not a decision-maker</span>
                 </label>
               </li>
@@ -1735,12 +1729,9 @@
       <section id="b2b-funnel">
 
         <!-- Hero Card -->
-        <div class="section-hero">
-          <div class="section-hero-icon">📊</div>
-          <div class="section-hero-content">
-            <h2>The B2B Funnel</h2>
-            <p>Track prospects from first touch to closed deal—and learn the math that makes it work.</p>
-          </div>
+        <div class="hero-card">
+          <h2 class="hero-title">The B2B Funnel</h2>
+          <p class="hero-subtitle">Track prospects from first touch to closed deal—and learn the math that makes it work.</p>
         </div>
 
         <!-- TL;DR Box -->
@@ -1991,26 +1982,26 @@
             <ul class="quiz-options">
               <li class="quiz-option">
                 <label>
-                  <input type="radio" name="q4" value="a">
+                  <input type="radio" name="q4" value="a" data-explanation="Speed matters, but if leads are progressing through funnel, follow-up timing isn't the issue.">
                   <span>Sales team is too slow to follow up</span>
                 </label>
               </li>
               <li class="quiz-option">
                 <label>
-                  <input type="radio" name="q4" value="b">
+                  <input type="radio" name="q4" value="b" data-explanation="If 40% become SQLs, the threshold is working. Lower SQL→Opp conversion points elsewhere.">
                   <span>MQL threshold is too low, letting weak leads through</span>
                 </label>
               </li>
               <li class="quiz-option">
                 <label>
-                  <input type="radio" name="q4" value="c">
+                  <input type="radio" name="q4" value="c" data-explanation="New channels could explain quality variance, but the stage-by-stage analysis doesn't support this.">
                   <span>Marketing is generating leads from new channels</span>
                 </label>
               </li>
               <li class="quiz-option">
                 <label>
-                  <input type="radio" name="q4" value="d">
-                  <span>Could be any of these—you need to investigate</span>
+                  <input type="radio" name="q4" value="d" data-explanation="While investigation helps, the stage-by-stage data points clearly to the SQL→Opp gap, not ambiguity.">
+              <span>Could be any of these—you need to investigate</span>
                 </label>
               </li>
             </ul>
@@ -2029,12 +2020,9 @@
       <section id="lead-lifecycle">
 
         <!-- Hero Card -->
-        <div class="section-hero">
-          <div class="section-hero-icon">🔄</div>
-          <div class="section-hero-content">
-            <h2>Lead Lifecycle & Handoffs</h2>
-            <p>Where deals die: the marketing-to-sales handoff and how to fix it.</p>
-          </div>
+        <div class="hero-card">
+          <h2 class="hero-title">Lead Lifecycle & Handoffs</h2>
+          <p class="hero-subtitle">Where deals die: the marketing-to-sales handoff and how to fix it.</p>
         </div>
 
         <!-- TL;DR Box -->
@@ -2258,7 +2246,7 @@
             <ul class="quiz-options">
               <li class="quiz-option">
                 <label>
-                  <input type="radio" name="q5" value="a">
+                  <input type="radio" name="q5" value="a" data-explanation="Being 'close' ignores the competitor red flag. Score reflects interest, not qualification.">
                   <span>Keep nurturing—they're close to MQL threshold</span>
                 </label>
               </li>
@@ -2270,14 +2258,14 @@
               </li>
               <li class="quiz-option">
                 <label>
-                  <input type="radio" name="q5" value="c">
+                  <input type="radio" name="q5" value="c" data-explanation="Account fit doesn't override competitor signals. They may be comparison shopping or already committed.">
                   <span>MQL them anyway—they're from a target account</span>
                 </label>
               </li>
               <li class="quiz-option">
                 <label>
-                  <input type="radio" name="q5" value="d">
-                  <span>Recycle them for later outreach</span>
+                  <input type="radio" name="q5" value="d" data-explanation="Recycling competitor-engaged leads wastes nurturing resources. The competitor signal is disqualifying.">
+              <span>Recycle them for later outreach</span>
                 </label>
               </li>
             </ul>
@@ -2296,12 +2284,9 @@
       <section id="sales-marketing-sla">
 
         <!-- Hero Card -->
-        <div class="section-hero">
-          <div class="section-hero-icon">🤝</div>
-          <div class="section-hero-content">
-            <h2>Sales/Marketing SLAs</h2>
-            <p>Formalize the handoff with mutual commitments and end the finger-pointing.</p>
-          </div>
+        <div class="hero-card">
+          <h2 class="hero-title">Sales/Marketing SLAs</h2>
+          <p class="hero-subtitle">Formalize the handoff with mutual commitments and end the finger-pointing.</p>
         </div>
 
         <!-- TL;DR Box -->
@@ -2487,13 +2472,13 @@
             <ul class="quiz-options">
               <li class="quiz-option">
                 <label>
-                  <input type="radio" name="q6" value="a">
+                  <input type="radio" name="q6" value="a" data-explanation="Budget is often created during the sales process. Pre-filtering may disqualify winnable deals.">
                   <span>Sales is right—marketing needs to add budget qualification to MQL criteria</span>
                 </label>
               </li>
               <li class="quiz-option">
                 <label>
-                  <input type="radio" name="q6" value="b">
+                  <input type="radio" name="q6" value="b" data-explanation="Both have valid points. The right answer requires understanding whether budget truly doesn't exist.">
                   <span>Marketing is right—budget discovery is sales' job, not a marketing filter</span>
                 </label>
               </li>
@@ -2505,8 +2490,8 @@
               </li>
               <li class="quiz-option">
                 <label>
-                  <input type="radio" name="q6" value="d">
-                  <span>Fire the content syndication vendor</span>
+                  <input type="radio" name="q6" value="d" data-explanation="Vendor quality matters, but the issue is MQL definition, not vendor performance.">
+              <span>Fire the content syndication vendor</span>
                 </label>
               </li>
             </ul>
@@ -2525,12 +2510,9 @@
       <section id="demand-vs-lead-gen">
 
         <!-- Hero Card -->
-        <div class="section-hero">
-          <div class="section-hero-icon">🎯</div>
-          <div class="section-hero-content">
-            <h2>Demand Gen vs Lead Gen</h2>
-            <p>Two different games with different rules—know which one you're playing.</p>
-          </div>
+        <div class="hero-card">
+          <h2 class="hero-title">Demand Gen vs Lead Gen</h2>
+          <p class="hero-subtitle">Two different games with different rules—know which one you're playing.</p>
         </div>
 
         <!-- TL;DR Box -->
@@ -2707,7 +2689,7 @@
             <ul class="quiz-options">
               <li class="quiz-option">
                 <label>
-                  <input type="radio" name="q7" value="a">
+                  <input type="radio" name="q7" value="a" data-explanation="Bottom-funnel focus captures existing demand but doesn't create new demand. Pipeline will eventually decline.">
                   <span>No risk—if pipeline is strong now, keep doing what works</span>
                 </label>
               </li>
@@ -2719,14 +2701,14 @@
               </li>
               <li class="quiz-option">
                 <label>
-                  <input type="radio" name="q7" value="c">
+                  <input type="radio" name="q7" value="c" data-explanation="More gating extracts info but doesn't build awareness. This worsens the demand creation gap.">
                   <span>You should gate even more content to maximize leads</span>
                 </label>
               </li>
               <li class="quiz-option">
                 <label>
-                  <input type="radio" name="q7" value="d">
-                  <span>Share of voice doesn't matter if you're generating leads</span>
+                  <input type="radio" name="q7" value="d" data-explanation="SOV drives future pipeline. Without it, lead gen eventually dries up as competitors dominate awareness.">
+              <span>Share of voice doesn't matter if you're generating leads</span>
                 </label>
               </li>
             </ul>
@@ -2745,12 +2727,9 @@
       <section id="content-role">
 
         <!-- Hero Card -->
-        <div class="section-hero">
-          <div class="section-hero-icon">📝</div>
-          <div class="section-hero-content">
-            <h2>Content's Role in B2B</h2>
-            <p>The right content, for the right persona, at the right stage—not everything for everyone.</p>
-          </div>
+        <div class="hero-card">
+          <h2 class="hero-title">Content's Role in B2B</h2>
+          <p class="hero-subtitle">The right content, for the right persona, at the right stage—not everything for everyone.</p>
         </div>
 
         <!-- TL;DR Box -->
@@ -2935,13 +2914,13 @@
             <ul class="quiz-options">
               <li class="quiz-option">
                 <label>
-                  <input type="radio" name="q8" value="a">
+                  <input type="radio" name="q8" value="a" data-explanation="More of the same TOFU content doesn't bridge the evaluation gap. They need decision-stage content.">
                   <span>More blog posts—they clearly like that format</span>
                 </label>
               </li>
               <li class="quiz-option">
                 <label>
-                  <input type="radio" name="q8" value="b">
+                  <input type="radio" name="q8" value="b" data-explanation="Length isn't the issue. The content type needs to shift from education to evaluation/comparison.">
                   <span>Longer ebooks with more detail</span>
                 </label>
               </li>
@@ -2953,7 +2932,7 @@
               </li>
               <li class="quiz-option">
                 <label>
-                  <input type="radio" name="q8" value="d">
+                  <input type="radio" name="q8" value="d" data-explanation="CTAs won't fix the core problem—organic traffic is early-stage awareness, not sales-ready. The conversion expectation is misaligned with funnel stage.">
                   <span>Better CTAs on the blog posts</span>
                 </label>
               </li>
@@ -2973,12 +2952,9 @@
       <section id="b2b-channels">
 
         <!-- Hero Card -->
-        <div class="section-hero">
-          <div class="section-hero-icon">📡</div>
-          <div class="section-hero-content">
-            <h2>Common B2B Channels</h2>
-            <p>Where to reach your buyers—and what to expect from each channel.</p>
-          </div>
+        <div class="hero-card">
+          <h2 class="hero-title">Common B2B Channels</h2>
+          <p class="hero-subtitle">Where to reach your buyers—and what to expect from each channel.</p>
         </div>
 
         <!-- TL;DR Box -->
@@ -3181,19 +3157,19 @@
             <ul class="quiz-options">
               <li class="quiz-option">
                 <label>
-                  <input type="radio" name="q9" value="a">
+                  <input type="radio" name="q9" value="a" data-explanation="CPL is misleading. Channel B's 50% conversion means $180/SQL vs Channel A's $200/SQL.">
                   <span>Channel A—it's 3x cheaper per lead</span>
                 </label>
               </li>
               <li class="quiz-option">
                 <label>
-                  <input type="radio" name="q9" value="b">
+                  <input type="radio" name="q9" value="b" data-explanation="Quality matters, but so does scale. Channel A produces 5× more revenue despite lower rates. In this case, volume wins.">
                   <span>Channel B—quality matters more than volume</span>
                 </label>
               </li>
               <li class="quiz-option">
                 <label>
-                  <input type="radio" name="q9" value="c">
+                  <input type="radio" name="q9" value="c" data-explanation="The math shows Channel B wins: $90 ÷ 50% = $180/SQL vs $30 ÷ 15% = $200/SQL.">
                   <span>They're about equal</span>
                 </label>
               </li>
@@ -3252,14 +3228,7 @@
         <!-- Scenario Card -->
         <div class="scenario-card">
           <div class="scenario-header">
-            <span class="scenario-icon">
-              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                <path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/>
-                <circle cx="9" cy="7" r="4"/>
-                <path d="M22 21v-2a4 4 0 0 0-3-3.87"/>
-                <path d="M16 3.13a4 4 0 0 1 0 7.75"/>
-              </svg>
-            </span>
+            <span class="scenario-icon">📍</span>
             <span class="scenario-label">NovaTech Scenario</span>
           </div>
           <div class="scenario-content">
@@ -3639,7 +3608,7 @@ Marketing-Influenced Pipeline = Sum of opportunity values where
             <ul class="quiz-options">
               <li class="quiz-option">
                 <label>
-                  <input type="radio" name="metrics-quiz" value="a">
+                  <input type="radio" name="metrics-quiz" value="a" data-explanation="8:1 actually suggests underspending. You're being too conservative in acquisition investment.">
                   <span>The company is overspending on customer acquisition</span>
                 </label>
               </li>
@@ -3651,13 +3620,13 @@ Marketing-Influenced Pipeline = Sum of opportunity values where
               </li>
               <li class="quiz-option">
                 <label>
-                  <input type="radio" name="metrics-quiz" value="c">
+                  <input type="radio" name="metrics-quiz" value="c" data-explanation="3:1 is typically 'healthy'. 8:1 suggests room to invest more aggressively in growth.">
                   <span>The company has achieved the ideal unit economics</span>
                 </label>
               </li>
               <li class="quiz-option">
                 <label>
-                  <input type="radio" name="metrics-quiz" value="d">
+                  <input type="radio" name="metrics-quiz" value="d" data-explanation="Retention is important but separate from acquisition efficiency. CAC payback and LTV:CAC are the key acquisition metrics here.">
                   <span>Customer retention is too low</span>
                 </label>
               </li>
@@ -3708,7 +3677,7 @@ Marketing-Influenced Pipeline = Sum of opportunity values where
       </section>
 
       <footer class="footer">
-        Last updated: December 2024 | Part of the B2B Marketing for Analysts Guide Series
+        Last updated: December 2025 | Part of the B2B Marketing for Analysts Guide Series
       </footer>
     </div>
   </main>
@@ -3769,6 +3738,21 @@ Marketing-Influenced Pipeline = Sum of opportunity values where
         const correctAnswer = quiz.dataset.answer;
 
         btn.addEventListener('click', () => {
+          if (btn.classList.contains('retry-mode')) {
+            // Reset quiz state
+            options.forEach(opt => {
+              opt.classList.remove('correct', 'incorrect');
+              const input = opt.querySelector('input');
+              if (input) input.checked = false;
+            });
+            feedback.classList.remove('show', 'correct', 'incorrect');
+            const wrongExp = feedback.querySelector('.wrong-explanation');
+            if (wrongExp) wrongExp.remove();
+            btn.textContent = 'Check Answer';
+            btn.classList.remove('retry-mode');
+            return;
+          }
+
           const selected = quiz.querySelector('input[type="radio"]:checked');
           if (!selected) return;
 
@@ -3782,13 +3766,15 @@ Marketing-Influenced Pipeline = Sum of opportunity values where
 
           // Mark selected option
           const selectedOption = selected.closest('.quiz-option');
-          selectedOption.classList.add(isCorrect ? 'correct' : 'incorrect');
+          if (selectedOption) {
+            selectedOption.classList.add(isCorrect ? 'correct' : 'incorrect');
+          }
 
           // If incorrect, also show the correct answer
           if (!isCorrect) {
             options.forEach(opt => {
               const input = opt.querySelector('input');
-              if (input.value === correctAnswer) {
+              if (input && input.value === correctAnswer) {
                 opt.classList.add('correct');
               }
             });
@@ -3798,18 +3784,40 @@ Marketing-Influenced Pipeline = Sum of opportunity values where
           feedback.classList.remove('correct', 'incorrect');
           feedback.classList.add('show', isCorrect ? 'correct' : 'incorrect');
 
-          // Update feedback content
+          // Handle both feedback structures
           const feedbackHeader = feedback.querySelector('.quiz-feedback-header');
-          feedbackHeader.innerHTML = isCorrect
-            ? '✅ Correct!'
-            : '❌ Not quite right';
+          const wrongExplanation = selected.dataset.explanation;
+          
+          if (feedbackHeader) {
+            // Structure 1: Has header element
+            feedbackHeader.innerHTML = isCorrect ? '✅ Correct!' : '❌ Not quite right';
+            
+            if (!isCorrect && wrongExplanation) {
+              const existingWrongExp = feedback.querySelector('.wrong-explanation');
+              if (existingWrongExp) existingWrongExp.remove();
+              const wrongExpDiv = document.createElement('p');
+              wrongExpDiv.className = 'wrong-explanation';
+              wrongExpDiv.innerHTML = '<strong>Why this is wrong:</strong> ' + wrongExplanation;
+              feedbackHeader.insertAdjacentElement('afterend', wrongExpDiv);
+            }
+          } else {
+            // Structure 2: Has .feedback-correct and .feedback-incorrect
+            if (!isCorrect && wrongExplanation) {
+              const incorrectFeedback = feedback.querySelector('.feedback-incorrect');
+              if (incorrectFeedback) {
+                const existingWrongExp = feedback.querySelector('.wrong-explanation');
+                if (existingWrongExp) existingWrongExp.remove();
+                const wrongExpDiv = document.createElement('p');
+                wrongExpDiv.className = 'wrong-explanation';
+                wrongExpDiv.innerHTML = '<strong>Why this is wrong:</strong> ' + wrongExplanation;
+                incorrectFeedback.insertAdjacentElement('beforebegin', wrongExpDiv);
+              }
+            }
+          }
 
-          // Disable further interaction
-          btn.disabled = true;
-          options.forEach(opt => {
-            opt.querySelector('input').disabled = true;
-            opt.querySelector('label').style.cursor = 'default';
-          });
+          // Show retry button for both correct and incorrect
+          btn.textContent = 'Try Again';
+          btn.classList.add('retry-mode');
         });
       });
     }

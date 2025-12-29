@@ -4,36 +4,64 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Guide 3: Marketing Analytics & Attribution</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
   <style>
     :root {
-      --nav-width: 260px;
-      --content-max-width: 850px;
-      --font-body: system-ui, -apple-system, sans-serif;
+      --nav-width: 280px;
+      --content-max-width: 860px;
+      --font-body: 'Inter', system-ui, -apple-system, sans-serif;
       --font-mono: 'SF Mono', Consolas, monospace;
-      
+      --font-narrative: 'Georgia', serif;
+
+      /* Design System Colors */
+      --navy: #1e3a5f;
+      --navy-light: #2d4a6f;
+      --coral: #e07a5f;
+      --coral-light: #e89a84;
+      --teal: #2a9d8f;
+      --teal-light: #3ab5a5;
+      --amber: #e9c46a;
+      --amber-light: #f0d68a;
+      --cream: #faf8f5;
+      --cream-dark: #f0ede8;
+
       /* Light theme */
       --bg-primary: #ffffff;
       --bg-secondary: #f8f9fa;
+      --bg-tertiary: var(--cream);
       --bg-code: #1e1e1e;
       --text-primary: #1a1a1a;
       --text-secondary: #6b7280;
       --text-code: #d4d4d4;
       --border-color: #e5e7eb;
-      --accent: #2563eb;
-      --accent-hover: #1d4ed8;
-      
+      --accent: var(--navy);
+      --accent-hover: var(--navy-light);
+
+      /* Component-specific */
+      --hero-bg: linear-gradient(135deg, var(--navy) 0%, var(--navy-light) 100%);
+      --tldr-bg: var(--cream);
+      --tldr-border: var(--teal);
+      --scenario-bg: #fff;
+      --scenario-border: var(--coral);
+      --quiz-bg: var(--cream);
+      --quiz-border: var(--navy);
+      --deep-dive-bg: #eff6ff;
+      --deep-dive-border: var(--navy);
+
       /* Callout colors */
       --callout-warning-bg: #fef3c7;
-      --callout-warning-border: #f59e0b;
+      --callout-warning-border: var(--amber);
       --callout-tip-bg: #d1fae5;
-      --callout-tip-border: #10b981;
+      --callout-tip-border: var(--teal);
       --callout-caution-bg: #fee2e2;
       --callout-caution-border: #ef4444;
-      --callout-info-bg: #dbeafe;
-      --callout-info-border: #3b82f6;
+      --callout-info-bg: #e8f0fa;
+      --callout-info-border: var(--navy);
       --callout-success-bg: #dcfce7;
-      --callout-success-border: #22c55e;
+      --callout-success-border: var(--teal);
     }
+
+    
 
     * { box-sizing: border-box; margin: 0; padding: 0; }
 
@@ -41,7 +69,8 @@
       font-family: var(--font-body);
       background: var(--bg-primary);
       color: var(--text-primary);
-      line-height: 1.6;
+      line-height: 1.7;
+      font-size: 18px;
     }
 
     /* Navigation */
@@ -90,6 +119,11 @@
     }
 
     /* Theme toggle */
+    
+
+    
+
+    
 
     /* Main content */
     .main {
@@ -309,7 +343,7 @@
 
     /* Print styles */
     @media print {
-      .nav, .copy-btn { display: none; }
+      .nav, 
       .main { margin-left: 0; padding: 1rem; }
       .code-block { break-inside: avoid; }
       .callout { break-inside: avoid; }
@@ -326,17 +360,10 @@
         border-bottom: 1px solid var(--border-color);
       }
       .main { margin-left: 0; }
+      
     }
 
     /* ===== NEW DESIGN SYSTEM ===== */
-    :root {
-      --navy: #1e3a5f;
-      --coral: #e07a5f;
-      --teal: #2a9d8f;
-      --amber: #e9c46a;
-      --cream: #faf8f5;
-      --hero-gradient: linear-gradient(135deg, var(--navy) 0%, #2d5a8a 100%);
-    }
 
     /* Progress Tracker */
     .progress-container {
@@ -360,113 +387,253 @@
 
     /* Hero Card */
     .hero-card {
-      background: var(--hero-gradient);
-      border-radius: 16px;
-      padding: 2.5rem;
-      margin-bottom: 2rem;
+      background: var(--hero-bg);
       color: white;
-      position: relative;
-      overflow: hidden;
-    }
-    .hero-card::before {
-      content: '';
-      position: absolute;
-      top: -50%;
-      right: -20%;
-      width: 300px;
-      height: 300px;
-      background: radial-gradient(circle, rgba(255,255,255,0.1) 0%, transparent 70%);
-      border-radius: 50%;
-    }
-    .hero-number {
-      font-size: 4rem;
-      font-weight: 800;
-      opacity: 0.15;
-      position: absolute;
-      top: 1rem;
-      right: 2rem;
-      line-height: 1;
+      padding: 2.5rem;
+      border-radius: 12px;
+      margin-bottom: 2rem;
+      text-align: center;
     }
     .hero-title {
-      font-size: 1.75rem;
-      font-weight: 700;
-      margin: 0 0 0.5rem;
-      position: relative;
-      border: none;
+      color: white;
+      margin: 0 0 0.5rem 0;
       padding: 0;
+      border: none;
+      font-size: 1.75rem;
     }
+
+
+    .hero-card h2 {
+      color: white;
+      margin-bottom: 0.5rem;
+    }
+
+    .hero-card .anchor-link {
+      color: rgba(255,255,255,0.5);
+    }
+
+    .hero-card .anchor-link:hover {
+      color: white;
+    }
+
+    .hero-icon {
+      margin-bottom: 1rem;
+    }
+
+    .hero-icon svg {
+      stroke: white;
+    }
+
     .hero-subtitle {
-      font-size: 1rem;
       opacity: 0.9;
-      margin: 0;
-      position: relative;
+      font-size: 1.1rem;
     }
 
     /* TL;DR Box */
+    /* TL;DR Box - Unified Styling */
     .tldr-box {
-      background: linear-gradient(135deg, var(--cream) 0%, #fff 100%);
-      border: 2px solid var(--amber);
-      border-radius: 12px;
-      padding: 1.5rem;
-      margin: 1.5rem 0;
+      background: var(--tldr-bg);
+      border-left: 4px solid var(--tldr-border);
+      padding: 1.5rem 2rem;
+      border-radius: 0 8px 8px 0;
+      margin: 2rem 0;
     }
-    .tldr-header {
-      display: flex;
-      align-items: center;
-      gap: 0.5rem;
-      margin-bottom: 0.75rem;
-    }
-    .tldr-icon { font-size: 1.25rem; }
-    .tldr-label {
-      font-weight: 700;
-      color: var(--navy);
-      text-transform: uppercase;
-      letter-spacing: 0.05em;
-      font-size: 0.875rem;
-    }
-    .tldr-content p { margin: 0; color: var(--navy); }
 
-    /* Scenario Card */
-    .scenario-card {
-      background: white;
-      border: 1px solid var(--border-color);
-      border-left: 4px solid var(--coral);
-      border-radius: 8px;
-      padding: 1.5rem;
-      margin: 1.5rem 0;
-      box-shadow: 0 2px 8px rgba(0,0,0,0.04);
-    }
-    .scenario-header {
+    .tldr-box-header,
+    .tldr-header {
       display: flex;
       align-items: center;
       gap: 0.5rem;
       margin-bottom: 1rem;
     }
-    .scenario-icon { font-size: 1.25rem; }
-    .scenario-label {
-      font-weight: 600;
-      color: var(--coral);
-      font-size: 0.875rem;
+
+    .tldr-box-header-icon,
+    .tldr-icon {
+      font-size: 1.25rem;
     }
-    .scenario-character {
+
+    .tldr-box-header-title,
+    .tldr-title,
+    .tldr-label {
+      font-weight: 700;
+      font-size: 1rem;
+      text-transform: uppercase;
+      letter-spacing: 0.03em;
+      color: var(--teal);
+    }
+
+    .tldr-box ul,
+    .tldr-list,
+    .tldr-content ul {
+      margin: 0;
+      padding-left: 1.25rem;
+    }
+
+    .tldr-box li,
+    .tldr-list li,
+    .tldr-content li {
+      margin-bottom: 0.5rem;
+    }
+
+    .tldr-box li:last-child,
+    .tldr-list li:last-child,
+    .tldr-content li:last-child {
+      margin-bottom: 0;
+    }
+
+    .tldr-content p {
+      margin: 0;
+      color: var(--text-primary);
+    }
+
+
+    /* Scenario Card - Unified Styling */
+    .scenario-card {
+      background: var(--scenario-bg);
+      border: 2px solid var(--scenario-border);
+      border-radius: 12px;
+      padding: 0;
+      margin: 2.5rem 0;
+      overflow: hidden;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+    }
+
+    .scenario-header {
+      background: var(--coral);
+      color: white;
+      padding: 1rem 1.5rem;
       display: flex;
       align-items: center;
       gap: 0.75rem;
-      margin-bottom: 0.75rem;
+      font-weight: 700;
+      font-size: 1rem;
     }
-    .scenario-content p { margin: 0; line-height: 1.7; }
 
-    /* Role Tags */
+    .scenario-header svg {
+      stroke: white;
+      flex-shrink: 0;
+      width: 24px;
+      height: 24px;
+    }
+
+    .scenario-header-icon,
+    .scenario-icon {
+      font-size: 1.25rem;
+    }
+
+    .scenario-header-title,
+    .scenario-label {
+      font-weight: 700;
+      font-size: 1rem;
+      color: white;
+    }
+
+    .scenario-body,
+    .scenario-content {
+      padding: 1.5rem 2rem;
+    }
+
+    .scenario-character {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      margin-bottom: 1rem;
+    }
+
+    .scenario-avatar {
+      width: 48px;
+      height: 48px;
+      background: var(--coral);
+      color: white;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 700;
+      font-size: 0.875rem;
+      flex-shrink: 0;
+    }
+
+    .scenario-character-info h4 {
+      margin: 0 0 0.25rem 0;
+      font-size: 1rem;
+    }
+
+    .scenario-character-role {
+      margin: 0;
+      color: var(--text-secondary);
+      font-size: 0.875rem;
+    }
+
+
+    .scenario-quote {
+      font-family: var(--font-narrative);
+      font-style: italic;
+      font-size: 1.1rem;
+      color: var(--text-primary);
+      margin: 1rem 0;
+      padding: 1rem 1.5rem;
+      border-left: 3px solid var(--coral);
+      background: var(--bg-secondary);
+      border-radius: 0 8px 8px 0;
+    }
+
+    .scenario-narrative {
+      margin: 1rem 0;
+    }
+
+    .scenario-narrative p {
+      margin-bottom: 1rem;
+    }
+
+    .scenario-narrative p:last-child {
+      margin-bottom: 0;
+    }
+
+    .scenario-takeaway {
+      background: rgba(224, 122, 95, 0.1);
+      border: 1px solid var(--coral);
+      border-radius: 8px;
+      padding: 1rem 1.5rem;
+      margin-top: 1rem;
+    }
+
+    .scenario-takeaway strong {
+      color: var(--coral);
+    }
+
+    .scenario-takeaway-header {
+      font-weight: 700;
+      color: var(--coral);
+      margin-bottom: 0.5rem;
+    }
+
+    .scenario-takeaway p {
+      margin: 0;
+    }
+
     .role-tag {
       display: inline-block;
-      padding: 0.25rem 0.75rem;
-      border-radius: 999px;
+      padding: 0.25rem 0.5rem;
+      border-radius: 4px;
       font-size: 0.75rem;
       font-weight: 600;
-      text-transform: uppercase;
-      letter-spacing: 0.03em;
+      margin-right: 0.5rem;
     }
-    .role-mops { background: #e0f2fe; color: #0369a1; }
+
+    .role-analytics { background: #dbeafe; color: #1e40af; }
+    .role-content { background: #fef3c7; color: #92400e; }
+    .role-demand { background: #d1fae5; color: #065f46; }
+    .role-demand-gen { background: #d1fae5; color: #065f46; }
+    .role-product { background: #ede9fe; color: #5b21b6; }
+    .role-mops { background: #fce7f3; color: #9d174d; }
+    .role-sales { background: #fee2e2; color: #991b1b; }
+    .role-cmo { background: #e0e7ff; color: #3730a3; }
+    .role-cfo { background: #ecfccb; color: #3f6212; }
+    .role-executive { background: #f3e8ff; color: #6b21a8; }
+
+
+    /* Role Tags */
     .role-sales { background: #fce7f3; color: #be185d; }
     .role-demand-gen { background: #dcfce7; color: #15803d; }
     .role-analytics { background: #f3e8ff; color: #7e22ce; }
@@ -474,125 +641,276 @@
     .role-cfo { background: #e0e7ff; color: #4338ca; }
 
     /* Quick Reference Card */
+    /* Quick Reference - Unified Styling */
+    .quick-ref,
     .quick-reference {
-      background: var(--bg-secondary);
-      border: 1px solid var(--border-color);
-      border-radius: 8px;
-      margin: 1.5rem 0;
+      background: var(--cream);
+      border: 2px solid var(--navy);
+      border-radius: 12px;
+      margin: 2rem 0;
       overflow: hidden;
     }
+
+    .quick-ref-header,
     .quick-reference-header {
-      background: var(--navy);
-      color: white;
-      padding: 0.75rem 1rem;
       display: flex;
       align-items: center;
       gap: 0.5rem;
+      padding: 1rem 1.5rem;
+      background: var(--navy);
+      color: white;
+      font-weight: 700;
     }
-    .quick-reference-icon { font-size: 1rem; }
-    .quick-reference-title { font-weight: 600; font-size: 0.9rem; }
-    .quick-reference-content { padding: 1rem; }
-    .quick-reference-content p { margin: 0.5rem 0; }
-    .quick-reference-content p:first-child { margin-top: 0; }
-    .quick-reference-content p:last-child { margin-bottom: 0; }
 
-    /* Deep Dive Accordion */
-    .deep-dive {
-      border: 1px solid var(--teal);
-      border-radius: 8px;
-      margin: 1.5rem 0;
-      background: white;
+    .quick-ref-header-icon,
+    .quick-reference-icon {
+      font-size: 1.1rem;
     }
-    .deep-dive summary {
-      padding: 1rem 1.25rem;
+
+    .quick-ref-header-title,
+    .quick-reference-title {
+      font-weight: 700;
+      font-size: 1rem;
+    }
+
+    .quick-ref-content,
+    .quick-reference-content {
+      padding: 1.5rem;
+    }
+
+    .quick-ref table,
+    .quick-reference-content table {
+      margin: 0;
+    }
+
+    .quick-ref-content p:last-child,
+    .quick-reference-content p:last-child {
+      margin-bottom: 0;
+    }
+
+
+    .deep-dive {
+      border: 2px solid var(--navy);
+      border-radius: 8px;
+      margin: 2rem 0;
+      background: var(--bg-primary);
+      overflow: hidden;
+    }
+
+    .deep-dive summary,
+    .deep-dive .deep-dive-toggle {
+      padding: 1rem 1.5rem;
       cursor: pointer;
       font-weight: 600;
-      color: var(--teal);
-      background: rgba(42, 157, 143, 0.08);
+      background: var(--bg-secondary);
       list-style: none;
       display: flex;
       align-items: center;
-      gap: 0.5rem;
+      gap: 0.75rem;
+      color: var(--navy);
     }
-    .deep-dive summary::before {
-      content: '▶';
-      font-size: 0.75rem;
-      transition: transform 0.2s;
+
+    .deep-dive summary::-webkit-details-marker,
+    .deep-dive-toggle::-webkit-details-marker {
+      display: none;
     }
-    .deep-dive[open] summary::before { transform: rotate(90deg); }
-    .deep-dive-content { padding: 1.25rem; }
+
+    .deep-dive summary::before,
+    .deep-dive-toggle::before {
+      content: "🔍";
+      font-size: 1.1rem;
+    }
+
+    .deep-dive summary svg,
+    .deep-dive-toggle svg {
+      display: none;
+    }
+
+    .deep-dive[open] summary,
+    .deep-dive[open] .deep-dive-toggle {
+      border-bottom: 1px solid var(--border-color);
+    }
+
+    .deep-dive-icon {
+      display: none;
+    }
+
+    .deep-dive-content {
+      padding: 1.5rem;
+    }
+
+    .deep-dive-content p {
+      margin-bottom: 1rem;
+    }
+
+    .deep-dive-content p:last-child {
+      margin-bottom: 0;
+    }
+
+    .deep-dive-content ul,
+    .deep-dive-content ol {
+      margin: 1rem 0;
+      padding-left: 1.5rem;
+    }
+
+    .deep-dive-content li {
+      margin-bottom: 0.5rem;
+    }
+
 
     /* Knowledge Check */
+    /* Knowledge Check - Unified Styling */
     .knowledge-check {
-      background: linear-gradient(135deg, #f0f9ff 0%, #e0f2fe 100%);
-      border: 2px solid var(--teal);
+      background: var(--quiz-bg);
+      border: 2px solid var(--quiz-border);
       border-radius: 12px;
-      padding: 1.5rem;
-      margin: 2rem 0;
+      padding: 0;
+      margin: 3rem 0;
+      overflow: hidden;
     }
+
     .knowledge-check-header {
-      display: flex;
-      align-items: center;
-      gap: 0.5rem;
-      margin-bottom: 1rem;
-    }
-    .knowledge-check-icon {
-      width: 24px;
-      height: 24px;
-      background: var(--teal);
+      background: var(--navy);
       color: white;
-      border-radius: 50%;
+      padding: 1rem 1.5rem;
       display: flex;
       align-items: center;
-      justify-content: center;
-      font-weight: bold;
-      font-size: 0.875rem;
-    }
-    .knowledge-check-title {
+      gap: 0.75rem;
       font-weight: 700;
-      color: var(--navy);
+      font-size: 1rem;
+      text-transform: uppercase;
+      letter-spacing: 0.03em;
     }
-    .knowledge-check-question {
-      font-weight: 500;
-      margin-bottom: 1rem;
-      color: var(--navy);
+
+    .knowledge-check-header svg {
+      stroke: white;
+      flex-shrink: 0;
     }
-    .quiz-options { display: flex; flex-direction: column; gap: 0.5rem; margin-bottom: 1rem; }
+
+    .knowledge-check-question,
+    .quiz-question {
+      font-weight: 600;
+      font-size: 1.1rem;
+      margin: 1.5rem 2rem;
+    }
+
+    .quiz-options {
+      list-style: none;
+      padding: 0;
+      margin: 0 2rem 1.5rem 2rem;
+      display: flex;
+      flex-direction: column;
+      gap: 0.75rem;
+    }
+
     .quiz-option {
       display: flex;
       align-items: flex-start;
       gap: 0.75rem;
-      padding: 0.75rem 1rem;
-      background: white;
-      border: 1px solid var(--border-color);
+      padding: 1rem;
+      background: var(--bg-primary);
+      border: 2px solid var(--border-color);
       border-radius: 8px;
       cursor: pointer;
       transition: all 0.15s;
     }
-    .quiz-option:hover { border-color: var(--teal); }
-    .quiz-option.correct { background: #dcfce7; border-color: #22c55e; }
-    .quiz-option.incorrect { background: #fee2e2; border-color: #ef4444; }
-    .quiz-option input { margin-top: 0.25rem; }
+
+    .quiz-option:hover {
+      border-color: var(--navy);
+      background: var(--bg-secondary);
+    }
+
+    .quiz-option input {
+      margin-top: 0.2rem;
+      accent-color: var(--navy);
+    }
+
+    .quiz-option input:checked + span {
+      font-weight: 600;
+    }
+
+    .quiz-option.correct {
+      border-color: var(--teal);
+      background: rgba(42, 157, 143, 0.1);
+    }
+
+    .quiz-option.incorrect {
+      border-color: #ef4444;
+      background: rgba(239, 68, 68, 0.1);
+    }
+
     .quiz-btn {
-      background: var(--teal);
+      background: var(--navy);
       color: white;
       border: none;
-      padding: 0.75rem 1.5rem;
+      padding: 0.875rem 2rem;
       border-radius: 8px;
       font-weight: 600;
+      font-size: 1rem;
       cursor: pointer;
       transition: background 0.15s;
+      margin: 0 2rem 1.5rem 2rem;
     }
-    .quiz-btn:hover { background: #238b7e; }
-    .quiz-btn:disabled { opacity: 0.5; cursor: not-allowed; }
-    .quiz-feedback { display: none; margin-top: 1rem; padding: 1rem; border-radius: 8px; }
-    .quiz-feedback.show { display: block; }
-    .quiz-feedback.correct { background: #dcfce7; }
-    .quiz-feedback.incorrect { background: #fee2e2; }
-    .quiz-feedback .feedback-correct,
-    .quiz-feedback .feedback-incorrect { display: none; margin: 0; }
-    .quiz-feedback.correct .feedback-correct { display: block; }
-    .quiz-feedback.incorrect .feedback-incorrect { display: block; }
+
+    .quiz-btn:hover {
+      background: var(--navy-light);
+    }
+
+    .quiz-btn:disabled {
+      background: var(--text-secondary);
+      cursor: not-allowed;
+    }
+
+    .quiz-btn.retry-mode {
+      background: #f59e0b;
+      color: white;
+    }
+
+    .quiz-btn.retry-mode:hover {
+      background: #d97706;
+    }
+
+    .wrong-explanation {
+      margin-bottom: 1rem;
+      padding: 0.75rem;
+      background: rgba(239, 68, 68, 0.1);
+      border-radius: 6px;
+      border-left: 3px solid #ef4444;
+    }
+
+    .quiz-feedback {
+      margin: 0 2rem 1.5rem 2rem;
+      padding: 1.25rem;
+      border-radius: 8px;
+      display: none;
+    }
+
+    .quiz-feedback.show {
+      display: block;
+    }
+
+    .quiz-feedback.correct {
+      background: rgba(42, 157, 143, 0.15);
+      border: 1px solid var(--teal);
+    }
+
+    .quiz-feedback.incorrect {
+      background: rgba(239, 68, 68, 0.1);
+      border: 1px solid #ef4444;
+    }
+
+    .feedback-correct, .feedback-incorrect {
+      display: none;
+      margin: 0;
+    }
+
+    .quiz-feedback.correct .feedback-correct {
+      display: block;
+    }
+
+    .quiz-feedback.incorrect .feedback-incorrect {
+      display: block;
+    }
 
     /* Next Up Link */
     .next-up-link {
@@ -767,7 +1085,7 @@
       <li><a href="#mmm">Marketing Mix Modeling</a></li>
       <li><a href="#stakeholder-reporting">Stakeholder Reporting</a></li>
     </ul>
-</nav>
+  </nav>
 
   <main class="main">
     <div class="content">
@@ -786,7 +1104,6 @@
       <section id="statistical-foundations">
         <!-- Hero Card -->
         <div class="hero-card">
-          <div class="hero-number">01</div>
           <h2 class="hero-title">Statistical Foundations</h2>
           <p class="hero-subtitle">The minimum statistical literacy you need before making claims</p>
         </div>
@@ -805,15 +1122,25 @@
         <!-- Scenario Card -->
         <div class="scenario-card">
           <div class="scenario-header">
-            <span class="scenario-icon">🎬</span>
-            <span class="scenario-label">NovaTech Scenario</span>
+            <span class="scenario-header-icon">📍</span>
+            <span class="scenario-header-title">Scenario: The Confidence Interval Check</span>
           </div>
-          <div class="scenario-content">
+          <div class="scenario-body">
             <div class="scenario-character">
-              <span class="role-tag role-analytics">Analytics</span>
-              <strong>Priya Sharma</strong>
+              <div class="scenario-avatar">PS</div>
+              <div class="scenario-character-info">
+                <h4>Priya Sharma</h4>
+                <p class="scenario-character-role">Data Analyst, NovaTech</p>
+              </div>
             </div>
-            <p>Sarah runs to Priya's desk: "The new landing page has a 4.2% conversion rate vs 3.8% for the old one! Can we declare it a winner?" Priya pulls up the data—112 conversions total, 61 for new, 51 for old. "Not yet," Priya explains. "The confidence intervals overlap. We need another two weeks of data before this is statistically significant. Right now, there's a 23% chance we're looking at random noise."</p>
+
+            <div class="scenario-quote">
+              "The confidence intervals overlap. We need another two weeks of data before this is statistically significant. Right now, there's a 23% chance we're looking at random noise."
+            </div>
+
+            <div class="scenario-narrative">
+              <p>Sarah runs to Priya's desk: "The new landing page has a 4.2% conversion rate vs 3.8% for the old one! Can we declare it a winner?" Priya pulls up the data—112 conversions total, 61 for new, 51 for old. "Not yet," Priya explains.</p>
+            </div>
           </div>
         </div>
 
@@ -922,11 +1249,11 @@ n ≈ 4,500 per variant</code></pre>
           <p class="knowledge-check-question">Sarah's landing page test shows 4.2% vs 3.8% conversion with 61 and 51 conversions respectively. Priya says they need more data. Why?</p>
           <div class="quiz-options">
             <label class="quiz-option">
-              <input type="radio" name="stats-quiz" value="a">
+              <input type="radio" name="stats-quiz" value="a" data-explanation="1,000 visitors per variant is often sufficient for detecting meaningful differences. The issue here is statistical significance, not sample size.">
               <span>The sample size is too small for any meaningful analysis</span>
             </label>
             <label class="quiz-option">
-              <input type="radio" name="stats-quiz" value="b">
+              <input type="radio" name="stats-quiz" value="b" data-explanation="There's no magic number. Statistical power depends on effect size, variance, and desired confidence—not a fixed conversion count.">
               <span>They need exactly 100 conversions per variant before analyzing</span>
             </label>
             <label class="quiz-option">
@@ -934,7 +1261,7 @@ n ≈ 4,500 per variant</code></pre>
               <span>The confidence intervals overlap, meaning the difference could be random noise</span>
             </label>
             <label class="quiz-option">
-              <input type="radio" name="stats-quiz" value="d">
+              <input type="radio" name="stats-quiz" value="d" data-explanation="Time requirements depend on traffic and conversion rates. High-traffic sites can reach significance faster; low-traffic may need longer.">
               <span>The test needs to run for at least 30 days regardless of sample size</span>
             </label>
           </div>
@@ -950,7 +1277,6 @@ n ≈ 4,500 per variant</code></pre>
       <section id="first-touch">
         <!-- Hero Card -->
         <div class="hero-card">
-          <div class="hero-number">02</div>
           <h2 class="hero-title">First-Touch Attribution</h2>
           <p class="hero-subtitle">100% credit to the first touchpoint that introduced the lead</p>
         </div>
@@ -969,15 +1295,25 @@ n ≈ 4,500 per variant</code></pre>
         <!-- Scenario Card -->
         <div class="scenario-card">
           <div class="scenario-header">
-            <span class="scenario-icon">🎬</span>
-            <span class="scenario-label">NovaTech Scenario</span>
+            <span class="scenario-header-icon">📍</span>
+            <span class="scenario-header-title">Scenario: The First-Touch Debate</span>
           </div>
-          <div class="scenario-content">
+          <div class="scenario-body">
             <div class="scenario-character">
-              <span class="role-tag role-analytics">Analytics</span>
-              <strong>Priya Sharma</strong>
+              <div class="scenario-avatar">PS</div>
+              <div class="scenario-character-info">
+                <h4>Priya Sharma</h4>
+                <p class="scenario-character-role">Data Analyst, NovaTech</p>
+              </div>
             </div>
-            <p>Priya's first-touch report shows: organic search sourced $2.1M pipeline, LinkedIn ads sourced $400K. James loves it—"content marketing is working!" But Sarah objects: "Half those organic leads only converted after attending our webinars and getting 6 sales touches. We're crediting the blog post that happened 4 months ago and ignoring everything that actually closed the deal." Priya nods: "That's why we need multi-touch too."</p>
+
+            <div class="scenario-quote">
+              "Half those organic leads only converted after attending our webinars and getting 6 sales touches. We're crediting the blog post that happened 4 months ago and ignoring everything that actually closed the deal."
+            </div>
+
+            <div class="scenario-narrative">
+              <p>Priya's first-touch report shows: organic search sourced $2.1M pipeline, LinkedIn ads sourced $400K. James loves it—"content marketing is working!" But Sarah objects: "Half those organic leads only converted after webinars and sales touches." Priya nods: "That's why we need multi-touch too."</p>
+            </div>
           </div>
         </div>
 
@@ -1046,7 +1382,7 @@ JOIN first_touches ft ON c.contact_id = ft.contact_id AND ft.rn = 1</code></pre>
           <p class="knowledge-check-question">Priya's first-touch report credits organic search with $2.1M pipeline. Sarah argues this ignores what actually closed deals. What's the core limitation Sarah is identifying?</p>
           <div class="quiz-options">
             <label class="quiz-option">
-              <input type="radio" name="first-touch-quiz" value="a">
+              <input type="radio" name="first-touch-quiz" value="a" data-explanation="First-touch data is accurate for what it measures—discovery. The issue is it ignores nurturing touches, not that the data is wrong.">
               <span>First-touch is technically inaccurate and gives wrong channel data</span>
             </label>
             <label class="quiz-option">
@@ -1054,11 +1390,11 @@ JOIN first_touches ft ON c.contact_id = ft.contact_id AND ft.rn = 1</code></pre>
               <span>First-touch ignores all touchpoints after discovery, undervaluing conversion activities</span>
             </label>
             <label class="quiz-option">
-              <input type="radio" name="first-touch-quiz" value="c">
+              <input type="radio" name="first-touch-quiz" value="c" data-explanation="First-touch works for any deal size. The limitation is scope (ignoring nurture), not deal value.">
               <span>First-touch only works for small deals, not enterprise</span>
             </label>
             <label class="quiz-option">
-              <input type="radio" name="first-touch-quiz" value="d">
+              <input type="radio" name="first-touch-quiz" value="d" data-explanation="First-touch applies to any channel. It's about measuring awareness creation, not about specific channel types.">
               <span>First-touch should only be used for outbound channels</span>
             </label>
           </div>
@@ -1074,7 +1410,6 @@ JOIN first_touches ft ON c.contact_id = ft.contact_id AND ft.rn = 1</code></pre>
       <section id="last-touch">
         <!-- Hero Card -->
         <div class="hero-card">
-          <div class="hero-number">03</div>
           <h2 class="hero-title">Last-Touch Attribution</h2>
           <p class="hero-subtitle">100% credit to the final touchpoint before conversion</p>
         </div>
@@ -1093,15 +1428,25 @@ JOIN first_touches ft ON c.contact_id = ft.contact_id AND ft.rn = 1</code></pre>
         <!-- Scenario Card -->
         <div class="scenario-card">
           <div class="scenario-header">
-            <span class="scenario-icon">🎬</span>
-            <span class="scenario-label">NovaTech Scenario</span>
+            <span class="scenario-header-icon">📍</span>
+            <span class="scenario-header-title">Scenario: The Last-Touch Problem</span>
           </div>
-          <div class="scenario-content">
+          <div class="scenario-body">
             <div class="scenario-character">
-              <span class="role-tag role-sales">Sales</span>
-              <strong>Derek Williams</strong>
+              <div class="scenario-avatar">DW</div>
+              <div class="scenario-character-info">
+                <h4>Derek Williams</h4>
+                <p class="scenario-character-role">Demand Gen Manager, NovaTech</p>
+              </div>
             </div>
-            <p>Derek reviews the last-touch report. "Direct outreach is crushing it—$1.8M pipeline!" But Priya has context: "Those 'direct outreach' leads? 80% of them attended webinars and downloaded content first. Your SDR email was the last touch before they converted, but they were already warm. Last-touch is making outbound look like the hero when inbound built the intent."</p>
+
+            <div class="scenario-quote">
+              "Those 'direct outreach' leads? 80% of them attended webinars and downloaded content first. Your SDR email was the last touch before they converted, but they were already warm. Last-touch is making outbound look like the hero when inbound built the intent."
+            </div>
+
+            <div class="scenario-narrative">
+              <p>Derek reviews the last-touch report. "Direct outreach is crushing it—$1.8M pipeline!" But Priya has context: "Every one of those outbound deals had 4+ marketing touches before the call connected. Sales closed them, but marketing warmed them up."</p>
+            </div>
           </div>
         </div>
 
@@ -1157,11 +1502,11 @@ JOIN last_touches lt ON c.contact_id = lt.contact_id AND lt.rn = 1</code></pre>
           <p class="knowledge-check-question">Derek's last-touch report shows SDR outreach sourced $1.8M. Priya points out 80% of those leads engaged with content first. What does this reveal about last-touch?</p>
           <div class="quiz-options">
             <label class="quiz-option">
-              <input type="radio" name="last-touch-quiz" value="a">
+              <input type="radio" name="last-touch-quiz" value="a" data-explanation="The SDR outreach worked—it triggered the conversion. The problem is crediting only the last touch, not that the activity was ineffective.">
               <span>SDR outreach is actually ineffective and should be reduced</span>
             </label>
             <label class="quiz-option">
-              <input type="radio" name="last-touch-quiz" value="b">
+              <input type="radio" name="last-touch-quiz" value="b" data-explanation="Last-touch data is accurate for what it measures—conversion triggers. The issue is what it ignores, not data quality.">
               <span>Last-touch data is inaccurate and shouldn't be used</span>
             </label>
             <label class="quiz-option">
@@ -1169,7 +1514,7 @@ JOIN last_touches lt ON c.contact_id = lt.contact_id AND lt.rn = 1</code></pre>
               <span>Last-touch credits the trigger action but ignores the journey that built intent</span>
             </label>
             <label class="quiz-option">
-              <input type="radio" name="last-touch-quiz" value="d">
+              <input type="radio" name="last-touch-quiz" value="d" data-explanation="Shifting all credit to content swings too far the other way. Multi-touch reality requires balanced attribution, not zero-sum.">
               <span>Content marketing should get all the credit instead</span>
             </label>
           </div>
@@ -1185,7 +1530,6 @@ JOIN last_touches lt ON c.contact_id = lt.contact_id AND lt.rn = 1</code></pre>
       <section id="linear">
         <!-- Hero Card -->
         <div class="hero-card">
-          <div class="hero-number">04</div>
           <h2 class="hero-title">Linear Attribution</h2>
           <p class="hero-subtitle">Equal credit to every touchpoint in the journey</p>
         </div>
@@ -1204,15 +1548,25 @@ JOIN last_touches lt ON c.contact_id = lt.contact_id AND lt.rn = 1</code></pre>
         <!-- Scenario Card -->
         <div class="scenario-card">
           <div class="scenario-header">
-            <span class="scenario-icon">🎬</span>
-            <span class="scenario-label">NovaTech Scenario</span>
+            <span class="scenario-header-icon">📍</span>
+            <span class="scenario-header-title">Scenario: The SDR Attribution Gap</span>
           </div>
-          <div class="scenario-content">
+          <div class="scenario-body">
             <div class="scenario-character">
-              <span class="role-tag role-analytics">Analytics</span>
-              <strong>Priya Sharma</strong>
+              <div class="scenario-avatar">PS</div>
+              <div class="scenario-character-info">
+                <h4>Priya Sharma</h4>
+                <p class="scenario-character-role">Data Analyst, NovaTech</p>
+              </div>
             </div>
-            <p>Priya presents linear attribution results. A $100K deal had 10 touchpoints, so each gets $10K credit: blog visit, webinar, whitepaper, SDR email, demo, proposal, etc. James frowns: "The demo and the blog post both get $10K? That doesn't feel right. The demo is where the deal was made." Priya nods: "Linear is fair, but not smart. It can't tell that some touches matter more than others."</p>
+
+            <div class="scenario-quote">
+              "The demo and the blog post both get $10K? That doesn't feel right. The demo is where the deal was made."
+            </div>
+
+            <div class="scenario-narrative">
+              <p>Priya presents linear attribution results. A $100K deal had 10 touchpoints, so each gets $10K credit: blog visit, webinar, whitepaper, SDR email, demo, proposal, etc. James frowns: "So the SDR email that got the reply gets the same credit as a random blog visit?" Priya nods: "Linear is fair, but not smart. It can't tell that some touches matter more than others."</p>
+            </div>
           </div>
         </div>
 
@@ -1278,19 +1632,19 @@ GROUP BY t.channel, t.campaign</code></pre>
           <p class="knowledge-check-question">A deal worth $80K has 8 touchpoints. Under linear attribution, how much revenue is attributed to the demo request touchpoint?</p>
           <div class="quiz-options">
             <label class="quiz-option">
-              <input type="radio" name="linear-quiz" value="a">
+              <input type="radio" name="linear-quiz" value="a" data-explanation="Single-touch overweights one interaction. U-shaped gives 40% to first AND last, not 80% to one.">
               <span>$80K (it's the most important touch)</span>
             </label>
             <label class="quiz-option">
-              <input type="radio" name="linear-quiz" value="b">
+              <input type="radio" name="linear-quiz" value="b" data-explanation="Equal split is linear, not U-shaped. U-shaped weights first and last more heavily.">
               <span>$10K (equal split across 8 touches)</span>
             </label>
             <label class="quiz-option">
-              <input type="radio" name="linear-quiz" value="c">
+              <input type="radio" name="linear-quiz" value="c" data-explanation="U-shaped gives 40% to first AND last, not 50% to one. The math is 40% × $200K = $80K per key touch.">
               <span>$40K (half credit to key conversion points)</span>
             </label>
             <label class="quiz-option">
-              <input type="radio" name="linear-quiz" value="d">
+              <input type="radio" name="linear-quiz" value="d" data-explanation="Linear does credit marketing, just equally across all touches. This isn't how U-shaped works.">
               <span>$0K (linear only credits marketing touches)</span>
             </label>
           </div>
@@ -1306,7 +1660,6 @@ GROUP BY t.channel, t.campaign</code></pre>
       <section id="time-decay">
         <!-- Hero Card -->
         <div class="hero-card">
-          <div class="hero-number">05</div>
           <h2 class="hero-title">Time-Decay Attribution</h2>
           <p class="hero-subtitle">More credit to recent touchpoints, less to older ones</p>
         </div>
@@ -1325,15 +1678,25 @@ GROUP BY t.channel, t.campaign</code></pre>
         <!-- Scenario Card -->
         <div class="scenario-card">
           <div class="scenario-header">
-            <span class="scenario-icon">🎬</span>
-            <span class="scenario-label">NovaTech Scenario</span>
+            <span class="scenario-header-icon">📍</span>
+            <span class="scenario-header-title">Scenario: The Attribution Review</span>
           </div>
-          <div class="scenario-content">
+          <div class="scenario-body">
             <div class="scenario-character">
-              <span class="role-tag role-demand-gen">Demand Gen</span>
-              <strong>Sarah Park</strong>
+              <div class="scenario-avatar">SP</div>
+              <div class="scenario-character-info">
+                <h4>Sarah Park</h4>
+                <p class="scenario-character-role">Content Marketing Manager, NovaTech</p>
+              </div>
             </div>
-            <p>Sarah's webinar from 3 months ago is getting almost no attribution credit. "But that webinar brought in 40% of our pipeline!" she argues to Priya. Priya checks the model: with a 7-day half-life, a touch from 90 days ago gets 0.0001% weight. "We need to fix this half-life," Priya says. "For enterprise deals with 6-month cycles, 7 days makes everything before last week invisible."</p>
+
+            <div class="scenario-quote">
+              "For enterprise deals with 6-month cycles, 7 days makes everything before last week invisible."
+            </div>
+
+            <div class="scenario-narrative">
+              <p>Sarah's webinar from 3 months ago is getting almost no attribution credit. "But that webinar brought in 40% of our pipeline!" she argues to Priya. Priya checks the model: with a 7-day half-life, a touch from 90 days ago gets 0.0001% weight. "We need to fix this half-life," Priya says.</p>
+            </div>
           </div>
         </div>
 
@@ -1396,11 +1759,11 @@ normalized = [w/total for w in weights]
           <p class="knowledge-check-question">NovaTech has a 6-month enterprise sales cycle. They're using time-decay with a 7-day half-life. What's the problem?</p>
           <div class="quiz-options">
             <label class="quiz-option">
-              <input type="radio" name="timedecay-quiz" value="a">
+              <input type="radio" name="timedecay-quiz" value="a" data-explanation="Time-decay can work for enterprise—the issue is half-life configuration, not the model itself.">
               <span>Time-decay doesn't work with enterprise sales cycles</span>
             </label>
             <label class="quiz-option">
-              <input type="radio" name="timedecay-quiz" value="b">
+              <input type="radio" name="timedecay-quiz" value="b" data-explanation="Actually, time-decay gives MORE credit to recent touches, not early ones. This is backwards.">
               <span>The model gives too much credit to early awareness touchpoints</span>
             </label>
             <label class="quiz-option">
@@ -1408,7 +1771,7 @@ normalized = [w/total for w in weights]
               <span>Touchpoints from months 1-4 get almost zero credit despite being influential</span>
             </label>
             <label class="quiz-option">
-              <input type="radio" name="timedecay-quiz" value="d">
+              <input type="radio" name="timedecay-quiz" value="d" data-explanation="Hours is far too short for B2B. Days or weeks is appropriate; the issue is the specific setting.">
               <span>The half-life should be measured in hours, not days</span>
             </label>
           </div>
@@ -1424,7 +1787,6 @@ normalized = [w/total for w in weights]
       <section id="position-based">
         <!-- Hero Card -->
         <div class="hero-card">
-          <div class="hero-number">06</div>
           <h2 class="hero-title">Position-Based Attribution</h2>
           <p class="hero-subtitle">Heavy weight to first and last touches (40/20/40 split)</p>
         </div>
@@ -1443,15 +1805,25 @@ normalized = [w/total for w in weights]
         <!-- Scenario Card -->
         <div class="scenario-card">
           <div class="scenario-header">
-            <span class="scenario-icon">🎬</span>
-            <span class="scenario-label">NovaTech Scenario</span>
+            <span class="scenario-header-icon">📍</span>
+            <span class="scenario-header-title">Scenario: The Position-Based Model</span>
           </div>
-          <div class="scenario-content">
+          <div class="scenario-body">
             <div class="scenario-character">
-              <span class="role-tag role-cmo">CMO</span>
-              <strong>James Okonkwo</strong>
+              <div class="scenario-avatar">JO</div>
+              <div class="scenario-character-info">
+                <h4>James Okonkwo</h4>
+                <p class="scenario-character-role">VP of Sales, NovaTech</p>
+              </div>
             </div>
-            <p>James reviews the position-based model. A $100K deal shows: LinkedIn ad (first touch) = $40K, final demo (last touch) = $40K, four middle touches (webinars, whitepapers) = $5K each. "This is better," James says. "The ad that brought them in and the demo that closed them both get proper credit. But I'm worried we're undervaluing that nurture sequence. Those four touches over 3 months are what built trust."</p>
+
+            <div class="scenario-quote">
+              "The ad that brought them in and the demo that closed them both get proper credit. But I'm worried we're undervaluing that nurture sequence. Those four touches over 3 months are what built trust."
+            </div>
+
+            <div class="scenario-narrative">
+              <p>James reviews the position-based model. A $100K deal shows: LinkedIn ad (first touch) = $40K, final demo (last touch) = $40K, four middle touches (webinars, whitepapers) = $5K each. "This is better," James says.</p>
+            </div>
           </div>
         </div>
 
@@ -1522,19 +1894,19 @@ result = position_based_attribution(touches, 100000)
           <p class="knowledge-check-question">A $200K deal has 10 touchpoints. Using 40/40/20 position-based attribution, how much credit does each middle touch receive?</p>
           <div class="quiz-options">
             <label class="quiz-option">
-              <input type="radio" name="position-quiz" value="a">
+              <input type="radio" name="position-quiz" value="a" data-explanation="This divides middle share by total touches, not middle touches. Math error.">
               <span>$20K each (20% ÷ 10 touches)</span>
             </label>
             <label class="quiz-option">
-              <input type="radio" name="position-quiz" value="b">
+              <input type="radio" name="position-quiz" value="b" data-explanation="Close, but 8 middle touches is wrong—there are 6 middle touches. Check the math.">
               <span>$5K each (20% of $200K ÷ 8 middle touches)</span>
             </label>
             <label class="quiz-option">
-              <input type="radio" name="position-quiz" value="c">
+              <input type="radio" name="position-quiz" value="c" data-explanation="The 20% is split among middle touches only (8 touches), not all 16. Math: 20% × $200K ÷ 8 = $5K each.">
               <span>$2.5K each (20% split across 16 touches)</span>
             </label>
             <label class="quiz-option">
-              <input type="radio" name="position-quiz" value="d">
+              <input type="radio" name="position-quiz" value="d" data-explanation="Position-based models DO credit middle touches. 20% goes to the middle in 40/20/40 split.">
               <span>$0K (middle touches don't get credit)</span>
             </label>
           </div>
@@ -1550,7 +1922,6 @@ result = position_based_attribution(touches, 100000)
       <section id="account-vs-contact">
         <!-- Hero Card -->
         <div class="hero-card">
-          <div class="hero-number">07</div>
           <h2 class="hero-title">Account-Level vs Contact-Level Attribution</h2>
           <p class="hero-subtitle">Attributing to individuals vs. the entire buying committee</p>
         </div>
@@ -1569,15 +1940,25 @@ result = position_based_attribution(touches, 100000)
         <!-- Scenario Card -->
         <div class="scenario-card">
           <div class="scenario-header">
-            <span class="scenario-icon">🎬</span>
-            <span class="scenario-label">NovaTech Scenario</span>
+            <span class="scenario-header-icon">📍</span>
+            <span class="scenario-header-title">Scenario: The CFO Presentation</span>
           </div>
-          <div class="scenario-content">
+          <div class="scenario-body">
             <div class="scenario-character">
-              <span class="role-tag role-mops">MOps</span>
-              <strong>Maya Chen</strong>
+              <div class="scenario-avatar">MC</div>
+              <div class="scenario-character-info">
+                <h4>Maya Chen</h4>
+                <p class="scenario-character-role">Marketing Ops Manager, NovaTech</p>
+              </div>
             </div>
-            <p>Maya pulls attribution for their biggest deal. The "primary contact" who filled out the first form was a junior developer—organic search gets all the credit. But Maya digs deeper: the CTO attended two webinars, the VP downloaded whitepapers, the CFO only engaged during contract review. "Our contact-level model says organic search won this deal," Maya explains. "But account-level shows the real story: paid ads brought in the CTO, content nurtured leadership, and the demo request came from a referred engineer."</p>
+
+            <div class="scenario-quote">
+              "But account-level shows the real story: paid ads brought in the CTO, content nurtured leadership, and the demo request came from a referred engineer."
+            </div>
+
+            <div class="scenario-narrative">
+              <p>Maya pulls attribution for their biggest deal. The "primary contact" who filled out the first form was a junior developer—organic search gets all the credit. But Maya digs deeper: the CTO attended two webinars, the VP downloaded whitepapers, the CFO only engaged during contract review. "Our contact-level model says organic search won this deal," Maya explains.</p>
+            </div>
           </div>
         </div>
 
@@ -1663,11 +2044,11 @@ JOIN account_touches at ON o.account_id = at.account_id AND at.rn = 1</code></pr
           <p class="knowledge-check-question">NovaTech's contact-level model says organic search sourced 80% of pipeline. But Maya notices most primary contacts are junior developers. What's the issue?</p>
           <div class="quiz-options">
             <label class="quiz-option">
-              <input type="radio" name="accountcontact-quiz" value="a">
+              <input type="radio" name="accountcontact-quiz" value="a" data-explanation="Organic clearly works—developers are engaging. The attribution method is the issue, not the channel.">
               <span>Organic search doesn't work for B2B marketing</span>
             </label>
             <label class="quiz-option">
-              <input type="radio" name="accountcontact-quiz" value="b">
+              <input type="radio" name="accountcontact-quiz" value="b" data-explanation="Developers influence tool selection. The issue is contact vs account attribution, not lead quality.">
               <span>Junior developers shouldn't be counted as leads</span>
             </label>
             <label class="quiz-option">
@@ -1675,7 +2056,7 @@ JOIN account_touches at ON o.account_id = at.account_id AND at.rn = 1</code></pr
               <span>Contact-level attribution misses how decision-makers on the account were actually engaged</span>
             </label>
             <label class="quiz-option">
-              <input type="radio" name="accountcontact-quiz" value="d">
+              <input type="radio" name="accountcontact-quiz" value="d" data-explanation="Last-touch has the same contact-level blind spot. Account-level attribution is the solution.">
               <span>They should switch to last-touch attribution instead</span>
             </label>
           </div>
@@ -1691,7 +2072,6 @@ JOIN account_touches at ON o.account_id = at.account_id AND at.rn = 1</code></pr
       <section id="sourced-influenced">
         <!-- Hero Card -->
         <div class="hero-card">
-          <div class="hero-number">08</div>
           <h2 class="hero-title">Sourced vs Influenced Pipeline</h2>
           <p class="hero-subtitle">"We found this deal" vs. "We helped this deal"</p>
         </div>
@@ -1710,15 +2090,25 @@ JOIN account_touches at ON o.account_id = at.account_id AND at.rn = 1</code></pr
         <!-- Scenario Card -->
         <div class="scenario-card">
           <div class="scenario-header">
-            <span class="scenario-icon">🎬</span>
-            <span class="scenario-label">NovaTech Scenario</span>
+            <span class="scenario-header-icon">📍</span>
+            <span class="scenario-header-title">Scenario: The Influence Measurement</span>
           </div>
-          <div class="scenario-content">
+          <div class="scenario-body">
             <div class="scenario-character">
-              <span class="role-tag role-sales">Sales</span>
-              <strong>Derek Thompson</strong>
+              <div class="scenario-avatar">DW</div>
+              <div class="scenario-character-info">
+                <h4>Derek Williams</h4>
+                <p class="scenario-character-role">Demand Gen Manager, NovaTech</p>
+              </div>
             </div>
-            <p>Derek is annoyed. Marketing is claiming $15M in influenced pipeline, including his biggest outbound deal. "I cold-called that account! Marketing just sent them a nurture email they didn't even open!" Sarah defends: "Our webinar content was referenced in their evaluation." Priya steps in: "Let's set a threshold—3+ engaged touches for 'heavily influenced.' That deal had one unclicked email. It doesn't count."</p>
+
+            <div class="scenario-quote">
+              "Let's set a threshold—3+ engaged touches for 'heavily influenced.' That deal had one unclicked email. It doesn't count."
+            </div>
+
+            <div class="scenario-narrative">
+              <p>Derek is annoyed. Marketing is claiming $15M in influenced pipeline, including his biggest outbound deal. "I cold-called that account! Marketing just sent them a nurture email they didn't even open!" Sarah defends: "Our webinar content was referenced in their evaluation." Priya steps in: "We need clear definitions. Sourced means marketing created the opportunity. Influenced means marketing touched it. Let's report both, separately."</p>
+            </div>
           </div>
         </div>
 
@@ -1805,15 +2195,15 @@ GROUP BY t.channel;</code></pre>
           <p class="knowledge-check-question">Marketing claims $50M in "influenced" pipeline. Derek's sales team sourced $30M of that through cold outbound. Marketing's only touch was automated nurture emails (3% open rate). What should they report?</p>
           <div class="quiz-options">
             <label class="quiz-option">
-              <input type="radio" name="sourced-quiz" value="a">
+              <input type="radio" name="sourced-quiz" value="a" data-explanation="Influenced is inflated—many touches may be incidental. This doesn't answer 'actual value'.">
               <span>$50M influenced (any touch counts)</span>
             </label>
             <label class="quiz-option">
-              <input type="radio" name="sourced-quiz" value="b">
+              <input type="radio" name="sourced-quiz" value="b" data-explanation="Adding sourced and influenced double-counts overlapping deals. This math is wrong.">
               <span>$80M total ($50M + $30M)</span>
             </label>
             <label class="quiz-option">
-              <input type="radio" name="sourced-quiz" value="c">
+              <input type="radio" name="sourced-quiz" value="c" data-explanation="Sourced revenue alone undersells marketing. Influenced captures deals where marketing played a role but wasn't first.">
               <span>$20M sourced (marketing first-touch only)</span>
             </label>
             <label class="quiz-option">
@@ -1833,7 +2223,6 @@ GROUP BY t.channel;</code></pre>
       <section id="mta-challenges">
         <!-- Hero Card -->
         <div class="hero-card">
-          <div class="hero-number">09</div>
           <h2 class="hero-title">Multi-Touch Attribution Challenges in B2B</h2>
           <p class="hero-subtitle">Why MTA is harder in B2B—and how to cope</p>
         </div>
@@ -1852,15 +2241,25 @@ GROUP BY t.channel;</code></pre>
         <!-- Scenario Card -->
         <div class="scenario-card">
           <div class="scenario-header">
-            <span class="scenario-icon">🎬</span>
-            <span class="scenario-label">NovaTech Scenario</span>
+            <span class="scenario-header-icon">📍</span>
+            <span class="scenario-header-title">Scenario: The First-Touch Debate</span>
           </div>
-          <div class="scenario-content">
+          <div class="scenario-body">
             <div class="scenario-character">
-              <span class="role-tag role-analytics">Analytics</span>
-              <strong>Priya Sharma</strong>
+              <div class="scenario-avatar">PS</div>
+              <div class="scenario-character-info">
+                <h4>Priya Sharma</h4>
+                <p class="scenario-character-role">Data Analyst, NovaTech</p>
+              </div>
             </div>
-            <p>Priya audits their attribution data. "We have 6 months of touchpoints for this deal," she reports. "But look—there's a 3-month gap where we show nothing. The champion changed jobs, their cookies expired, and they used a personal laptop at home." She compares tracked first-touch (organic search) to self-reported ("saw you at AWS re:Invent"). "We're missing half the story. Attribution is useful, but it's not truth."</p>
+
+            <div class="scenario-quote">
+              "But look—there's a 3-month gap where we show nothing. The champion changed jobs, their cookies expired, and they used a personal laptop at home."
+            </div>
+
+            <div class="scenario-narrative">
+              <p>Priya audits their attribution data. "We have 6 months of touchpoints for this deal," she reports. She compares tracked first-touch (organic search) to self-reported ("saw you at AWS re:Invent"). "We're missing half the story. Attribution is useful, but it's not truth."</p>
+            </div>
           </div>
         </div>
 
@@ -1909,7 +2308,7 @@ GROUP BY t.channel;</code></pre>
           <p class="knowledge-check-question">Priya's attribution data shows organic search as first-touch for 60% of deals. But self-reported data says 40% "heard about us at a conference." What should she conclude?</p>
           <div class="quiz-options">
             <label class="quiz-option">
-              <input type="radio" name="mta-quiz" value="a">
+              <input type="radio" name="mta-quiz" value="a" data-explanation="Self-reported often captures untrackable channels like conferences. Don't dismiss it automatically.">
               <span>The self-reported data is unreliable; trust the tracking</span>
             </label>
             <label class="quiz-option">
@@ -1917,11 +2316,11 @@ GROUP BY t.channel;</code></pre>
               <span>Conferences are driving awareness that converts via search—both data sources are useful</span>
             </label>
             <label class="quiz-option">
-              <input type="radio" name="mta-quiz" value="c">
+              <input type="radio" name="mta-quiz" value="c" data-explanation="Absence of tracked attribution doesn't mean absence of impact. Self-reported data contradicts this conclusion.">
               <span>Stop investing in conferences since tracking shows no attribution</span>
             </label>
             <label class="quiz-option">
-              <input type="radio" name="mta-quiz" value="d">
+              <input type="radio" name="mta-quiz" value="d" data-explanation="The model works for digital. Conferences are inherently untrackable—that's expected, not broken.">
               <span>The attribution model is broken and should be replaced</span>
             </label>
           </div>
@@ -1937,7 +2336,6 @@ GROUP BY t.channel;</code></pre>
       <section id="dark-funnel">
         <!-- Hero Card -->
         <div class="hero-card">
-          <div class="hero-number">10</div>
           <h2 class="hero-title">Self-Reported Attribution & Dark Funnel</h2>
           <p class="hero-subtitle">Asking leads "How did you hear about us?"</p>
         </div>
@@ -1956,15 +2354,25 @@ GROUP BY t.channel;</code></pre>
         <!-- Scenario Card -->
         <div class="scenario-card">
           <div class="scenario-header">
-            <span class="scenario-icon">🎬</span>
-            <span class="scenario-label">NovaTech Scenario</span>
+            <span class="scenario-header-icon">📍</span>
+            <span class="scenario-header-title">Scenario: The First-Touch Debate</span>
           </div>
-          <div class="scenario-content">
+          <div class="scenario-body">
             <div class="scenario-character">
-              <span class="role-tag role-demand-gen">Demand Gen</span>
-              <strong>Sarah Park</strong>
+              <div class="scenario-avatar">SP</div>
+              <div class="scenario-character-info">
+                <h4>Sarah Park</h4>
+                <p class="scenario-character-role">Content Marketing Manager, NovaTech</p>
+              </div>
             </div>
-            <p>Sarah reviews the self-reported data. "25% of leads say 'colleague or friend.' But our tracking shows 0% referral traffic." She compares to tracked first-touch: those same leads show as "organic search" or "direct." "They heard about us from a peer, then searched to find us. Word-of-mouth is driving business we can't track. We need to keep investing in customer advocacy even though we can't measure it directly."</p>
+
+            <div class="scenario-quote">
+              "They heard about us from a peer, then searched to find us. Word-of-mouth is driving business we can't track. We need to keep investing in customer advocacy even though we can't measure it directly."
+            </div>
+
+            <div class="scenario-narrative">
+              <p>Sarah reviews the self-reported data. "25% of leads say 'colleague or friend.' But our tracking shows 0% referral traffic." She compares to tracked first-touch: those same leads show as "organic search" or "direct."</p>
+            </div>
           </div>
         </div>
 
@@ -2049,11 +2457,11 @@ ORDER BY leads DESC;</code></pre>
           <p class="knowledge-check-question">Self-reported data shows 30% of leads heard about NovaTech from podcasts. Tracked attribution shows 0% from podcasts. What does this mean?</p>
           <div class="quiz-options">
             <label class="quiz-option">
-              <input type="radio" name="darkfunnel-quiz" value="a">
+              <input type="radio" name="darkfunnel-quiz" value="a" data-explanation="Self-reported data reflects genuine recall. Listeners don't typically fabricate podcast sources.">
               <span>Leads are lying about hearing about you on podcasts</span>
             </label>
             <label class="quiz-option">
-              <input type="radio" name="darkfunnel-quiz" value="b">
+              <input type="radio" name="darkfunnel-quiz" value="b" data-explanation="Untrackable doesn't mean ineffective. Self-reported data and brand lift studies can validate podcast ROI.">
               <span>Podcast advertising is ineffective and should be cut</span>
             </label>
             <label class="quiz-option">
@@ -2061,7 +2469,7 @@ ORDER BY leads DESC;</code></pre>
               <span>Podcasts drive awareness that can't be tracked—they work but are invisible to attribution</span>
             </label>
             <label class="quiz-option">
-              <input type="radio" name="darkfunnel-quiz" value="d">
+              <input type="radio" name="darkfunnel-quiz" value="d" data-explanation="Tracking works for trackable channels. Podcasts are inherently dark funnel—system limitation, not error.">
               <span>The tracking system is broken</span>
             </label>
           </div>
@@ -2077,7 +2485,6 @@ ORDER BY leads DESC;</code></pre>
       <section id="incrementality">
         <!-- Hero Card -->
         <div class="hero-card">
-          <div class="hero-number">11</div>
           <h2 class="hero-title">Incrementality and Lift Testing</h2>
           <p class="hero-subtitle">Proving causation, not just correlation</p>
         </div>
@@ -2096,15 +2503,25 @@ ORDER BY leads DESC;</code></pre>
         <!-- Scenario Card -->
         <div class="scenario-card">
           <div class="scenario-header">
-            <span class="scenario-icon">🎬</span>
-            <span class="scenario-label">NovaTech Scenario</span>
+            <span class="scenario-header-icon">📍</span>
+            <span class="scenario-header-title">Scenario: The Holdout Test</span>
           </div>
-          <div class="scenario-content">
+          <div class="scenario-body">
             <div class="scenario-character">
-              <span class="role-tag role-cfo">CFO</span>
-              <strong>Tom Richardson</strong>
+              <div class="scenario-avatar">TR</div>
+              <div class="scenario-character-info">
+                <h4>Tom Reeves</h4>
+                <p class="scenario-character-role">CFO, NovaTech</p>
+              </div>
             </div>
-            <p>Tom questions the retargeting spend. "Attribution says retargeting drives 40% of conversions. But these people were already on our site—would they have converted anyway?" Priya proposes a holdout test: 15% of qualified visitors won't see retargeting ads. After 8 weeks, control converts at 4.2%, exposed at 5.1%. "The true incremental lift is only 21%," Priya reports. "Attribution was over-crediting by 50%."</p>
+
+            <div class="scenario-quote">
+              "Attribution says retargeting drives 40% of conversions. But these people were already on our site—would they have converted anyway?"
+            </div>
+
+            <div class="scenario-narrative">
+              <p>Tom questions the retargeting spend. Priya proposes a holdout test: 15% of qualified visitors won't see retargeting ads. After 8 weeks, control converts at 4.2%, exposed at 5.1%. "The true incremental lift is only 21%," Priya reports. "Attribution was over-crediting by 50%."</p>
+            </div>
           </div>
         </div>
 
@@ -2176,19 +2593,19 @@ If Group B had 100,000 people:
           <p class="knowledge-check-question">Attribution shows retargeting ads drove 5,100 conversions. A holdout test shows: exposed group = 5.1% conversion, control group = 4.2% conversion. How many conversions were truly incremental?</p>
           <div class="quiz-options">
             <label class="quiz-option">
-              <input type="radio" name="incrementality-quiz" value="a">
+              <input type="radio" name="incrementality-quiz" value="a" data-explanation="Attribution overcounts by including users who would have converted anyway. Incrementality is lower.">
               <span>5,100 (attribution is accurate)</span>
             </label>
             <label class="quiz-option">
-              <input type="radio" name="incrementality-quiz" value="b">
+              <input type="radio" name="incrementality-quiz" value="b" data-explanation="This calculates absolute lift incorrectly. Incremental is attributed minus baseline.">
               <span>~900 (0.9% lift × 100K audience)</span>
             </label>
             <label class="quiz-option">
-              <input type="radio" name="incrementality-quiz" value="c">
+              <input type="radio" name="incrementality-quiz" value="c" data-explanation="Incrementality isn't simply half. It's attributed minus what would have happened anyway (control group rate).">
               <span>2,550 (half of attributed conversions)</span>
             </label>
             <label class="quiz-option">
-              <input type="radio" name="incrementality-quiz" value="d">
+              <input type="radio" name="incrementality-quiz" value="d" data-explanation="Control rate shows baseline conversions, not ad-driven incrementality. Wrong metric.">
               <span>4,200 (the control rate)</span>
             </label>
           </div>
@@ -2204,7 +2621,6 @@ If Group B had 100,000 people:
       <section id="experimentation">
         <!-- Hero Card -->
         <div class="hero-card">
-          <div class="hero-number">12</div>
           <h2 class="hero-title">Experimentation Design</h2>
           <p class="hero-subtitle">Rigorous A/B testing for marketing optimization</p>
         </div>
@@ -2223,15 +2639,25 @@ If Group B had 100,000 people:
         <!-- Scenario Card -->
         <div class="scenario-card">
           <div class="scenario-header">
-            <span class="scenario-icon">🎬</span>
-            <span class="scenario-label">NovaTech Scenario</span>
+            <span class="scenario-header-icon">📍</span>
+            <span class="scenario-header-title">Scenario: Sarah Park's Analysis</span>
           </div>
-          <div class="scenario-content">
+          <div class="scenario-body">
             <div class="scenario-character">
-              <span class="role-tag role-demand-gen">Demand Gen</span>
-              <strong>Sarah Park</strong>
+              <div class="scenario-avatar">SP</div>
+              <div class="scenario-character-info">
+                <h4>Sarah Park</h4>
+                <p class="scenario-character-role">Content Marketing Manager, NovaTech</p>
+              </div>
             </div>
-            <p>Sarah wants to test a new CTA: "See It In Action" vs. "Request Demo." Priya calculates: they need 5,200 visitors per variant for 80% power. "That's 3 weeks at current traffic," Priya says. On day 5, Sarah peeks: new CTA shows 15% lift, p=0.03. "We have a winner!" Priya stops her: "With multiple peeks, your false positive rate is ~15%, not 5%. Let it run. We've already planned for 3 weeks."</p>
+
+            <div class="scenario-quote">
+              "With multiple peeks, your false positive rate is ~15%, not 5%. Let it run. We've already planned for 3 weeks."
+            </div>
+
+            <div class="scenario-narrative">
+              <p>Sarah wants to test a new CTA: "See It In Action" vs. "Request Demo." Priya calculates: they need 5,200 visitors per variant for 80% power. "That's 3 weeks at current traffic," Priya says. On day 5, Sarah peeks: new CTA shows 15% lift, p=0.03. "We have a winner!" Priya stops her: "At p=0.03 with only 20% of required sample, this is a false positive waiting to happen. We need the full 3 weeks."</p>
+            </div>
           </div>
         </div>
 
@@ -2300,11 +2726,11 @@ Decision: If success criteria met, implement Variant B. Otherwise, keep A.</code
           <p class="knowledge-check-question">Sarah's A/B test shows 15% lift with p=0.03 after 5 days. She planned for 3 weeks. What should she do?</p>
           <div class="quiz-options">
             <label class="quiz-option">
-              <input type="radio" name="experiment-quiz" value="a">
+              <input type="radio" name="experiment-quiz" value="a" data-explanation="Early peeking inflates false positive rates. Planned duration matters for valid conclusions.">
               <span>Declare a winner—p=0.03 is statistically significant</span>
             </label>
             <label class="quiz-option">
-              <input type="radio" name="experiment-quiz" value="b">
+              <input type="radio" name="experiment-quiz" value="b" data-explanation="Adding variants mid-test invalidates results. Complete current test first.">
               <span>Add more variants to test other ideas while we have momentum</span>
             </label>
             <label class="quiz-option">
@@ -2312,7 +2738,7 @@ Decision: If success criteria met, implement Variant B. Otherwise, keep A.</code
               <span>Continue running until planned completion—early peeking inflates false positives</span>
             </label>
             <label class="quiz-option">
-              <input type="radio" name="experiment-quiz" value="d">
+              <input type="radio" name="experiment-quiz" value="d" data-explanation="Stopping early on promising results is a classic A/B testing mistake. Run to completion.">
               <span>Stop the test and switch to the new CTA immediately</span>
             </label>
           </div>
@@ -2328,7 +2754,6 @@ Decision: If success criteria met, implement Variant B. Otherwise, keep A.</code
       <section id="measurement-frameworks">
         <!-- Hero Card -->
         <div class="hero-card">
-          <div class="hero-number">13</div>
           <h2 class="hero-title">Measurement Frameworks</h2>
           <p class="hero-subtitle">Defining what to track, why, and how it maps to business outcomes</p>
         </div>
@@ -2347,15 +2772,25 @@ Decision: If success criteria met, implement Variant B. Otherwise, keep A.</code
         <!-- Scenario Card -->
         <div class="scenario-card">
           <div class="scenario-header">
-            <span class="scenario-icon">🎬</span>
-            <span class="scenario-label">NovaTech Scenario</span>
+            <span class="scenario-header-icon">📍</span>
+            <span class="scenario-header-title">Scenario: The Metrics Framework</span>
           </div>
-          <div class="scenario-content">
+          <div class="scenario-body">
             <div class="scenario-character">
-              <span class="role-tag role-cmo">CMO</span>
-              <strong>James Okonkwo</strong>
+              <div class="scenario-avatar">JO</div>
+              <div class="scenario-character-info">
+                <h4>James Okonkwo</h4>
+                <p class="scenario-character-role">VP of Sales, NovaTech</p>
+              </div>
             </div>
-            <p>James asks Priya to build NovaTech's measurement framework. "We track 200 metrics but I can't tell if marketing is working." Priya starts with the business objective: 40% ARR growth. She works backward: $20M quarterly pipeline needed, which means 60% more enterprise MQLs. "Now we know what matters," James says. "Pipeline and revenue for board, MQL velocity for weekly ops. Everything else is noise."</p>
+
+            <div class="scenario-quote">
+              "Pipeline and revenue for board, MQL velocity for weekly ops. Everything else is noise."
+            </div>
+
+            <div class="scenario-narrative">
+              <p>James asks Priya to build NovaTech's measurement framework. "We track 200 metrics but I can't tell if marketing is working." Priya starts with the business objective: 40% ARR growth. She works backward: $20M quarterly pipeline needed, which means 60% more enterprise MQLs. "Now we know what matters," James says.</p>
+            </div>
           </div>
         </div>
 
@@ -2430,7 +2865,7 @@ Metrics: Enterprise MQLs, MQL→SQL rate, sourced pipeline by channel</code></pr
           <p class="knowledge-check-question">NovaTech tracks 200 metrics. James wants to know "is marketing working?" What should Priya focus on?</p>
           <div class="quiz-options">
             <label class="quiz-option">
-              <input type="radio" name="framework-quiz" value="a">
+              <input type="radio" name="framework-quiz" value="a" data-explanation="200 metrics creates noise and paralysis. Focus on 5-10 that drive decisions.">
               <span>Track all 200 metrics and build a comprehensive dashboard</span>
             </label>
             <label class="quiz-option">
@@ -2438,11 +2873,11 @@ Metrics: Enterprise MQLs, MQL→SQL rate, sourced pipeline by channel</code></pr
               <span>Start with business objective, identify 3-5 KPIs that map to revenue outcomes</span>
             </label>
             <label class="quiz-option">
-              <input type="radio" name="framework-quiz" value="c">
+              <input type="radio" name="framework-quiz" value="c" data-explanation="Leading indicators matter but must connect to outcomes. Start with business objectives.">
               <span>Focus on leading indicators since they're more actionable</span>
             </label>
             <label class="quiz-option">
-              <input type="radio" name="framework-quiz" value="d">
+              <input type="radio" name="framework-quiz" value="d" data-explanation="Revenue alone provides no diagnostic value. You need leading indicators to optimize.">
               <span>Only track revenue—everything else is vanity metrics</span>
             </label>
           </div>
@@ -2458,7 +2893,6 @@ Metrics: Enterprise MQLs, MQL→SQL rate, sourced pipeline by channel</code></pr
       <section id="cohort-analysis">
         <!-- Hero Card -->
         <div class="hero-card">
-          <div class="hero-number">14</div>
           <h2 class="hero-title">Cohort Analysis & Pipeline Contribution</h2>
           <p class="hero-subtitle">Tracking leads by when they entered—revealing what aggregates hide</p>
         </div>
@@ -2477,15 +2911,25 @@ Metrics: Enterprise MQLs, MQL→SQL rate, sourced pipeline by channel</code></pr
         <!-- Scenario Card -->
         <div class="scenario-card">
           <div class="scenario-header">
-            <span class="scenario-icon">🎬</span>
-            <span class="scenario-label">NovaTech Scenario</span>
+            <span class="scenario-header-icon">📍</span>
+            <span class="scenario-header-title">Scenario: The Cohort Analysis</span>
           </div>
-          <div class="scenario-content">
+          <div class="scenario-body">
             <div class="scenario-character">
-              <span class="role-tag role-analytics">Analytics</span>
-              <strong>Priya Sharma</strong>
+              <div class="scenario-avatar">PS</div>
+              <div class="scenario-character-info">
+                <h4>Priya Sharma</h4>
+                <p class="scenario-character-role">Data Analyst, NovaTech</p>
+              </div>
             </div>
-            <p>James asks why pipeline is down despite more leads. Priya runs a cohort analysis: January leads converted to SQL at 22%, but March dropped to 15%. "Aggregate numbers looked fine because volume increased," Priya explains. "But per-cohort quality is declining. Our new LinkedIn campaign is driving quantity over quality."</p>
+
+            <div class="scenario-quote">
+              "But per-cohort quality is declining. Our new LinkedIn campaign is driving quantity over quality."
+            </div>
+
+            <div class="scenario-narrative">
+              <p>James asks why pipeline is down despite more leads. Priya runs a cohort analysis: January leads converted to SQL at 22%, but March dropped to 15%. "Aggregate numbers looked fine because volume increased," Priya explains.</p>
+            </div>
           </div>
         </div>
 
@@ -2565,11 +3009,11 @@ ORDER BY cohort_month;</code></pre>
           <p class="knowledge-check-question">NovaTech's aggregate MQL→SQL conversion is 20%. But Priya's cohort analysis shows January at 25%, February at 20%, March at 12%. What does this reveal?</p>
           <div class="quiz-options">
             <label class="quiz-option">
-              <input type="radio" name="cohort-quiz" value="a">
+              <input type="radio" name="cohort-quiz" value="a" data-explanation="Aggregates hide cohort trends. Monthly analysis reveals the declining quality pattern.">
               <span>The aggregate rate of 20% is the most accurate measure</span>
             </label>
             <label class="quiz-option">
-              <input type="radio" name="cohort-quiz" value="b">
+              <input type="radio" name="cohort-quiz" value="b" data-explanation="Cherry-picking best performance ignores the actionable insight: quality is declining.">
               <span>They should focus only on January cohort since it performed best</span>
             </label>
             <label class="quiz-option">
@@ -2577,7 +3021,7 @@ ORDER BY cohort_month;</code></pre>
               <span>Lead quality is declining over time—investigate what changed</span>
             </label>
             <label class="quiz-option">
-              <input type="radio" name="cohort-quiz" value="d">
+              <input type="radio" name="cohort-quiz" value="d" data-explanation="The pattern shows progressively worse cohorts, not timing differences.">
               <span>March leads just need more time to convert</span>
             </label>
           </div>
@@ -2593,7 +3037,6 @@ ORDER BY cohort_month;</code></pre>
       <section id="mmm">
         <!-- Hero Card -->
         <div class="hero-card">
-          <div class="hero-number">15</div>
           <h2 class="hero-title">Marketing Mix Modeling (MMM)</h2>
           <p class="hero-subtitle">Statistical modeling of aggregate spend and outcomes</p>
         </div>
@@ -2612,15 +3055,25 @@ ORDER BY cohort_month;</code></pre>
         <!-- Scenario Card -->
         <div class="scenario-card">
           <div class="scenario-header">
-            <span class="scenario-icon">🎬</span>
-            <span class="scenario-label">NovaTech Scenario</span>
+            <span class="scenario-header-icon">📍</span>
+            <span class="scenario-header-title">Scenario: The Board-Level ROI Question</span>
           </div>
-          <div class="scenario-content">
+          <div class="scenario-body">
             <div class="scenario-character">
-              <span class="role-tag role-cfo">CFO</span>
-              <strong>Tom Richardson</strong>
+              <div class="scenario-avatar">TR</div>
+              <div class="scenario-character-info">
+                <h4>Tom Reeves</h4>
+                <p class="scenario-character-role">CFO, NovaTech</p>
+              </div>
             </div>
-            <p>Tom wants board-level confidence in marketing ROI. "Attribution shows digital works, but what about our $500K conference spend? It's invisible to tracking." Priya suggests MMM: "We'll model 3 years of spend and revenue data, including events. The regression coefficients will show each channel's contribution." Tom nods: "Finally, something the board will trust—it's not dependent on cookies."</p>
+
+            <div class="scenario-quote">
+              "We'll model 3 years of spend and revenue data, including events. The regression coefficients will show each channel's contribution."
+            </div>
+
+            <div class="scenario-narrative">
+              <p>Tom wants board-level confidence in marketing ROI. "Attribution shows digital works, but what about our $500K conference spend? It's invisible to tracking." Priya suggests MMM: Tom nods: "Finally, something the board will trust—it's not dependent on cookies."</p>
+            </div>
           </div>
         </div>
 
@@ -2666,15 +3119,15 @@ ORDER BY cohort_month;</code></pre>
           <p class="knowledge-check-question">NovaTech spends $500K/year on conferences but attribution shows 0% from events. When should they consider MMM?</p>
           <div class="quiz-options">
             <label class="quiz-option">
-              <input type="radio" name="mmm-quiz" value="a">
+              <input type="radio" name="mmm-quiz" value="a" data-explanation="Attribution struggles with offline channels and cross-device journeys. MMM can capture impacts that attribution misses entirely.">
               <span>Never—attribution is always more accurate than MMM</span>
             </label>
             <label class="quiz-option">
-              <input type="radio" name="mmm-quiz" value="b">
+              <input type="radio" name="mmm-quiz" value="b" data-explanation="MMM requires substantial historical data and spend volume. It's not an immediate solution and may not be cost-effective for all companies.">
               <span>Immediately—conferences are invisible so MMM is required</span>
             </label>
             <label class="quiz-option">
-              <input type="radio" name="mmm-quiz" value="c">
+              <input type="radio" name="mmm-quiz" value="c" data-explanation="Company size isn't the main criterion. MMM depends on data availability, channel mix, and analytical maturity, not revenue level.">
               <span>Only if they're under $100M ARR</span>
             </label>
             <label class="quiz-option">
@@ -2694,7 +3147,6 @@ ORDER BY cohort_month;</code></pre>
       <section id="stakeholder-reporting">
         <!-- Hero Card -->
         <div class="hero-card">
-          <div class="hero-number">16</div>
           <h2 class="hero-title">Stakeholder Reporting</h2>
           <p class="hero-subtitle">Tailoring metrics and models to different audiences</p>
         </div>
@@ -2713,15 +3165,25 @@ ORDER BY cohort_month;</code></pre>
         <!-- Scenario Card -->
         <div class="scenario-card">
           <div class="scenario-header">
-            <span class="scenario-icon">🎬</span>
-            <span class="scenario-label">NovaTech Scenario</span>
+            <span class="scenario-header-icon">📍</span>
+            <span class="scenario-header-title">Scenario: The Influence Measurement</span>
           </div>
-          <div class="scenario-content">
+          <div class="scenario-body">
             <div class="scenario-character">
-              <span class="role-tag role-mops">Marketing Ops</span>
-              <strong>Maya Chen</strong>
+              <div class="scenario-avatar">MC</div>
+              <div class="scenario-character-info">
+                <h4>Maya Chen</h4>
+                <p class="scenario-character-role">Marketing Ops Manager, NovaTech</p>
+              </div>
             </div>
-            <p>Maya got the same feedback three times in one week: "Great data, wrong story." James (CMO) wanted the high-level revenue impact. Derek (Sales) wanted to know why MQLs were down in his region. Tom (CFO) asked why she was showing "influenced" numbers that he couldn't audit. She realized she was building one report and hoping it worked for everyone. Now she builds stakeholder-specific views from the same data, leading with what each audience actually needs to decide.</p>
+
+            <div class="scenario-quote">
+              "Great data, wrong story."
+            </div>
+
+            <div class="scenario-narrative">
+              <p>Maya got the same feedback three times in one week: James (CMO) wanted the high-level revenue impact. Derek (Sales) wanted to know why MQLs were down in his region. Tom (CFO) asked why she was showing "influenced" numbers that he couldn't audit. She realized she was building one report and hoping it worked for everyone. Now she builds stakeholder-specific views from the same data, leading with what each audience actually needs to decide.</p>
+            </div>
           </div>
         </div>
 
@@ -2868,7 +3330,7 @@ Action Items:
           <p class="knowledge-check-question">NovaTech's CFO Tom asks Maya for the Q4 marketing performance report. Tom is skeptical of marketing metrics and wants numbers he can defend to the board. Which approach should Maya take?</p>
           <div class="quiz-options">
             <label class="quiz-option">
-              <input type="radio" name="reporting-quiz" value="a">
+              <input type="radio" name="reporting-quiz" value="a" data-explanation="CFOs are skeptical of inflated metrics. Sourced revenue is more defensible and credible.">
               <span>Lead with influenced pipeline ($45M) since it's the biggest number and shows marketing's reach</span>
             </label>
             <label class="quiz-option">
@@ -2876,11 +3338,11 @@ Action Items:
               <span>Lead with sourced pipeline and revenue, show CAC trend, and include actual vs. budget spend</span>
             </label>
             <label class="quiz-option">
-              <input type="radio" name="reporting-quiz" value="c">
+              <input type="radio" name="reporting-quiz" value="c" data-explanation="Attribution models don't answer CFO questions about ROI. Focus on sourced revenue, CAC, and payback period.">
               <span>Use position-based attribution to show marketing's full funnel contribution</span>
             </label>
             <label class="quiz-option">
-              <input type="radio" name="reporting-quiz" value="d">
+              <input type="radio" name="reporting-quiz" value="d" data-explanation="CFOs need different framing. Translate marketing metrics into financial impact and CAC/LTV.">
               <span>Send the same executive dashboard she shares with James (CMO)</span>
             </label>
           </div>
@@ -2939,12 +3401,13 @@ Action Items:
       </section>
 
       <footer class="footer">
-        Last updated: December 2024 | Guide 3 of 3 in the B2B Marketing for Analysts series
+        Last updated: December 2025 | Guide 3 of 3 in the B2B Marketing for Analysts series
       </footer>
     </div>
   </main>
 
   <script>
+    // Theme toggle with persistence 
 
     // Copy button functionality
     document.querySelectorAll('.copy-btn').forEach(btn => {
@@ -3000,38 +3463,71 @@ Action Items:
         const correctAnswer = quiz.dataset.answer;
 
         btn.addEventListener('click', () => {
+          if (btn.classList.contains('retry-mode')) {
+            // Reset quiz state
+            options.forEach(opt => {
+              opt.classList.remove('correct', 'incorrect');
+              const input = opt.querySelector('input');
+              if (input) input.checked = false;
+            });
+            feedback.classList.remove('show', 'correct', 'incorrect');
+            const wrongExp = feedback.querySelector('.wrong-explanation');
+            if (wrongExp) wrongExp.remove();
+            btn.textContent = 'Check Answer';
+            btn.classList.remove('retry-mode');
+            return;
+          }
+
           const selected = quiz.querySelector('input[type="radio"]:checked');
           if (!selected) return;
 
           const selectedValue = selected.value;
           const isCorrect = selectedValue === correctAnswer;
 
+          // Clear previous states
           options.forEach(opt => {
             opt.classList.remove('correct', 'incorrect');
           });
 
+          // Mark selected option
           const selectedOption = selected.closest('.quiz-option');
-          selectedOption.classList.add(isCorrect ? 'correct' : 'incorrect');
+          if (selectedOption) {
+            selectedOption.classList.add(isCorrect ? 'correct' : 'incorrect');
+          }
 
+          // If incorrect, also show the correct answer
           if (!isCorrect) {
             options.forEach(opt => {
               const input = opt.querySelector('input');
-              if (input.value === correctAnswer) {
+              if (input && input.value === correctAnswer) {
                 opt.classList.add('correct');
               }
             });
           }
 
+          // Show feedback
           feedback.classList.remove('correct', 'incorrect');
           feedback.classList.add('show', isCorrect ? 'correct' : 'incorrect');
 
-          btn.disabled = true;
-          options.forEach(opt => {
-            opt.querySelector('input').disabled = true;
-          });
+          // Add wrong answer explanation if available
+          const wrongExplanation = selected.dataset.explanation;
+          if (!isCorrect && wrongExplanation) {
+            const existingWrongExp = feedback.querySelector('.wrong-explanation');
+            if (existingWrongExp) existingWrongExp.remove();
+            const wrongExpDiv = document.createElement('p');
+            wrongExpDiv.className = 'wrong-explanation';
+            wrongExpDiv.innerHTML = '<strong>Why this is wrong:</strong> ' + wrongExplanation;
+            feedback.insertAdjacentElement('afterbegin', wrongExpDiv);
+          }
+
+          // Show retry button for both correct and incorrect
+          btn.textContent = 'Try Again';
+          btn.classList.add('retry-mode');
         });
       });
     }
+
+    document.addEventListener('DOMContentLoaded', initQuizzes);
 
     document.addEventListener('DOMContentLoaded', initQuizzes);
 
