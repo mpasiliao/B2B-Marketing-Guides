@@ -781,42 +781,36 @@
 
 
     /* 9. Next Up Link */
-    .next-up {
+    .next-up-link { margin: 2rem 0; }
+
+    .next-up-content {
       display: flex;
       align-items: center;
-      justify-content: space-between;
-      background: var(--bg-secondary);
-      border: 1px solid var(--border-color);
-      border-radius: 8px;
-      padding: 1.25rem 1.5rem;
-      margin-top: 3rem;
+      gap: 1rem;
+      padding: 1.25rem;
+      background: var(--hero-bg);
+      color: white;
+      border-radius: 12px;
       text-decoration: none;
-      color: var(--text-primary);
-      transition: all 0.15s;
+      transition: all 0.2s ease;
     }
 
-    .next-up:hover {
-      border-color: var(--coral);
-      transform: translateX(4px);
+    .next-up-content:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 24px rgba(30, 58, 95, 0.25);
     }
 
     .next-up-label {
-      font-size: 0.8rem;
+      font-size: 0.75rem;
       text-transform: uppercase;
       letter-spacing: 0.05em;
-      color: var(--text-secondary);
-      margin-bottom: 0.25rem;
+      opacity: 0.8;
     }
 
-    .next-up-title {
-      font-weight: 600;
-      color: var(--coral);
-    }
-
-    .next-up-arrow {
-      font-size: 1.5rem;
-      color: var(--coral);
-    }
+    .next-up-section { flex: 1; }
+    .next-up-number { display: block; font-size: 0.875rem; opacity: 0.8; }
+    .next-up-title { display: block; font-size: 1.1rem; font-weight: 600; }
+    .next-up-arrow { font-size: 1.5rem; opacity: 0.8; }
 
     /* 10. Journey Comparison Visual */
     .journey-comparison {
@@ -3666,13 +3660,16 @@ Marketing-Influenced Pipeline = Sum of opportunity values where
         </div>
 
         <!-- Next Guide Teaser -->
-        <a href="guide-2-martech-stack-abm.html" class="next-up" style="margin-top: 2rem;">
-          <div>
-            <div class="next-up-label">Continue Learning</div>
-            <div class="next-up-title">Guide 2: Martech Stack & ABM →</div>
-          </div>
-          <span class="next-up-arrow">→</span>
-        </a>
+        <div class="next-up-link" style="margin-top: 2rem;">
+          <a href="guide-2-martech-stack-abm.html" class="next-up-content">
+            <span class="next-up-label">Continue Learning</span>
+            <div class="next-up-section">
+              <span class="next-up-number">Guide 2</span>
+              <span class="next-up-title">Martech Stack & ABM</span>
+            </div>
+            <span class="next-up-arrow">→</span>
+          </a>
+        </div>
 
       </section>
 
