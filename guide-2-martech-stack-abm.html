@@ -327,9 +327,335 @@
       .main { margin-left: 0; }
       .theme-toggle { position: static; margin-top: 1rem; }
     }
+
+    /* ===== NEW DESIGN SYSTEM ===== */
+    :root {
+      --navy: #1e3a5f;
+      --coral: #e07a5f;
+      --teal: #2a9d8f;
+      --amber: #e9c46a;
+      --cream: #faf8f5;
+      --hero-gradient: linear-gradient(135deg, var(--navy) 0%, #2d5a8a 100%);
+      --tldr-bg: #f0fdf4;
+      --tldr-border: var(--teal);
+      --scenario-bg: linear-gradient(135deg, #fef7ed 0%, #fff7ed 100%);
+      --scenario-border: var(--coral);
+      --deep-dive-bg: #eff6ff;
+      --deep-dive-border: var(--navy);
+    }
+
+    [data-theme="dark"] {
+      --cream: #1a1a2e;
+      --tldr-bg: #0d2818;
+      --scenario-bg: linear-gradient(135deg, #2d1f1a 0%, #1a1510 100%);
+      --deep-dive-bg: #1a2332;
+    }
+
+    /* Progress Tracker */
+    .progress-container {
+      position: fixed;
+      top: 0;
+      left: var(--nav-width);
+      right: 0;
+      height: 4px;
+      background: var(--border-color);
+      z-index: 1000;
+    }
+
+    .progress-bar {
+      height: 100%;
+      background: linear-gradient(90deg, var(--teal), var(--coral));
+      width: 0%;
+      transition: width 0.1s ease-out;
+    }
+
+    @media (max-width: 768px) {
+      .progress-container { left: 0; }
+    }
+
+    /* Hero Cards */
+    .hero-card {
+      background: var(--hero-gradient);
+      border-radius: 16px;
+      padding: 2.5rem;
+      margin-bottom: 2rem;
+      color: white;
+      text-align: center;
+    }
+
+    .hero-card h2 {
+      color: white;
+      border: none;
+      margin: 0.5rem 0;
+      padding: 0;
+      font-size: 2rem;
+    }
+
+    .hero-card .anchor-link { color: rgba(255,255,255,0.5); }
+    .hero-card .anchor-link:hover { color: white; }
+
+    .hero-icon {
+      width: 64px;
+      height: 64px;
+      margin: 0 auto 1rem;
+      background: rgba(255,255,255,0.15);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--amber);
+    }
+
+    .hero-subtitle {
+      color: rgba(255,255,255,0.85);
+      font-size: 1.1rem;
+      margin: 0;
+    }
+
+    /* TL;DR Box */
+    .tldr-box {
+      background: var(--tldr-bg);
+      border: 2px solid var(--tldr-border);
+      border-radius: 12px;
+      padding: 1.5rem;
+      margin: 1.5rem 0;
+    }
+
+    .tldr-header {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      margin-bottom: 1rem;
+      color: var(--teal);
+      font-weight: 600;
+    }
+
+    .tldr-icon { display: flex; }
+    .tldr-title { font-size: 1rem; text-transform: uppercase; letter-spacing: 0.05em; }
+    .tldr-list { margin: 0; padding-left: 1.25rem; }
+    .tldr-list li { margin-bottom: 0.5rem; }
+    .tldr-list li:last-child { margin-bottom: 0; }
+
+    /* Scenario Cards */
+    .scenario-card {
+      background: var(--scenario-bg);
+      border-left: 4px solid var(--scenario-border);
+      border-radius: 0 12px 12px 0;
+      padding: 1.5rem;
+      margin: 1.5rem 0;
+    }
+
+    .scenario-header {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      margin-bottom: 1rem;
+      color: var(--coral);
+      font-weight: 600;
+    }
+
+    .scenario-icon { display: flex; }
+    .scenario-label { font-size: 0.875rem; text-transform: uppercase; letter-spacing: 0.05em; }
+    .scenario-content p { margin-bottom: 0.75rem; }
+    .scenario-content p:last-child { margin-bottom: 0; }
+
+    /* Role Tags */
+    .role-tag {
+      display: inline-block;
+      padding: 0.125rem 0.5rem;
+      border-radius: 4px;
+      font-size: 0.8rem;
+      font-weight: 600;
+      margin-right: 0.25rem;
+    }
+
+    .role-mops { background: #dbeafe; color: #1e40af; }
+    .role-sales { background: #fce7f3; color: #9d174d; }
+    .role-demand { background: #d1fae5; color: #065f46; }
+    .role-content { background: #fef3c7; color: #92400e; }
+    .role-exec { background: #ede9fe; color: #5b21b6; }
+    .role-analytics { background: #cffafe; color: #0e7490; }
+
+    [data-theme="dark"] .role-mops { background: #1e3a5f; color: #93c5fd; }
+    [data-theme="dark"] .role-sales { background: #4a1d3d; color: #f9a8d4; }
+    [data-theme="dark"] .role-demand { background: #064e3b; color: #6ee7b7; }
+    [data-theme="dark"] .role-content { background: #451a03; color: #fcd34d; }
+    [data-theme="dark"] .role-exec { background: #2e1065; color: #c4b5fd; }
+    [data-theme="dark"] .role-analytics { background: #164e63; color: #67e8f9; }
+
+    /* Deep Dive Accordion */
+    .deep-dive {
+      background: var(--deep-dive-bg);
+      border: 1px solid var(--deep-dive-border);
+      border-radius: 12px;
+      margin: 2rem 0;
+    }
+
+    .deep-dive-toggle {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      padding: 1.25rem;
+      cursor: pointer;
+      font-weight: 600;
+      color: var(--navy);
+      list-style: none;
+    }
+
+    .deep-dive-toggle::-webkit-details-marker { display: none; }
+
+    .deep-dive-icon {
+      display: flex;
+      transition: transform 0.2s;
+    }
+
+    .deep-dive[open] .deep-dive-icon { transform: rotate(45deg); }
+    .deep-dive-content { padding: 0 1.25rem 1.25rem; }
+    .deep-dive-content > *:first-child { margin-top: 0; }
+
+    [data-theme="dark"] .deep-dive-toggle { color: #93c5fd; }
+
+    /* Quick Reference Cards */
+    .quick-reference {
+      background: var(--bg-secondary);
+      border: 1px solid var(--border-color);
+      border-radius: 12px;
+      margin: 1.5rem 0;
+      overflow: hidden;
+    }
+
+    .quick-reference-header {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 1rem 1.25rem;
+      background: var(--navy);
+      color: white;
+      font-weight: 600;
+      font-size: 0.9rem;
+    }
+
+    .quick-reference-content { padding: 1rem 1.25rem; }
+    .quick-reference-content table { margin: 0; }
+    .quick-reference-content p:last-child { margin-bottom: 0; }
+
+    /* Knowledge Checks */
+    .knowledge-check {
+      background: var(--bg-secondary);
+      border: 2px solid var(--amber);
+      border-radius: 12px;
+      padding: 1.5rem;
+      margin: 2rem 0;
+    }
+
+    .knowledge-check-header {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      color: #92400e;
+      font-weight: 600;
+      margin-bottom: 1rem;
+    }
+
+    [data-theme="dark"] .knowledge-check-header { color: var(--amber); }
+
+    .knowledge-check-question {
+      font-weight: 500;
+      margin-bottom: 1rem;
+    }
+
+    .quiz-options { display: flex; flex-direction: column; gap: 0.5rem; margin-bottom: 1rem; }
+
+    .quiz-option {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      padding: 0.75rem 1rem;
+      background: var(--bg-primary);
+      border: 1px solid var(--border-color);
+      border-radius: 8px;
+      cursor: pointer;
+      transition: all 0.15s;
+    }
+
+    .quiz-option:hover { border-color: var(--amber); }
+    .quiz-option.correct { background: #dcfce7; border-color: #22c55e; }
+    .quiz-option.incorrect { background: #fee2e2; border-color: #ef4444; }
+
+    [data-theme="dark"] .quiz-option.correct { background: #052e16; }
+    [data-theme="dark"] .quiz-option.incorrect { background: #450a0a; }
+
+    .quiz-btn {
+      background: var(--navy);
+      color: white;
+      border: none;
+      padding: 0.75rem 1.5rem;
+      border-radius: 8px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: background 0.15s;
+    }
+
+    .quiz-btn:hover { background: #2d5a8a; }
+    .quiz-btn:disabled { opacity: 0.5; cursor: not-allowed; }
+
+    .quiz-feedback {
+      display: none;
+      margin-top: 1rem;
+      padding: 1rem;
+      border-radius: 8px;
+    }
+
+    .quiz-feedback.show { display: block; }
+    .quiz-feedback.correct { background: #dcfce7; }
+    .quiz-feedback.incorrect { background: #fee2e2; }
+
+    [data-theme="dark"] .quiz-feedback.correct { background: #052e16; }
+    [data-theme="dark"] .quiz-feedback.incorrect { background: #450a0a; }
+
+    .feedback-correct, .feedback-incorrect { display: none; margin: 0; }
+    .quiz-feedback.correct .feedback-correct { display: block; }
+    .quiz-feedback.incorrect .feedback-incorrect { display: block; }
+
+    /* Next Up Link */
+    .next-up-link { margin: 2rem 0; }
+
+    .next-up-content {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      padding: 1.25rem;
+      background: var(--hero-gradient);
+      border-radius: 12px;
+      color: white;
+      text-decoration: none;
+      transition: transform 0.15s, box-shadow 0.15s;
+    }
+
+    .next-up-content:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 24px rgba(30, 58, 95, 0.25);
+    }
+
+    .next-up-label {
+      font-size: 0.75rem;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      opacity: 0.8;
+    }
+
+    .next-up-section { flex: 1; }
+    .next-up-number { display: block; font-size: 0.875rem; opacity: 0.8; }
+    .next-up-title { display: block; font-size: 1.1rem; font-weight: 600; }
+    .next-up-arrow { font-size: 1.5rem; opacity: 0.8; }
   </style>
 </head>
 <body>
+  <!-- Progress Tracker -->
+  <div class="progress-container">
+    <div class="progress-bar" id="progressBar"></div>
+  </div>
+
   <nav class="nav">
     <div class="nav-title">Contents</div>
     <ul class="nav-list">
@@ -370,9 +696,59 @@
 
       <!-- Section 1: Stack Layers -->
       <section id="stack-layers">
-        <h2>Stack Layers <a href="#stack-layers" class="anchor-link">#</a></h2>
-        
-        <p>A martech stack isn't a random collection of tools. It's an architecture with distinct layers, each serving a specific purpose. Understanding these layers helps you diagnose problems, identify gaps, and evaluate new tools.</p>
+        <!-- Hero Card -->
+        <div class="hero-card">
+          <div class="hero-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <rect x="2" y="2" width="20" height="8" rx="2" ry="2"/>
+              <rect x="2" y="14" width="20" height="8" rx="2" ry="2"/>
+              <line x1="6" y1="6" x2="6.01" y2="6"/>
+              <line x1="6" y1="18" x2="6.01" y2="18"/>
+            </svg>
+          </div>
+          <h2>Stack Layers <a href="#stack-layers" class="anchor-link">#</a></h2>
+          <p class="hero-subtitle">Understanding the architecture of modern martech</p>
+        </div>
+
+        <!-- TL;DR Box -->
+        <div class="tldr-box">
+          <div class="tldr-header">
+            <span class="tldr-icon">
+              <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <circle cx="12" cy="12" r="10"/>
+                <path d="M12 16v-4"/>
+                <path d="M12 8h.01"/>
+              </svg>
+            </span>
+            <span class="tldr-title">TL;DR</span>
+          </div>
+          <ul class="tldr-list">
+            <li><strong>Collection Layer:</strong> Where data enters (tracking, forms, enrichment, intent signals)</li>
+            <li><strong>Storage Layer:</strong> Where data lives (CRM, CDP, data warehouse)</li>
+            <li><strong>Activation Layer:</strong> Where you act on data (MAP, email, ads, sales engagement)</li>
+            <li><strong>Measurement Layer:</strong> Where you analyze results (attribution, dashboards, BI tools)</li>
+          </ul>
+        </div>
+
+        <!-- Scenario Card -->
+        <div class="scenario-card">
+          <div class="scenario-header">
+            <span class="scenario-icon">
+              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/>
+                <circle cx="9" cy="7" r="4"/>
+                <path d="M22 21v-2a4 4 0 0 0-3-3.87"/>
+                <path d="M16 3.13a4 4 0 0 1 0 7.75"/>
+              </svg>
+            </span>
+            <span class="scenario-label">NovaTech Scenario</span>
+          </div>
+          <div class="scenario-content">
+            <p><span class="role-tag role-mops">Maya Chen (MOps)</span> is helping evaluate a new tool that promises to "accelerate pipeline." The vendor demo is impressive, but Maya's first question isn't about features—it's about architecture.</p>
+            <p>"Which layer does this live in?" she asks. The vendor says it "integrates with everything." Maya pushes: "Does it collect data, store data, activate campaigns, or measure results?" Turns out it's trying to do all four—a red flag for complexity and overlap with existing tools.</p>
+            <p><strong>Lesson:</strong> Understanding layers helps you evaluate tools and diagnose problems faster.</p>
+          </div>
+        </div>
 
         <h3>The Four-Layer Model</h3>
 
@@ -382,26 +758,26 @@
             <rect x="10" y="10" width="480" height="55" rx="4" class="box-fill box-stroke"/>
             <text x="250" y="32" text-anchor="middle" class="text-title" font-size="12" font-weight="600">MEASUREMENT LAYER</text>
             <text x="250" y="50" text-anchor="middle" class="text-secondary" font-size="10">Attribution • Reporting • Dashboards • BI Tools • Data Science</text>
-            
+
             <!-- Arrow 1 -->
             <path d="M250 65 L250 78 M245 73 L250 65 L255 73" class="arrow" fill="none" stroke-width="2"/>
-            
+
             <!-- Activation Layer -->
             <rect x="10" y="83" width="480" height="55" rx="4" class="box-fill box-stroke"/>
             <text x="250" y="105" text-anchor="middle" class="text-title" font-size="12" font-weight="600">ACTIVATION LAYER</text>
             <text x="250" y="123" text-anchor="middle" class="text-secondary" font-size="10">MAP • Ad Platforms • Email • Chat • Sales Engagement</text>
-            
+
             <!-- Arrow 2 -->
             <path d="M250 138 L250 151 M245 146 L250 138 L255 146" class="arrow" fill="none" stroke-width="2"/>
-            
+
             <!-- Storage Layer -->
             <rect x="10" y="156" width="480" height="55" rx="4" class="box-fill box-stroke"/>
             <text x="250" y="178" text-anchor="middle" class="text-title" font-size="12" font-weight="600">STORAGE LAYER</text>
             <text x="250" y="196" text-anchor="middle" class="text-secondary" font-size="10">CRM • CDP • Data Warehouse • Data Lake</text>
-            
+
             <!-- Arrow 3 -->
             <path d="M250 211 L250 224 M245 219 L250 211 L255 219" class="arrow" fill="none" stroke-width="2"/>
-            
+
             <!-- Collection Layer -->
             <rect x="10" y="229" width="480" height="55" rx="4" class="box-fill box-stroke"/>
             <text x="250" y="251" text-anchor="middle" class="text-title" font-size="12" font-weight="600">COLLECTION LAYER</text>
@@ -409,80 +785,228 @@
           </svg>
         </div>
 
-        <h4>Layer 1: Collection</h4>
-        <p>Where data enters your stack. This includes website tracking (page views, form submissions), third-party data (enrichment, intent signals), CRM activity logging, and event data from your product.</p>
+        <!-- Quick Reference Card -->
+        <div class="quick-reference">
+          <div class="quick-reference-header">
+            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <rect x="2" y="2" width="20" height="8" rx="2" ry="2"/>
+              <rect x="2" y="14" width="20" height="8" rx="2" ry="2"/>
+            </svg>
+            <span>Layer Functions at a Glance</span>
+          </div>
+          <div class="quick-reference-content">
+            <table>
+              <thead>
+                <tr>
+                  <th>Layer</th>
+                  <th>Purpose</th>
+                  <th>Example Tools</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td><strong>Collection</strong></td>
+                  <td>Data enters the stack</td>
+                  <td>Segment, forms, intent providers</td>
+                </tr>
+                <tr>
+                  <td><strong>Storage</strong></td>
+                  <td>Data lives here</td>
+                  <td>Salesforce, Snowflake, CDP</td>
+                </tr>
+                <tr>
+                  <td><strong>Activation</strong></td>
+                  <td>Act on the data</td>
+                  <td>Marketo, HubSpot, Outreach</td>
+                </tr>
+                <tr>
+                  <td><strong>Measurement</strong></td>
+                  <td>Analyze results</td>
+                  <td>Bizible, Tableau, Looker</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
 
-        <h4>Layer 2: Storage</h4>
-        <p>Where data lives. The CRM stores relationship data (contacts, accounts, opportunities). A CDP unifies customer profiles across sources. A data warehouse holds everything for analysis.</p>
+        <!-- Deep Dive -->
+        <details class="deep-dive">
+          <summary class="deep-dive-toggle">
+            <span class="deep-dive-icon">
+              <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <circle cx="11" cy="11" r="8"/>
+                <path d="m21 21-4.3-4.3"/>
+                <path d="M11 8v6"/>
+                <path d="M8 11h6"/>
+              </svg>
+            </span>
+            Deep Dive: Common Layer Mismatches
+          </summary>
+          <div class="deep-dive-content">
+            <p>Most martech problems stem from using tools at the wrong layer:</p>
+            <ul>
+              <li><strong>Measuring with activation tools:</strong> Trying to get attribution data from your MAP. It wasn't designed for that—use a dedicated measurement tool.</li>
+              <li><strong>Storing in collection tools:</strong> Treating your web analytics as a customer database. It captures events, not relationships.</li>
+              <li><strong>Activating from storage:</strong> Running campaigns directly from your CRM or data warehouse. These are systems of record, not engagement engines.</li>
+              <li><strong>Collecting at the storage layer:</strong> Expecting your CRM to automatically pull third-party data. You need enrichment tools at the collection layer.</li>
+            </ul>
+            <p><strong>The fix:</strong> When evaluating any tool, first answer: "Which layer does this belong to?" If it claims to do everything, be skeptical about its depth in any single layer.</p>
+          </div>
+        </details>
 
-        <h4>Layer 3: Activation</h4>
-        <p>Where you act on data. Marketing automation sends emails based on behavior. Ad platforms target specific audiences. Sales engagement tools sequence outreach.</p>
+        <!-- Knowledge Check -->
+        <div class="knowledge-check" data-answer="c">
+          <div class="knowledge-check-header">
+            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <circle cx="12" cy="12" r="10"/>
+              <path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"/>
+              <path d="M12 17h.01"/>
+            </svg>
+            Knowledge Check
+          </div>
+          <p class="knowledge-check-question">A vendor says their tool "captures website behavior, stores unified profiles, sends personalized emails, and provides attribution reports." What's the likely problem with this tool?</p>
+          <div class="quiz-options">
+            <label class="quiz-option">
+              <input type="radio" name="layers-quiz" value="a">
+              <span>It's too expensive for what it does</span>
+            </label>
+            <label class="quiz-option">
+              <input type="radio" name="layers-quiz" value="b">
+              <span>It's missing an important feature</span>
+            </label>
+            <label class="quiz-option">
+              <input type="radio" name="layers-quiz" value="c">
+              <span>It spans all four layers, suggesting shallow capability in each</span>
+            </label>
+            <label class="quiz-option">
+              <input type="radio" name="layers-quiz" value="d">
+              <span>It only works with specific CRMs</span>
+            </label>
+          </div>
+          <button class="quiz-btn">Check Answer</button>
+          <div class="quiz-feedback">
+            <p class="feedback-correct">Correct! When a tool claims to operate across all four layers (collection, storage, activation, and measurement), it's a red flag. Best-in-class tools typically excel in one or two layers. Tools that try to do everything often do nothing well.</p>
+            <p class="feedback-incorrect">Not quite. The key issue is that the tool spans all four stack layers. When a tool claims to collect, store, activate, AND measure, it likely lacks depth in any single area. Specialized tools typically outperform all-in-one solutions.</p>
+          </div>
+        </div>
 
-        <h4>Layer 4: Measurement</h4>
-        <p>Where you understand what's working. Attribution connects marketing touches to revenue. Dashboards visualize performance. BI tools enable ad-hoc analysis.</p>
-
-        <div class="callout callout-tip">
-          <strong>In Practice:</strong> Most stack problems are layer mismatches—trying to measure with an activation tool, or store data in a collection tool. When evaluating a new tool, first identify which layer it belongs to.
+        <!-- Next Up Link -->
+        <div class="next-up-link">
+          <a href="#crm" class="next-up-content">
+            <span class="next-up-label">Next Section</span>
+            <div class="next-up-section">
+              <span class="next-up-number">Section 2</span>
+              <span class="next-up-title">CRM Systems</span>
+            </div>
+            <span class="next-up-arrow">→</span>
+          </a>
         </div>
       </section>
 
       <!-- Section 2: CRM -->
       <section id="crm">
-        <h2>Core Systems: CRM <a href="#crm" class="anchor-link">#</a></h2>
-
-        <p>The CRM (Customer Relationship Management) is the system of record for customer relationships. In B2B, it's where sales lives and where revenue is tracked. Marketing needs to work with it, but rarely owns it.</p>
-
-        <h3>What Lives in the CRM</h3>
-
-        <table>
-          <thead>
-            <tr>
-              <th>Object</th>
-              <th>What It Represents</th>
-              <th>Key Fields</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td><strong>Lead</strong></td>
-              <td>An individual person before they're associated with an opportunity</td>
-              <td>Name, email, company, source, status, score</td>
-            </tr>
-            <tr>
-              <td><strong>Contact</strong></td>
-              <td>An individual person associated with an account</td>
-              <td>Name, email, title, role, account relationship</td>
-            </tr>
-            <tr>
-              <td><strong>Account</strong></td>
-              <td>A company you're selling to or have sold to</td>
-              <td>Name, industry, employee count, revenue, tier</td>
-            </tr>
-            <tr>
-              <td><strong>Opportunity</strong></td>
-              <td>A potential deal in progress</td>
-              <td>Amount, stage, close date, probability, owner</td>
-            </tr>
-            <tr>
-              <td><strong>Activity</strong></td>
-              <td>Interactions (calls, emails, meetings)</td>
-              <td>Type, date, notes, associated records</td>
-            </tr>
-          </tbody>
-        </table>
-
-        <h3>Lead vs Contact: The Conversion Point</h3>
-        <p>In Salesforce (the most common B2B CRM), leads and contacts are separate objects. When a lead becomes sales-ready and gets associated with a real opportunity, it gets "converted" into a Contact + Account + Opportunity. This is a critical handoff moment.</p>
-
-        <div class="callout callout-warning">
-          <strong>Common Mistake:</strong> Treating lead conversion as a data migration event rather than a business process. The conversion should happen when there's a real opportunity, not just when marketing deems someone "qualified." Premature conversion creates noise in the pipeline.
+        <!-- Hero Card -->
+        <div class="hero-card">
+          <div class="hero-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/>
+              <circle cx="9" cy="7" r="4"/>
+              <path d="M23 21v-2a4 4 0 0 0-3-3.87"/>
+              <path d="M16 3.13a4 4 0 0 1 0 7.75"/>
+            </svg>
+          </div>
+          <h2>Core Systems: CRM <a href="#crm" class="anchor-link">#</a></h2>
+          <p class="hero-subtitle">The system of record for customer relationships</p>
         </div>
 
-        <h3>How Marketing Uses the CRM</h3>
+        <!-- TL;DR Box -->
+        <div class="tldr-box">
+          <div class="tldr-header">
+            <span class="tldr-icon">
+              <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <circle cx="12" cy="12" r="10"/>
+                <path d="M12 16v-4"/>
+                <path d="M12 8h.01"/>
+              </svg>
+            </span>
+            <span class="tldr-title">TL;DR</span>
+          </div>
+          <ul class="tldr-list">
+            <li><strong>CRM = Sales' home base.</strong> Marketing uses it but rarely owns it</li>
+            <li>Core objects: <strong>Leads, Contacts, Accounts, Opportunities, Activities</strong></li>
+            <li><strong>Lead conversion</strong> (Lead → Contact + Account + Opportunity) is a critical handoff moment</li>
+            <li>Marketing reads campaign performance and writes lead data via MAP sync</li>
+          </ul>
+        </div>
 
-        <p><strong>Reading data:</strong> Campaign performance (which leads became opportunities), account intelligence (what's the status of key targets), pipeline reporting (what's marketing's contribution).</p>
+        <!-- Scenario Card -->
+        <div class="scenario-card">
+          <div class="scenario-header">
+            <span class="scenario-icon">
+              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/>
+                <circle cx="9" cy="7" r="4"/>
+                <path d="M22 21v-2a4 4 0 0 0-3-3.87"/>
+                <path d="M16 3.13a4 4 0 0 1 0 7.75"/>
+              </svg>
+            </span>
+            <span class="scenario-label">NovaTech Scenario</span>
+          </div>
+          <div class="scenario-content">
+            <p><span class="role-tag role-sales">Derek Williams (Sales)</span> notices that pipeline reports show 300 "opportunities" but only 50 are real deals. The rest are leads that got converted prematurely by an over-eager SDR.</p>
+            <p><span class="role-tag role-mops">Maya Chen (MOps)</span> helps clean up the mess and implements a rule: "No conversion without a discovery call completed." Now lead conversion is a business process, not just data entry.</p>
+            <p><strong>Key insight:</strong> The CRM's lead conversion isn't just moving data—it's a formal handoff that should reflect a real business event.</p>
+          </div>
+        </div>
 
-        <p><strong>Writing data:</strong> Syncing leads from MAP, updating lead sources, recording campaign membership, passing lead scores.</p>
+        <!-- Quick Reference: CRM Objects -->
+        <div class="quick-reference">
+          <div class="quick-reference-header">
+            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M14.5 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7.5L14.5 2z"/>
+              <polyline points="14 2 14 8 20 8"/>
+            </svg>
+            <span>CRM Objects at a Glance</span>
+          </div>
+          <div class="quick-reference-content">
+            <table>
+              <thead>
+                <tr>
+                  <th>Object</th>
+                  <th>What It Represents</th>
+                  <th>Key Fields</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td><strong>Lead</strong></td>
+                  <td>Person before opportunity association</td>
+                  <td>Name, email, source, status, score</td>
+                </tr>
+                <tr>
+                  <td><strong>Contact</strong></td>
+                  <td>Person associated with an account</td>
+                  <td>Name, title, role, account</td>
+                </tr>
+                <tr>
+                  <td><strong>Account</strong></td>
+                  <td>Company you're selling to</td>
+                  <td>Industry, size, revenue, tier</td>
+                </tr>
+                <tr>
+                  <td><strong>Opportunity</strong></td>
+                  <td>Deal in progress</td>
+                  <td>Amount, stage, close date, owner</td>
+                </tr>
+                <tr>
+                  <td><strong>Activity</strong></td>
+                  <td>Interactions logged</td>
+                  <td>Type, date, notes, related records</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
 
         <h3>Salesforce Object Relationships</h3>
 
@@ -493,31 +1017,31 @@
             <text x="200" y="35" text-anchor="middle" class="text-primary" font-size="12">Lead</text>
             <text x="270" y="35" class="text-secondary" font-size="10">Pre-conversion</text>
             <line x1="250" y1="30" x2="265" y2="30" class="arrow" stroke-width="1"/>
-            
+
             <!-- Arrow down with label -->
             <path d="M200 50 L200 65" class="arrow" fill="none" stroke-width="2"/>
             <text x="200" y="80" text-anchor="middle" class="text-secondary" font-size="10">[Conversion]</text>
             <path d="M200 85 L200 100 M195 95 L200 100 L205 95" class="arrow" fill="none" stroke-width="2"/>
-            
+
             <!-- Three boxes row -->
             <rect x="20" y="105" width="100" height="40" rx="4" class="box-fill box-stroke"/>
             <text x="70" y="130" text-anchor="middle" class="text-primary" font-size="12">Account</text>
-            
+
             <rect x="150" y="105" width="100" height="40" rx="4" class="box-fill box-stroke"/>
             <text x="200" y="130" text-anchor="middle" class="text-primary" font-size="12">Contact</text>
-            
+
             <rect x="280" y="105" width="110" height="40" rx="4" class="box-fill box-stroke"/>
             <text x="335" y="130" text-anchor="middle" class="text-primary" font-size="12">Opportunity</text>
-            
+
             <!-- Horizontal connectors -->
             <path d="M120 125 L150 125 M125 120 L120 125 L125 130" class="arrow" fill="none" stroke-width="1.5"/>
             <path d="M250 125 L280 125 M275 120 L280 125 L275 130" class="arrow" fill="none" stroke-width="1.5"/>
-            
+
             <!-- Arrows down to Activities -->
             <path d="M70 145 L70 165" class="arrow" fill="none" stroke-width="1.5"/>
             <path d="M200 145 L200 165" class="arrow" fill="none" stroke-width="1.5"/>
             <path d="M335 145 L335 165" class="arrow" fill="none" stroke-width="1.5"/>
-            
+
             <!-- Activities box -->
             <rect x="20" y="170" width="370" height="50" rx="4" class="box-fill box-stroke"/>
             <text x="205" y="192" text-anchor="middle" class="text-primary" font-size="12">Activities</text>
@@ -525,25 +1049,191 @@
           </svg>
         </div>
 
-        <div class="callout callout-info">
-          <strong>HubSpot Difference:</strong> HubSpot uses a unified contact model instead of Salesforce's lead/contact split. All people are "Contacts" from the start, associated with "Companies." This is simpler but can make funnel analysis messier since there's no clean conversion event.
+        <!-- Deep Dive -->
+        <details class="deep-dive">
+          <summary class="deep-dive-toggle">
+            <span class="deep-dive-icon">
+              <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <circle cx="11" cy="11" r="8"/>
+                <path d="m21 21-4.3-4.3"/>
+                <path d="M11 8v6"/>
+                <path d="M8 11h6"/>
+              </svg>
+            </span>
+            Deep Dive: How Marketing Uses the CRM
+          </summary>
+          <div class="deep-dive-content">
+            <h4>Reading Data (Marketing consumes)</h4>
+            <ul>
+              <li><strong>Campaign performance:</strong> Which leads became opportunities? Which closed?</li>
+              <li><strong>Account intelligence:</strong> What's the status of key target accounts?</li>
+              <li><strong>Pipeline reporting:</strong> What's marketing's contribution to revenue?</li>
+              <li><strong>Contact roles:</strong> Who's involved in active opportunities?</li>
+            </ul>
+
+            <h4>Writing Data (Marketing updates)</h4>
+            <ul>
+              <li><strong>Lead sync:</strong> New leads from MAP, form submissions, events</li>
+              <li><strong>Lead sources:</strong> First touch and most recent campaign</li>
+              <li><strong>Campaign membership:</strong> Which leads engaged with which campaigns</li>
+              <li><strong>Lead scores:</strong> Behavioral and demographic scores from MAP</li>
+            </ul>
+
+            <h4>Salesforce vs HubSpot</h4>
+            <p><strong>Salesforce:</strong> Lead/Contact split with formal conversion. Great for funnel analysis but requires process discipline.</p>
+            <p><strong>HubSpot:</strong> Unified contact model—everyone is a Contact from day one. Simpler to manage but harder to track conversion events.</p>
+          </div>
+        </details>
+
+        <!-- Knowledge Check -->
+        <div class="knowledge-check" data-answer="b">
+          <div class="knowledge-check-header">
+            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <circle cx="12" cy="12" r="10"/>
+              <path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"/>
+              <path d="M12 17h.01"/>
+            </svg>
+            Knowledge Check
+          </div>
+          <p class="knowledge-check-question">In Salesforce, when should a Lead be "converted" to a Contact + Account + Opportunity?</p>
+          <div class="quiz-options">
+            <label class="quiz-option">
+              <input type="radio" name="crm-quiz" value="a">
+              <span>When marketing scores them as an MQL</span>
+            </label>
+            <label class="quiz-option">
+              <input type="radio" name="crm-quiz" value="b">
+              <span>When there's a real opportunity (discovery call, qualified interest)</span>
+            </label>
+            <label class="quiz-option">
+              <input type="radio" name="crm-quiz" value="c">
+              <span>Immediately when they fill out any form</span>
+            </label>
+            <label class="quiz-option">
+              <input type="radio" name="crm-quiz" value="d">
+              <span>After 30 days in the system</span>
+            </label>
+          </div>
+          <button class="quiz-btn">Check Answer</button>
+          <div class="quiz-feedback">
+            <p class="feedback-correct">Correct! Lead conversion should happen when there's a real sales opportunity—typically after a discovery call or when qualified interest is confirmed. Premature conversion clutters the pipeline with non-opportunities.</p>
+            <p class="feedback-incorrect">Not quite. Lead conversion creates an Opportunity record, so it should only happen when there's a real sales opportunity. Converting too early (at MQL or form fill) creates pipeline noise and makes reporting unreliable.</p>
+          </div>
+        </div>
+
+        <!-- Next Up Link -->
+        <div class="next-up-link">
+          <a href="#map" class="next-up-content">
+            <span class="next-up-label">Next Section</span>
+            <div class="next-up-section">
+              <span class="next-up-number">Section 3</span>
+              <span class="next-up-title">Marketing Automation Platform</span>
+            </div>
+            <span class="next-up-arrow">→</span>
+          </a>
         </div>
       </section>
 
       <!-- Section 3: MAP -->
       <section id="map">
-        <h2>Core Systems: Marketing Automation Platform <a href="#map" class="anchor-link">#</a></h2>
+        <!-- Hero Card -->
+        <div class="hero-card">
+          <div class="hero-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/>
+              <polyline points="22,6 12,13 2,6"/>
+            </svg>
+          </div>
+          <h2>Marketing Automation Platform <a href="#map" class="anchor-link">#</a></h2>
+          <p class="hero-subtitle">Marketing's operational hub for campaigns, scoring, and nurtures</p>
+        </div>
 
-        <p>The MAP is marketing's operational hub. It manages email campaigns, lead scoring, nurture programs, and the mechanics of turning anonymous visitors into known leads.</p>
+        <!-- TL;DR Box -->
+        <div class="tldr-box">
+          <div class="tldr-header">
+            <span class="tldr-icon">
+              <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <circle cx="12" cy="12" r="10"/>
+                <path d="M12 16v-4"/>
+                <path d="M12 8h.01"/>
+              </svg>
+            </span>
+            <span class="tldr-title">TL;DR</span>
+          </div>
+          <ul class="tldr-list">
+            <li><strong>5 core functions:</strong> Email marketing, lead scoring, nurture programs, forms/landing pages, campaign tracking</li>
+            <li><strong>Lead scoring</strong> = fit (demographics) + engagement (behavior) + decay (recency)</li>
+            <li><strong>MAP-CRM sync</strong> is critical infrastructure—monitor it weekly</li>
+            <li><strong>HubSpot</strong> = simpler, all-in-one; <strong>Marketo</strong> = powerful, enterprise</li>
+          </ul>
+        </div>
+
+        <!-- Scenario Card -->
+        <div class="scenario-card">
+          <div class="scenario-header">
+            <span class="scenario-icon">
+              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/>
+                <circle cx="9" cy="7" r="4"/>
+                <path d="M22 21v-2a4 4 0 0 0-3-3.87"/>
+                <path d="M16 3.13a4 4 0 0 1 0 7.75"/>
+              </svg>
+            </span>
+            <span class="scenario-label">NovaTech Scenario</span>
+          </div>
+          <div class="scenario-content">
+            <p><span class="role-tag role-mops">Maya Chen (MOps)</span> notices that sales is complaining about lead quality. "All these MQLs are garbage!" Derek says. Maya digs into the scoring model and finds the problem: leads get 30 points just for downloading a whitepaper, but the MQL threshold is only 50.</p>
+            <p>She rebuilds the scoring model: high-intent actions (pricing page, demo request) get more weight, content downloads get less. She adds decay rules so old scores don't persist. MQL-to-SQL rate jumps from 12% to 41%.</p>
+            <p><strong>Key insight:</strong> Lead scoring isn't set-and-forget—it needs continuous tuning based on actual outcomes.</p>
+          </div>
+        </div>
 
         <h3>Core MAP Functions</h3>
 
-        <h4>1. Email Marketing</h4>
-        <p>Not just sending emails, but managing the entire lifecycle: building emails, defining audiences, scheduling sends, handling bounces/unsubscribes, and tracking engagement. The MAP maintains email deliverability reputation—critical infrastructure.</p>
+        <!-- Quick Reference: MAP Functions -->
+        <div class="quick-reference">
+          <div class="quick-reference-header">
+            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <polyline points="9 11 12 14 22 4"/>
+              <path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/>
+            </svg>
+            <span>5 Core MAP Functions</span>
+          </div>
+          <div class="quick-reference-content">
+            <table>
+              <thead>
+                <tr>
+                  <th>Function</th>
+                  <th>What It Does</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td><strong>Email Marketing</strong></td>
+                  <td>Send campaigns, manage deliverability, track engagement</td>
+                </tr>
+                <tr>
+                  <td><strong>Lead Scoring</strong></td>
+                  <td>Rank leads by fit + engagement for prioritization</td>
+                </tr>
+                <tr>
+                  <td><strong>Nurture Programs</strong></td>
+                  <td>Automated sequences based on behavior triggers</td>
+                </tr>
+                <tr>
+                  <td><strong>Forms & Landing Pages</strong></td>
+                  <td>Convert anonymous visitors to known leads</td>
+                </tr>
+                <tr>
+                  <td><strong>Campaign Management</strong></td>
+                  <td>Track which activities influenced which leads</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
 
-        <h4>2. Lead Scoring</h4>
-        <p>Assigning numerical values to leads based on fit (demographic/firmographic match) and engagement (behavioral signals). A lead with score 85 (opened 5 emails, visited pricing page, from target company) gets treated differently than score 12 (downloaded one whitepaper three months ago).</p>
-
+        <h4>Lead Scoring Model Example</h4>
         <div class="code-block" data-language="example scoring model">
           <button class="copy-btn">Copy</button>
           <pre><code>DEMOGRAPHIC SCORING (Fit)
@@ -551,7 +1241,7 @@
   Company size 200-2000 employees: +10
   Industry = Target vertical: +10
   Location = Serviceable region: +5
-  
+
 BEHAVIORAL SCORING (Engagement)
   Pricing page visit: +20
   Demo request form: +30
@@ -559,31 +1249,21 @@ BEHAVIORAL SCORING (Engagement)
   Email open: +1
   Email click: +3
   Webinar attendance: +15
-  
+
 DECAY
   No activity 30 days: -10
   No activity 60 days: -20
-  
+
 THRESHOLDS
   MQL threshold: 50 points
   Sales-ready threshold: 75 points</code></pre>
         </div>
 
-        <h4>3. Nurture Programs</h4>
-        <p>Automated sequences that move leads through the funnel. Unlike one-off campaigns, nurtures are persistent—leads enter based on triggers and progress based on behavior.</p>
-
         <div class="callout callout-tip">
           <strong>In Practice:</strong> The best nurtures are short (3-5 touches), behavior-based (not just time-based), and have clear exit conditions. A 12-email drip that fires regardless of engagement is just spam.
         </div>
 
-        <h4>4. Forms and Landing Pages</h4>
-        <p>MAPs include form builders and landing page creators. Forms are critical—they're where anonymous visitors become known leads. Progressive profiling (asking different questions each time) builds profiles over multiple conversions without friction.</p>
-
-        <h4>5. Campaign Management</h4>
-        <p>Tracking which marketing activities influenced which leads. Campaign membership links leads to the programs that touched them, enabling attribution and ROI analysis.</p>
-
         <h3>MAP-CRM Sync</h3>
-        <p>The MAP and CRM must stay synchronized. Typically:</p>
         <ul>
           <li>New leads created in MAP sync to CRM as Leads</li>
           <li>Lead field updates sync bidirectionally</li>
@@ -595,92 +1275,212 @@ THRESHOLDS
           <strong>Sync Failures:</strong> When MAP-CRM sync breaks, marketing and sales see different data. Common causes: field mapping errors, duplicate records blocking sync, API rate limits. Monitor sync logs weekly.
         </div>
 
-        <h3>HubSpot vs Marketo</h3>
+        <!-- Deep Dive -->
+        <details class="deep-dive">
+          <summary class="deep-dive-toggle">
+            <span class="deep-dive-icon">
+              <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <circle cx="11" cy="11" r="8"/>
+                <path d="m21 21-4.3-4.3"/>
+                <path d="M11 8v6"/>
+                <path d="M8 11h6"/>
+              </svg>
+            </span>
+            Deep Dive: HubSpot vs Marketo Comparison
+          </summary>
+          <div class="deep-dive-content">
+            <table>
+              <thead>
+                <tr>
+                  <th>Aspect</th>
+                  <th>HubSpot</th>
+                  <th>Marketo</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td><strong>Target</strong></td>
+                  <td>SMB to mid-market</td>
+                  <td>Mid-market to enterprise</td>
+                </tr>
+                <tr>
+                  <td><strong>Learning curve</strong></td>
+                  <td>Lower, more intuitive UI</td>
+                  <td>Steeper, more powerful</td>
+                </tr>
+                <tr>
+                  <td><strong>CRM</strong></td>
+                  <td>Built-in CRM included</td>
+                  <td>Requires separate CRM</td>
+                </tr>
+                <tr>
+                  <td><strong>Flexibility</strong></td>
+                  <td>Opinionated, less customizable</td>
+                  <td>Highly customizable</td>
+                </tr>
+                <tr>
+                  <td><strong>Pricing</strong></td>
+                  <td>Contact-based tiers</td>
+                  <td>Database size + features</td>
+                </tr>
+                <tr>
+                  <td><strong>Best for</strong></td>
+                  <td>Teams wanting all-in-one</td>
+                  <td>Teams needing complex workflows</td>
+                </tr>
+              </tbody>
+            </table>
+            <p><strong>Other players:</strong> Pardot (Salesforce-native), Eloqua (Oracle, enterprise), ActiveCampaign (SMB-friendly).</p>
+          </div>
+        </details>
 
-        <table>
-          <thead>
-            <tr>
-              <th>Aspect</th>
-              <th>HubSpot</th>
-              <th>Marketo</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td><strong>Target</strong></td>
-              <td>SMB to mid-market</td>
-              <td>Mid-market to enterprise</td>
-            </tr>
-            <tr>
-              <td><strong>Learning curve</strong></td>
-              <td>Lower, more intuitive UI</td>
-              <td>Steeper, more powerful</td>
-            </tr>
-            <tr>
-              <td><strong>CRM</strong></td>
-              <td>Built-in CRM included</td>
-              <td>Requires separate CRM</td>
-            </tr>
-            <tr>
-              <td><strong>Flexibility</strong></td>
-              <td>Opinionated, less customizable</td>
-              <td>Highly customizable</td>
-            </tr>
-            <tr>
-              <td><strong>Pricing model</strong></td>
-              <td>Contact-based tiers</td>
-              <td>Database size + features</td>
-            </tr>
-            <tr>
-              <td><strong>Best for</strong></td>
-              <td>Teams wanting all-in-one</td>
-              <td>Teams needing complex workflows</td>
-            </tr>
-          </tbody>
-        </table>
+        <!-- Knowledge Check -->
+        <div class="knowledge-check" data-answer="c">
+          <div class="knowledge-check-header">
+            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <circle cx="12" cy="12" r="10"/>
+              <path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"/>
+              <path d="M12 17h.01"/>
+            </svg>
+            Knowledge Check
+          </div>
+          <p class="knowledge-check-question">Your lead scoring model gives +30 points for whitepaper downloads, but your MQL threshold is 50 points. Sales complains MQLs are "garbage." What's the most likely fix?</p>
+          <div class="quiz-options">
+            <label class="quiz-option">
+              <input type="radio" name="map-quiz" value="a">
+              <span>Lower the MQL threshold to 30 points</span>
+            </label>
+            <label class="quiz-option">
+              <input type="radio" name="map-quiz" value="b">
+              <span>Stop sending MQLs to sales entirely</span>
+            </label>
+            <label class="quiz-option">
+              <input type="radio" name="map-quiz" value="c">
+              <span>Reduce points for low-intent actions, increase for high-intent (pricing, demo)</span>
+            </label>
+            <label class="quiz-option">
+              <input type="radio" name="map-quiz" value="d">
+              <span>Create more whitepapers to download</span>
+            </label>
+          </div>
+          <button class="quiz-btn">Check Answer</button>
+          <div class="quiz-feedback">
+            <p class="feedback-correct">Correct! Content downloads indicate interest but not purchase intent. High-intent actions like pricing page visits and demo requests should carry more weight. Rebalancing the model improves MQL quality.</p>
+            <p class="feedback-incorrect">Not quite. The issue is that low-intent actions (whitepaper downloads) are weighted too heavily. The fix is to rebalance: reduce points for content consumption, increase points for buying signals like pricing visits and demo requests.</p>
+          </div>
+        </div>
+
+        <!-- Next Up Link -->
+        <div class="next-up-link">
+          <a href="#cdp" class="next-up-content">
+            <span class="next-up-label">Next Section</span>
+            <div class="next-up-section">
+              <span class="next-up-number">Section 4</span>
+              <span class="next-up-title">Customer Data Platform</span>
+            </div>
+            <span class="next-up-arrow">→</span>
+          </a>
+        </div>
       </section>
 
       <!-- Section 4: CDP -->
       <section id="cdp">
-        <h2>Core Systems: Customer Data Platform <a href="#cdp" class="anchor-link">#</a></h2>
+        <!-- Hero Card -->
+        <div class="hero-card">
+          <div class="hero-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <ellipse cx="12" cy="5" rx="9" ry="3"/>
+              <path d="M21 12c0 1.66-4 3-9 3s-9-1.34-9-3"/>
+              <path d="M3 5v14c0 1.66 4 3 9 3s9-1.34 9-3V5"/>
+            </svg>
+          </div>
+          <h2>Customer Data Platform <a href="#cdp" class="anchor-link">#</a></h2>
+          <p class="hero-subtitle">Unified customer profiles across all your data sources</p>
+        </div>
 
-        <p>A CDP creates unified customer profiles by collecting data from multiple sources and resolving identity across them. It answers: "Is the person who visited our website the same as the contact in Salesforce who opened our email?"</p>
+        <!-- TL;DR Box -->
+        <div class="tldr-box">
+          <div class="tldr-header">
+            <span class="tldr-icon">
+              <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <circle cx="12" cy="12" r="10"/>
+                <path d="M12 16v-4"/>
+                <path d="M12 8h.01"/>
+              </svg>
+            </span>
+            <span class="tldr-title">TL;DR</span>
+          </div>
+          <ul class="tldr-list">
+            <li><strong>CDP answers:</strong> "Is the website visitor the same as the Salesforce contact who opened our email?"</li>
+            <li><strong>5 functions:</strong> Collect events → Resolve identity → Unify profiles → Build audiences → Activate</li>
+            <li><strong>You need a CDP if:</strong> 5+ disconnected systems, can't count unique customers, need unified ABM views</li>
+            <li><strong>CDP ≠ Data Warehouse:</strong> CDP is for activation; warehouse is for analysis</li>
+          </ul>
+        </div>
 
-        <h3>When You Need a CDP</h3>
+        <!-- Scenario Card -->
+        <div class="scenario-card">
+          <div class="scenario-header">
+            <span class="scenario-icon">
+              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/>
+                <circle cx="9" cy="7" r="4"/>
+                <path d="M22 21v-2a4 4 0 0 0-3-3.87"/>
+                <path d="M16 3.13a4 4 0 0 1 0 7.75"/>
+              </svg>
+            </span>
+            <span class="scenario-label">NovaTech Scenario</span>
+          </div>
+          <div class="scenario-content">
+            <p><span class="role-tag role-mops">Maya Chen (MOps)</span> gets a request from <span class="role-tag role-demand">Sarah Park (Demand Gen)</span>: "I need to target enterprise accounts that have used our free trial but haven't talked to sales." Simple, right?</p>
+            <p>Except: Trial data lives in the product database. Account size is in Salesforce. Sales activity is in Outreach. Website behavior is in the MAP. Maya spends 3 days stitching together spreadsheets.</p>
+            <p>After implementing Segment as their CDP, this query takes 5 minutes. All data flows to unified profiles, and Sarah can build the audience herself.</p>
+          </div>
+        </div>
 
-        <p><strong>You probably need a CDP if:</strong></p>
-        <ul>
-          <li>You have data in 5+ disconnected systems</li>
-          <li>You can't answer "how many unique customers do we have?"</li>
-          <li>Marketing automation can't access product usage data</li>
-          <li>You're doing ABM and need to unify contact + account views</li>
-          <li>Personalization requires data that lives in different systems</li>
-        </ul>
+        <h3>Do You Need a CDP?</h3>
 
-        <p><strong>You probably don't need a CDP if:</strong></p>
-        <ul>
-          <li>You're a small team with HubSpot as your only system</li>
-          <li>Your CRM handles all your data needs</li>
-          <li>You don't have the resources to maintain it</li>
-          <li>You haven't maxed out your existing tools</li>
-        </ul>
+        <!-- Quick Reference: CDP Decision -->
+        <div class="quick-reference">
+          <div class="quick-reference-header">
+            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <circle cx="12" cy="12" r="10"/>
+              <path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"/>
+              <path d="M12 17h.01"/>
+            </svg>
+            <span>CDP Decision Matrix</span>
+          </div>
+          <div class="quick-reference-content">
+            <table>
+              <thead>
+                <tr>
+                  <th>You Need a CDP If...</th>
+                  <th>You Don't Need One If...</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>Data in 5+ disconnected systems</td>
+                  <td>Small team, HubSpot only</td>
+                </tr>
+                <tr>
+                  <td>Can't count unique customers</td>
+                  <td>CRM handles all data needs</td>
+                </tr>
+                <tr>
+                  <td>MAP can't access product data</td>
+                  <td>No resources to maintain it</td>
+                </tr>
+                <tr>
+                  <td>ABM needs unified account views</td>
+                  <td>Haven't maxed existing tools</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
 
         <h3>What CDPs Actually Do</h3>
-
-        <h4>1. Data Collection</h4>
-        <p>Ingest data from websites (via JavaScript SDK), mobile apps, backend systems (via API/webhooks), and third-party tools (via integrations). The CDP maintains event streams—every action a user takes.</p>
-
-        <h4>2. Identity Resolution</h4>
-        <p>Match anonymous sessions to known users when they identify themselves (form fill, login). Merge duplicate profiles. Handle multiple email addresses, devices, and identifiers for the same person.</p>
-
-        <h4>3. Profile Unification</h4>
-        <p>Create a single view of each customer/account combining data from all sources. The unified profile includes: demographics, firmographics, behavioral history, product usage, support tickets, purchase history.</p>
-
-        <h4>4. Audience Building</h4>
-        <p>Define segments using any combination of unified profile data. "Enterprise accounts in fintech who've viewed pricing in the last 30 days but haven't started a trial."</p>
-
-        <h4>5. Activation</h4>
-        <p>Push audiences to downstream tools: ad platforms (for targeting), MAP (for email campaigns), personalization engines (for website content), data warehouse (for analysis).</p>
 
         <div class="diagram-svg">
           <svg viewBox="0 0 500 340" xmlns="http://www.w3.org/2000/svg">
@@ -688,40 +1488,40 @@ THRESHOLDS
             <rect x="10" y="10" width="480" height="50" rx="4" class="box-fill box-stroke"/>
             <text x="250" y="30" text-anchor="middle" class="text-title" font-size="11" font-weight="600">DATA SOURCES</text>
             <text x="250" y="48" text-anchor="middle" class="text-secondary" font-size="10">Website | Mobile App | CRM | MAP | Product | Support | Billing</text>
-            
+
             <!-- Arrow down -->
             <path d="M250 60 L250 75 M245 70 L250 75 L255 70" class="arrow" fill="none" stroke-width="2"/>
-            
+
             <!-- CDP outer box -->
             <rect x="10" y="80" width="480" height="175" rx="4" class="box-fill box-highlight" stroke-width="2"/>
             <text x="250" y="100" text-anchor="middle" class="text-title" font-size="13" font-weight="600">CDP</text>
-            
+
             <!-- Inner boxes -->
             <rect x="30" y="115" width="95" height="50" rx="3" class="box-fill box-stroke"/>
             <text x="77" y="138" text-anchor="middle" class="text-primary" font-size="10">Collect</text>
             <text x="77" y="152" text-anchor="middle" class="text-primary" font-size="10">Events</text>
-            
+
             <path d="M125 140 L145 140 M140 135 L145 140 L140 145" class="arrow" fill="none" stroke-width="1.5"/>
-            
+
             <rect x="150" y="115" width="95" height="50" rx="3" class="box-fill box-stroke"/>
             <text x="197" y="138" text-anchor="middle" class="text-primary" font-size="10">Resolve</text>
             <text x="197" y="152" text-anchor="middle" class="text-primary" font-size="10">Identity</text>
-            
+
             <path d="M245 140 L265 140 M260 135 L265 140 L260 145" class="arrow" fill="none" stroke-width="1.5"/>
-            
+
             <rect x="270" y="110" width="200" height="60" rx="3" class="box-fill box-stroke"/>
             <text x="370" y="132" text-anchor="middle" class="text-primary" font-size="10" font-weight="600">Unified Profile</text>
             <text x="370" y="148" text-anchor="middle" class="text-secondary" font-size="9">Demographics + Behavior +</text>
             <text x="370" y="162" text-anchor="middle" class="text-secondary" font-size="9">Product + Support + ...</text>
-            
+
             <!-- Audience Builder -->
             <path d="M370 170 L370 190 M365 185 L370 190 L375 185" class="arrow" fill="none" stroke-width="1.5"/>
             <rect x="270" y="195" width="200" height="40" rx="3" class="box-fill box-stroke"/>
             <text x="370" y="220" text-anchor="middle" class="text-primary" font-size="11">Audience Builder</text>
-            
+
             <!-- Arrow out -->
             <path d="M250 255 L250 275 M245 270 L250 275 L255 270" class="arrow" fill="none" stroke-width="2"/>
-            
+
             <!-- Destinations -->
             <rect x="10" y="280" width="480" height="50" rx="4" class="box-fill box-stroke"/>
             <text x="250" y="300" text-anchor="middle" class="text-title" font-size="11" font-weight="600">DESTINATIONS</text>
@@ -729,142 +1529,372 @@ THRESHOLDS
           </svg>
         </div>
 
-        <h3>CDP Vendors</h3>
+        <!-- Deep Dive -->
+        <details class="deep-dive">
+          <summary class="deep-dive-toggle">
+            <span class="deep-dive-icon">
+              <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <circle cx="11" cy="11" r="8"/>
+                <path d="m21 21-4.3-4.3"/>
+                <path d="M11 8v6"/>
+                <path d="M8 11h6"/>
+              </svg>
+            </span>
+            Deep Dive: CDP Vendor Landscape
+          </summary>
+          <div class="deep-dive-content">
+            <table>
+              <thead>
+                <tr>
+                  <th>Vendor</th>
+                  <th>Positioning</th>
+                  <th>Best For</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td><strong>Segment</strong></td>
+                  <td>Developer-first, event streaming</td>
+                  <td>Strong integrations, Twilio ecosystem</td>
+                </tr>
+                <tr>
+                  <td><strong>mParticle</strong></td>
+                  <td>Mobile-first, real-time</td>
+                  <td>App-heavy businesses</td>
+                </tr>
+                <tr>
+                  <td><strong>Tealium</strong></td>
+                  <td>Enterprise, tag management heritage</td>
+                  <td>Complex enterprise needs</td>
+                </tr>
+                <tr>
+                  <td><strong>Rudderstack</strong></td>
+                  <td>Warehouse-native, open source option</td>
+                  <td>Data team-led orgs</td>
+                </tr>
+              </tbody>
+            </table>
+            <div class="callout callout-warning" style="margin-top: 1rem;">
+              <strong>CDP vs Data Warehouse:</strong> A CDP is for activation (pushing audiences to tools). A data warehouse is for analysis (querying historical data). "Reverse ETL" can bridge them, but lacks real-time capabilities.
+            </div>
+          </div>
+        </details>
 
-        <table>
-          <thead>
-            <tr>
-              <th>Vendor</th>
-              <th>Positioning</th>
-              <th>Notes</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td>Segment</td>
-              <td>Developer-first, event streaming</td>
-              <td>Strong integrations, owned by Twilio</td>
-            </tr>
-            <tr>
-              <td>mParticle</td>
-              <td>Mobile-first, real-time</td>
-              <td>Strong in app-heavy businesses</td>
-            </tr>
-            <tr>
-              <td>Tealium</td>
-              <td>Enterprise, tag management heritage</td>
-              <td>Complex but powerful</td>
-            </tr>
-            <tr>
-              <td>Rudderstack</td>
-              <td>Warehouse-native, open source option</td>
-              <td>Good for data team-led orgs</td>
-            </tr>
-          </tbody>
-        </table>
+        <!-- Knowledge Check -->
+        <div class="knowledge-check" data-answer="b">
+          <div class="knowledge-check-header">
+            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <circle cx="12" cy="12" r="10"/>
+              <path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"/>
+              <path d="M12 17h.01"/>
+            </svg>
+            Knowledge Check
+          </div>
+          <p class="knowledge-check-question">Marketing wants to target "enterprise accounts using our free trial who haven't talked to sales." Trial data is in the product DB, account size in CRM, sales activity in Outreach. What's the best solution?</p>
+          <div class="quiz-options">
+            <label class="quiz-option">
+              <input type="radio" name="cdp-quiz" value="a">
+              <span>Export CSVs from each system and merge in Excel weekly</span>
+            </label>
+            <label class="quiz-option">
+              <input type="radio" name="cdp-quiz" value="b">
+              <span>Implement a CDP to unify data and enable self-serve audience building</span>
+            </label>
+            <label class="quiz-option">
+              <input type="radio" name="cdp-quiz" value="c">
+              <span>Build everything into the CRM with custom integrations</span>
+            </label>
+            <label class="quiz-option">
+              <input type="radio" name="cdp-quiz" value="d">
+              <span>Just target all trial users regardless of account size</span>
+            </label>
+          </div>
+          <button class="quiz-btn">Check Answer</button>
+          <div class="quiz-feedback">
+            <p class="feedback-correct">Correct! This is a textbook CDP use case: data scattered across 3+ systems, need to combine attributes for targeting, and the business needs to run these queries repeatedly. A CDP unifies the data and enables marketing to self-serve.</p>
+            <p class="feedback-incorrect">Not quite. When you need to combine data from 3+ systems for recurring marketing use cases, a CDP is the right tool. Manual exports don't scale, CRM integrations get complex, and ignoring segmentation reduces campaign effectiveness.</p>
+          </div>
+        </div>
 
-        <div class="callout callout-warning">
-          <strong>CDP vs Data Warehouse:</strong> A CDP is for activation (pushing audiences to tools). A data warehouse is for analysis (querying historical data). Some teams try to use warehouses as CDPs via "reverse ETL"—this works for simple use cases but lacks real-time capabilities.
+        <!-- Next Up Link -->
+        <div class="next-up-link">
+          <a href="#analytics" class="next-up-content">
+            <span class="next-up-label">Next Section</span>
+            <div class="next-up-section">
+              <span class="next-up-number">Section 5</span>
+              <span class="next-up-title">Analytics Platforms</span>
+            </div>
+            <span class="next-up-arrow">→</span>
+          </a>
         </div>
       </section>
 
       <!-- Section 5: Analytics -->
       <section id="analytics">
-        <h2>Analytics Platforms <a href="#analytics" class="anchor-link">#</a></h2>
+        <!-- Hero Card -->
+        <div class="hero-card">
+          <div class="hero-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <line x1="18" y1="20" x2="18" y2="10"/>
+              <line x1="12" y1="20" x2="12" y2="4"/>
+              <line x1="6" y1="20" x2="6" y2="14"/>
+            </svg>
+          </div>
+          <h2>Analytics Platforms <a href="#analytics" class="anchor-link">#</a></h2>
+          <p class="hero-subtitle">Tracking user behavior across web and product</p>
+        </div>
 
-        <p>Product and web analytics tools track user behavior. In B2B, they're critical for understanding the digital journey but have significant limitations around account-level analysis and connecting to revenue.</p>
+        <!-- TL;DR Box -->
+        <div class="tldr-box">
+          <div class="tldr-header">
+            <span class="tldr-icon">
+              <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <circle cx="12" cy="12" r="10"/>
+                <path d="M12 16v-4"/>
+                <path d="M12 8h.01"/>
+              </svg>
+            </span>
+            <span class="tldr-title">TL;DR</span>
+          </div>
+          <ul class="tldr-list">
+            <li><strong>GA4:</strong> Free web analytics, but user-based (not account-based) with B2B limitations</li>
+            <li><strong>Mixpanel/Amplitude:</strong> Product analytics for in-app behavior, feature usage, PLG funnels</li>
+            <li><strong>The B2B gap:</strong> Standard tools are user-centric; connecting to accounts requires extra work</li>
+            <li><strong>Bridge the gap:</strong> IP enrichment, early identification, warehouse joins, business event tracking</li>
+          </ul>
+        </div>
 
-        <h3>GA4 (Google Analytics 4)</h3>
+        <!-- Scenario Card -->
+        <div class="scenario-card">
+          <div class="scenario-header">
+            <span class="scenario-icon">
+              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/>
+                <circle cx="9" cy="7" r="4"/>
+                <path d="M22 21v-2a4 4 0 0 0-3-3.87"/>
+                <path d="M16 3.13a4 4 0 0 1 0 7.75"/>
+              </svg>
+            </span>
+            <span class="scenario-label">NovaTech Scenario</span>
+          </div>
+          <div class="scenario-content">
+            <p><span class="role-tag role-analytics">Priya Sharma (Analytics)</span> is asked: "How many of our closed-won deals visited the pricing page before talking to sales?"</p>
+            <p>GA4 shows 10,000 pricing page views last quarter. But it can't tell her which of those became opportunities, let alone which closed. The data lives in different silos.</p>
+            <p>After setting up Clearbit Reveal for IP identification and piping data to Snowflake, she can finally answer: "73% of closed-won deals had 3+ pricing page visits before their first sales call."</p>
+          </div>
+        </div>
 
-        <p><strong>What it does:</strong> Tracks website sessions, page views, events, conversions. Free (up to limits). The default starting point for web analytics.</p>
-
-        <p><strong>B2B limitations:</strong></p>
-        <ul>
-          <li>User-based, not account-based—you see individuals, not companies</li>
-          <li>Can't connect to CRM pipeline without extra work</li>
-          <li>Limited data retention (14 months standard)</li>
-          <li>Aggregated/sampled data makes exact counts difficult</li>
-          <li>Cross-device tracking requires user login</li>
-        </ul>
-
-        <p><strong>Best for:</strong> Traffic analysis, channel performance, basic conversion tracking, SEO analysis.</p>
-
-        <h3>Mixpanel / Amplitude</h3>
-
-        <p><strong>What they do:</strong> Product analytics—tracking in-app behavior, feature usage, user journeys. Built for SaaS products with logged-in users.</p>
-
-        <p><strong>B2B applications:</strong></p>
-        <ul>
-          <li>Product-led growth: track trial → activation → conversion</li>
-          <li>Feature engagement: which features correlate with retention</li>
-          <li>Onboarding completion: where users drop off</li>
-        </ul>
-
-        <p><strong>B2B limitations:</strong></p>
-        <ul>
-          <li>Still user-centric, not account-centric by default</li>
-          <li>Requires implementation in your product (not just marketing site)</li>
-          <li>Pricing scales with event volume—can get expensive</li>
-        </ul>
+        <!-- Quick Reference: Analytics Platforms -->
+        <div class="quick-reference">
+          <div class="quick-reference-header">
+            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <line x1="18" y1="20" x2="18" y2="10"/>
+              <line x1="12" y1="20" x2="12" y2="4"/>
+              <line x1="6" y1="20" x2="6" y2="14"/>
+            </svg>
+            <span>Analytics Platform Comparison</span>
+          </div>
+          <div class="quick-reference-content">
+            <table>
+              <thead>
+                <tr>
+                  <th>Platform</th>
+                  <th>Best For</th>
+                  <th>B2B Limitation</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td><strong>GA4</strong></td>
+                  <td>Traffic, channels, SEO, conversions</td>
+                  <td>User-based, not account-based</td>
+                </tr>
+                <tr>
+                  <td><strong>Mixpanel</strong></td>
+                  <td>Product funnels, feature usage</td>
+                  <td>User-centric, expensive at scale</td>
+                </tr>
+                <tr>
+                  <td><strong>Amplitude</strong></td>
+                  <td>User journeys, retention analysis</td>
+                  <td>Requires product implementation</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
 
         <div class="callout callout-tip">
           <strong>In Practice:</strong> Most B2B teams use GA4 for marketing site + Mixpanel/Amplitude for product. The gap between them—connecting marketing touches to product engagement—is where CDPs or custom data work comes in.
         </div>
 
-        <h3>Making Analytics Work for B2B</h3>
+        <!-- Deep Dive -->
+        <details class="deep-dive">
+          <summary class="deep-dive-toggle">
+            <span class="deep-dive-icon">
+              <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <circle cx="11" cy="11" r="8"/>
+                <path d="m21 21-4.3-4.3"/>
+                <path d="M11 8v6"/>
+                <path d="M8 11h6"/>
+              </svg>
+            </span>
+            Deep Dive: Making Analytics Work for B2B
+          </summary>
+          <div class="deep-dive-content">
+            <p>Standard analytics tools are built for B2C (individual users). To make them useful for B2B:</p>
+            <ol>
+              <li><strong>Identify users early:</strong> Gate valuable content to capture email, then associate sessions with known contacts</li>
+              <li><strong>Use IP-to-company enrichment:</strong> Tools like Clearbit Reveal or 6sense can identify company from IP address (works for ~30-40% of traffic)</li>
+              <li><strong>Pass data to warehouse:</strong> Export analytics data to your warehouse, join with CRM data there</li>
+              <li><strong>Track key business events:</strong> Beyond page views—demo requests, pricing page visits, docs engagement, trial signups</li>
+            </ol>
+            <p><strong>The goal:</strong> Connect anonymous web behavior → known contacts → CRM opportunities → revenue.</p>
+          </div>
+        </details>
 
-        <p>To make standard analytics tools useful for B2B:</p>
+        <!-- Knowledge Check -->
+        <div class="knowledge-check" data-answer="c">
+          <div class="knowledge-check-header">
+            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <circle cx="12" cy="12" r="10"/>
+              <path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"/>
+              <path d="M12 17h.01"/>
+            </svg>
+            Knowledge Check
+          </div>
+          <p class="knowledge-check-question">Your CMO asks: "How many of our closed deals visited the pricing page before becoming opportunities?" GA4 shows 10,000 pricing page views. Why can't you answer the question directly?</p>
+          <div class="quiz-options">
+            <label class="quiz-option">
+              <input type="radio" name="analytics-quiz" value="a">
+              <span>GA4 doesn't track pricing pages</span>
+            </label>
+            <label class="quiz-option">
+              <input type="radio" name="analytics-quiz" value="b">
+              <span>The data is too old to be accurate</span>
+            </label>
+            <label class="quiz-option">
+              <input type="radio" name="analytics-quiz" value="c">
+              <span>GA4 tracks users, not accounts, and can't connect to CRM deal data</span>
+            </label>
+            <label class="quiz-option">
+              <input type="radio" name="analytics-quiz" value="d">
+              <span>Pricing page visits aren't important for B2B</span>
+            </label>
+          </div>
+          <button class="quiz-btn">Check Answer</button>
+          <div class="quiz-feedback">
+            <p class="feedback-correct">Correct! GA4 tracks anonymous user sessions, not accounts or deals. To answer this question, you need to connect web behavior to CRM data—via IP enrichment, user identification, or warehouse joins.</p>
+            <p class="feedback-incorrect">Not quite. The fundamental issue is that GA4 tracks individual user sessions without connecting them to CRM accounts and opportunities. Bridging this gap requires identity resolution and data integration.</p>
+          </div>
+        </div>
 
-        <ol>
-          <li><strong>Identify users early:</strong> Gate valuable content to capture email, then associate sessions with known contacts</li>
-          <li><strong>Use IP-to-company enrichment:</strong> Tools like Clearbit Reveal or 6sense can identify company from IP address (works for ~30-40% of traffic)</li>
-          <li><strong>Pass data to warehouse:</strong> Export analytics data to your warehouse, join with CRM data there</li>
-          <li><strong>Track key business events:</strong> Beyond page views—demo requests, pricing page visits, docs page engagement, trial signups</li>
-        </ol>
+        <!-- Next Up Link -->
+        <div class="next-up-link">
+          <a href="#intent" class="next-up-content">
+            <span class="next-up-label">Next Section</span>
+            <div class="next-up-section">
+              <span class="next-up-number">Section 6</span>
+              <span class="next-up-title">Intent Data Platforms</span>
+            </div>
+            <span class="next-up-arrow">→</span>
+          </a>
+        </div>
       </section>
 
       <!-- Section 6: Intent Data -->
       <section id="intent">
-        <h2>Intent Data Platforms <a href="#intent" class="anchor-link">#</a></h2>
+        <!-- Hero Card -->
+        <div class="hero-card">
+          <div class="hero-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <circle cx="12" cy="12" r="10"/>
+              <circle cx="12" cy="12" r="6"/>
+              <circle cx="12" cy="12" r="2"/>
+            </svg>
+          </div>
+          <h2>Intent Data Platforms <a href="#intent" class="anchor-link">#</a></h2>
+          <p class="hero-subtitle">Identifying companies researching solutions like yours</p>
+        </div>
 
-        <p>Intent data tries to answer: "Which companies are researching solutions like ours right now?" It's a signal, not a prediction—useful for prioritization, not replacement for qualification.</p>
+        <!-- TL;DR Box -->
+        <div class="tldr-box">
+          <div class="tldr-header">
+            <span class="tldr-icon">
+              <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <circle cx="12" cy="12" r="10"/>
+                <path d="M12 16v-4"/>
+                <path d="M12 8h.01"/>
+              </svg>
+            </span>
+            <span class="tldr-title">TL;DR</span>
+          </div>
+          <ul class="tldr-list">
+            <li><strong>Intent = prioritization signal</strong>, not a prediction. Use it to focus, not replace qualification</li>
+            <li><strong>Three types:</strong> 1st party (your site), 2nd party (G2, partners), 3rd party (Bombora, publisher networks)</li>
+            <li><strong>Good for:</strong> Outbound prioritization, ABM targeting, lead score boosting</li>
+            <li><strong>Reality check:</strong> Match rates are 20-40%, signals are noisy—it's an input, not magic</li>
+          </ul>
+        </div>
 
-        <h3>How Intent Data is Collected</h3>
+        <!-- Scenario Card -->
+        <div class="scenario-card">
+          <div class="scenario-header">
+            <span class="scenario-icon">
+              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/>
+                <circle cx="9" cy="7" r="4"/>
+                <path d="M22 21v-2a4 4 0 0 0-3-3.87"/>
+                <path d="M16 3.13a4 4 0 0 1 0 7.75"/>
+              </svg>
+            </span>
+            <span class="scenario-label">NovaTech Scenario</span>
+          </div>
+          <div class="scenario-content">
+            <p><span class="role-tag role-sales">Derek Williams (Sales)</span> has 500 accounts to call but only time for 50. Bombora shows 47 accounts are "surging" on topics related to NovaTech's solution.</p>
+            <p>He calls the surging accounts first. Connect rate is 2x higher than his baseline, and 3 accounts are already evaluating competitors. Without intent data, he might have reached them after they'd already shortlisted.</p>
+            <p><strong>The lesson:</strong> Intent data doesn't guarantee a sale—but it helps you be in the room at the right time.</p>
+          </div>
+        </div>
 
-        <h4>1st Party Intent</h4>
-        <p>Behavior on YOUR properties: website visits, content downloads, email engagement, product usage. You own this data completely.</p>
-
-        <h4>2nd Party Intent</h4>
-        <p>Behavior on partner properties: review sites like G2, publisher content networks. Shared under data partnerships.</p>
-
-        <h4>3rd Party Intent</h4>
-        <p>Behavior across the web: content consumption patterns inferred from publisher networks, ad exchanges, data co-ops. Companies like Bombora aggregate signals from thousands of sites.</p>
-
-        <h3>How It Works (Simplified)</h3>
-
-        <div class="diagram-svg">
-          <svg viewBox="0 0 500 200" xmlns="http://www.w3.org/2000/svg">
-            <!-- Step boxes -->
-            <rect x="10" y="10" width="480" height="35" rx="4" class="box-fill box-stroke"/>
-            <text x="20" y="32" class="text-title" font-size="10" font-weight="600">1.</text>
-            <text x="40" y="32" class="text-primary" font-size="10">Data providers track content consumption across publisher networks</text>
-            
-            <rect x="10" y="50" width="480" height="35" rx="4" class="box-fill box-stroke"/>
-            <text x="20" y="72" class="text-title" font-size="10" font-weight="600">2.</text>
-            <text x="40" y="72" class="text-primary" font-size="10">They categorize content by topic (e.g., "marketing automation," "CRM")</text>
-            
-            <rect x="10" y="90" width="480" height="35" rx="4" class="box-fill box-stroke"/>
-            <text x="20" y="112" class="text-title" font-size="10" font-weight="600">3.</text>
-            <text x="40" y="112" class="text-primary" font-size="10">They identify company from IP address or device graph</text>
-            
-            <rect x="10" y="130" width="480" height="35" rx="4" class="box-fill box-stroke"/>
-            <text x="20" y="152" class="text-title" font-size="10" font-weight="600">4.</text>
-            <text x="40" y="152" class="text-primary" font-size="10">They calculate "surge" scores—is this company researching more than baseline?</text>
-            
-            <rect x="10" y="170" width="480" height="35" rx="4" class="box-fill box-highlight" stroke-width="2"/>
-            <text x="20" y="192" class="text-title" font-size="10" font-weight="600">5.</text>
-            <text x="40" y="192" class="text-primary" font-size="10">They deliver signals: "Acme Corp is surging on CRM topics"</text>
-          </svg>
+        <!-- Quick Reference: Intent Types -->
+        <div class="quick-reference">
+          <div class="quick-reference-header">
+            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <circle cx="12" cy="12" r="10"/>
+              <circle cx="12" cy="12" r="6"/>
+              <circle cx="12" cy="12" r="2"/>
+            </svg>
+            <span>Intent Data Types</span>
+          </div>
+          <div class="quick-reference-content">
+            <table>
+              <thead>
+                <tr>
+                  <th>Type</th>
+                  <th>Source</th>
+                  <th>Example</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td><strong>1st Party</strong></td>
+                  <td>Your properties</td>
+                  <td>Site visits, downloads, email clicks</td>
+                </tr>
+                <tr>
+                  <td><strong>2nd Party</strong></td>
+                  <td>Partner properties</td>
+                  <td>G2 reviews, publisher networks</td>
+                </tr>
+                <tr>
+                  <td><strong>3rd Party</strong></td>
+                  <td>Across the web</td>
+                  <td>Bombora co-op, data exchanges</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
         </div>
 
         <h3>Major Intent Providers</h3>
@@ -894,55 +1924,139 @@ THRESHOLDS
               <td>Strong in display ad activation</td>
             </tr>
             <tr>
-              <td>G2</td>
+              <td>G2 / TrustRadius</td>
               <td>Review site behavior</td>
               <td>Narrow but high-quality signal</td>
-            </tr>
-            <tr>
-              <td>TrustRadius</td>
-              <td>Review site behavior</td>
-              <td>Enterprise-focused reviews</td>
             </tr>
           </tbody>
         </table>
 
-        <h3>Using Intent Data</h3>
-
-        <p><strong>Good use cases:</strong></p>
-        <ul>
-          <li>Prioritizing outbound: call surging accounts first</li>
-          <li>ABM targeting: focus ad spend on accounts showing intent</li>
-          <li>Lead scoring: boost scores for contacts at high-intent accounts</li>
-          <li>Timing campaigns: reach out when accounts are actively researching</li>
-        </ul>
-
-        <p><strong>Bad use cases:</strong></p>
-        <ul>
-          <li>Using as sole qualification criterion</li>
-          <li>Expecting individual contact-level precision</li>
-          <li>Treating all "high intent" accounts as ready to buy</li>
-        </ul>
-
         <div class="callout callout-caution">
-          <strong>Reality Check:</strong> Intent data is noisy. A "surge" might mean one person at a 10,000-employee company read one article. Match rates between intent signals and your target accounts are often 20-40%. It's a prioritization input, not a magic bullet.
+          <strong>Reality Check:</strong> Intent data is noisy. A "surge" might mean one person at a 10,000-employee company read one article. Match rates are often 20-40%. It's a prioritization input, not a magic bullet.
         </div>
 
-        <h3>Evaluating Intent Data Quality</h3>
-        <p>Ask vendors:</p>
-        <ul>
-          <li>What's your data collection methodology?</li>
-          <li>What's the match rate to my target account list?</li>
-          <li>How fresh is the signal? (daily vs weekly vs monthly)</li>
-          <li>What's the minimum company size you can reliably identify?</li>
-          <li>Can you show lift in conversion rates from intent-prioritized outreach?</li>
-        </ul>
+        <!-- Deep Dive -->
+        <details class="deep-dive">
+          <summary class="deep-dive-toggle">
+            <span class="deep-dive-icon">
+              <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <circle cx="11" cy="11" r="8"/>
+                <path d="m21 21-4.3-4.3"/>
+                <path d="M11 8v6"/>
+                <path d="M8 11h6"/>
+              </svg>
+            </span>
+            Deep Dive: Evaluating Intent Data Quality
+          </summary>
+          <div class="deep-dive-content">
+            <p><strong>Good use cases:</strong></p>
+            <ul>
+              <li>Prioritizing outbound: call surging accounts first</li>
+              <li>ABM targeting: focus ad spend on accounts showing intent</li>
+              <li>Lead scoring: boost scores for contacts at high-intent accounts</li>
+            </ul>
+
+            <p><strong>Bad use cases:</strong></p>
+            <ul>
+              <li>Using as sole qualification criterion</li>
+              <li>Expecting individual contact-level precision</li>
+              <li>Treating all "high intent" accounts as ready to buy</li>
+            </ul>
+
+            <p><strong>Questions to ask vendors:</strong></p>
+            <ul>
+              <li>What's your data collection methodology?</li>
+              <li>What's the match rate to my target account list?</li>
+              <li>How fresh is the signal? (daily vs weekly vs monthly)</li>
+              <li>What's the minimum company size you can reliably identify?</li>
+              <li>Can you show lift in conversion rates from intent-prioritized outreach?</li>
+            </ul>
+          </div>
+        </details>
+
+        <!-- Knowledge Check -->
+        <div class="knowledge-check" data-answer="b">
+          <div class="knowledge-check-header">
+            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <circle cx="12" cy="12" r="10"/>
+              <path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"/>
+              <path d="M12 17h.01"/>
+            </svg>
+            Knowledge Check
+          </div>
+          <p class="knowledge-check-question">A 10,000-person enterprise account shows "high intent" on your target topics. What does this signal reliably tell you?</p>
+          <div class="quiz-options">
+            <label class="quiz-option">
+              <input type="radio" name="intent-quiz" value="a">
+              <span>The company is ready to buy and should be treated as a hot lead</span>
+            </label>
+            <label class="quiz-option">
+              <input type="radio" name="intent-quiz" value="b">
+              <span>Someone at the company is researching the topic—prioritize outreach to learn more</span>
+            </label>
+            <label class="quiz-option">
+              <input type="radio" name="intent-quiz" value="c">
+              <span>The entire buying committee is aligned and evaluating solutions</span>
+            </label>
+            <label class="quiz-option">
+              <input type="radio" name="intent-quiz" value="d">
+              <span>They've already shortlisted your competitors</span>
+            </label>
+          </div>
+          <button class="quiz-btn">Check Answer</button>
+          <div class="quiz-feedback">
+            <p class="feedback-correct">Correct! Intent signals indicate research activity—could be one person reading articles. It's a prioritization signal, not proof of buying readiness. Outreach helps you learn what's actually happening.</p>
+            <p class="feedback-incorrect">Not quite. Intent data is noisy—a "surge" at a large company could be one person reading one article. It's useful for prioritization, but you need outreach to understand actual buying intent and committee alignment.</p>
+          </div>
+        </div>
+
+        <!-- Next Up Link -->
+        <div class="next-up-link">
+          <a href="#enrichment" class="next-up-content">
+            <span class="next-up-label">Next Section</span>
+            <div class="next-up-section">
+              <span class="next-up-number">Section 7</span>
+              <span class="next-up-title">Enrichment Tools</span>
+            </div>
+            <span class="next-up-arrow">→</span>
+          </a>
+        </div>
       </section>
 
       <!-- Section 7: Enrichment -->
       <section id="enrichment">
-        <h2>Enrichment Tools <a href="#enrichment" class="anchor-link">#</a></h2>
+        <!-- Hero Card -->
+        <div class="hero-card">
+          <div class="hero-number">07</div>
+          <h2 class="hero-title">Enrichment Tools</h2>
+          <p class="hero-subtitle">Turn minimal data into complete profiles for better targeting and personalization</p>
+        </div>
 
-        <p>Enrichment tools fill in missing data about leads and accounts. From an email address, they can append job title, company name, company size, industry, technologies used, funding status, and more.</p>
+        <!-- TL;DR Box -->
+        <div class="tldr-box">
+          <div class="tldr-header">
+            <span class="tldr-icon">⚡</span>
+            <span class="tldr-label">TL;DR</span>
+          </div>
+          <div class="tldr-content">
+            <p>Enrichment tools transform an email address into a complete profile—job title, company info, tech stack, and more. Use form-fill enrichment to reduce form friction, batch enrichment to keep data fresh, and always validate vendor quality before committing. No vendor has perfect data; assume 10-20% error rates.</p>
+          </div>
+        </div>
+
+        <!-- Scenario Card -->
+        <div class="scenario-card">
+          <div class="scenario-header">
+            <span class="scenario-icon">🎬</span>
+            <span class="scenario-label">NovaTech Scenario</span>
+          </div>
+          <div class="scenario-content">
+            <div class="scenario-character">
+              <span class="role-tag role-demand-gen">Demand Gen</span>
+              <strong>Sarah Park</strong>
+            </div>
+            <p>Sarah is frustrated. Forms with 10 fields get a 3% conversion rate. "Just ask for email," marketing suggests—but then sales complains they have no context. Sarah proposes a solution: capture email only, use Clearbit's API to enrich in real-time, then route based on company size. Her test: conversion jumps to 8%, and ICP leads still get all the data sales needs. "We let the technology do the work instead of the prospect."</p>
+          </div>
+        </div>
 
         <h3>What Gets Enriched</h3>
 
@@ -978,67 +2092,76 @@ THRESHOLDS
           </tbody>
         </table>
 
-        <h3>Major Enrichment Vendors</h3>
+        <!-- Quick Reference: Vendors -->
+        <div class="quick-reference">
+          <div class="quick-reference-header">
+            <span class="quick-reference-icon">📋</span>
+            <span class="quick-reference-title">Quick Reference: Major Enrichment Vendors</span>
+          </div>
+          <div class="quick-reference-content">
+            <table>
+              <thead>
+                <tr>
+                  <th>Vendor</th>
+                  <th>Strength</th>
+                  <th>Data Quality</th>
+                  <th>Price Range</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>ZoomInfo</td>
+                  <td>Contact data breadth</td>
+                  <td>Variable, large dataset</td>
+                  <td>$$$$ (15K-100K+/yr)</td>
+                </tr>
+                <tr>
+                  <td>Clearbit</td>
+                  <td>Real-time API, dev-friendly</td>
+                  <td>Good, focused on tech</td>
+                  <td>$$$ (12K-50K+/yr)</td>
+                </tr>
+                <tr>
+                  <td>Apollo</td>
+                  <td>Affordable, sales-focused</td>
+                  <td>Good for the price</td>
+                  <td>$$ (5K-20K/yr)</td>
+                </tr>
+                <tr>
+                  <td>Cognism</td>
+                  <td>GDPR compliance, EU data</td>
+                  <td>Strong in Europe</td>
+                  <td>$$$ (15K-50K/yr)</td>
+                </tr>
+                <tr>
+                  <td>Lusha</td>
+                  <td>Chrome extension, SMB</td>
+                  <td>Variable</td>
+                  <td>$ (1K-10K/yr)</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
 
-        <table>
-          <thead>
-            <tr>
-              <th>Vendor</th>
-              <th>Strength</th>
-              <th>Data Quality</th>
-              <th>Price Range</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td>ZoomInfo</td>
-              <td>Contact data breadth</td>
-              <td>Variable, large dataset</td>
-              <td>$$$$ (15K-100K+/yr)</td>
-            </tr>
-            <tr>
-              <td>Clearbit</td>
-              <td>Real-time API, dev-friendly</td>
-              <td>Good, focused on tech</td>
-              <td>$$$ (12K-50K+/yr)</td>
-            </tr>
-            <tr>
-              <td>Apollo</td>
-              <td>Affordable, sales-focused</td>
-              <td>Good for the price</td>
-              <td>$$ (5K-20K/yr)</td>
-            </tr>
-            <tr>
-              <td>Cognism</td>
-              <td>GDPR compliance, EU data</td>
-              <td>Strong in Europe</td>
-              <td>$$$ (15K-50K/yr)</td>
-            </tr>
-            <tr>
-              <td>Lusha</td>
-              <td>Chrome extension, SMB</td>
-              <td>Variable</td>
-              <td>$ (1K-10K/yr)</td>
-            </tr>
-          </tbody>
-        </table>
-
-        <h3>Enrichment Patterns</h3>
-
-        <h4>Form Fill Enrichment</h4>
-        <p>When a lead submits a form with just email, call enrichment API in real-time to append data before passing to CRM/MAP. Reduces form fields needed (higher conversion) while maintaining data completeness.</p>
-
-        <h4>Batch Enrichment</h4>
-        <p>Periodically enrich your entire database to fill gaps and refresh stale data. Run monthly or quarterly. Important because job titles change, companies get acquired, people move.</p>
-
-        <h4>Reverse IP Enrichment</h4>
-        <p>Identify company from IP address for anonymous website visitors. Match rate is typically 30-40%. Doesn't identify the individual person, just the company.</p>
+        <!-- Quick Reference: Enrichment Patterns -->
+        <div class="quick-reference">
+          <div class="quick-reference-header">
+            <span class="quick-reference-icon">📋</span>
+            <span class="quick-reference-title">Quick Reference: Enrichment Patterns</span>
+          </div>
+          <div class="quick-reference-content">
+            <p><strong>Form Fill Enrichment:</strong> Call API in real-time when lead submits form → append data before CRM/MAP → reduce form fields while maintaining completeness</p>
+            <p><strong>Batch Enrichment:</strong> Periodically enrich entire database (monthly/quarterly) → fill gaps and refresh stale data → titles change, companies get acquired</p>
+            <p><strong>Reverse IP Enrichment:</strong> Identify company from visitor IP address → 30-40% match rate → identifies company, not individual person</p>
+          </div>
+        </div>
 
         <div class="callout callout-warning">
           <strong>Common Mistake:</strong> Treating enriched data as truth. Enrichment data has error rates—titles may be outdated, company sizes may be wrong, phone numbers may be stale. Build processes assuming 10-20% of enriched data has issues.
         </div>
 
-        <h3>Cost vs. Quality Tradeoffs</h3>
+        <h3>Evaluating Vendors</h3>
 
         <p>No enrichment vendor has perfect data. The decision usually comes down to:</p>
 
@@ -1049,30 +2172,116 @@ THRESHOLDS
           <li><strong>Coverage:</strong> Do they have data for your target segments? (SMB vs enterprise, US vs international, specific industries)</li>
         </ul>
 
-        <div class="callout callout-tip">
-          <strong>Practical Approach:</strong> Before signing a contract, give vendors a sample of 500-1000 records. Manually verify a subset of their enrichment. This reveals real match rates and accuracy better than any sales deck.
+        <!-- Deep Dive -->
+        <details class="deep-dive">
+          <summary>Deep Dive: Vendor Evaluation Process</summary>
+          <div class="deep-dive-content">
+            <p><strong>Practical Approach:</strong> Before signing a contract, give vendors a sample of 500-1000 records. Manually verify a subset of their enrichment. This reveals real match rates and accuracy better than any sales deck.</p>
+            <h4>Evaluation Checklist:</h4>
+            <ol>
+              <li><strong>Sample test:</strong> Send 500+ records from your actual database</li>
+              <li><strong>Manual verification:</strong> Spot-check 50-100 enriched records on LinkedIn</li>
+              <li><strong>Segment analysis:</strong> Check match rates by geography, company size, industry</li>
+              <li><strong>API performance:</strong> Test real-time latency if doing form-fill enrichment</li>
+              <li><strong>Integration check:</strong> Confirm they connect to your specific CRM/MAP versions</li>
+              <li><strong>Contract terms:</strong> Understand credit usage, overage costs, data refresh policies</li>
+            </ol>
+          </div>
+        </details>
+
+        <!-- Knowledge Check -->
+        <div class="knowledge-check" data-answer="b">
+          <div class="knowledge-check-header">
+            <span class="knowledge-check-icon">✓</span>
+            <span class="knowledge-check-title">Knowledge Check</span>
+          </div>
+          <p class="knowledge-check-question">Sarah's form conversion increased from 3% to 8% by reducing fields and using enrichment. What's the main risk of this approach?</p>
+          <div class="quiz-options">
+            <label class="quiz-option">
+              <input type="radio" name="enrichment-quiz" value="a">
+              <span>Sales will have less data about leads</span>
+            </label>
+            <label class="quiz-option">
+              <input type="radio" name="enrichment-quiz" value="b">
+              <span>Enriched data isn't always accurate, so some lead profiles will have errors</span>
+            </label>
+            <label class="quiz-option">
+              <input type="radio" name="enrichment-quiz" value="c">
+              <span>The enrichment API will slow down form submission</span>
+            </label>
+            <label class="quiz-option">
+              <input type="radio" name="enrichment-quiz" value="d">
+              <span>Prospects prefer filling out more fields</span>
+            </label>
+          </div>
+          <button class="quiz-btn">Check Answer</button>
+          <div class="quiz-feedback">
+            <p class="feedback-correct">Correct! Enrichment data has 10-20% error rates. Titles may be outdated, company sizes wrong, or contact info stale. The higher conversion rate is usually worth this tradeoff, but you need processes to handle inaccurate data.</p>
+            <p class="feedback-incorrect">Not quite. The main risk is data accuracy. Enrichment vendors typically have 10-20% error rates—outdated titles, wrong company info, stale contact details. Sales actually gets more data than a short form would provide, and API latency is usually sub-second.</p>
+          </div>
+        </div>
+
+        <!-- Next Up Link -->
+        <div class="next-up-link">
+          <a href="#integrations" class="next-up-content">
+            <span class="next-up-label">Next Section</span>
+            <div class="next-up-section">
+              <span class="next-up-number">Section 8</span>
+              <span class="next-up-title">Integration Patterns</span>
+            </div>
+            <span class="next-up-arrow">→</span>
+          </a>
         </div>
       </section>
 
       <!-- Section 8: Integrations -->
       <section id="integrations">
-        <h2>Integration Patterns and Data Flows <a href="#integrations" class="anchor-link">#</a></h2>
+        <!-- Hero Card -->
+        <div class="hero-card">
+          <div class="hero-number">08</div>
+          <h2 class="hero-title">Integration Patterns and Data Flows</h2>
+          <p class="hero-subtitle">How tools connect—and where those connections fail</p>
+        </div>
 
-        <p>Tools don't work in isolation. Understanding how they connect—and where those connections fail—is essential for stack management.</p>
+        <!-- TL;DR Box -->
+        <div class="tldr-box">
+          <div class="tldr-header">
+            <span class="tldr-icon">⚡</span>
+            <span class="tldr-label">TL;DR</span>
+          </div>
+          <div class="tldr-content">
+            <p>Integration options range from native (easy but limited) to API (flexible but requires dev work) to iPaaS (middle ground). Common failure modes include field mapping mismatches, duplicates, API rate limits, and circular updates. Document every data flow—when things break, this documentation saves hours of debugging.</p>
+          </div>
+        </div>
 
-        <h3>Integration Types</h3>
+        <!-- Scenario Card -->
+        <div class="scenario-card">
+          <div class="scenario-header">
+            <span class="scenario-icon">🎬</span>
+            <span class="scenario-label">NovaTech Scenario</span>
+          </div>
+          <div class="scenario-content">
+            <div class="scenario-character">
+              <span class="role-tag role-mops">Marketing Ops</span>
+              <strong>Maya Chen</strong>
+            </div>
+            <p>Maya inherited a stack where "everything is connected" but nobody knows how. Sales says lead scores are wrong. Marketing says campaign data isn't in Salesforce. The attribution team says nothing matches. Maya's first project: document every integration. Two weeks later, she has a diagram showing 47 data flows—and discovers 8 are broken. "Half our problems weren't bugs," she reports. "They were undocumented integrations that someone turned off months ago."</p>
+          </div>
+        </div>
 
-        <h4>Native Integrations</h4>
-        <p>Built-in connections between vendors (e.g., HubSpot ↔ Salesforce). Usually easiest to set up, but limited in customization. The vendor controls what syncs and how.</p>
-
-        <h4>API Integrations</h4>
-        <p>Custom connections via REST APIs. Maximum flexibility, but requires development resources. You control the logic, but you also own the maintenance.</p>
-
-        <h4>iPaaS (Integration Platforms)</h4>
-        <p>Tools like Zapier, Workato, Tray.io that connect apps without code. Middle ground between native and custom. Good for medium-complexity needs.</p>
-
-        <h4>Reverse ETL</h4>
-        <p>Push data from your data warehouse to operational tools. Tools like Census, Hightouch, Rudderstack enable this. Useful when warehouse becomes source of truth for segments/scores.</p>
+        <!-- Quick Reference: Integration Types -->
+        <div class="quick-reference">
+          <div class="quick-reference-header">
+            <span class="quick-reference-icon">📋</span>
+            <span class="quick-reference-title">Quick Reference: Integration Types</span>
+          </div>
+          <div class="quick-reference-content">
+            <p><strong>Native Integrations:</strong> Built-in connections between vendors (HubSpot ↔ Salesforce) → Easy setup, limited customization → Vendor controls what syncs</p>
+            <p><strong>API Integrations:</strong> Custom connections via REST APIs → Maximum flexibility, requires dev resources → You own the logic and maintenance</p>
+            <p><strong>iPaaS:</strong> Zapier, Workato, Tray.io → No-code connections → Good middle ground for medium-complexity needs</p>
+            <p><strong>Reverse ETL:</strong> Push data warehouse to operational tools → Census, Hightouch, Rudderstack → Warehouse becomes source of truth for segments/scores</p>
+          </div>
+        </div>
 
         <h3>Common Integration Patterns</h3>
 
@@ -1221,16 +2430,150 @@ THRESHOLDS
           </tbody>
         </table>
 
-        <div class="callout callout-tip">
-          <strong>Best Practice:</strong> Document your integrations. Create a diagram showing every data flow, what triggers each sync, and which direction data flows. When something breaks (it will), this documentation is invaluable.
+        <!-- Quick Reference: Integration Failures -->
+        <div class="quick-reference">
+          <div class="quick-reference-header">
+            <span class="quick-reference-icon">📋</span>
+            <span class="quick-reference-title">Quick Reference: Common Integration Failures</span>
+          </div>
+          <div class="quick-reference-content">
+            <table>
+              <thead>
+                <tr>
+                  <th>Failure Mode</th>
+                  <th>Symptom</th>
+                  <th>Fix</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>Field mapping mismatch</td>
+                  <td>Data in wrong fields or truncated</td>
+                  <td>Audit mappings, check data types</td>
+                </tr>
+                <tr>
+                  <td>Duplicate records</td>
+                  <td>Same person multiple times, sync errors</td>
+                  <td>Define merge rules, dedupe before sync</td>
+                </tr>
+                <tr>
+                  <td>API rate limits</td>
+                  <td>Sync falls behind, data delay</td>
+                  <td>Batch requests, spread over time</td>
+                </tr>
+                <tr>
+                  <td>Missing required fields</td>
+                  <td>Records fail to sync</td>
+                  <td>Add default values, validate before sync</td>
+                </tr>
+                <tr>
+                  <td>Circular updates</td>
+                  <td>Infinite sync loops, performance issues</td>
+                  <td>Define source of truth per field</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <!-- Deep Dive -->
+        <details class="deep-dive">
+          <summary>Deep Dive: Integration Documentation Template</summary>
+          <div class="deep-dive-content">
+            <p>For each integration, document:</p>
+            <ul>
+              <li><strong>Systems:</strong> Source system → Destination system</li>
+              <li><strong>Trigger:</strong> What initiates the sync? (Real-time, scheduled, manual)</li>
+              <li><strong>Direction:</strong> One-way or bidirectional?</li>
+              <li><strong>Data:</strong> What fields move? What transformations occur?</li>
+              <li><strong>Method:</strong> Native connector, API, iPaaS (which one)?</li>
+              <li><strong>Owner:</strong> Who maintains this integration?</li>
+              <li><strong>Monitoring:</strong> How do you know when it breaks?</li>
+              <li><strong>Last verified:</strong> When did someone confirm it's working?</li>
+            </ul>
+            <p>Store this in a shared doc or wiki. Update whenever changes are made. This documentation is invaluable when debugging—and when onboarding new team members.</p>
+          </div>
+        </details>
+
+        <!-- Knowledge Check -->
+        <div class="knowledge-check" data-answer="c">
+          <div class="knowledge-check-header">
+            <span class="knowledge-check-icon">✓</span>
+            <span class="knowledge-check-title">Knowledge Check</span>
+          </div>
+          <p class="knowledge-check-question">Maya discovered 8 broken integrations while documenting NovaTech's stack. What's the most likely root cause of these failures going unnoticed?</p>
+          <div class="quiz-options">
+            <label class="quiz-option">
+              <input type="radio" name="integrations-quiz" value="a">
+              <span>The integration tools were poorly designed</span>
+            </label>
+            <label class="quiz-option">
+              <input type="radio" name="integrations-quiz" value="b">
+              <span>There were too many integrations to manage</span>
+            </label>
+            <label class="quiz-option">
+              <input type="radio" name="integrations-quiz" value="c">
+              <span>No one was monitoring integrations or owned the documentation</span>
+            </label>
+            <label class="quiz-option">
+              <input type="radio" name="integrations-quiz" value="d">
+              <span>The team was understaffed</span>
+            </label>
+          </div>
+          <button class="quiz-btn">Check Answer</button>
+          <div class="quiz-feedback">
+            <p class="feedback-correct">Correct! Integration failures often go unnoticed because no one owns monitoring them. Without clear ownership and documentation, integrations silently break—and everyone assumes someone else is watching.</p>
+            <p class="feedback-incorrect">Not quite. The root cause is usually lack of ownership and monitoring, not tool quality or team size. Integrations silently fail when no one is specifically responsible for watching them. Documentation and alerting are essential.</p>
+          </div>
+        </div>
+
+        <!-- Next Up Link -->
+        <div class="next-up-link">
+          <a href="#identity" class="next-up-content">
+            <span class="next-up-label">Next Section</span>
+            <div class="next-up-section">
+              <span class="next-up-number">Section 9</span>
+              <span class="next-up-title">Identity Resolution</span>
+            </div>
+            <span class="next-up-arrow">→</span>
+          </a>
         </div>
       </section>
 
       <!-- Section 9: Identity Resolution -->
       <section id="identity">
-        <h2>Identity Resolution and Account Matching <a href="#identity" class="anchor-link">#</a></h2>
+        <!-- Hero Card -->
+        <div class="hero-card">
+          <div class="hero-number">09</div>
+          <h2 class="hero-title">Identity Resolution and Account Matching</h2>
+          <p class="hero-subtitle">The hardest problem in B2B martech—connecting the dots across systems</p>
+        </div>
 
-        <p>This is the hardest problem in B2B martech. The same person appears in your systems multiple times with different identifiers. The same company appears under different names. Solving this enables everything else—attribution, personalization, ABM.</p>
+        <!-- TL;DR Box -->
+        <div class="tldr-box">
+          <div class="tldr-header">
+            <span class="tldr-icon">⚡</span>
+            <span class="tldr-label">TL;DR</span>
+          </div>
+          <div class="tldr-content">
+            <p>The same person appears in your systems under different identifiers (cookies, emails, names). Identity resolution connects these fragments into unified profiles. Approaches: deterministic (exact match), probabilistic (fuzzy match), or graph-based (CDPs). Contact-to-account matching is even harder—20-30% of B2B leads use personal email. Prevention beats cure: dedupe at entry, not after the fact.</p>
+          </div>
+        </div>
+
+        <!-- Scenario Card -->
+        <div class="scenario-card">
+          <div class="scenario-header">
+            <span class="scenario-icon">🎬</span>
+            <span class="scenario-label">NovaTech Scenario</span>
+          </div>
+          <div class="scenario-content">
+            <div class="scenario-character">
+              <span class="role-tag role-analytics">Analytics</span>
+              <strong>Priya Sharma</strong>
+            </div>
+            <p>Priya is trying to build a report showing which accounts are most engaged. Problem: the same person—John Smith at Acme—shows up five times in the database. He's jsmith@acme.com, john.smith@acme.com, jsmith@gmail.com (personal), and two duplicates with typos. "Our 'top engaged account' report is fiction," Priya tells the team. "Acme looks like 5 accounts, not 1. Until we solve identity, every account-level metric is wrong."</p>
+          </div>
+        </div>
 
         <h3>The Identity Problem</h3>
 
@@ -1249,16 +2592,18 @@ LinkedIn: John T. Smith, Acme Corporation</code></pre>
 
         <p>Are these all the same person? Probably. How do you know? That's identity resolution.</p>
 
-        <h3>Identity Resolution Approaches</h3>
-
-        <h4>Deterministic Matching</h4>
-        <p>Use exact identifiers: same email = same person. Simple but limited—misses cases where identifiers differ.</p>
-
-        <h4>Probabilistic Matching</h4>
-        <p>Use signals that strongly suggest identity: same name + same company + similar email pattern = likely same person. More powerful but can create false positives.</p>
-
-        <h4>Graph-Based</h4>
-        <p>Build a graph of connections: if cookie A logged in as email X, and email X is associated with account Y, then cookie A belongs to a person at account Y. CDPs typically use this approach.</p>
+        <!-- Quick Reference: Resolution Approaches -->
+        <div class="quick-reference">
+          <div class="quick-reference-header">
+            <span class="quick-reference-icon">📋</span>
+            <span class="quick-reference-title">Quick Reference: Identity Resolution Approaches</span>
+          </div>
+          <div class="quick-reference-content">
+            <p><strong>Deterministic Matching:</strong> Exact identifiers (same email = same person) → Simple but limited → Misses cases where identifiers differ</p>
+            <p><strong>Probabilistic Matching:</strong> Signals that suggest identity (same name + company + similar email) → More powerful → Can create false positives</p>
+            <p><strong>Graph-Based:</strong> Build connection graph (cookie A → email X → account Y) → Most comprehensive → CDPs typically use this approach</p>
+          </div>
+        </div>
 
         <h3>Contact-to-Account Matching</h3>
 
@@ -1321,68 +2666,170 @@ LinkedIn: John T. Smith, Acme Corporation</code></pre>
         <div class="callout callout-tip">
           <strong>Prevention > Cure:</strong> Dedupe at point of entry. Check for existing records before creating new ones in forms and imports. Deduping after the fact is painful—leads lose history, campaign membership gets confused, sales complains about missing data.
         </div>
+
+        <!-- Deep Dive -->
+        <details class="deep-dive">
+          <summary>Deep Dive: Deduplication Best Practices</summary>
+          <div class="deep-dive-content">
+            <h4>Matching Criteria for Duplicates</h4>
+            <ul>
+              <li><strong>Exact email match:</strong> Easiest, most reliable</li>
+              <li><strong>Same name + same company:</strong> Probable duplicate, verify before merging</li>
+              <li><strong>Same name + similar email domain:</strong> Possible duplicate, manual review recommended</li>
+              <li><strong>Same phone number:</strong> Strong signal, but verify (phone numbers get recycled)</li>
+            </ul>
+            <h4>Merge Rules</h4>
+            <p>When merging duplicates, you need clear rules for which value wins:</p>
+            <ul>
+              <li>Prefer most recently updated field values</li>
+              <li>Keep the older created date (preserves history)</li>
+              <li>Always preserve the record with most activity/history as the "winner"</li>
+              <li>Document merges in audit log for troubleshooting</li>
+            </ul>
+          </div>
+        </details>
+
+        <!-- Knowledge Check -->
+        <div class="knowledge-check" data-answer="b">
+          <div class="knowledge-check-header">
+            <span class="knowledge-check-icon">✓</span>
+            <span class="knowledge-check-title">Knowledge Check</span>
+          </div>
+          <p class="knowledge-check-question">Priya discovered Acme appears as 5 separate accounts due to identity issues. What should be NovaTech's first step to fix this?</p>
+          <div class="quiz-options">
+            <label class="quiz-option">
+              <input type="radio" name="identity-quiz" value="a">
+              <span>Merge all 5 records into one immediately</span>
+            </label>
+            <label class="quiz-option">
+              <input type="radio" name="identity-quiz" value="b">
+              <span>Implement duplicate checking at form submission to prevent future duplicates</span>
+            </label>
+            <label class="quiz-option">
+              <input type="radio" name="identity-quiz" value="c">
+              <span>Require all leads to use work email addresses</span>
+            </label>
+            <label class="quiz-option">
+              <input type="radio" name="identity-quiz" value="d">
+              <span>Purchase a CDP to solve identity automatically</span>
+            </label>
+          </div>
+          <button class="quiz-btn">Check Answer</button>
+          <div class="quiz-feedback">
+            <p class="feedback-correct">Correct! Prevention beats cure. While you should clean up existing duplicates, the first priority is stopping new duplicates from being created. Check for existing records at point of entry (form submissions, imports) before creating new ones.</p>
+            <p class="feedback-incorrect">Not quite. The right first step is prevention—implementing duplicate checks at point of entry. Merging existing records is important but won't stop new duplicates. Requiring work email loses conversions, and a CDP is expensive overkill if basic prevention isn't in place first.</p>
+          </div>
+        </div>
+
+        <!-- Next Up Link -->
+        <div class="next-up-link">
+          <a href="#data-hygiene" class="next-up-content">
+            <span class="next-up-label">Next Section</span>
+            <div class="next-up-section">
+              <span class="next-up-number">Section 10</span>
+              <span class="next-up-title">Data Hygiene</span>
+            </div>
+            <span class="next-up-arrow">→</span>
+          </a>
+        </div>
       </section>
 
       <!-- Section 10: Data Hygiene -->
       <section id="data-hygiene">
-        <h2>Data Hygiene and Governance <a href="#data-hygiene" class="anchor-link">#</a></h2>
+        <!-- Hero Card -->
+        <div class="hero-card">
+          <div class="hero-number">10</div>
+          <h2 class="hero-title">Data Hygiene and Governance</h2>
+          <p class="hero-subtitle">Fighting the constant decay of your database</p>
+        </div>
 
-        <p>Data quality degrades constantly. People change jobs, companies get acquired, emails become invalid. Without active maintenance, your database becomes unusable within 2-3 years.</p>
+        <!-- TL;DR Box -->
+        <div class="tldr-box">
+          <div class="tldr-header">
+            <span class="tldr-icon">⚡</span>
+            <span class="tldr-label">TL;DR</span>
+          </div>
+          <div class="tldr-content">
+            <p>Data quality degrades constantly—22-25% of emails become invalid annually, 20-25% of job titles change. Focus on four dimensions: completeness, accuracy, consistency, and timeliness. Normalize critical fields (country codes, job levels, industries). Treat data hygiene as ongoing process, not one-time project. Build hygiene into entry points: validate on capture, enrich regularly, dedupe continuously.</p>
+          </div>
+        </div>
 
-        <h3>Data Decay Rates</h3>
+        <!-- Scenario Card -->
+        <div class="scenario-card">
+          <div class="scenario-header">
+            <span class="scenario-icon">🎬</span>
+            <span class="scenario-label">NovaTech Scenario</span>
+          </div>
+          <div class="scenario-content">
+            <div class="scenario-character">
+              <span class="role-tag role-mops">Marketing Ops</span>
+              <strong>Maya Chen</strong>
+            </div>
+            <p>Maya runs NovaTech's first database audit. The results are grim: 28% of emails bounce, 40% of records have no job title, and "United States" appears 17 different ways. "We've been scoring leads based on garbage data," she tells James. "No wonder sales says our MQLs are low quality—half of them probably don't work at those companies anymore." Maya proposes a data quality roadmap: immediate cleanup, then ongoing hygiene built into every process.</p>
+          </div>
+        </div>
 
-        <table>
-          <thead>
-            <tr>
-              <th>Data Element</th>
-              <th>Annual Decay Rate</th>
-              <th>Impact</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td>Email validity</td>
-              <td>22-25%</td>
-              <td>Bounces, deliverability harm</td>
-            </tr>
-            <tr>
-              <td>Phone numbers</td>
-              <td>15-20%</td>
-              <td>Failed sales calls</td>
-            </tr>
-            <tr>
-              <td>Job titles</td>
-              <td>20-25%</td>
-              <td>Wrong persona targeting</td>
-            </tr>
-            <tr>
-              <td>Company employment</td>
-              <td>15-20%</td>
-              <td>Emailing churned contacts</td>
-            </tr>
-            <tr>
-              <td>Company data (size, etc.)</td>
-              <td>5-10%</td>
-              <td>Wrong segmentation</td>
-            </tr>
-          </tbody>
-        </table>
+        <!-- Quick Reference: Data Decay Rates -->
+        <div class="quick-reference">
+          <div class="quick-reference-header">
+            <span class="quick-reference-icon">📋</span>
+            <span class="quick-reference-title">Quick Reference: Annual Data Decay Rates</span>
+          </div>
+          <div class="quick-reference-content">
+            <table>
+              <thead>
+                <tr>
+                  <th>Data Element</th>
+                  <th>Annual Decay</th>
+                  <th>Impact</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>Email validity</td>
+                  <td>22-25%</td>
+                  <td>Bounces, deliverability harm</td>
+                </tr>
+                <tr>
+                  <td>Phone numbers</td>
+                  <td>15-20%</td>
+                  <td>Failed sales calls</td>
+                </tr>
+                <tr>
+                  <td>Job titles</td>
+                  <td>20-25%</td>
+                  <td>Wrong persona targeting</td>
+                </tr>
+                <tr>
+                  <td>Company employment</td>
+                  <td>15-20%</td>
+                  <td>Emailing churned contacts</td>
+                </tr>
+                <tr>
+                  <td>Company data</td>
+                  <td>5-10%</td>
+                  <td>Wrong segmentation</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
 
         <p>That 22-25% email decay means if you don't actively clean your list, a quarter of it becomes invalid each year.</p>
 
-        <h3>Data Quality Dimensions</h3>
-
-        <h4>Completeness</h4>
-        <p>Are required fields filled in? Track fill rates by field. Target: >90% for critical fields (email, company), >70% for enrichment fields (industry, size).</p>
-
-        <h4>Accuracy</h4>
-        <p>Are values correct? Harder to measure—requires sampling and manual verification. Watch for obvious errors: job title "asdfasdf", company "test company".</p>
-
-        <h4>Consistency</h4>
-        <p>Same thing, same way. "United States" vs "US" vs "USA" vs "U.S.A." all meaning the same thing but breaking reports. Picklists help.</p>
-
-        <h4>Timeliness</h4>
-        <p>How fresh is the data? A lead from 2019 has probably changed jobs. Track last_verified dates and re-verify stale records.</p>
+        <!-- Quick Reference: Quality Dimensions -->
+        <div class="quick-reference">
+          <div class="quick-reference-header">
+            <span class="quick-reference-icon">📋</span>
+            <span class="quick-reference-title">Quick Reference: Data Quality Dimensions</span>
+          </div>
+          <div class="quick-reference-content">
+            <p><strong>Completeness:</strong> Are required fields filled? Target >90% for critical fields (email, company), >70% for enrichment fields (industry, size)</p>
+            <p><strong>Accuracy:</strong> Are values correct? Watch for "asdfasdf" job titles, "test company" accounts—requires sampling and manual verification</p>
+            <p><strong>Consistency:</strong> Same thing, same way. "United States" vs "US" vs "USA" breaking reports. Picklists help.</p>
+            <p><strong>Timeliness:</strong> How fresh? A 2019 lead has probably changed jobs. Track last_verified dates and re-verify stale records.</p>
+          </div>
+        </div>
 
         <h3>Normalization Essentials</h3>
 
@@ -1421,35 +2868,119 @@ After normalization:
         <div class="callout callout-caution">
           <strong>Common Failure:</strong> Treating data hygiene as a one-time project. "We cleaned the database" is meaningless if decay isn't addressed continuously. Build hygiene into ongoing processes: validate on entry, enrich regularly, dedupe continuously.
         </div>
+
+        <!-- Deep Dive -->
+        <details class="deep-dive">
+          <summary>Deep Dive: Governance Practices</summary>
+          <div class="deep-dive-content">
+            <ul>
+              <li><strong>Field ownership:</strong> Define who can edit which fields. Marketing shouldn't modify sales fields and vice versa.</li>
+              <li><strong>Validation rules:</strong> Enforce formats at point of entry—email format, phone format, required fields.</li>
+              <li><strong>Regular audits:</strong> Monthly or quarterly data quality reviews. Check fill rates, uniqueness, validity.</li>
+              <li><strong>Archival policy:</strong> Define what happens to old, unengaged leads. Set aging rules and suppress/archive accordingly.</li>
+            </ul>
+            <h4>Normalization Standards</h4>
+            <ul>
+              <li><strong>Country/State:</strong> Use ISO codes (US, not "United States")</li>
+              <li><strong>Job titles:</strong> Standardize to levels (IC, Manager, Director, VP, C-level) and functions (Marketing, Sales, IT)</li>
+              <li><strong>Industry:</strong> Map to standard taxonomy (NAICS, SIC, or custom)</li>
+              <li><strong>Company names:</strong> Consider using domain as canonical identifier</li>
+            </ul>
+          </div>
+        </details>
+
+        <!-- Knowledge Check -->
+        <div class="knowledge-check" data-answer="c">
+          <div class="knowledge-check-header">
+            <span class="knowledge-check-icon">✓</span>
+            <span class="knowledge-check-title">Knowledge Check</span>
+          </div>
+          <p class="knowledge-check-question">Maya's audit found 28% email bounce rate and 17 variations of "United States." Which data quality dimension addresses the country variation problem?</p>
+          <div class="quiz-options">
+            <label class="quiz-option">
+              <input type="radio" name="hygiene-quiz" value="a">
+              <span>Completeness</span>
+            </label>
+            <label class="quiz-option">
+              <input type="radio" name="hygiene-quiz" value="b">
+              <span>Accuracy</span>
+            </label>
+            <label class="quiz-option">
+              <input type="radio" name="hygiene-quiz" value="c">
+              <span>Consistency</span>
+            </label>
+            <label class="quiz-option">
+              <input type="radio" name="hygiene-quiz" value="d">
+              <span>Timeliness</span>
+            </label>
+          </div>
+          <button class="quiz-btn">Check Answer</button>
+          <div class="quiz-feedback">
+            <p class="feedback-correct">Correct! Consistency means the same thing is recorded the same way. "United States," "US," "USA," and "U.S.A." all mean the same thing but break segmentation and reporting. The fix: standardize on ISO codes and normalize at entry.</p>
+            <p class="feedback-incorrect">Not quite. Having 17 variations of the same country is a consistency problem—the data is complete and likely accurate, but it's not standardized. Consistency means recording the same information the same way every time.</p>
+          </div>
+        </div>
+
+        <!-- Next Up Link -->
+        <div class="next-up-link">
+          <a href="#privacy" class="next-up-content">
+            <span class="next-up-label">Next Section</span>
+            <div class="next-up-section">
+              <span class="next-up-number">Section 11</span>
+              <span class="next-up-title">Privacy and Consent</span>
+            </div>
+            <span class="next-up-arrow">→</span>
+          </a>
+        </div>
       </section>
 
       <!-- Section 11: Privacy -->
       <section id="privacy">
-        <h2>Privacy and Consent <a href="#privacy" class="anchor-link">#</a></h2>
+        <!-- Hero Card -->
+        <div class="hero-card">
+          <div class="hero-number">11</div>
+          <h2 class="hero-title">Privacy and Consent</h2>
+          <p class="hero-subtitle">Navigating regulations and the end of third-party cookies</p>
+        </div>
 
-        <p>Privacy regulations and browser changes are reshaping what's possible in martech. This section covers practical impacts, not legal advice—consult legal for compliance specifics.</p>
+        <!-- TL;DR Box -->
+        <div class="tldr-box">
+          <div class="tldr-header">
+            <span class="tldr-icon">⚡</span>
+            <span class="tldr-label">TL;DR</span>
+          </div>
+          <div class="tldr-content">
+            <p>GDPR requires opt-in for EU contacts; CCPA allows opt-out. Third-party cookies are dying—Safari/Firefox already block them, Chrome's Privacy Sandbox is evolving. Retargeting, cross-site attribution, and multi-touch tracking are breaking. Shift to first-party data: capture identity earlier, build direct relationships, accept measurement uncertainty. Perfect tracking is ending.</p>
+          </div>
+        </div>
 
-        <h3>Key Regulations</h3>
+        <!-- Scenario Card -->
+        <div class="scenario-card">
+          <div class="scenario-header">
+            <span class="scenario-icon">🎬</span>
+            <span class="scenario-label">NovaTech Scenario</span>
+          </div>
+          <div class="scenario-content">
+            <div class="scenario-character">
+              <span class="role-tag role-analytics">Analytics</span>
+              <strong>Priya Sharma</strong>
+            </div>
+            <p>Priya's attribution model suddenly shows 40% of web conversions as "direct/unknown." "Safari and Firefox are blocking our tracking," she explains to James. "And Chrome changes are coming." James asks for the "real" numbers. Priya has to be honest: "There are no 'real' numbers anymore. We need to shift strategy—capture first-party data earlier, ask 'how did you hear about us' on forms, and accept that perfect attribution is over."</p>
+          </div>
+        </div>
 
-        <h4>GDPR (EU)</h4>
-        <p>Requires explicit consent for processing personal data, including marketing. Key practical impacts:</p>
-        <ul>
-          <li>Can't email EU contacts without documented opt-in</li>
-          <li>Must honor deletion requests ("right to be forgotten")</li>
-          <li>Can't transfer EU data to countries without adequate protection (affects tool selection)</li>
-          <li>Consent must be freely given, specific, informed—pre-checked boxes don't count</li>
-        </ul>
-
-        <h4>CCPA/CPRA (California)</h4>
-        <p>Gives consumers rights over their data, less restrictive than GDPR. Key impacts:</p>
-        <ul>
-          <li>Must provide "do not sell my data" option</li>
-          <li>Must disclose what data you collect</li>
-          <li>Opt-out model (vs. GDPR's opt-in)—can market until they say stop</li>
-        </ul>
-
-        <h4>Other Regulations</h4>
-        <p>LGPD (Brazil), PIPEDA (Canada), state laws proliferating in US. Trend is toward more restriction, not less.</p>
+        <!-- Quick Reference: Key Regulations -->
+        <div class="quick-reference">
+          <div class="quick-reference-header">
+            <span class="quick-reference-icon">📋</span>
+            <span class="quick-reference-title">Quick Reference: Key Privacy Regulations</span>
+          </div>
+          <div class="quick-reference-content">
+            <p><strong>GDPR (EU):</strong> Explicit opt-in required • Must honor deletion requests • Can't transfer EU data without protection • Pre-checked boxes don't count as consent</p>
+            <p><strong>CCPA/CPRA (California):</strong> Opt-out model (can market until they say stop) • Must provide "do not sell" option • Must disclose what you collect</p>
+            <p><strong>Others:</strong> LGPD (Brazil), PIPEDA (Canada), proliferating US state laws • Trend is toward more restriction</p>
+          </div>
+        </div>
 
         <h3>Cookie Deprecation</h3>
 
@@ -1522,13 +3053,107 @@ After normalization:
         <div class="callout callout-info">
           <strong>Realistic View:</strong> Perfect tracking is ending. The companies that win will be those that build direct relationships, capture first-party data thoughtfully, and accept measurement uncertainty rather than pretending they have perfect attribution.
         </div>
+
+        <!-- Deep Dive -->
+        <details class="deep-dive">
+          <summary>Deep Dive: Consent Management Requirements</summary>
+          <div class="deep-dive-content">
+            <p>You need a system to capture, store, and respect consent preferences. Cookie banners are just the visible part:</p>
+            <ul>
+              <li><strong>Storage:</strong> Consent must be stored in your database, not just a cookie</li>
+              <li><strong>Suppression:</strong> Ability to suppress marketing to non-consented contacts</li>
+              <li><strong>Audit trail:</strong> Record when consent was given, how, and what they agreed to</li>
+              <li><strong>Integration:</strong> Connect consent to your MAP to respect preferences in campaigns</li>
+            </ul>
+            <h4>First-Party Data Strategy</h4>
+            <ul>
+              <li>Invest in capturing email/identity earlier in journey</li>
+              <li>Build direct relationships (newsletters, communities, events)</li>
+              <li>Capture zero-party data (preferences explicitly shared)</li>
+              <li>Product usage data becomes key signal for SaaS</li>
+            </ul>
+          </div>
+        </details>
+
+        <!-- Knowledge Check -->
+        <div class="knowledge-check" data-answer="d">
+          <div class="knowledge-check-header">
+            <span class="knowledge-check-icon">✓</span>
+            <span class="knowledge-check-title">Knowledge Check</span>
+          </div>
+          <p class="knowledge-check-question">Priya's attribution shows 40% of conversions as "direct/unknown" due to browser tracking restrictions. What's the best strategic response?</p>
+          <div class="quiz-options">
+            <label class="quiz-option">
+              <input type="radio" name="privacy-quiz" value="a">
+              <span>Find workarounds to restore third-party cookie tracking</span>
+            </label>
+            <label class="quiz-option">
+              <input type="radio" name="privacy-quiz" value="b">
+              <span>Allocate the unknown conversions proportionally across known channels</span>
+            </label>
+            <label class="quiz-option">
+              <input type="radio" name="privacy-quiz" value="c">
+              <span>Ignore the unknown conversions and report only known channels</span>
+            </label>
+            <label class="quiz-option">
+              <input type="radio" name="privacy-quiz" value="d">
+              <span>Invest in first-party data collection and add self-reported attribution to forms</span>
+            </label>
+          </div>
+          <button class="quiz-btn">Check Answer</button>
+          <div class="quiz-feedback">
+            <p class="feedback-correct">Correct! The tracking era is ending. The sustainable response is building first-party data relationships and supplementing technical tracking with self-reported attribution ("how did you hear about us?"). Workarounds are temporary; accepting measurement uncertainty while improving directional insight is the path forward.</p>
+            <p class="feedback-incorrect">Not quite. Workarounds are temporary and often violate privacy regulations. Allocating unknowns is guesswork. Ignoring them misses 40% of conversions. The right approach: invest in first-party data and self-reported attribution to work within the new reality.</p>
+          </div>
+        </div>
+
+        <!-- Next Up Link -->
+        <div class="next-up-link">
+          <a href="#vendors" class="next-up-content">
+            <span class="next-up-label">Next Section</span>
+            <div class="next-up-section">
+              <span class="next-up-number">Section 12</span>
+              <span class="next-up-title">Vendor Landscape</span>
+            </div>
+            <span class="next-up-arrow">→</span>
+          </a>
+        </div>
       </section>
 
       <!-- Section 12: Vendors -->
       <section id="vendors">
-        <h2>Vendor Landscape <a href="#vendors" class="anchor-link">#</a></h2>
+        <!-- Hero Card -->
+        <div class="hero-card">
+          <div class="hero-number">12</div>
+          <h2 class="hero-title">Vendor Landscape</h2>
+          <p class="hero-subtitle">Understanding what major platforms actually do differently</p>
+        </div>
 
-        <p>Understanding what major vendors actually do differently helps you evaluate options and understand what you're working with.</p>
+        <!-- TL;DR Box -->
+        <div class="tldr-box">
+          <div class="tldr-header">
+            <span class="tldr-icon">⚡</span>
+            <span class="tldr-label">TL;DR</span>
+          </div>
+          <div class="tldr-content">
+            <p>Salesforce is powerful but complex; HubSpot is simpler and often sufficient. For MAPs: HubSpot is easiest, Marketo most powerful, Pardot best for Salesforce-native shops. ABM platforms (6sense, Demandbase) start at $50K+/year. When evaluating: define requirements first, check integrations, understand data portability, calculate total cost (license + implementation + admin), run a pilot before committing. Every tool is a dependency—consider how hard it would be to leave.</p>
+          </div>
+        </div>
+
+        <!-- Scenario Card -->
+        <div class="scenario-card">
+          <div class="scenario-header">
+            <span class="scenario-icon">🎬</span>
+            <span class="scenario-label">NovaTech Scenario</span>
+          </div>
+          <div class="scenario-content">
+            <div class="scenario-character">
+              <span class="role-tag role-cmo">CMO</span>
+              <strong>James Okonkwo</strong>
+            </div>
+            <p>James is evaluating whether to switch from HubSpot to Marketo. The sales pitch was compelling—more sophisticated campaigns, better Salesforce integration. Maya runs the numbers: $40K/year more in licensing, $80K implementation, plus they'd need to hire a dedicated admin. "Marketo is more powerful," Maya reports, "but we're not using 60% of HubSpot's features. We'd be paying for complexity we don't need." James decides to maximize HubSpot first: "Let's hit the ceiling before we build a bigger room."</p>
+          </div>
+        </div>
 
         <h3>CRM: Salesforce vs HubSpot</h3>
 
@@ -1696,15 +3321,149 @@ After normalization:
         <div class="callout callout-warning">
           <strong>Vendor Lock-in:</strong> Every tool you adopt is a dependency. Consider: how hard would it be to switch? How portable is your data and configuration? The best tool in the world isn't worth it if you can't leave.
         </div>
+
+        <!-- Deep Dive -->
+        <details class="deep-dive">
+          <summary>Deep Dive: Vendor Evaluation Framework</summary>
+          <div class="deep-dive-content">
+            <ol>
+              <li><strong>Define requirements first.</strong> What problem are you solving? What does success look like?</li>
+              <li><strong>Check integration capabilities.</strong> Does it connect to your existing stack? Native or API-only?</li>
+              <li><strong>Understand the data model.</strong> Where does data live? Can you get it out if needed?</li>
+              <li><strong>Calculate total cost.</strong> License + implementation + ongoing admin + integrations.</li>
+              <li><strong>Talk to actual users.</strong> Not reference customers vendor provides—find people on LinkedIn.</li>
+              <li><strong>Run a pilot.</strong> Before annual contract, test with real use cases.</li>
+            </ol>
+          </div>
+        </details>
+
+        <!-- Knowledge Check -->
+        <div class="knowledge-check" data-answer="b">
+          <div class="knowledge-check-header">
+            <span class="knowledge-check-icon">✓</span>
+            <span class="knowledge-check-title">Knowledge Check</span>
+          </div>
+          <p class="knowledge-check-question">James decided not to switch from HubSpot to Marketo after Maya's analysis. What was the key insight that drove this decision?</p>
+          <div class="quiz-options">
+            <label class="quiz-option">
+              <input type="radio" name="vendors-quiz" value="a">
+              <span>Marketo's price was too high for NovaTech's budget</span>
+            </label>
+            <label class="quiz-option">
+              <input type="radio" name="vendors-quiz" value="b">
+              <span>They weren't using most of HubSpot's existing features, so complexity wasn't the problem</span>
+            </label>
+            <label class="quiz-option">
+              <input type="radio" name="vendors-quiz" value="c">
+              <span>HubSpot has better customer support than Marketo</span>
+            </label>
+            <label class="quiz-option">
+              <input type="radio" name="vendors-quiz" value="d">
+              <span>Marketo doesn't integrate with their existing tools</span>
+            </label>
+          </div>
+          <button class="quiz-btn">Check Answer</button>
+          <div class="quiz-feedback">
+            <p class="feedback-correct">Correct! The key insight was utilization. NovaTech was using only 40% of HubSpot's features. Switching to a more powerful tool wouldn't solve the real problem—they needed to maximize their current platform before investing in more complexity. Hit the ceiling before building a bigger room.</p>
+            <p class="feedback-incorrect">Not quite. The key insight was about utilization, not cost or features. Maya found they were only using 40% of HubSpot's capabilities. More powerful tools don't help if you're not using what you have. The right approach: maximize current platform before investing in more complexity.</p>
+          </div>
+        </div>
+
+        <!-- Next Up Link -->
+        <div class="next-up-link">
+          <a href="#abm" class="next-up-content">
+            <span class="next-up-label">Next Section</span>
+            <div class="next-up-section">
+              <span class="next-up-number">Section 13</span>
+              <span class="next-up-title">Account-Based Marketing</span>
+            </div>
+            <span class="next-up-arrow">→</span>
+          </a>
+        </div>
       </section>
 
       <!-- Section 13: ABM -->
       <section id="abm">
-        <h2>Account-Based Marketing <a href="#abm" class="anchor-link">#</a></h2>
+        <!-- Hero Card -->
+        <div class="hero-card">
+          <div class="hero-number">13</div>
+          <h2 class="hero-title">Account-Based Marketing</h2>
+          <p class="hero-subtitle">Flip the funnel—start with target accounts, not lead volume</p>
+        </div>
 
-        <p>ABM flips the funnel. Instead of generating leads and hoping some turn into good accounts, you start with target accounts and focus marketing resources on them. It's not a tool—it's a strategy that uses many tools.</p>
+        <!-- TL;DR Box -->
+        <div class="tldr-box">
+          <div class="tldr-header">
+            <span class="tldr-icon">⚡</span>
+            <span class="tldr-label">TL;DR</span>
+          </div>
+          <div class="tldr-content">
+            <p>ABM is a strategy, not a tool. Start with target accounts (tiered: 1:1 for top 10-50, 1:Few for 50-500, 1:Many for 500+), coordinate channels around them, and measure account engagement rather than lead volume. ABM requires sales buy-in—it fails when marketing picks accounts unilaterally. Common mistake: too many "Tier 1" accounts. If you have 500 Tier 1 accounts, you have zero.</p>
+          </div>
+        </div>
 
-        <h3>ABM vs Traditional Demand Gen</h3>
+        <!-- Scenario Card -->
+        <div class="scenario-card">
+          <div class="scenario-header">
+            <span class="scenario-icon">🎬</span>
+            <span class="scenario-label">NovaTech Scenario</span>
+          </div>
+          <div class="scenario-content">
+            <div class="scenario-character">
+              <span class="role-tag role-demand-gen">Demand Gen</span>
+              <strong>Sarah Park</strong>
+            </div>
+            <p>Sarah proposes an ABM pilot. "We're generating 500 MQLs a month, but only 12 become customers. Let's flip it: pick 50 target accounts, coordinate everything around them." Derek is skeptical: "You want me to ignore inbound leads?" Sarah clarifies: "No—we still run demand gen. But for these 50 accounts, we add a layer: display ads, direct mail, personalized content, coordinated outreach. Same budget, focused effort." Three months later, the pilot accounts convert at 3x the normal rate.</p>
+          </div>
+        </div>
+
+        <!-- Quick Reference: ABM vs Demand Gen -->
+        <div class="quick-reference">
+          <div class="quick-reference-header">
+            <span class="quick-reference-icon">📋</span>
+            <span class="quick-reference-title">Quick Reference: ABM vs Traditional Demand Gen</span>
+          </div>
+          <div class="quick-reference-content">
+            <table>
+              <thead>
+                <tr>
+                  <th>Aspect</th>
+                  <th>Traditional Demand Gen</th>
+                  <th>ABM</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td><strong>Starting point</strong></td>
+                  <td>Cast wide net, qualify down</td>
+                  <td>Start with target account list</td>
+                </tr>
+                <tr>
+                  <td><strong>Unit of analysis</strong></td>
+                  <td>Lead</td>
+                  <td>Account (buying committee)</td>
+                </tr>
+                <tr>
+                  <td><strong>Metrics</strong></td>
+                  <td>Lead volume, MQLs</td>
+                  <td>Account engagement, pipeline/account</td>
+                </tr>
+                <tr>
+                  <td><strong>Personalization</strong></td>
+                  <td>Segment-level</td>
+                  <td>Account or industry-level</td>
+                </tr>
+                <tr>
+                  <td><strong>Best for</strong></td>
+                  <td>High volume, lower ACV</td>
+                  <td>Enterprise, high ACV, named accounts</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <h3>Account Tiering</h3>
 
         <table>
           <thead>
@@ -1851,44 +3610,122 @@ After normalization:
           <strong>In Practice:</strong> ABM works when sales and marketing agree on target accounts and collaborate continuously. It fails when marketing picks accounts unilaterally and throws leads over the wall. If your sales team isn't bought in, ABM is just expensive advertising.
         </div>
 
-        <h3>Common ABM Mistakes</h3>
+        <!-- Deep Dive -->
+        <details class="deep-dive">
+          <summary>Deep Dive: Common ABM Mistakes</summary>
+          <div class="deep-dive-content">
+            <ul>
+              <li><strong>Too many Tier 1 accounts:</strong> If you have 500 "Tier 1" accounts, you have zero Tier 1 accounts. 1:1 doesn't scale.</li>
+              <li><strong>No sales buy-in:</strong> Marketing can't run ABM alone. Sales must commit to working the accounts.</li>
+              <li><strong>Lead metrics for ABM:</strong> Reporting MQL volume for an ABM program misses the point.</li>
+              <li><strong>No account-level tracking:</strong> If your systems can't aggregate contacts to accounts, you can't measure ABM.</li>
+              <li><strong>Spray and pray with ads:</strong> Running ads to target accounts isn't ABM—it's just targeting. ABM requires orchestration.</li>
+            </ul>
+            <h4>ABM Tech Stack Components</h4>
+            <ul>
+              <li><strong>Account data/targeting:</strong> 6sense, Demandbase, Terminus</li>
+              <li><strong>Account-based advertising:</strong> LinkedIn, display through ABM platforms</li>
+              <li><strong>Personalization:</strong> Mutiny, Intellimize (customize web per account)</li>
+              <li><strong>Direct mail:</strong> Sendoso, Postal.io (physical touches at scale)</li>
+              <li><strong>Sales engagement:</strong> Outreach, Salesloft</li>
+            </ul>
+          </div>
+        </details>
 
-        <ul>
-          <li><strong>Too many Tier 1 accounts:</strong> If you have 500 "Tier 1" accounts, you have zero Tier 1 accounts. 1:1 doesn't scale.</li>
-          <li><strong>No sales buy-in:</strong> Marketing can't run ABM alone. Sales must commit to working the accounts.</li>
-          <li><strong>Lead metrics for ABM:</strong> Reporting MQL volume for an ABM program misses the point.</li>
-          <li><strong>No account-level tracking:</strong> If your systems can't aggregate contacts to accounts, you can't measure ABM.</li>
-          <li><strong>Spray and pray with ads:</strong> Running ads to target accounts isn't ABM—it's just targeting. ABM requires orchestration.</li>
-        </ul>
+        <!-- Knowledge Check -->
+        <div class="knowledge-check" data-answer="c">
+          <div class="knowledge-check-header">
+            <span class="knowledge-check-icon">✓</span>
+            <span class="knowledge-check-title">Knowledge Check</span>
+          </div>
+          <p class="knowledge-check-question">Sarah's ABM pilot showed 3x higher conversion for target accounts. What was the most critical success factor?</p>
+          <div class="quiz-options">
+            <label class="quiz-option">
+              <input type="radio" name="abm-quiz" value="a">
+              <span>Using advanced ABM technology platforms</span>
+            </label>
+            <label class="quiz-option">
+              <input type="radio" name="abm-quiz" value="b">
+              <span>Increasing budget for the target accounts</span>
+            </label>
+            <label class="quiz-option">
+              <input type="radio" name="abm-quiz" value="c">
+              <span>Coordinating multiple channels around the same accounts with sales collaboration</span>
+            </label>
+            <label class="quiz-option">
+              <input type="radio" name="abm-quiz" value="d">
+              <span>Choosing only enterprise-size companies as targets</span>
+            </label>
+          </div>
+          <button class="quiz-btn">Check Answer</button>
+          <div class="quiz-feedback">
+            <p class="feedback-correct">Correct! ABM's power is orchestration—coordinating display ads, direct mail, personalized content, and sales outreach around the same accounts. It's not about tools or budget, it's about focused, coordinated effort. Sarah explicitly said: "Same budget, focused effort."</p>
+            <p class="feedback-incorrect">Not quite. The key wasn't technology, budget, or target size—it was orchestration. ABM works because you coordinate multiple channels (ads, mail, content, outreach) around the same accounts. Sarah's pilot used the same budget, just focused and coordinated.</p>
+          </div>
+        </div>
+
+        <!-- Next Up Link -->
+        <div class="next-up-link">
+          <a href="#auditing" class="next-up-content">
+            <span class="next-up-label">Next Section</span>
+            <div class="next-up-section">
+              <span class="next-up-number">Section 14</span>
+              <span class="next-up-title">Evaluating & Auditing a Stack</span>
+            </div>
+            <span class="next-up-arrow">→</span>
+          </a>
+        </div>
       </section>
 
       <!-- Section 14: Auditing -->
       <section id="auditing">
-        <h2>Evaluating and Auditing a Stack <a href="#auditing" class="anchor-link">#</a></h2>
+        <!-- Hero Card -->
+        <div class="hero-card">
+          <div class="hero-number">14</div>
+          <h2 class="hero-title">Evaluating and Auditing a Stack</h2>
+          <p class="hero-subtitle">How to assess what you have and plan what you need</p>
+        </div>
 
-        <p>Whether you're new to a company or looking to optimize, knowing how to assess an existing martech stack is a critical skill.</p>
+        <!-- TL;DR Box -->
+        <div class="tldr-box">
+          <div class="tldr-header">
+            <span class="tldr-icon">⚡</span>
+            <span class="tldr-label">TL;DR</span>
+          </div>
+          <div class="tldr-content">
+            <p>Audit framework: (1) Inventory all tools with costs and owners, (2) Map data flows between systems, (3) Identify gaps and overlaps, (4) Assess data quality, (5) Evaluate against business needs. Common problems: tool sprawl, data silos, shelfware, single points of failure. Prioritize recommendations: quick wins first, then foundation fixes, then strategic investments.</p>
+          </div>
+        </div>
 
-        <h3>Stack Audit Framework</h3>
+        <!-- Scenario Card -->
+        <div class="scenario-card">
+          <div class="scenario-header">
+            <span class="scenario-icon">🎬</span>
+            <span class="scenario-label">NovaTech Scenario</span>
+          </div>
+          <div class="scenario-content">
+            <div class="scenario-character">
+              <span class="role-tag role-mops">Marketing Ops</span>
+              <strong>Maya Chen</strong>
+            </div>
+            <p>Maya presents her first stack audit to leadership. "We have 14 marketing tools costing $280K annually. Three people maintain them. Key findings: CRM and MAP show 12% lead count discrepancy. Two tools do email—one hasn't been used in six months but we're paying until December. And we have no attribution—we literally cannot connect marketing to revenue." Her recommendations: run email validation immediately (quick win), fix CRM-MAP sync (foundation), implement attribution model (strategic). "And cancel that redundant tool at renewal—that's $18K back."</p>
+          </div>
+        </div>
 
-        <h4>Step 1: Inventory</h4>
-        <p>Document every tool. For each:</p>
-        <ul>
-          <li>What does it do? (Primary function)</li>
-          <li>Who owns it? (Department, person)</li>
-          <li>What does it cost? (License, implementation, ongoing)</li>
-          <li>How many users? (Active users vs licensed)</li>
-          <li>What data does it hold?</li>
-          <li>What does it connect to?</li>
-        </ul>
-
-        <h4>Step 2: Map Data Flows</h4>
-        <p>Create a diagram showing how data moves between systems. For each flow:</p>
-        <ul>
-          <li>What triggers the flow? (Real-time, scheduled, manual)</li>
-          <li>What data moves?</li>
-          <li>Which direction? (One-way or bidirectional)</li>
-          <li>What's the integration method? (Native, API, iPaaS)</li>
-        </ul>
+        <!-- Quick Reference: Audit Framework -->
+        <div class="quick-reference">
+          <div class="quick-reference-header">
+            <span class="quick-reference-icon">📋</span>
+            <span class="quick-reference-title">Quick Reference: 5-Step Audit Framework</span>
+          </div>
+          <div class="quick-reference-content">
+            <p><strong>Step 1: Inventory</strong> → Document every tool: function, owner, cost, active users, data held, integrations</p>
+            <p><strong>Step 2: Map Data Flows</strong> → Diagram how data moves: triggers, fields, direction, integration method</p>
+            <p><strong>Step 3: Find Gaps/Overlaps</strong> → Redundant functionality? Missing capabilities? Unused tools? Broken integrations?</p>
+            <p><strong>Step 4: Assess Data Quality</strong> → Check duplicate rates, fill rates, bounce rates, invalid records</p>
+            <p><strong>Step 5: Evaluate vs Needs</strong> → Does current stack enable or block planned programs?</p>
+          </div>
+        </div>
 
         <h4>Step 3: Identify Gaps and Overlaps</h4>
 
@@ -2012,11 +3849,12 @@ MAP Health Check:
           </ol>
         </div>
 
-        <details class="collapsible">
-          <summary>Example Audit Findings Summary</summary>
-          <div>
+        <!-- Deep Dive -->
+        <details class="deep-dive">
+          <summary>Deep Dive: Example Audit Findings Summary</summary>
+          <div class="deep-dive-content">
             <p><strong>Current State:</strong> 14 marketing tools, $280K annual spend, 3 people maintaining.</p>
-            
+
             <p><strong>Key Issues:</strong></p>
             <ul>
               <li>CRM and MAP show different lead counts (12% discrepancy)</li>
@@ -2025,15 +3863,77 @@ MAP Health Check:
               <li>Data quality: 28% of emails invalid, 40% missing job title</li>
             </ul>
 
-            <p><strong>Recommendations:</strong></p>
+            <p><strong>Recommendations Priority Template:</strong></p>
             <ol>
-              <li>Quick win: Run email validation, suppress invalids (2 days, saves deliverability)</li>
-              <li>Foundation: Fix CRM-MAP sync, establish single source of truth (2 weeks)</li>
-              <li>Strategic: Implement attribution model using existing tools (6-8 weeks)</li>
-              <li>Cleanup: Cancel redundant email tool at renewal, save $18K/year</li>
+              <li><strong>Quick wins:</strong> Low effort, high impact (do now)</li>
+              <li><strong>Foundation fixes:</strong> Required for everything else (do next)</li>
+              <li><strong>Strategic investments:</strong> Major initiatives (plan carefully)</li>
+              <li><strong>Cleanup:</strong> Tech debt, decommissioning (ongoing)</li>
             </ol>
           </div>
         </details>
+
+        <!-- Knowledge Check -->
+        <div class="knowledge-check" data-answer="a">
+          <div class="knowledge-check-header">
+            <span class="knowledge-check-icon">✓</span>
+            <span class="knowledge-check-title">Knowledge Check</span>
+          </div>
+          <p class="knowledge-check-question">Maya's audit found a 12% discrepancy between CRM and MAP lead counts. She recommended fixing the sync as a "foundation fix" rather than a "quick win." Why?</p>
+          <div class="quiz-options">
+            <label class="quiz-option">
+              <input type="radio" name="auditing-quiz" value="a">
+              <span>Other improvements (like attribution) depend on having accurate, synced data first</span>
+            </label>
+            <label class="quiz-option">
+              <input type="radio" name="auditing-quiz" value="b">
+              <span>It's the most expensive problem to fix</span>
+            </label>
+            <label class="quiz-option">
+              <input type="radio" name="auditing-quiz" value="c">
+              <span>It will take the longest time to complete</span>
+            </label>
+            <label class="quiz-option">
+              <input type="radio" name="auditing-quiz" value="d">
+              <span>Leadership specifically requested it</span>
+            </label>
+          </div>
+          <button class="quiz-btn">Check Answer</button>
+          <div class="quiz-feedback">
+            <p class="feedback-correct">Correct! "Foundation fixes" are called that because other improvements depend on them. You can't implement attribution (strategic) if your lead counts don't match. Foundation fixes enable everything else—that's why they come before strategic investments.</p>
+            <p class="feedback-incorrect">Not quite. Foundation fixes are so named because they're foundational—other improvements depend on them. Fixing CRM-MAP sync comes before implementing attribution because accurate data is required for accurate attribution. Cost and time aren't the determining factors.</p>
+          </div>
+        </div>
+
+        <!-- Guide Completion Card -->
+        <div class="guide-completion-card">
+          <div class="completion-header">
+            <span class="completion-icon">🎓</span>
+            <h3 class="completion-title">Guide 2 Complete!</h3>
+          </div>
+          <div class="completion-content">
+            <p>You've learned about the martech stack ecosystem and ABM strategy. Key takeaways:</p>
+            <ul>
+              <li><strong>Stack layers:</strong> CRM, MAP, CDP, analytics, intent, enrichment—and how they connect</li>
+              <li><strong>Data operations:</strong> Identity resolution, data hygiene, privacy compliance</li>
+              <li><strong>Integration patterns:</strong> Native, API, iPaaS, reverse ETL—and common failure modes</li>
+              <li><strong>ABM strategy:</strong> Account tiering, orchestration, metrics that matter</li>
+              <li><strong>Evaluation:</strong> How to audit a stack and prioritize improvements</li>
+            </ul>
+          </div>
+        </div>
+
+        <!-- Next Guide Teaser -->
+        <div class="next-up-link" style="margin-top: 2rem;">
+          <a href="guide-3-marketing-analytics-attribution.html" class="next-up-content">
+            <span class="next-up-label">Continue Learning</span>
+            <div class="next-up-section">
+              <span class="next-up-number">Guide 3</span>
+              <span class="next-up-title">Marketing Analytics & Attribution</span>
+            </div>
+            <span class="next-up-arrow">→</span>
+          </a>
+        </div>
       </section>
 
       <footer class="footer">
@@ -2089,6 +3989,75 @@ MAP Health Check:
 
     window.addEventListener('scroll', updateActiveNav);
     updateActiveNav();
+
+    // Progress Tracker
+    function updateProgressBar() {
+      const winScroll = document.body.scrollTop || document.documentElement.scrollTop;
+      const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+      const scrolled = (winScroll / height) * 100;
+      document.getElementById('progressBar').style.width = scrolled + '%';
+    }
+
+    window.addEventListener('scroll', updateProgressBar);
+    updateProgressBar();
+
+    // Knowledge Check Quiz System
+    function initQuizzes() {
+      document.querySelectorAll('.knowledge-check').forEach(quiz => {
+        const btn = quiz.querySelector('.quiz-btn');
+        const options = quiz.querySelectorAll('.quiz-option');
+        const feedback = quiz.querySelector('.quiz-feedback');
+        const correctAnswer = quiz.dataset.answer;
+
+        btn.addEventListener('click', () => {
+          const selected = quiz.querySelector('input[type="radio"]:checked');
+          if (!selected) return;
+
+          const selectedValue = selected.value;
+          const isCorrect = selectedValue === correctAnswer;
+
+          options.forEach(opt => {
+            opt.classList.remove('correct', 'incorrect');
+          });
+
+          const selectedOption = selected.closest('.quiz-option');
+          selectedOption.classList.add(isCorrect ? 'correct' : 'incorrect');
+
+          if (!isCorrect) {
+            options.forEach(opt => {
+              const input = opt.querySelector('input');
+              if (input.value === correctAnswer) {
+                opt.classList.add('correct');
+              }
+            });
+          }
+
+          feedback.classList.remove('correct', 'incorrect');
+          feedback.classList.add('show', isCorrect ? 'correct' : 'incorrect');
+
+          btn.disabled = true;
+          options.forEach(opt => {
+            opt.querySelector('input').disabled = true;
+          });
+        });
+      });
+    }
+
+    document.addEventListener('DOMContentLoaded', initQuizzes);
+
+    // Smooth scroll for anchor links
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+      anchor.addEventListener('click', function(e) {
+        e.preventDefault();
+        const target = document.querySelector(this.getAttribute('href'));
+        if (target) {
+          target.scrollIntoView({
+            behavior: 'smooth',
+            block: 'start'
+          });
+        }
+      });
+    });
   </script>
 </body>
 </html>

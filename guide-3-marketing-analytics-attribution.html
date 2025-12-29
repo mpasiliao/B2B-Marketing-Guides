@@ -371,9 +371,426 @@
       .main { margin-left: 0; }
       .theme-toggle { position: static; margin-top: 1rem; }
     }
+
+    /* ===== NEW DESIGN SYSTEM ===== */
+    :root {
+      --navy: #1e3a5f;
+      --coral: #e07a5f;
+      --teal: #2a9d8f;
+      --amber: #e9c46a;
+      --cream: #faf8f5;
+      --hero-gradient: linear-gradient(135deg, var(--navy) 0%, #2d5a8a 100%);
+    }
+
+    /* Progress Tracker */
+    .progress-container {
+      position: fixed;
+      top: 0;
+      left: var(--nav-width);
+      right: 0;
+      height: 4px;
+      background: var(--border-color);
+      z-index: 1000;
+    }
+    .progress-bar {
+      height: 100%;
+      background: linear-gradient(90deg, var(--coral), var(--teal));
+      width: 0%;
+      transition: width 0.1s ease-out;
+    }
+    @media (max-width: 768px) {
+      .progress-container { left: 0; }
+    }
+
+    /* Hero Card */
+    .hero-card {
+      background: var(--hero-gradient);
+      border-radius: 16px;
+      padding: 2.5rem;
+      margin-bottom: 2rem;
+      color: white;
+      position: relative;
+      overflow: hidden;
+    }
+    .hero-card::before {
+      content: '';
+      position: absolute;
+      top: -50%;
+      right: -20%;
+      width: 300px;
+      height: 300px;
+      background: radial-gradient(circle, rgba(255,255,255,0.1) 0%, transparent 70%);
+      border-radius: 50%;
+    }
+    .hero-number {
+      font-size: 4rem;
+      font-weight: 800;
+      opacity: 0.15;
+      position: absolute;
+      top: 1rem;
+      right: 2rem;
+      line-height: 1;
+    }
+    .hero-title {
+      font-size: 1.75rem;
+      font-weight: 700;
+      margin: 0 0 0.5rem;
+      position: relative;
+      border: none;
+      padding: 0;
+    }
+    .hero-subtitle {
+      font-size: 1rem;
+      opacity: 0.9;
+      margin: 0;
+      position: relative;
+    }
+
+    /* TL;DR Box */
+    .tldr-box {
+      background: linear-gradient(135deg, var(--cream) 0%, #fff 100%);
+      border: 2px solid var(--amber);
+      border-radius: 12px;
+      padding: 1.5rem;
+      margin: 1.5rem 0;
+    }
+    .tldr-header {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      margin-bottom: 0.75rem;
+    }
+    .tldr-icon { font-size: 1.25rem; }
+    .tldr-label {
+      font-weight: 700;
+      color: var(--navy);
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      font-size: 0.875rem;
+    }
+    .tldr-content p { margin: 0; color: var(--navy); }
+
+    /* Scenario Card */
+    .scenario-card {
+      background: white;
+      border: 1px solid var(--border-color);
+      border-left: 4px solid var(--coral);
+      border-radius: 8px;
+      padding: 1.5rem;
+      margin: 1.5rem 0;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+    }
+    .scenario-header {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      margin-bottom: 1rem;
+    }
+    .scenario-icon { font-size: 1.25rem; }
+    .scenario-label {
+      font-weight: 600;
+      color: var(--coral);
+      font-size: 0.875rem;
+    }
+    .scenario-character {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      margin-bottom: 0.75rem;
+    }
+    .scenario-content p { margin: 0; line-height: 1.7; }
+
+    /* Role Tags */
+    .role-tag {
+      display: inline-block;
+      padding: 0.25rem 0.75rem;
+      border-radius: 999px;
+      font-size: 0.75rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.03em;
+    }
+    .role-mops { background: #e0f2fe; color: #0369a1; }
+    .role-sales { background: #fce7f3; color: #be185d; }
+    .role-demand-gen { background: #dcfce7; color: #15803d; }
+    .role-analytics { background: #f3e8ff; color: #7e22ce; }
+    .role-cmo { background: #fef3c7; color: #b45309; }
+    .role-cfo { background: #e0e7ff; color: #4338ca; }
+
+    /* Quick Reference Card */
+    .quick-reference {
+      background: var(--bg-secondary);
+      border: 1px solid var(--border-color);
+      border-radius: 8px;
+      margin: 1.5rem 0;
+      overflow: hidden;
+    }
+    .quick-reference-header {
+      background: var(--navy);
+      color: white;
+      padding: 0.75rem 1rem;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+    .quick-reference-icon { font-size: 1rem; }
+    .quick-reference-title { font-weight: 600; font-size: 0.9rem; }
+    .quick-reference-content { padding: 1rem; }
+    .quick-reference-content p { margin: 0.5rem 0; }
+    .quick-reference-content p:first-child { margin-top: 0; }
+    .quick-reference-content p:last-child { margin-bottom: 0; }
+
+    /* Deep Dive Accordion */
+    .deep-dive {
+      border: 1px solid var(--teal);
+      border-radius: 8px;
+      margin: 1.5rem 0;
+      background: white;
+    }
+    .deep-dive summary {
+      padding: 1rem 1.25rem;
+      cursor: pointer;
+      font-weight: 600;
+      color: var(--teal);
+      background: rgba(42, 157, 143, 0.08);
+      list-style: none;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+    .deep-dive summary::before {
+      content: '▶';
+      font-size: 0.75rem;
+      transition: transform 0.2s;
+    }
+    .deep-dive[open] summary::before { transform: rotate(90deg); }
+    .deep-dive-content { padding: 1.25rem; }
+
+    /* Knowledge Check */
+    .knowledge-check {
+      background: linear-gradient(135deg, #f0f9ff 0%, #e0f2fe 100%);
+      border: 2px solid var(--teal);
+      border-radius: 12px;
+      padding: 1.5rem;
+      margin: 2rem 0;
+    }
+    .knowledge-check-header {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      margin-bottom: 1rem;
+    }
+    .knowledge-check-icon {
+      width: 24px;
+      height: 24px;
+      background: var(--teal);
+      color: white;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: bold;
+      font-size: 0.875rem;
+    }
+    .knowledge-check-title {
+      font-weight: 700;
+      color: var(--navy);
+    }
+    .knowledge-check-question {
+      font-weight: 500;
+      margin-bottom: 1rem;
+      color: var(--navy);
+    }
+    .quiz-options { display: flex; flex-direction: column; gap: 0.5rem; margin-bottom: 1rem; }
+    .quiz-option {
+      display: flex;
+      align-items: flex-start;
+      gap: 0.75rem;
+      padding: 0.75rem 1rem;
+      background: white;
+      border: 1px solid var(--border-color);
+      border-radius: 8px;
+      cursor: pointer;
+      transition: all 0.15s;
+    }
+    .quiz-option:hover { border-color: var(--teal); }
+    .quiz-option.correct { background: #dcfce7; border-color: #22c55e; }
+    .quiz-option.incorrect { background: #fee2e2; border-color: #ef4444; }
+    .quiz-option input { margin-top: 0.25rem; }
+    .quiz-btn {
+      background: var(--teal);
+      color: white;
+      border: none;
+      padding: 0.75rem 1.5rem;
+      border-radius: 8px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: background 0.15s;
+    }
+    .quiz-btn:hover { background: #238b7e; }
+    .quiz-btn:disabled { opacity: 0.5; cursor: not-allowed; }
+    .quiz-feedback { display: none; margin-top: 1rem; padding: 1rem; border-radius: 8px; }
+    .quiz-feedback.show { display: block; }
+    .quiz-feedback.correct { background: #dcfce7; }
+    .quiz-feedback.incorrect { background: #fee2e2; }
+    .quiz-feedback .feedback-correct,
+    .quiz-feedback .feedback-incorrect { display: none; margin: 0; }
+    .quiz-feedback.correct .feedback-correct { display: block; }
+    .quiz-feedback.incorrect .feedback-incorrect { display: block; }
+
+    /* Next Up Link */
+    .next-up-link {
+      margin-top: 2rem;
+      padding-top: 1.5rem;
+      border-top: 1px solid var(--border-color);
+    }
+    .next-up-content {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      padding: 1rem 1.5rem;
+      background: var(--bg-secondary);
+      border: 1px solid var(--border-color);
+      border-radius: 8px;
+      text-decoration: none;
+      color: inherit;
+      transition: all 0.15s;
+    }
+    .next-up-content:hover {
+      border-color: var(--teal);
+      background: rgba(42, 157, 143, 0.05);
+    }
+    .next-up-label {
+      font-size: 0.75rem;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      color: var(--text-secondary);
+    }
+    .next-up-section { flex: 1; }
+    .next-up-number {
+      font-size: 0.875rem;
+      color: var(--teal);
+      font-weight: 600;
+    }
+    .next-up-title {
+      font-weight: 600;
+      display: block;
+    }
+    .next-up-arrow {
+      font-size: 1.5rem;
+      color: var(--teal);
+    }
+
+    /* Guide Completion Card */
+    .guide-complete-card {
+      background: linear-gradient(135deg, var(--teal) 0%, #1d7a70 100%);
+      border-radius: 16px;
+      padding: 2.5rem;
+      margin: 3rem 0 2rem 0;
+      color: white;
+      text-align: center;
+    }
+    .guide-complete-icon { font-size: 3rem; margin-bottom: 1rem; }
+    .guide-complete-title { margin: 0 0 1rem 0; font-size: 1.75rem; }
+    .guide-complete-message {
+      margin: 0 0 1.5rem 0;
+      opacity: 0.95;
+      line-height: 1.6;
+      max-width: 600px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+    .guide-complete-stats {
+      display: flex;
+      justify-content: center;
+      gap: 2rem;
+      flex-wrap: wrap;
+    }
+    .guide-complete-stats .stat {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+    .guide-complete-stats .stat-number {
+      font-size: 2rem;
+      font-weight: 700;
+    }
+    .guide-complete-stats .stat-label {
+      font-size: 0.875rem;
+      opacity: 0.85;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+
+    /* Series Completion Card */
+    .series-complete-card {
+      background: linear-gradient(135deg, var(--navy) 0%, #2d5a8a 100%);
+      border-radius: 16px;
+      padding: 2.5rem;
+      margin: 2rem 0;
+      color: white;
+      text-align: center;
+    }
+    .series-complete-icon { font-size: 3.5rem; margin-bottom: 1rem; }
+    .series-complete-title { margin: 0 0 1rem 0; font-size: 1.75rem; }
+    .series-complete-message {
+      margin: 0 0 2rem 0;
+      opacity: 0.95;
+      line-height: 1.6;
+      max-width: 600px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+    .series-guides {
+      display: flex;
+      flex-direction: column;
+      gap: 0.75rem;
+      max-width: 400px;
+      margin: 0 auto 2rem auto;
+    }
+    .series-guide {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      padding: 0.75rem 1rem;
+      background: rgba(255, 255, 255, 0.1);
+      border-radius: 8px;
+    }
+    .series-guide.completed .guide-check {
+      color: var(--amber);
+      font-weight: bold;
+    }
+    .series-guide .guide-name {
+      font-size: 0.9rem;
+    }
+    .series-complete-cta {
+      display: flex;
+      justify-content: center;
+      gap: 1rem;
+      flex-wrap: wrap;
+    }
+    .series-link {
+      display: inline-block;
+      padding: 0.75rem 1.5rem;
+      background: rgba(255, 255, 255, 0.15);
+      border: 1px solid rgba(255, 255, 255, 0.3);
+      border-radius: 8px;
+      color: white;
+      text-decoration: none;
+      font-weight: 500;
+      transition: all 0.15s;
+    }
+    .series-link:hover {
+      background: rgba(255, 255, 255, 0.25);
+      border-color: rgba(255, 255, 255, 0.5);
+    }
   </style>
 </head>
 <body>
+  <!-- Progress Tracker -->
+  <div class="progress-container">
+    <div class="progress-bar" id="progressBar"></div>
+  </div>
   <nav class="nav">
     <div class="nav-title">Contents</div>
     <ul class="nav-list">
@@ -414,39 +831,60 @@
 
       <!-- Section 1: Statistical Foundations -->
       <section id="statistical-foundations">
-        <h2>Statistical Foundations <a href="#statistical-foundations" class="anchor-link">#</a></h2>
-        
-        <p>Before you start making claims about what's working in your marketing, you need enough statistical literacy to avoid embarrassing yourself. This section covers the minimum you need to know.</p>
+        <!-- Hero Card -->
+        <div class="hero-card">
+          <div class="hero-number">01</div>
+          <h2 class="hero-title">Statistical Foundations</h2>
+          <p class="hero-subtitle">The minimum statistical literacy you need before making claims</p>
+        </div>
 
-        <h3>Sample Size</h3>
-        <p>Sample size determines whether your data is meaningful or noise. The core question: how many observations do you need before you can trust a pattern?</p>
+        <!-- TL;DR Box -->
+        <div class="tldr-box">
+          <div class="tldr-header">
+            <span class="tldr-icon">⚡</span>
+            <span class="tldr-label">TL;DR</span>
+          </div>
+          <div class="tldr-content">
+            <p>You need ~100 conversions per variant to trust A/B test results. Statistical significance (p < 0.05) means < 5% chance your result is noise. Confidence intervals tell you the range where the true value probably falls. When reporting results, include confidence intervals and p-values—"it went up" is not a defensible answer.</p>
+          </div>
+        </div>
 
-        <p>For conversion rate analysis, use this rule of thumb: you need at least 100 conversions (not visitors—conversions) per variant to detect meaningful differences. If your baseline conversion rate is 2%, you need ~5,000 visitors per variant to detect a 20% relative lift with 80% power.</p>
+        <!-- Scenario Card -->
+        <div class="scenario-card">
+          <div class="scenario-header">
+            <span class="scenario-icon">🎬</span>
+            <span class="scenario-label">NovaTech Scenario</span>
+          </div>
+          <div class="scenario-content">
+            <div class="scenario-character">
+              <span class="role-tag role-analytics">Analytics</span>
+              <strong>Priya Sharma</strong>
+            </div>
+            <p>Sarah runs to Priya's desk: "The new landing page has a 4.2% conversion rate vs 3.8% for the old one! Can we declare it a winner?" Priya pulls up the data—112 conversions total, 61 for new, 51 for old. "Not yet," Priya explains. "The confidence intervals overlap. We need another two weeks of data before this is statistically significant. Right now, there's a 23% chance we're looking at random noise."</p>
+          </div>
+        </div>
+
+        <!-- Quick Reference: Key Concepts -->
+        <div class="quick-reference">
+          <div class="quick-reference-header">
+            <span class="quick-reference-icon">📋</span>
+            <span class="quick-reference-title">Quick Reference: Statistical Concepts</span>
+          </div>
+          <div class="quick-reference-content">
+            <p><strong>Sample Size:</strong> Need ~100 conversions per variant. At 2% baseline rate, that's ~5,000 visitors per variant for 20% lift detection.</p>
+            <p><strong>p-value:</strong> p = 0.05 means 5% (1 in 20) chance result is random noise. p = 0.01 is 1% (1 in 100). p = 0.10 is not significant—don't decide on it.</p>
+            <p><strong>Confidence Interval:</strong> 95% CI means if you ran the experiment 100 times, 95 intervals would contain the true value. Overlapping CIs = no significant difference.</p>
+          </div>
+        </div>
 
         <div class="callout callout-warning">
           <strong>Common mistake:</strong> Running an A/B test for a week, seeing one variant at 3.2% and another at 2.8%, and declaring a winner. With 50 conversions per variant, that difference is pure noise. You've learned nothing.
         </div>
 
-        <h3>Statistical Significance</h3>
-        <p>Statistical significance answers: "What's the probability that the difference I'm seeing happened by random chance?"</p>
-
-        <p>The standard threshold is p &lt; 0.05, meaning there's less than a 5% probability the result occurred by chance. In practice:</p>
-
-        <ul>
-          <li><strong>p = 0.05:</strong> 1 in 20 chance this is random noise</li>
-          <li><strong>p = 0.01:</strong> 1 in 100 chance this is random noise</li>
-          <li><strong>p = 0.10:</strong> 1 in 10 chance—not significant, don't make decisions on this</li>
-        </ul>
-
         <div class="formula-box">
           Z = (p₁ - p₂) / √[p(1-p)(1/n₁ + 1/n₂)]<br>
           <small>where p = pooled conversion rate, n = sample sizes</small>
         </div>
-
-        <h3>Confidence Intervals</h3>
-        <p>A confidence interval gives you a range where the true value likely falls. A 95% confidence interval means: if you repeated this experiment 100 times, 95 of those intervals would contain the true value.</p>
-
-        <p><strong>Example:</strong> Your landing page has a 4.2% conversion rate with a 95% CI of [3.8%, 4.6%]. This means you're confident the true rate is somewhere in that range. If a proposed change shows 4.5% ± 0.5%, the confidence intervals overlap—you can't claim improvement.</p>
 
         <div class="callout callout-tip">
           <strong>In practice:</strong> When your CMO asks "did this campaign work?", your answer should include confidence intervals. "Conversion rate improved from 3.2% to 4.1%, 95% CI [3.6%, 4.6%], p = 0.02" is a defensible answer. "It went up" is not.
@@ -506,13 +944,101 @@ n ≈ 4,500 per variant</code></pre>
             </tr>
           </tbody>
         </table>
+
+        <!-- Deep Dive -->
+        <details class="deep-dive">
+          <summary>Deep Dive: Sample Size Calculation</summary>
+          <div class="deep-dive-content">
+            <p>For A/B test sample size: n = 2 × [(Zα + Zβ)² × p(1-p)] / (MDE)²</p>
+            <ul>
+              <li>Zα = 1.96 for 95% confidence</li>
+              <li>Zβ = 0.84 for 80% power</li>
+              <li>p = baseline conversion rate</li>
+              <li>MDE = minimum detectable effect (relative)</li>
+            </ul>
+            <p><strong>Example:</strong> 3% baseline, want to detect 20% lift → n ≈ 4,500 per variant</p>
+          </div>
+        </details>
+
+        <!-- Knowledge Check -->
+        <div class="knowledge-check" data-answer="c">
+          <div class="knowledge-check-header">
+            <span class="knowledge-check-icon">✓</span>
+            <span class="knowledge-check-title">Knowledge Check</span>
+          </div>
+          <p class="knowledge-check-question">Sarah's landing page test shows 4.2% vs 3.8% conversion with 61 and 51 conversions respectively. Priya says they need more data. Why?</p>
+          <div class="quiz-options">
+            <label class="quiz-option">
+              <input type="radio" name="stats-quiz" value="a">
+              <span>The sample size is too small for any meaningful analysis</span>
+            </label>
+            <label class="quiz-option">
+              <input type="radio" name="stats-quiz" value="b">
+              <span>They need exactly 100 conversions per variant before analyzing</span>
+            </label>
+            <label class="quiz-option">
+              <input type="radio" name="stats-quiz" value="c">
+              <span>The confidence intervals overlap, meaning the difference could be random noise</span>
+            </label>
+            <label class="quiz-option">
+              <input type="radio" name="stats-quiz" value="d">
+              <span>The test needs to run for at least 30 days regardless of sample size</span>
+            </label>
+          </div>
+          <button class="quiz-btn">Check Answer</button>
+          <div class="quiz-feedback">
+            <p class="feedback-correct">Correct! With only 112 total conversions and overlapping confidence intervals, there's a 23% chance the difference is random variation. Statistical significance requires that confidence intervals don't overlap (or that p < 0.05).</p>
+            <p class="feedback-incorrect">Not quite. The key issue is overlapping confidence intervals. While more conversions help, the specific threshold depends on the effect size you're trying to detect. With overlapping CIs, you can't confidently say one variant is better.</p>
+          </div>
+        </div>
+
+        <!-- Next Up Link -->
+        <div class="next-up-link">
+          <a href="#first-touch" class="next-up-content">
+            <span class="next-up-label">Next Section</span>
+            <div class="next-up-section">
+              <span class="next-up-number">Section 2</span>
+              <span class="next-up-title">First-Touch Attribution</span>
+            </div>
+            <span class="next-up-arrow">→</span>
+          </a>
+        </div>
       </section>
 
       <!-- Section 2: First-Touch Attribution -->
       <section id="first-touch">
-        <h2>First-Touch Attribution <a href="#first-touch" class="anchor-link">#</a></h2>
+        <!-- Hero Card -->
+        <div class="hero-card">
+          <div class="hero-number">02</div>
+          <h2 class="hero-title">First-Touch Attribution</h2>
+          <p class="hero-subtitle">100% credit to the first touchpoint that introduced the lead</p>
+        </div>
 
-        <p>First-touch attribution assigns 100% of conversion credit to the first marketing touchpoint that introduced a lead to your company.</p>
+        <!-- TL;DR Box -->
+        <div class="tldr-box">
+          <div class="tldr-header">
+            <span class="tldr-icon">⚡</span>
+            <span class="tldr-label">TL;DR</span>
+          </div>
+          <div class="tldr-content">
+            <p>First-touch assigns all credit to the original source. Good for: brand awareness analysis, top-funnel optimization, new market entry. Bad for: understanding what actually closes deals. Heavily favors awareness channels (content, organic, paid social) and systematically undervalues conversion channels (demos, sales emails).</p>
+          </div>
+        </div>
+
+        <!-- Scenario Card -->
+        <div class="scenario-card">
+          <div class="scenario-header">
+            <span class="scenario-icon">🎬</span>
+            <span class="scenario-label">NovaTech Scenario</span>
+          </div>
+          <div class="scenario-content">
+            <div class="scenario-character">
+              <span class="role-tag role-analytics">Analytics</span>
+              <strong>Priya Sharma</strong>
+            </div>
+            <p>Priya's first-touch report shows: organic search sourced $2.1M pipeline, LinkedIn ads sourced $400K. James loves it—"content marketing is working!" But Sarah objects: "Half those organic leads only converted after attending our webinars and getting 6 sales touches. We're crediting the blog post that happened 4 months ago and ignoring everything that actually closed the deal." Priya nods: "That's why we need multi-touch too."</p>
+          </div>
+        </div>
 
         <h3>Implementation Logic</h3>
         <p>For each converted lead or opportunity:</p>
@@ -569,13 +1095,86 @@ JOIN first_touches ft ON c.contact_id = ft.contact_id AND ft.rn = 1</code></pre>
           <li>Day 120: Deal closes</li>
         </ul>
         <p><strong>First-touch attribution:</strong> Organic search = $150K pipeline sourced. LinkedIn, webinar, and whitepaper = $0.</p>
+
+        <!-- Knowledge Check -->
+        <div class="knowledge-check" data-answer="b">
+          <div class="knowledge-check-header">
+            <span class="knowledge-check-icon">✓</span>
+            <span class="knowledge-check-title">Knowledge Check</span>
+          </div>
+          <p class="knowledge-check-question">Priya's first-touch report credits organic search with $2.1M pipeline. Sarah argues this ignores what actually closed deals. What's the core limitation Sarah is identifying?</p>
+          <div class="quiz-options">
+            <label class="quiz-option">
+              <input type="radio" name="first-touch-quiz" value="a">
+              <span>First-touch is technically inaccurate and gives wrong channel data</span>
+            </label>
+            <label class="quiz-option">
+              <input type="radio" name="first-touch-quiz" value="b">
+              <span>First-touch ignores all touchpoints after discovery, undervaluing conversion activities</span>
+            </label>
+            <label class="quiz-option">
+              <input type="radio" name="first-touch-quiz" value="c">
+              <span>First-touch only works for small deals, not enterprise</span>
+            </label>
+            <label class="quiz-option">
+              <input type="radio" name="first-touch-quiz" value="d">
+              <span>First-touch should only be used for outbound channels</span>
+            </label>
+          </div>
+          <button class="quiz-btn">Check Answer</button>
+          <div class="quiz-feedback">
+            <p class="feedback-correct">Correct! First-touch credits the initial discovery and ignores everything after—webinars, sales touches, demos. It systematically undervalues channels that convert leads while over-crediting awareness channels.</p>
+            <p class="feedback-incorrect">Not quite. First-touch isn't inaccurate—it correctly identifies the first touchpoint. The limitation is that it ignores the entire conversion journey that happened afterward, which often includes the activities that actually influenced the purchase decision.</p>
+          </div>
+        </div>
+
+        <!-- Next Up Link -->
+        <div class="next-up-link">
+          <a href="#last-touch" class="next-up-content">
+            <span class="next-up-label">Next Section</span>
+            <div class="next-up-section">
+              <span class="next-up-number">Section 3</span>
+              <span class="next-up-title">Last-Touch Attribution</span>
+            </div>
+            <span class="next-up-arrow">→</span>
+          </a>
+        </div>
       </section>
 
       <!-- Section 3: Last-Touch Attribution -->
       <section id="last-touch">
-        <h2>Last-Touch Attribution <a href="#last-touch" class="anchor-link">#</a></h2>
+        <!-- Hero Card -->
+        <div class="hero-card">
+          <div class="hero-number">03</div>
+          <h2 class="hero-title">Last-Touch Attribution</h2>
+          <p class="hero-subtitle">100% credit to the final touchpoint before conversion</p>
+        </div>
 
-        <p>Last-touch attribution assigns 100% of conversion credit to the final touchpoint before conversion. This is the default model in most analytics tools because it's simple to implement and matches how conversions are tracked.</p>
+        <!-- TL;DR Box -->
+        <div class="tldr-box">
+          <div class="tldr-header">
+            <span class="tldr-icon">⚡</span>
+            <span class="tldr-label">TL;DR</span>
+          </div>
+          <div class="tldr-content">
+            <p>Last-touch is the default in most analytics tools because it's simple. It credits the final action before conversion—great for understanding what triggered the hand-raise, bad for understanding the full journey. Heavily favors bottom-funnel channels (sales, demos, retargeting) and ignores awareness activities that built intent.</p>
+          </div>
+        </div>
+
+        <!-- Scenario Card -->
+        <div class="scenario-card">
+          <div class="scenario-header">
+            <span class="scenario-icon">🎬</span>
+            <span class="scenario-label">NovaTech Scenario</span>
+          </div>
+          <div class="scenario-content">
+            <div class="scenario-character">
+              <span class="role-tag role-sales">Sales</span>
+              <strong>Derek Williams</strong>
+            </div>
+            <p>Derek reviews the last-touch report. "Direct outreach is crushing it—$1.8M pipeline!" But Priya has context: "Those 'direct outreach' leads? 80% of them attended webinars and downloaded content first. Your SDR email was the last touch before they converted, but they were already warm. Last-touch is making outbound look like the hero when inbound built the intent."</p>
+          </div>
+        </div>
 
         <h3>Implementation Logic</h3>
 
@@ -619,13 +1218,86 @@ JOIN last_touches lt ON c.contact_id = lt.contact_id AND lt.rn = 1</code></pre>
         <p>Same $150K deal from before:</p>
         <p><strong>Last-touch attribution:</strong> Sales email = $150K pipeline sourced. Every marketing touchpoint that built awareness and interest = $0.</p>
         <p>This is why sales teams love last-touch and marketing teams hate it.</p>
+
+        <!-- Knowledge Check -->
+        <div class="knowledge-check" data-answer="c">
+          <div class="knowledge-check-header">
+            <span class="knowledge-check-icon">✓</span>
+            <span class="knowledge-check-title">Knowledge Check</span>
+          </div>
+          <p class="knowledge-check-question">Derek's last-touch report shows SDR outreach sourced $1.8M. Priya points out 80% of those leads engaged with content first. What does this reveal about last-touch?</p>
+          <div class="quiz-options">
+            <label class="quiz-option">
+              <input type="radio" name="last-touch-quiz" value="a">
+              <span>SDR outreach is actually ineffective and should be reduced</span>
+            </label>
+            <label class="quiz-option">
+              <input type="radio" name="last-touch-quiz" value="b">
+              <span>Last-touch data is inaccurate and shouldn't be used</span>
+            </label>
+            <label class="quiz-option">
+              <input type="radio" name="last-touch-quiz" value="c">
+              <span>Last-touch credits the trigger action but ignores the journey that built intent</span>
+            </label>
+            <label class="quiz-option">
+              <input type="radio" name="last-touch-quiz" value="d">
+              <span>Content marketing should get all the credit instead</span>
+            </label>
+          </div>
+          <button class="quiz-btn">Check Answer</button>
+          <div class="quiz-feedback">
+            <p class="feedback-correct">Correct! Last-touch credits the final action that triggered conversion, but ignores the content engagement that built intent. The SDR email worked because the leads were already warm—last-touch can't show that context.</p>
+            <p class="feedback-incorrect">Not quite. The insight isn't that outreach is ineffective or that last-touch is wrong—it's that last-touch shows what triggered conversion, not what built the intent. Both perspectives (first-touch and last-touch) tell part of the story.</p>
+          </div>
+        </div>
+
+        <!-- Next Up Link -->
+        <div class="next-up-link">
+          <a href="#linear" class="next-up-content">
+            <span class="next-up-label">Next Section</span>
+            <div class="next-up-section">
+              <span class="next-up-number">Section 4</span>
+              <span class="next-up-title">Linear Attribution</span>
+            </div>
+            <span class="next-up-arrow">→</span>
+          </a>
+        </div>
       </section>
 
       <!-- Section 4: Linear Attribution -->
       <section id="linear">
-        <h2>Linear Attribution <a href="#linear" class="anchor-link">#</a></h2>
+        <!-- Hero Card -->
+        <div class="hero-card">
+          <div class="hero-number">04</div>
+          <h2 class="hero-title">Linear Attribution</h2>
+          <p class="hero-subtitle">Equal credit to every touchpoint in the journey</p>
+        </div>
 
-        <p>Linear attribution divides credit equally across all touchpoints in the conversion path. If there are 10 touchpoints, each gets 10% of the credit.</p>
+        <!-- TL;DR Box -->
+        <div class="tldr-box">
+          <div class="tldr-header">
+            <span class="tldr-icon">⚡</span>
+            <span class="tldr-label">TL;DR</span>
+          </div>
+          <div class="tldr-content">
+            <p>Linear attribution splits credit equally across all touchpoints. 10 touches = 10% each. Fair and democratic, but treats all touches as equally important when they're not. A blog post shouldn't get the same credit as a demo. Good starting point for multi-touch, but naive about touchpoint value.</p>
+          </div>
+        </div>
+
+        <!-- Scenario Card -->
+        <div class="scenario-card">
+          <div class="scenario-header">
+            <span class="scenario-icon">🎬</span>
+            <span class="scenario-label">NovaTech Scenario</span>
+          </div>
+          <div class="scenario-content">
+            <div class="scenario-character">
+              <span class="role-tag role-analytics">Analytics</span>
+              <strong>Priya Sharma</strong>
+            </div>
+            <p>Priya presents linear attribution results. A $100K deal had 10 touchpoints, so each gets $10K credit: blog visit, webinar, whitepaper, SDR email, demo, proposal, etc. James frowns: "The demo and the blog post both get $10K? That doesn't feel right. The demo is where the deal was made." Priya nods: "Linear is fair, but not smart. It can't tell that some touches matter more than others."</p>
+          </div>
+        </div>
 
         <h3>Implementation Logic</h3>
 
@@ -679,13 +1351,86 @@ GROUP BY t.channel, t.campaign</code></pre>
             <tr><td>6-10</td><td>Sales calls/emails</td><td>$75,000</td></tr>
           </tbody>
         </table>
+
+        <!-- Knowledge Check -->
+        <div class="knowledge-check" data-answer="b">
+          <div class="knowledge-check-header">
+            <span class="knowledge-check-icon">✓</span>
+            <span class="knowledge-check-title">Knowledge Check</span>
+          </div>
+          <p class="knowledge-check-question">A deal worth $80K has 8 touchpoints. Under linear attribution, how much revenue is attributed to the demo request touchpoint?</p>
+          <div class="quiz-options">
+            <label class="quiz-option">
+              <input type="radio" name="linear-quiz" value="a">
+              <span>$80K (it's the most important touch)</span>
+            </label>
+            <label class="quiz-option">
+              <input type="radio" name="linear-quiz" value="b">
+              <span>$10K (equal split across 8 touches)</span>
+            </label>
+            <label class="quiz-option">
+              <input type="radio" name="linear-quiz" value="c">
+              <span>$40K (half credit to key conversion points)</span>
+            </label>
+            <label class="quiz-option">
+              <input type="radio" name="linear-quiz" value="d">
+              <span>$0K (linear only credits marketing touches)</span>
+            </label>
+          </div>
+          <button class="quiz-btn" onclick="checkQuiz(this)">Check Answer</button>
+          <div class="quiz-feedback">
+            <p class="feedback-correct">Correct! Linear attribution splits credit equally: $80K ÷ 8 touches = $10K each. This is "fair" but doesn't account for touchpoint importance.</p>
+            <p class="feedback-incorrect">Not quite. Linear attribution splits credit equally across ALL touchpoints regardless of their perceived importance. $80K ÷ 8 = $10K each.</p>
+          </div>
+        </div>
+
+        <!-- Next Up Link -->
+        <div class="next-up-link">
+          <a href="#time-decay" class="next-up-content">
+            <div class="next-up-section">
+              <span class="next-up-label">Next Up</span>
+              <span class="next-up-number">Section 05</span>
+              <span class="next-up-title">Time-Decay Attribution</span>
+            </div>
+            <span class="next-up-arrow">→</span>
+          </a>
+        </div>
       </section>
 
       <!-- Section 5: Time-Decay Attribution -->
       <section id="time-decay">
-        <h2>Time-Decay Attribution <a href="#time-decay" class="anchor-link">#</a></h2>
+        <!-- Hero Card -->
+        <div class="hero-card">
+          <div class="hero-number">05</div>
+          <h2 class="hero-title">Time-Decay Attribution</h2>
+          <p class="hero-subtitle">More credit to recent touchpoints, less to older ones</p>
+        </div>
 
-        <p>Time-decay attribution gives more credit to touchpoints closer to conversion. The assumption: recent interactions are more influential than older ones.</p>
+        <!-- TL;DR Box -->
+        <div class="tldr-box">
+          <div class="tldr-header">
+            <span class="tldr-icon">⚡</span>
+            <span class="tldr-label">TL;DR</span>
+          </div>
+          <div class="tldr-content">
+            <p>Time-decay uses a half-life model: touches closer to conversion get exponentially more credit. A 7-day half-life means a touch from 7 days ago gets 50% weight, 14 days gets 25%, 28 days gets 6%. Great for short cycles, but dangerous for B2B—it makes early brand awareness invisible in long sales cycles.</p>
+          </div>
+        </div>
+
+        <!-- Scenario Card -->
+        <div class="scenario-card">
+          <div class="scenario-header">
+            <span class="scenario-icon">🎬</span>
+            <span class="scenario-label">NovaTech Scenario</span>
+          </div>
+          <div class="scenario-content">
+            <div class="scenario-character">
+              <span class="role-tag role-demand-gen">Demand Gen</span>
+              <strong>Sarah Park</strong>
+            </div>
+            <p>Sarah's webinar from 3 months ago is getting almost no attribution credit. "But that webinar brought in 40% of our pipeline!" she argues to Priya. Priya checks the model: with a 7-day half-life, a touch from 90 days ago gets 0.0001% weight. "We need to fix this half-life," Priya says. "For enterprise deals with 6-month cycles, 7 days makes everything before last week invisible."</p>
+          </div>
+        </div>
 
         <h3>Implementation Logic</h3>
         <p>Standard time-decay uses a half-life model. Common half-life values are 7 or 14 days, meaning touches from 7 (or 14) days before conversion get half the weight of the most recent touch.</p>
@@ -709,6 +1454,20 @@ normalized = [w/total for w in weights]
 # normalized ≈ [0.034, 0.138, 0.276, 0.552]</code></pre>
         </div>
 
+        <!-- Quick Reference -->
+        <div class="quick-reference">
+          <div class="quick-reference-header">
+            <span class="quick-reference-icon">📋</span>
+            <span class="quick-reference-title">Quick Reference: Time-Decay Half-Life Settings</span>
+          </div>
+          <div class="quick-reference-content">
+            <p><strong>7-day half-life:</strong> Good for transactional B2B, short sales cycles, product-led growth</p>
+            <p><strong>14-day half-life:</strong> Mid-market SaaS, SMB sales with 1-2 month cycles</p>
+            <p><strong>30-day half-life:</strong> Enterprise SaaS, 3-4 month sales cycles</p>
+            <p><strong>60-day half-life:</strong> Complex enterprise, 6+ month cycles, committee decisions</p>
+          </div>
+        </div>
+
         <h3>When Time-Decay Is Appropriate</h3>
         <ul>
           <li><strong>Short consideration phases:</strong> When buying decisions happen quickly after serious evaluation</li>
@@ -722,13 +1481,86 @@ normalized = [w/total for w in weights]
         <div class="callout callout-warning">
           <strong>Common mistake:</strong> Using time-decay in long B2B cycles without adjusting the half-life. A 7-day half-life means a touch from 28 days ago gets 6% weight. In a 180-day sales cycle, everything in the first 3 months becomes invisible. Extend your half-life to 30-60 days for enterprise deals.
         </div>
+
+        <!-- Knowledge Check -->
+        <div class="knowledge-check" data-answer="c">
+          <div class="knowledge-check-header">
+            <span class="knowledge-check-icon">✓</span>
+            <span class="knowledge-check-title">Knowledge Check</span>
+          </div>
+          <p class="knowledge-check-question">NovaTech has a 6-month enterprise sales cycle. They're using time-decay with a 7-day half-life. What's the problem?</p>
+          <div class="quiz-options">
+            <label class="quiz-option">
+              <input type="radio" name="timedecay-quiz" value="a">
+              <span>Time-decay doesn't work with enterprise sales cycles</span>
+            </label>
+            <label class="quiz-option">
+              <input type="radio" name="timedecay-quiz" value="b">
+              <span>The model gives too much credit to early awareness touchpoints</span>
+            </label>
+            <label class="quiz-option">
+              <input type="radio" name="timedecay-quiz" value="c">
+              <span>Touchpoints from months 1-4 get almost zero credit despite being influential</span>
+            </label>
+            <label class="quiz-option">
+              <input type="radio" name="timedecay-quiz" value="d">
+              <span>The half-life should be measured in hours, not days</span>
+            </label>
+          </div>
+          <button class="quiz-btn" onclick="checkQuiz(this)">Check Answer</button>
+          <div class="quiz-feedback">
+            <p class="feedback-correct">Correct! With a 7-day half-life, a touch from 90 days ago gets ~0.0001% weight. In long sales cycles, you need 30-60 day half-lives to credit early touchpoints appropriately.</p>
+            <p class="feedback-incorrect">Not quite. The issue is the half-life is too short—early touchpoints become nearly invisible. A touch from 90 days ago with a 7-day half-life gets almost no credit.</p>
+          </div>
+        </div>
+
+        <!-- Next Up Link -->
+        <div class="next-up-link">
+          <a href="#position-based" class="next-up-content">
+            <div class="next-up-section">
+              <span class="next-up-label">Next Up</span>
+              <span class="next-up-number">Section 06</span>
+              <span class="next-up-title">Position-Based Attribution</span>
+            </div>
+            <span class="next-up-arrow">→</span>
+          </a>
+        </div>
       </section>
 
       <!-- Section 6: Position-Based Attribution -->
       <section id="position-based">
-        <h2>Position-Based Attribution <a href="#position-based" class="anchor-link">#</a></h2>
+        <!-- Hero Card -->
+        <div class="hero-card">
+          <div class="hero-number">06</div>
+          <h2 class="hero-title">Position-Based Attribution</h2>
+          <p class="hero-subtitle">Heavy weight to first and last touches (40/20/40 split)</p>
+        </div>
 
-        <p>Position-based (also called U-shaped or bathtub) attribution gives heavy weight to first and last touches, with the remainder distributed across middle touches. The typical split is 40% first, 40% last, 20% distributed among the middle.</p>
+        <!-- TL;DR Box -->
+        <div class="tldr-box">
+          <div class="tldr-header">
+            <span class="tldr-icon">⚡</span>
+            <span class="tldr-label">TL;DR</span>
+          </div>
+          <div class="tldr-content">
+            <p>Position-based (U-shaped) gives 40% credit to first touch, 40% to last touch, and splits the remaining 20% across middle touches. This rewards both awareness and conversion while acknowledging the middle. The 40/40/20 split is arbitrary but often good enough. W-shaped adds a third peak at opportunity creation (30/30/30/10).</p>
+          </div>
+        </div>
+
+        <!-- Scenario Card -->
+        <div class="scenario-card">
+          <div class="scenario-header">
+            <span class="scenario-icon">🎬</span>
+            <span class="scenario-label">NovaTech Scenario</span>
+          </div>
+          <div class="scenario-content">
+            <div class="scenario-character">
+              <span class="role-tag role-cmo">CMO</span>
+              <strong>James Okonkwo</strong>
+            </div>
+            <p>James reviews the position-based model. A $100K deal shows: LinkedIn ad (first touch) = $40K, final demo (last touch) = $40K, four middle touches (webinars, whitepapers) = $5K each. "This is better," James says. "The ad that brought them in and the demo that closed them both get proper credit. But I'm worried we're undervaluing that nurture sequence. Those four touches over 3 months are what built trust."</p>
+          </div>
+        </div>
 
         <h3>Implementation Logic</h3>
 
@@ -741,22 +1573,35 @@ def position_based_attribution(touches, deal_value, first_weight=0.4, last_weigh
         return {touches[0]: deal_value}
     if n == 2:
         return {touches[0]: deal_value * 0.5, touches[1]: deal_value * 0.5}
-    
+
     middle_weight = (1 - first_weight - last_weight) / (n - 2)
     attribution = {}
-    
+
     attribution[touches[0]] = deal_value * first_weight
     attribution[touches[-1]] = deal_value * last_weight
-    
+
     for touch in touches[1:-1]:
         attribution[touch] = deal_value * middle_weight
-    
+
     return attribution
 
 # Example with 6 touches, $100K deal
 touches = ['organic', 'webinar', 'whitepaper', 'linkedin', 'demo', 'sales_call']
 result = position_based_attribution(touches, 100000)
 # organic: $40K, webinar-demo: $5K each, sales_call: $40K</code></pre>
+        </div>
+
+        <!-- Quick Reference -->
+        <div class="quick-reference">
+          <div class="quick-reference-header">
+            <span class="quick-reference-icon">📋</span>
+            <span class="quick-reference-title">Quick Reference: Position-Based Variants</span>
+          </div>
+          <div class="quick-reference-content">
+            <p><strong>U-shaped (40/40/20):</strong> Standard position-based. Good for simple B2B where first and last touch matter most.</p>
+            <p><strong>W-shaped (30/30/30/10):</strong> Adds peak at opportunity creation. Better for B2B with distinct MQL→SQL transition.</p>
+            <p><strong>Full-path (22.5/22.5/22.5/22.5/10):</strong> Adds customer close as fourth peak. For companies tracking post-sale revenue.</p>
+          </div>
         </div>
 
         <h3>When Position-Based Is Appropriate</h3>
@@ -774,13 +1619,86 @@ result = position_based_attribution(touches, 100000)
         <div class="callout callout-info">
           <strong>Variant: W-shaped attribution</strong> adds a third peak at the opportunity creation moment (when a lead becomes an opportunity). Split: 30% first touch, 30% opportunity creation, 30% close, 10% middle. This better reflects B2B journeys where becoming a qualified opportunity is a distinct milestone.
         </div>
+
+        <!-- Knowledge Check -->
+        <div class="knowledge-check" data-answer="b">
+          <div class="knowledge-check-header">
+            <span class="knowledge-check-icon">✓</span>
+            <span class="knowledge-check-title">Knowledge Check</span>
+          </div>
+          <p class="knowledge-check-question">A $200K deal has 10 touchpoints. Using 40/40/20 position-based attribution, how much credit does each middle touch receive?</p>
+          <div class="quiz-options">
+            <label class="quiz-option">
+              <input type="radio" name="position-quiz" value="a">
+              <span>$20K each (20% ÷ 10 touches)</span>
+            </label>
+            <label class="quiz-option">
+              <input type="radio" name="position-quiz" value="b">
+              <span>$5K each (20% of $200K ÷ 8 middle touches)</span>
+            </label>
+            <label class="quiz-option">
+              <input type="radio" name="position-quiz" value="c">
+              <span>$2.5K each (20% split across 16 touches)</span>
+            </label>
+            <label class="quiz-option">
+              <input type="radio" name="position-quiz" value="d">
+              <span>$0K (middle touches don't get credit)</span>
+            </label>
+          </div>
+          <button class="quiz-btn" onclick="checkQuiz(this)">Check Answer</button>
+          <div class="quiz-feedback">
+            <p class="feedback-correct">Correct! First touch = $80K (40%), last touch = $80K (40%), remaining $40K (20%) split among 8 middle touches = $5K each.</p>
+            <p class="feedback-incorrect">Not quite. 40% goes to first ($80K), 40% to last ($80K), and 20% ($40K) is split among the 8 middle touches = $5K each.</p>
+          </div>
+        </div>
+
+        <!-- Next Up Link -->
+        <div class="next-up-link">
+          <a href="#account-vs-contact" class="next-up-content">
+            <div class="next-up-section">
+              <span class="next-up-label">Next Up</span>
+              <span class="next-up-number">Section 07</span>
+              <span class="next-up-title">Account-Level vs Contact-Level</span>
+            </div>
+            <span class="next-up-arrow">→</span>
+          </a>
+        </div>
       </section>
 
       <!-- Section 7: Account-Level vs Contact-Level -->
       <section id="account-vs-contact">
-        <h2>Account-Level vs Contact-Level Attribution <a href="#account-vs-contact" class="anchor-link">#</a></h2>
+        <!-- Hero Card -->
+        <div class="hero-card">
+          <div class="hero-number">07</div>
+          <h2 class="hero-title">Account-Level vs Contact-Level Attribution</h2>
+          <p class="hero-subtitle">Attributing to individuals vs. the entire buying committee</p>
+        </div>
 
-        <p>This is where B2B attribution gets genuinely hard. In B2C, one person makes the purchase decision—you attribute to their touchpoints. In B2B, a buying committee of 6-10 people might be involved, each with their own journey.</p>
+        <!-- TL;DR Box -->
+        <div class="tldr-box">
+          <div class="tldr-header">
+            <span class="tldr-icon">⚡</span>
+            <span class="tldr-label">TL;DR</span>
+          </div>
+          <div class="tldr-content">
+            <p>B2B purchases involve committees of 6-10 people. Contact-level attribution tracks individual journeys; account-level aggregates all contacts. Use contact-level to understand channel effectiveness per persona. Use account-level for pipeline attribution. Build both views—they answer different questions.</p>
+          </div>
+        </div>
+
+        <!-- Scenario Card -->
+        <div class="scenario-card">
+          <div class="scenario-header">
+            <span class="scenario-icon">🎬</span>
+            <span class="scenario-label">NovaTech Scenario</span>
+          </div>
+          <div class="scenario-content">
+            <div class="scenario-character">
+              <span class="role-tag role-mops">MOps</span>
+              <strong>Maya Chen</strong>
+            </div>
+            <p>Maya pulls attribution for their biggest deal. The "primary contact" who filled out the first form was a junior developer—organic search gets all the credit. But Maya digs deeper: the CTO attended two webinars, the VP downloaded whitepapers, the CFO only engaged during contract review. "Our contact-level model says organic search won this deal," Maya explains. "But account-level shows the real story: paid ads brought in the CTO, content nurtured leadership, and the demo request came from a referred engineer."</p>
+          </div>
+        </div>
 
         <h3>The Problem</h3>
         <p>Consider this enterprise deal:</p>
@@ -793,11 +1711,22 @@ result = position_based_attribution(touches, 100000)
         </ul>
         <p>If you only attribute to the "primary contact" (usually whoever filled out the first form), you miss most of the story.</p>
 
+        <!-- Quick Reference -->
+        <div class="quick-reference">
+          <div class="quick-reference-header">
+            <span class="quick-reference-icon">📋</span>
+            <span class="quick-reference-title">Quick Reference: Contact vs Account Attribution</span>
+          </div>
+          <div class="quick-reference-content">
+            <p><strong>Contact-Level:</strong> Best for channel performance by persona. Which channels engage CTOs vs. end users?</p>
+            <p><strong>Account-Level:</strong> Best for pipeline attribution. Which channels influence deal outcomes?</p>
+            <p><strong>Hybrid:</strong> Weight contacts by role. Economic buyer = 3x, Champion = 2x, User = 1x.</p>
+          </div>
+        </div>
+
         <h3>Contact-Level Attribution</h3>
         <p>Assigns credit based on individual contact journeys. Each contact gets their own first-touch, last-touch, etc.</p>
-
         <p><strong>Pros:</strong> Granular, maps to how MAP tracks engagement.</p>
-
         <p><strong>Cons:</strong> Ignores account context. The CFO's single engagement might be more important than the intern's 50 email opens.</p>
 
         <h3>Account-Level Attribution</h3>
@@ -807,7 +1736,7 @@ result = position_based_attribution(touches, 100000)
           <button class="copy-btn">Copy</button>
           <pre><code>-- Account-level first touch
 WITH account_touches AS (
-  SELECT 
+  SELECT
     a.account_id,
     t.channel,
     t.campaign,
@@ -817,7 +1746,7 @@ WITH account_touches AS (
   JOIN contacts c ON a.account_id = c.account_id
   JOIN touchpoints t ON c.contact_id = t.contact_id
 )
-SELECT 
+SELECT
   o.opportunity_id,
   o.amount,
   at.channel as account_first_touch_channel
@@ -843,13 +1772,86 @@ JOIN account_touches at ON o.account_id = at.account_id AND at.rn = 1</code></pr
             <tr><td>Blocker</td><td>2x</td><td>Engagement here prevents derailment</td></tr>
           </tbody>
         </table>
+
+        <!-- Knowledge Check -->
+        <div class="knowledge-check" data-answer="c">
+          <div class="knowledge-check-header">
+            <span class="knowledge-check-icon">✓</span>
+            <span class="knowledge-check-title">Knowledge Check</span>
+          </div>
+          <p class="knowledge-check-question">NovaTech's contact-level model says organic search sourced 80% of pipeline. But Maya notices most primary contacts are junior developers. What's the issue?</p>
+          <div class="quiz-options">
+            <label class="quiz-option">
+              <input type="radio" name="accountcontact-quiz" value="a">
+              <span>Organic search doesn't work for B2B marketing</span>
+            </label>
+            <label class="quiz-option">
+              <input type="radio" name="accountcontact-quiz" value="b">
+              <span>Junior developers shouldn't be counted as leads</span>
+            </label>
+            <label class="quiz-option">
+              <input type="radio" name="accountcontact-quiz" value="c">
+              <span>Contact-level attribution misses how decision-makers on the account were actually engaged</span>
+            </label>
+            <label class="quiz-option">
+              <input type="radio" name="accountcontact-quiz" value="d">
+              <span>They should switch to last-touch attribution instead</span>
+            </label>
+          </div>
+          <button class="quiz-btn" onclick="checkQuiz(this)">Check Answer</button>
+          <div class="quiz-feedback">
+            <p class="feedback-correct">Correct! The primary contact (first form filler) often isn't the decision-maker. Account-level attribution reveals how the whole buying committee was engaged, not just the first person to fill out a form.</p>
+            <p class="feedback-incorrect">Not quite. The problem is that contact-level only credits the individual, missing how decision-makers (CTO, CFO, etc.) were actually engaged through different channels.</p>
+          </div>
+        </div>
+
+        <!-- Next Up Link -->
+        <div class="next-up-link">
+          <a href="#sourced-influenced" class="next-up-content">
+            <div class="next-up-section">
+              <span class="next-up-label">Next Up</span>
+              <span class="next-up-number">Section 08</span>
+              <span class="next-up-title">Sourced vs Influenced Pipeline</span>
+            </div>
+            <span class="next-up-arrow">→</span>
+          </a>
+        </div>
       </section>
 
       <!-- Section 8: Sourced vs Influenced Pipeline -->
       <section id="sourced-influenced">
-        <h2>Sourced vs Influenced Pipeline <a href="#sourced-influenced" class="anchor-link">#</a></h2>
+        <!-- Hero Card -->
+        <div class="hero-card">
+          <div class="hero-number">08</div>
+          <h2 class="hero-title">Sourced vs Influenced Pipeline</h2>
+          <p class="hero-subtitle">"We found this deal" vs. "We helped this deal"</p>
+        </div>
 
-        <p>This distinction determines how marketing takes credit for revenue—and causes more arguments than almost any other metric.</p>
+        <!-- TL;DR Box -->
+        <div class="tldr-box">
+          <div class="tldr-header">
+            <span class="tldr-icon">⚡</span>
+            <span class="tldr-label">TL;DR</span>
+          </div>
+          <div class="tldr-content">
+            <p>Sourced = marketing's first touch created the opportunity. Influenced = marketing touched the account anywhere in the journey. You can't add them together (double-counting). Set engagement thresholds for influenced—"sent an email" is a weak claim. Report "heavily influenced" pipeline (3+ engaged touches) for credibility.</p>
+          </div>
+        </div>
+
+        <!-- Scenario Card -->
+        <div class="scenario-card">
+          <div class="scenario-header">
+            <span class="scenario-icon">🎬</span>
+            <span class="scenario-label">NovaTech Scenario</span>
+          </div>
+          <div class="scenario-content">
+            <div class="scenario-character">
+              <span class="role-tag role-sales">Sales</span>
+              <strong>Derek Thompson</strong>
+            </div>
+            <p>Derek is annoyed. Marketing is claiming $15M in influenced pipeline, including his biggest outbound deal. "I cold-called that account! Marketing just sent them a nurture email they didn't even open!" Sarah defends: "Our webinar content was referenced in their evaluation." Priya steps in: "Let's set a threshold—3+ engaged touches for 'heavily influenced.' That deal had one unclicked email. It doesn't count."</p>
+          </div>
+        </div>
 
         <h3>Sourced Pipeline</h3>
         <p><strong>Definition:</strong> Pipeline where marketing created the initial opportunity. The first touchpoint that brought the account/contact into the funnel was a marketing touchpoint.</p>
@@ -871,6 +1873,19 @@ JOIN account_touches at ON o.account_id = at.account_id AND at.rn = 1</code></pr
           where any marketing touchpoint exists on any contact before close
         </div>
 
+        <!-- Quick Reference -->
+        <div class="quick-reference">
+          <div class="quick-reference-header">
+            <span class="quick-reference-icon">📋</span>
+            <span class="quick-reference-title">Quick Reference: Influence Thresholds</span>
+          </div>
+          <div class="quick-reference-content">
+            <p><strong>Light touch:</strong> Any marketing interaction (email sent, ad impression). Weak claim.</p>
+            <p><strong>Engaged:</strong> Active engagement (email clicked, content downloaded, webinar attended).</p>
+            <p><strong>Heavy influence:</strong> 3+ engaged touches OR high-value touch (demo request, sales conversation initiated by marketing). Credible claim.</p>
+          </div>
+        </div>
+
         <h3>The Math Problem</h3>
         <p>Sourced and influenced have a double-counting problem:</p>
         <ul>
@@ -883,26 +1898,11 @@ JOIN account_touches at ON o.account_id = at.account_id AND at.rn = 1</code></pr
           <strong>The common argument:</strong> Marketing says "We influenced $50M in pipeline!" Sales says "You took credit for deals we brought in through cold outbound." Both can be technically correct. Influenced is a weak claim—it includes deals where marketing sent one email that was never opened. Set minimum engagement thresholds.
         </div>
 
-        <h3>Practical Thresholds</h3>
-        <p>To make influenced meaningful, add qualification criteria:</p>
-        <table>
-          <thead>
-            <tr><th>Influence Level</th><th>Criteria</th></tr>
-          </thead>
-          <tbody>
-            <tr><td>Light touch</td><td>Any marketing interaction (email sent, ad impression)</td></tr>
-            <tr><td>Engaged</td><td>Active engagement (email clicked, content downloaded, webinar attended)</td></tr>
-            <tr><td>Heavy influence</td><td>3+ engaged touches OR high-value touch (demo request, sales conversation initiated by marketing)</td></tr>
-          </tbody>
-        </table>
-
-        <p>Report on "heavily influenced" pipeline, not "technically touched" pipeline. It's more credible and more useful.</p>
-
         <h3>Example Calculation</h3>
         <div class="code-block" data-language="sql">
           <button class="copy-btn">Copy</button>
           <pre><code>-- Sourced pipeline by channel
-SELECT 
+SELECT
   first_touch.channel,
   SUM(o.amount) as sourced_pipeline,
   COUNT(DISTINCT o.opportunity_id) as sourced_opps
@@ -915,7 +1915,7 @@ JOIN (
 GROUP BY first_touch.channel;
 
 -- Influenced pipeline by channel (with engagement threshold)
-SELECT 
+SELECT
   t.channel,
   SUM(DISTINCT o.amount) as influenced_pipeline,
   COUNT(DISTINCT o.opportunity_id) as influenced_opps
@@ -926,13 +1926,86 @@ WHERE t.touch_timestamp < o.close_date
   AND t.engagement_type IN ('click', 'download', 'attend', 'demo_request')  -- engagement threshold
 GROUP BY t.channel;</code></pre>
         </div>
+
+        <!-- Knowledge Check -->
+        <div class="knowledge-check" data-answer="d">
+          <div class="knowledge-check-header">
+            <span class="knowledge-check-icon">✓</span>
+            <span class="knowledge-check-title">Knowledge Check</span>
+          </div>
+          <p class="knowledge-check-question">Marketing claims $50M in "influenced" pipeline. Derek's sales team sourced $30M of that through cold outbound. Marketing's only touch was automated nurture emails (3% open rate). What should they report?</p>
+          <div class="quiz-options">
+            <label class="quiz-option">
+              <input type="radio" name="sourced-quiz" value="a">
+              <span>$50M influenced (any touch counts)</span>
+            </label>
+            <label class="quiz-option">
+              <input type="radio" name="sourced-quiz" value="b">
+              <span>$80M total ($50M + $30M)</span>
+            </label>
+            <label class="quiz-option">
+              <input type="radio" name="sourced-quiz" value="c">
+              <span>$20M sourced (marketing first-touch only)</span>
+            </label>
+            <label class="quiz-option">
+              <input type="radio" name="sourced-quiz" value="d">
+              <span>Set engagement threshold—only count deals with actual engagement, not just emails sent</span>
+            </label>
+          </div>
+          <button class="quiz-btn" onclick="checkQuiz(this)">Check Answer</button>
+          <div class="quiz-feedback">
+            <p class="feedback-correct">Correct! "Influenced" with no engagement threshold is misleading. Require active engagement (clicks, downloads, attendance) to claim influence credibly. Unopened emails don't count.</p>
+            <p class="feedback-incorrect">Not quite. Adding sourced + influenced double-counts. Claiming influence for unopened emails is a weak claim. Set engagement thresholds (3+ engaged touches) for credibility.</p>
+          </div>
+        </div>
+
+        <!-- Next Up Link -->
+        <div class="next-up-link">
+          <a href="#mta-challenges" class="next-up-content">
+            <div class="next-up-section">
+              <span class="next-up-label">Next Up</span>
+              <span class="next-up-number">Section 09</span>
+              <span class="next-up-title">MTA Challenges in B2B</span>
+            </div>
+            <span class="next-up-arrow">→</span>
+          </a>
+        </div>
       </section>
 
       <!-- Section 9: MTA Challenges in B2B -->
       <section id="mta-challenges">
-        <h2>Multi-Touch Attribution Challenges in B2B <a href="#mta-challenges" class="anchor-link">#</a></h2>
+        <!-- Hero Card -->
+        <div class="hero-card">
+          <div class="hero-number">09</div>
+          <h2 class="hero-title">Multi-Touch Attribution Challenges in B2B</h2>
+          <p class="hero-subtitle">Why MTA is harder in B2B—and how to cope</p>
+        </div>
 
-        <p>Multi-touch attribution (MTA) sounds elegant in theory. In B2B practice, it's a mess. Here's what makes it hard and how to cope.</p>
+        <!-- TL;DR Box -->
+        <div class="tldr-box">
+          <div class="tldr-header">
+            <span class="tldr-icon">⚡</span>
+            <span class="tldr-label">TL;DR</span>
+          </div>
+          <div class="tldr-content">
+            <p>Studies suggest 40-60% of B2B touchpoints are invisible to tracking. Cookies expire, people change jobs, offline events happen. Accept that attribution is directional, not precise. Triangulate multiple models, supplement with self-reported data, and focus on relative (not absolute) performance between channels.</p>
+          </div>
+        </div>
+
+        <!-- Scenario Card -->
+        <div class="scenario-card">
+          <div class="scenario-header">
+            <span class="scenario-icon">🎬</span>
+            <span class="scenario-label">NovaTech Scenario</span>
+          </div>
+          <div class="scenario-content">
+            <div class="scenario-character">
+              <span class="role-tag role-analytics">Analytics</span>
+              <strong>Priya Sharma</strong>
+            </div>
+            <p>Priya audits their attribution data. "We have 6 months of touchpoints for this deal," she reports. "But look—there's a 3-month gap where we show nothing. The champion changed jobs, their cookies expired, and they used a personal laptop at home." She compares tracked first-touch (organic search) to self-reported ("saw you at AWS re:Invent"). "We're missing half the story. Attribution is useful, but it's not truth."</p>
+          </div>
+        </div>
 
         <h3>Challenge 1: Long Sales Cycles</h3>
         <p>Enterprise deals take 6-18 months. Your tracking breaks over this period:</p>
@@ -948,48 +2021,107 @@ GROUP BY t.channel;</code></pre>
         </div>
 
         <h3>Challenge 2: Offline Touches</h3>
-        <p>Major B2B touchpoints happen offline:</p>
-        <ul>
-          <li>Trade show conversations</li>
-          <li>Sales calls and meetings</li>
-          <li>Executive briefings</li>
-          <li>Conference presentations</li>
-          <li>Word-of-mouth referrals</li>
-        </ul>
-
-        <p>You can log these manually, but compliance is spotty and timing is imprecise. An event touchpoint might get logged days after it happened.</p>
+        <p>Major B2B touchpoints happen offline: trade shows, sales calls, executive briefings, conferences, word-of-mouth referrals. You can log these manually, but compliance is spotty and timing is imprecise.</p>
 
         <h3>Challenge 3: Multiple Devices and Identities</h3>
         <p>B2B buyers use personal phones, work laptops, home computers, and sometimes different email addresses. Without robust identity resolution, one person looks like three anonymous visitors plus one known contact.</p>
 
         <h3>Challenge 4: The Dark Funnel</h3>
-        <p>Huge amounts of B2B research happen in places you can't track:</p>
-        <ul>
-          <li>Slack communities and private channels</li>
-          <li>LinkedIn DMs</li>
-          <li>Podcasts listened to in cars</li>
-          <li>Peer recommendations over lunch</li>
-          <li>Review sites with anonymized traffic</li>
-          <li>Private browsing windows</li>
-        </ul>
+        <p>Huge amounts of B2B research happen in places you can't track: Slack communities, LinkedIn DMs, podcasts, peer recommendations, review sites with anonymized traffic, private browsing windows.</p>
 
-        <p>When a lead finally fills out a form, they might already be 80% of the way to a decision—and you have no idea why.</p>
+        <!-- Quick Reference -->
+        <div class="quick-reference">
+          <div class="quick-reference-header">
+            <span class="quick-reference-icon">📋</span>
+            <span class="quick-reference-title">Quick Reference: Coping Strategies</span>
+          </div>
+          <div class="quick-reference-content">
+            <p><strong>Accept imperfection:</strong> Attribution is directional, not precise. Treat it as signal, not source of truth.</p>
+            <p><strong>Triangulate:</strong> Use multiple models and look for patterns that appear across all of them.</p>
+            <p><strong>Supplement with qualitative:</strong> Self-reported attribution fills tracking gaps.</p>
+            <p><strong>Focus on relative performance:</strong> Even if absolute numbers are wrong, relative comparisons may be valid.</p>
+          </div>
+        </div>
 
-        <h3>Coping Strategies</h3>
-        <ol>
-          <li><strong>Accept imperfection:</strong> Attribution is directionally useful, not precisely accurate. Treat it as signal, not source of truth.</li>
-          <li><strong>Triangulate:</strong> Use multiple attribution models and look for patterns that appear across all of them.</li>
-          <li><strong>Supplement with qualitative:</strong> Self-reported attribution (covered next section) fills gaps.</li>
-          <li><strong>Focus on relative performance:</strong> Even if absolute numbers are wrong, relative comparisons between channels may be valid.</li>
-          <li><strong>Invest in identity:</strong> Better identity resolution reduces fragmentation. It doesn't eliminate it, but it helps.</li>
-        </ol>
+        <!-- Knowledge Check -->
+        <div class="knowledge-check" data-answer="b">
+          <div class="knowledge-check-header">
+            <span class="knowledge-check-icon">✓</span>
+            <span class="knowledge-check-title">Knowledge Check</span>
+          </div>
+          <p class="knowledge-check-question">Priya's attribution data shows organic search as first-touch for 60% of deals. But self-reported data says 40% "heard about us at a conference." What should she conclude?</p>
+          <div class="quiz-options">
+            <label class="quiz-option">
+              <input type="radio" name="mta-quiz" value="a">
+              <span>The self-reported data is unreliable; trust the tracking</span>
+            </label>
+            <label class="quiz-option">
+              <input type="radio" name="mta-quiz" value="b">
+              <span>Conferences are driving awareness that converts via search—both data sources are useful</span>
+            </label>
+            <label class="quiz-option">
+              <input type="radio" name="mta-quiz" value="c">
+              <span>Stop investing in conferences since tracking shows no attribution</span>
+            </label>
+            <label class="quiz-option">
+              <input type="radio" name="mta-quiz" value="d">
+              <span>The attribution model is broken and should be replaced</span>
+            </label>
+          </div>
+          <button class="quiz-btn" onclick="checkQuiz(this)">Check Answer</button>
+          <div class="quiz-feedback">
+            <p class="feedback-correct">Correct! Conferences create awareness in the "dark funnel." When attendees later research you, they use organic search—which gets the tracking credit. Both data sources reveal different parts of the journey.</p>
+            <p class="feedback-incorrect">Not quite. Self-reported data reveals the dark funnel. People hear about you at conferences, then search for you later. Tracking shows search; self-reported shows what drove the search. Use both.</p>
+          </div>
+        </div>
+
+        <!-- Next Up Link -->
+        <div class="next-up-link">
+          <a href="#dark-funnel" class="next-up-content">
+            <div class="next-up-section">
+              <span class="next-up-label">Next Up</span>
+              <span class="next-up-number">Section 10</span>
+              <span class="next-up-title">Self-Reported & Dark Funnel</span>
+            </div>
+            <span class="next-up-arrow">→</span>
+          </a>
+        </div>
       </section>
 
       <!-- Section 10: Dark Funnel and Self-Reported -->
       <section id="dark-funnel">
-        <h2>Self-Reported Attribution and the Dark Funnel <a href="#dark-funnel" class="anchor-link">#</a></h2>
+        <!-- Hero Card -->
+        <div class="hero-card">
+          <div class="hero-number">10</div>
+          <h2 class="hero-title">Self-Reported Attribution & Dark Funnel</h2>
+          <p class="hero-subtitle">Asking leads "How did you hear about us?"</p>
+        </div>
 
-        <p>Self-reported attribution—asking leads "How did you hear about us?"—is low-tech but surprisingly valuable. It captures what tracking can't.</p>
+        <!-- TL;DR Box -->
+        <div class="tldr-box">
+          <div class="tldr-header">
+            <span class="tldr-icon">⚡</span>
+            <span class="tldr-label">TL;DR</span>
+          </div>
+          <div class="tldr-content">
+            <p>Self-reported attribution is low-tech but valuable—it captures what tracking can't. Compare self-reported to tracked first-touch: the gaps reveal your dark funnel. If 30% say "podcast" but tracking shows 0%, you've found untracked value. Don't cut channels just because you can't measure them.</p>
+          </div>
+        </div>
+
+        <!-- Scenario Card -->
+        <div class="scenario-card">
+          <div class="scenario-header">
+            <span class="scenario-icon">🎬</span>
+            <span class="scenario-label">NovaTech Scenario</span>
+          </div>
+          <div class="scenario-content">
+            <div class="scenario-character">
+              <span class="role-tag role-demand-gen">Demand Gen</span>
+              <strong>Sarah Park</strong>
+            </div>
+            <p>Sarah reviews the self-reported data. "25% of leads say 'colleague or friend.' But our tracking shows 0% referral traffic." She compares to tracked first-touch: those same leads show as "organic search" or "direct." "They heard about us from a peer, then searched to find us. Word-of-mouth is driving business we can't track. We need to keep investing in customer advocacy even though we can't measure it directly."</p>
+          </div>
+        </div>
 
         <h3>Implementation</h3>
         <p>Add a free-text or dropdown field to your lead forms:</p>
@@ -1014,28 +2146,26 @@ GROUP BY t.channel;</code></pre>
 &lt;/select&gt;</code></pre>
         </div>
 
-        <h3>What Self-Reported Reveals</h3>
-        <p>Compare self-reported to first-touch tracked. The gaps are revealing:</p>
-
-        <table>
-          <thead>
-            <tr><th>Self-Reported</th><th>First-Touch Tracked</th><th>Interpretation</th></tr>
-          </thead>
-          <tbody>
-            <tr><td>"Podcast"</td><td>Direct</td><td>Podcast works; you can't track it</td></tr>
-            <tr><td>"Colleague told me"</td><td>Organic search</td><td>Word-of-mouth matters; search captured the hand-raiser</td></tr>
-            <tr><td>"LinkedIn"</td><td>LinkedIn Ad</td><td>Tracking worked correctly</td></tr>
-            <tr><td>"Been following for years"</td><td>Email</td><td>Long brand-building journey collapsed to re-engagement</td></tr>
-            <tr><td>"G2 reviews"</td><td>Direct</td><td>Review sites drive consideration; you can't track it</td></tr>
-          </tbody>
-        </table>
+        <!-- Quick Reference -->
+        <div class="quick-reference">
+          <div class="quick-reference-header">
+            <span class="quick-reference-icon">📋</span>
+            <span class="quick-reference-title">Quick Reference: Self-Reported vs Tracked</span>
+          </div>
+          <div class="quick-reference-content">
+            <p><strong>"Podcast" → Direct:</strong> Podcast works but you can't track it</p>
+            <p><strong>"Colleague told me" → Organic search:</strong> Word-of-mouth drives search</p>
+            <p><strong>"G2 reviews" → Direct:</strong> Review sites drive consideration invisibly</p>
+            <p><strong>"Been following for years" → Email:</strong> Brand-building collapsed to re-engagement</p>
+          </div>
+        </div>
 
         <h3>Analysis Approach</h3>
 
         <div class="code-block" data-language="sql">
           <button class="copy-btn">Copy</button>
           <pre><code>-- Compare self-reported vs tracked first touch
-SELECT 
+SELECT
   l.self_reported_source,
   first_touch.channel as tracked_first_touch,
   COUNT(*) as leads,
@@ -1062,20 +2192,91 @@ ORDER BY leads DESC;</code></pre>
           <li><strong>Recency bias:</strong> People remember recent touches, not the true first</li>
           <li><strong>Salience bias:</strong> Memorable experiences (events, podcasts) get over-reported</li>
           <li><strong>Social desirability:</strong> "Colleague recommended" sounds better than "I saw an ad"</li>
-          <li><strong>Attention:</strong> Some people just pick the first option</li>
         </ul>
         <p>Use it as one input, not the only input. Triangulate with tracked data.</p>
+
+        <!-- Knowledge Check -->
+        <div class="knowledge-check" data-answer="c">
+          <div class="knowledge-check-header">
+            <span class="knowledge-check-icon">✓</span>
+            <span class="knowledge-check-title">Knowledge Check</span>
+          </div>
+          <p class="knowledge-check-question">Self-reported data shows 30% of leads heard about NovaTech from podcasts. Tracked attribution shows 0% from podcasts. What does this mean?</p>
+          <div class="quiz-options">
+            <label class="quiz-option">
+              <input type="radio" name="darkfunnel-quiz" value="a">
+              <span>Leads are lying about hearing about you on podcasts</span>
+            </label>
+            <label class="quiz-option">
+              <input type="radio" name="darkfunnel-quiz" value="b">
+              <span>Podcast advertising is ineffective and should be cut</span>
+            </label>
+            <label class="quiz-option">
+              <input type="radio" name="darkfunnel-quiz" value="c">
+              <span>Podcasts drive awareness that can't be tracked—they work but are invisible to attribution</span>
+            </label>
+            <label class="quiz-option">
+              <input type="radio" name="darkfunnel-quiz" value="d">
+              <span>The tracking system is broken</span>
+            </label>
+          </div>
+          <button class="quiz-btn" onclick="checkQuiz(this)">Check Answer</button>
+          <div class="quiz-feedback">
+            <p class="feedback-correct">Correct! Podcasts are part of the "dark funnel"—channels that influence decisions but can't be tracked. People hear about you on a podcast, then search or go direct to your site. Self-reported data reveals this invisible value.</p>
+            <p class="feedback-incorrect">Not quite. The gap between self-reported and tracked reveals the dark funnel. Podcasts work, but you can't track them. People hear you on a podcast and later visit your site directly—self-reported captures what tracking misses.</p>
+          </div>
+        </div>
+
+        <!-- Next Up Link -->
+        <div class="next-up-link">
+          <a href="#incrementality" class="next-up-content">
+            <div class="next-up-section">
+              <span class="next-up-label">Next Up</span>
+              <span class="next-up-number">Section 11</span>
+              <span class="next-up-title">Incrementality Testing</span>
+            </div>
+            <span class="next-up-arrow">→</span>
+          </a>
+        </div>
       </section>
 
       <!-- Section 11: Incrementality -->
       <section id="incrementality">
-        <h2>Incrementality and Lift Testing <a href="#incrementality" class="anchor-link">#</a></h2>
+        <!-- Hero Card -->
+        <div class="hero-card">
+          <div class="hero-number">11</div>
+          <h2 class="hero-title">Incrementality and Lift Testing</h2>
+          <p class="hero-subtitle">Proving causation, not just correlation</p>
+        </div>
 
-        <p>Attribution tells you which touchpoints were present before conversion. Incrementality tells you which touchpoints actually caused conversion. This is the difference between correlation and causation.</p>
+        <!-- TL;DR Box -->
+        <div class="tldr-box">
+          <div class="tldr-header">
+            <span class="tldr-icon">⚡</span>
+            <span class="tldr-label">TL;DR</span>
+          </div>
+          <div class="tldr-content">
+            <p>Attribution shows correlation (touchpoints that were present). Incrementality proves causation (touchpoints that actually drove conversions). Use holdout tests: randomly withhold a channel from 10-20% of your audience and measure the conversion rate difference. That difference is your true incremental lift.</p>
+          </div>
+        </div>
+
+        <!-- Scenario Card -->
+        <div class="scenario-card">
+          <div class="scenario-header">
+            <span class="scenario-icon">🎬</span>
+            <span class="scenario-label">NovaTech Scenario</span>
+          </div>
+          <div class="scenario-content">
+            <div class="scenario-character">
+              <span class="role-tag role-cfo">CFO</span>
+              <strong>Tom Richardson</strong>
+            </div>
+            <p>Tom questions the retargeting spend. "Attribution says retargeting drives 40% of conversions. But these people were already on our site—would they have converted anyway?" Priya proposes a holdout test: 15% of qualified visitors won't see retargeting ads. After 8 weeks, control converts at 4.2%, exposed at 5.1%. "The true incremental lift is only 21%," Priya reports. "Attribution was over-crediting by 50%."</p>
+          </div>
+        </div>
 
         <h3>The Core Question</h3>
         <p>"Would this conversion have happened anyway, without this marketing touch?"</p>
-
         <p>If you run a retargeting ad and someone converts, attribution says the ad worked. But that person might have converted anyway—they were already on your site, already interested. The ad got credit for something it didn't cause.</p>
 
         <h3>Holdout Testing</h3>
@@ -1101,55 +2302,119 @@ If Group B had 100,000 people:
 - True incrementality: 900</code></pre>
         </div>
 
+        <!-- Quick Reference -->
+        <div class="quick-reference">
+          <div class="quick-reference-header">
+            <span class="quick-reference-icon">📋</span>
+            <span class="quick-reference-title">Quick Reference: Incrementality Test Requirements</span>
+          </div>
+          <div class="quick-reference-content">
+            <p><strong>Random assignment:</strong> Non-random creates selection bias</p>
+            <p><strong>Sufficient sample size:</strong> Need 10-20% holdout for statistical power</p>
+            <p><strong>Clean holdout:</strong> Control can't be exposed through other paths</p>
+            <p><strong>Long enough test:</strong> Must capture full conversion cycle (1.5-2x average)</p>
+          </div>
+        </div>
+
         <h3>Geo Experiments</h3>
-        <p>When you can't hold out individuals (e.g., TV, billboards, or when user-level holdout is impractical), run geo experiments:</p>
-        <ol>
-          <li>Select matched pairs of regions with similar characteristics</li>
-          <li>Run the campaign in test regions, not control regions</li>
-          <li>Compare conversion rates between test and control</li>
-        </ol>
+        <p>When you can't hold out individuals (TV, billboards, etc.), run geo experiments: select matched pairs of regions, run campaigns in test regions only, compare conversion rates.</p>
 
         <div class="callout callout-info">
           <strong>Example:</strong> Test LinkedIn advertising in Dallas, Austin, Phoenix. Hold out Denver, San Antonio, Albuquerque. If the test cities show 15% higher lead volume than control cities, you've measured incremental lift.
         </div>
 
         <h3>When Attribution Isn't Enough</h3>
-        <p>Use incrementality testing when:</p>
         <ul>
           <li><strong>Retargeting:</strong> Attribution always looks great because you're targeting warm audiences</li>
           <li><strong>Brand campaigns:</strong> Hard to track but may drive lift across all channels</li>
-          <li><strong>High-spend channels:</strong> Before increasing budget on a channel, verify it's truly incremental</li>
-          <li><strong>Channel overlap:</strong> When people see multiple channels, which ones matter?</li>
+          <li><strong>High-spend channels:</strong> Before increasing budget, verify it's truly incremental</li>
         </ul>
-
-        <h3>Implementation Requirements</h3>
-        <table>
-          <thead>
-            <tr><th>Requirement</th><th>Why It Matters</th></tr>
-          </thead>
-          <tbody>
-            <tr><td>Random assignment</td><td>Non-random creates selection bias</td></tr>
-            <tr><td>Sufficient sample size</td><td>Need statistical power to detect lift</td></tr>
-            <tr><td>Clean holdout</td><td>Control can't be exposed through other paths</td></tr>
-            <tr><td>Long enough test period</td><td>Must capture full conversion cycle</td></tr>
-            <tr><td>Stable baseline</td><td>No other major changes during test</td></tr>
-          </tbody>
-        </table>
 
         <div class="callout callout-caution">
           <strong>Warning:</strong> Incrementality tests are expensive. You're deliberately not marketing to some potential customers. Only run them when the insight justifies the cost, typically for high-spend channels or strategic decisions.
+        </div>
+
+        <!-- Knowledge Check -->
+        <div class="knowledge-check" data-answer="b">
+          <div class="knowledge-check-header">
+            <span class="knowledge-check-icon">✓</span>
+            <span class="knowledge-check-title">Knowledge Check</span>
+          </div>
+          <p class="knowledge-check-question">Attribution shows retargeting ads drove 5,100 conversions. A holdout test shows: exposed group = 5.1% conversion, control group = 4.2% conversion. How many conversions were truly incremental?</p>
+          <div class="quiz-options">
+            <label class="quiz-option">
+              <input type="radio" name="incrementality-quiz" value="a">
+              <span>5,100 (attribution is accurate)</span>
+            </label>
+            <label class="quiz-option">
+              <input type="radio" name="incrementality-quiz" value="b">
+              <span>~900 (0.9% lift × 100K audience)</span>
+            </label>
+            <label class="quiz-option">
+              <input type="radio" name="incrementality-quiz" value="c">
+              <span>2,550 (half of attributed conversions)</span>
+            </label>
+            <label class="quiz-option">
+              <input type="radio" name="incrementality-quiz" value="d">
+              <span>4,200 (the control rate)</span>
+            </label>
+          </div>
+          <button class="quiz-btn" onclick="checkQuiz(this)">Check Answer</button>
+          <div class="quiz-feedback">
+            <p class="feedback-correct">Correct! Only the difference matters: 5.1% - 4.2% = 0.9 percentage points. Of 100K exposed, ~900 converted because of the ads. The other 4,200 would have converted anyway. Attribution over-credited by 5.6x.</p>
+            <p class="feedback-incorrect">Not quite. The control group converted at 4.2% without ads. Only the difference (0.9%) represents conversions caused by the ads. Of 100K people, that's ~900 incremental conversions.</p>
+          </div>
+        </div>
+
+        <!-- Next Up Link -->
+        <div class="next-up-link">
+          <a href="#experimentation" class="next-up-content">
+            <div class="next-up-section">
+              <span class="next-up-label">Next Up</span>
+              <span class="next-up-number">Section 12</span>
+              <span class="next-up-title">Experimentation Design</span>
+            </div>
+            <span class="next-up-arrow">→</span>
+          </a>
         </div>
       </section>
 
       <!-- Section 12: Experimentation Design -->
       <section id="experimentation">
-        <h2>Experimentation Design <a href="#experimentation" class="anchor-link">#</a></h2>
+        <!-- Hero Card -->
+        <div class="hero-card">
+          <div class="hero-number">12</div>
+          <h2 class="hero-title">Experimentation Design</h2>
+          <p class="hero-subtitle">Rigorous A/B testing for marketing optimization</p>
+        </div>
 
-        <p>Beyond incrementality testing, marketing analytics requires rigorous experimentation for optimization. Here's how to design experiments that actually work.</p>
+        <!-- TL;DR Box -->
+        <div class="tldr-box">
+          <div class="tldr-header">
+            <span class="tldr-icon">⚡</span>
+            <span class="tldr-label">TL;DR</span>
+          </div>
+          <div class="tldr-content">
+            <p>Valid experiments require: single variable, random assignment, adequate sample size (calculated upfront), pre-registered hypothesis, and running to completion. Don't peek and stop early—it inflates false positives. Optimize for business metrics (conversions), not vanity metrics (clicks).</p>
+          </div>
+        </div>
 
-        <h3>A/B Testing Campaigns</h3>
-        <p>Core elements of a valid A/B test:</p>
+        <!-- Scenario Card -->
+        <div class="scenario-card">
+          <div class="scenario-header">
+            <span class="scenario-icon">🎬</span>
+            <span class="scenario-label">NovaTech Scenario</span>
+          </div>
+          <div class="scenario-content">
+            <div class="scenario-character">
+              <span class="role-tag role-demand-gen">Demand Gen</span>
+              <strong>Sarah Park</strong>
+            </div>
+            <p>Sarah wants to test a new CTA: "See It In Action" vs. "Request Demo." Priya calculates: they need 5,200 visitors per variant for 80% power. "That's 3 weeks at current traffic," Priya says. On day 5, Sarah peeks: new CTA shows 15% lift, p=0.03. "We have a winner!" Priya stops her: "With multiple peeks, your false positive rate is ~15%, not 5%. Let it run. We've already planned for 3 weeks."</p>
+          </div>
+        </div>
 
+        <h3>A/B Testing Requirements</h3>
         <ol>
           <li><strong>Single variable:</strong> Change one thing. If you change headline AND image AND CTA, you don't know what worked.</li>
           <li><strong>Random assignment:</strong> Visitors must be randomly assigned to variants, not based on any characteristic.</li>
@@ -1162,7 +2427,7 @@ If Group B had 100,000 people:
           <button class="copy-btn">Copy</button>
           <pre><code>Test Plan Template:
 
-Hypothesis: Changing the CTA from "Request Demo" to "See It In Action" will 
+Hypothesis: Changing the CTA from "Request Demo" to "See It In Action" will
             increase demo request rate by ≥15%.
 
 Primary metric: Demo request conversion rate
@@ -1175,9 +2440,21 @@ Success criteria: Variant B conversion rate > Variant A by ≥15% with p < 0.05
 Decision: If success criteria met, implement Variant B. Otherwise, keep A.</code></pre>
         </div>
 
-        <h3>Holdout Group Design</h3>
-        <p>For channel-level incrementality tests:</p>
+        <!-- Quick Reference -->
+        <div class="quick-reference">
+          <div class="quick-reference-header">
+            <span class="quick-reference-icon">📋</span>
+            <span class="quick-reference-title">Quick Reference: Common Experiment Mistakes</span>
+          </div>
+          <div class="quick-reference-content">
+            <p><strong>Peeking early:</strong> Checking results daily inflates false positives from 5% to 15%+</p>
+            <p><strong>Too many variants:</strong> A/B/C/D/E needs 5x sample for same power. Stick to 2-3.</p>
+            <p><strong>Wrong metric:</strong> Optimizing for clicks when conversions matter means false wins.</p>
+            <p><strong>Selection bias:</strong> "Hold out smallest accounts" biases results. Must be random.</p>
+          </div>
+        </div>
 
+        <h3>Holdout Group Design</h3>
         <table>
           <thead>
             <tr><th>Component</th><th>Recommendation</th></tr>
@@ -1190,37 +2467,88 @@ Decision: If success criteria met, implement Variant B. Otherwise, keep A.</code
           </tbody>
         </table>
 
-        <h3>Common Experiment Mistakes</h3>
-
-        <div class="callout callout-caution">
-          <strong>Mistake 1: Peeking and stopping early</strong><br>
-          You check results after 3 days, see variant B winning (p=0.03), and call the test. Problem: with multiple looks, your actual false positive rate is much higher than 5%. Let tests run to planned completion.
-        </div>
-
-        <div class="callout callout-caution">
-          <strong>Mistake 2: Too many variants</strong><br>
-          Running A/B/C/D/E means you need 5x the sample for the same power. With 5 variants and 1000 visitors each, you can't detect anything meaningful. Stick to 2-3 variants max.
-        </div>
-
-        <div class="callout callout-caution">
-          <strong>Mistake 3: Wrong success metric</strong><br>
-          You optimize for click-through rate, get 40% more clicks, and declare victory. But conversion rate dropped 20%—you attracted curious clickers who don't convert. Optimize for the metric that matters to the business.
-        </div>
-
-        <div class="callout callout-caution">
-          <strong>Mistake 4: Selection bias in holdout</strong><br>
-          "Let's hold out our smallest accounts" creates biased results. Holdout must be random, or your results don't generalize.
-        </div>
-
         <h3>Sequential Testing (When You Need to Peek)</h3>
         <p>If you must monitor results during a test, use sequential testing methods that adjust for multiple comparisons. Tools like Google Optimize and Optimizely use these methods. The tradeoff: you need ~20-30% more sample for the same power.</p>
+
+        <!-- Knowledge Check -->
+        <div class="knowledge-check" data-answer="c">
+          <div class="knowledge-check-header">
+            <span class="knowledge-check-icon">✓</span>
+            <span class="knowledge-check-title">Knowledge Check</span>
+          </div>
+          <p class="knowledge-check-question">Sarah's A/B test shows 15% lift with p=0.03 after 5 days. She planned for 3 weeks. What should she do?</p>
+          <div class="quiz-options">
+            <label class="quiz-option">
+              <input type="radio" name="experiment-quiz" value="a">
+              <span>Declare a winner—p=0.03 is statistically significant</span>
+            </label>
+            <label class="quiz-option">
+              <input type="radio" name="experiment-quiz" value="b">
+              <span>Add more variants to test other ideas while we have momentum</span>
+            </label>
+            <label class="quiz-option">
+              <input type="radio" name="experiment-quiz" value="c">
+              <span>Continue running until planned completion—early peeking inflates false positives</span>
+            </label>
+            <label class="quiz-option">
+              <input type="radio" name="experiment-quiz" value="d">
+              <span>Stop the test and switch to the new CTA immediately</span>
+            </label>
+          </div>
+          <button class="quiz-btn" onclick="checkQuiz(this)">Check Answer</button>
+          <div class="quiz-feedback">
+            <p class="feedback-correct">Correct! Multiple peeks inflate false positive rates from 5% to 15% or higher. A p=0.03 result after 5 days of a 21-day test isn't trustworthy. Let it run to completion or use sequential testing methods.</p>
+            <p class="feedback-incorrect">Not quite. Stopping early because of an interim result is "peeking"—it inflates your false positive rate. What looks like p=0.03 is actually more like p=0.15 when you peek multiple times. Run to completion.</p>
+          </div>
+        </div>
+
+        <!-- Next Up Link -->
+        <div class="next-up-link">
+          <a href="#measurement-frameworks" class="next-up-content">
+            <div class="next-up-section">
+              <span class="next-up-label">Next Up</span>
+              <span class="next-up-number">Section 13</span>
+              <span class="next-up-title">Measurement Frameworks</span>
+            </div>
+            <span class="next-up-arrow">→</span>
+          </a>
+        </div>
       </section>
 
       <!-- Section 13: Measurement Frameworks -->
       <section id="measurement-frameworks">
-        <h2>Measurement Frameworks <a href="#measurement-frameworks" class="anchor-link">#</a></h2>
+        <!-- Hero Card -->
+        <div class="hero-card">
+          <div class="hero-number">13</div>
+          <h2 class="hero-title">Measurement Frameworks</h2>
+          <p class="hero-subtitle">Defining what to track, why, and how it maps to business outcomes</p>
+        </div>
 
-        <p>A measurement framework defines what you track, why, and how it maps to business outcomes. Without one, you're collecting data without purpose.</p>
+        <!-- TL;DR Box -->
+        <div class="tldr-box">
+          <div class="tldr-header">
+            <span class="tldr-icon">⚡</span>
+            <span class="tldr-label">TL;DR</span>
+          </div>
+          <div class="tldr-content">
+            <p>Start with business objectives, work backward to metrics. Use leading indicators (MQLs, engagement) for day-to-day decisions. Use lagging indicators (pipeline, revenue) for executive reporting. Validate that leading indicators actually predict lagging outcomes—if they don't correlate, they're not useful.</p>
+          </div>
+        </div>
+
+        <!-- Scenario Card -->
+        <div class="scenario-card">
+          <div class="scenario-header">
+            <span class="scenario-icon">🎬</span>
+            <span class="scenario-label">NovaTech Scenario</span>
+          </div>
+          <div class="scenario-content">
+            <div class="scenario-character">
+              <span class="role-tag role-cmo">CMO</span>
+              <strong>James Okonkwo</strong>
+            </div>
+            <p>James asks Priya to build NovaTech's measurement framework. "We track 200 metrics but I can't tell if marketing is working." Priya starts with the business objective: 40% ARR growth. She works backward: $20M quarterly pipeline needed, which means 60% more enterprise MQLs. "Now we know what matters," James says. "Pipeline and revenue for board, MQL velocity for weekly ops. Everything else is noise."</p>
+          </div>
+        </div>
 
         <h3>Building a Measurement Plan</h3>
         <p>Start with business objectives and work backward:</p>
@@ -1238,8 +2566,20 @@ Tactics: Expand paid search, launch account-based campaigns
 Metrics: Enterprise MQLs, MQL→SQL rate, sourced pipeline by channel</code></pre>
         </div>
 
-        <h3>Metrics by Funnel Stage</h3>
+        <!-- Quick Reference -->
+        <div class="quick-reference">
+          <div class="quick-reference-header">
+            <span class="quick-reference-icon">📋</span>
+            <span class="quick-reference-title">Quick Reference: Leading vs Lagging Indicators</span>
+          </div>
+          <div class="quick-reference-content">
+            <p><strong>Leading (actionable):</strong> MQLs, engagement, demo requests. Use for daily/weekly ops. Can intervene early.</p>
+            <p><strong>Lagging (confirmatory):</strong> Pipeline, revenue, CAC. Use for monthly/quarterly exec reports. Proves ROI.</p>
+            <p><strong>Critical:</strong> Validate that leading → lagging. If MQL volume doesn't predict revenue, it's noise.</p>
+          </div>
+        </div>
 
+        <h3>Metrics by Funnel Stage</h3>
         <table>
           <thead>
             <tr><th>Stage</th><th>Leading Indicators</th><th>Lagging Indicators</th></tr>
@@ -1247,93 +2587,110 @@ Metrics: Enterprise MQLs, MQL→SQL rate, sourced pipeline by channel</code></pr
           <tbody>
             <tr>
               <td><strong>Awareness</strong></td>
-              <td>Impressions, reach, share of voice, brand search volume</td>
-              <td>Aided/unaided awareness (requires surveys)</td>
+              <td>Impressions, reach, brand search volume</td>
+              <td>Aided/unaided awareness</td>
             </tr>
             <tr>
               <td><strong>Engagement</strong></td>
-              <td>Website visits, time on site, content downloads, email opens</td>
-              <td>Marketing Qualified Leads (MQLs)</td>
+              <td>Website visits, content downloads, email opens</td>
+              <td>MQLs</td>
             </tr>
             <tr>
               <td><strong>Consideration</strong></td>
-              <td>Demo requests, pricing page visits, high-intent content engagement</td>
-              <td>Sales Qualified Leads (SQLs), Opportunities created</td>
+              <td>Demo requests, pricing page visits</td>
+              <td>SQLs, Opportunities</td>
             </tr>
             <tr>
               <td><strong>Decision</strong></td>
-              <td>Proposal views, contract opens, negotiation engagement</td>
-              <td>Closed-won deals, Revenue</td>
+              <td>Proposal views, contract opens</td>
+              <td>Closed-won, Revenue</td>
             </tr>
           </tbody>
         </table>
-
-        <h3>Leading vs Lagging Indicators</h3>
-        <p><strong>Leading indicators</strong> predict future outcomes. They're actionable—you can intervene quickly. But they may not correlate with revenue.</p>
-
-        <p><strong>Lagging indicators</strong> confirm outcomes. They're what matters, but by the time you see them, it's too late to change course.</p>
 
         <div class="callout callout-tip">
           <strong>In practice:</strong> Report lagging indicators to executives (revenue, pipeline). Use leading indicators for team management (MQLs, engagement). Validate that your leading indicators actually predict lagging outcomes—if MQL volume doesn't correlate with pipeline, it's not a useful leading indicator.
         </div>
 
-        <h3>Full Measurement Framework Template</h3>
+        <!-- Knowledge Check -->
+        <div class="knowledge-check" data-answer="b">
+          <div class="knowledge-check-header">
+            <span class="knowledge-check-icon">✓</span>
+            <span class="knowledge-check-title">Knowledge Check</span>
+          </div>
+          <p class="knowledge-check-question">NovaTech tracks 200 metrics. James wants to know "is marketing working?" What should Priya focus on?</p>
+          <div class="quiz-options">
+            <label class="quiz-option">
+              <input type="radio" name="framework-quiz" value="a">
+              <span>Track all 200 metrics and build a comprehensive dashboard</span>
+            </label>
+            <label class="quiz-option">
+              <input type="radio" name="framework-quiz" value="b">
+              <span>Start with business objective, identify 3-5 KPIs that map to revenue outcomes</span>
+            </label>
+            <label class="quiz-option">
+              <input type="radio" name="framework-quiz" value="c">
+              <span>Focus on leading indicators since they're more actionable</span>
+            </label>
+            <label class="quiz-option">
+              <input type="radio" name="framework-quiz" value="d">
+              <span>Only track revenue—everything else is vanity metrics</span>
+            </label>
+          </div>
+          <button class="quiz-btn" onclick="checkQuiz(this)">Check Answer</button>
+          <div class="quiz-feedback">
+            <p class="feedback-correct">Correct! Start with the business objective (ARR growth), work backward to identify 3-5 KPIs that prove marketing is moving the needle. Leading indicators for ops, lagging for exec—but both must connect to revenue.</p>
+            <p class="feedback-incorrect">Not quite. 200 metrics is noise. You need a framework that connects business objectives → marketing goals → tactics → metrics. Focus on the vital few that prove impact on revenue.</p>
+          </div>
+        </div>
 
-        <table>
-          <thead>
-            <tr>
-              <th>Objective</th>
-              <th>KPI</th>
-              <th>Target</th>
-              <th>Data Source</th>
-              <th>Frequency</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td>Drive awareness</td>
-              <td>Brand search volume</td>
-              <td>+20% YoY</td>
-              <td>Google Search Console</td>
-              <td>Monthly</td>
-            </tr>
-            <tr>
-              <td>Generate demand</td>
-              <td>Marketing Sourced Pipeline</td>
-              <td>$20M/quarter</td>
-              <td>Salesforce</td>
-              <td>Weekly</td>
-            </tr>
-            <tr>
-              <td>Improve efficiency</td>
-              <td>CAC</td>
-              <td>&lt;$15,000</td>
-              <td>Finance + CRM</td>
-              <td>Monthly</td>
-            </tr>
-            <tr>
-              <td>Enable sales</td>
-              <td>MQL→SQL rate</td>
-              <td>&gt;25%</td>
-              <td>MAP + CRM</td>
-              <td>Weekly</td>
-            </tr>
-            <tr>
-              <td>Prove ROI</td>
-              <td>Marketing-sourced revenue</td>
-              <td>$8M/quarter</td>
-              <td>CRM</td>
-              <td>Monthly</td>
-            </tr>
-          </tbody>
-        </table>
+        <!-- Next Up Link -->
+        <div class="next-up-link">
+          <a href="#cohort-analysis" class="next-up-content">
+            <div class="next-up-section">
+              <span class="next-up-label">Next Up</span>
+              <span class="next-up-number">Section 14</span>
+              <span class="next-up-title">Cohort Analysis</span>
+            </div>
+            <span class="next-up-arrow">→</span>
+          </a>
+        </div>
       </section>
 
       <!-- Section 14: Cohort Analysis -->
       <section id="cohort-analysis">
-        <h2>Cohort Analysis and Pipeline Contribution <a href="#cohort-analysis" class="anchor-link">#</a></h2>
+        <!-- Hero Card -->
+        <div class="hero-card">
+          <div class="hero-number">14</div>
+          <h2 class="hero-title">Cohort Analysis & Pipeline Contribution</h2>
+          <p class="hero-subtitle">Tracking leads by when they entered—revealing what aggregates hide</p>
+        </div>
 
-        <p>Cohort analysis groups leads by when they entered your funnel, then tracks their progression over time. It reveals patterns that aggregate metrics hide.</p>
+        <!-- TL;DR Box -->
+        <div class="tldr-box">
+          <div class="tldr-header">
+            <span class="tldr-icon">⚡</span>
+            <span class="tldr-label">TL;DR</span>
+          </div>
+          <div class="tldr-content">
+            <p>Cohort analysis groups leads by entry month and tracks their funnel progression over time. It reveals problems that aggregate metrics hide: "February's leads converted to MQL at 18% but SQL dropped to 20%." Vintage analysis tracks how pipeline eventually converts to revenue—essential for understanding marketing's lagged contribution.</p>
+          </div>
+        </div>
+
+        <!-- Scenario Card -->
+        <div class="scenario-card">
+          <div class="scenario-header">
+            <span class="scenario-icon">🎬</span>
+            <span class="scenario-label">NovaTech Scenario</span>
+          </div>
+          <div class="scenario-content">
+            <div class="scenario-character">
+              <span class="role-tag role-analytics">Analytics</span>
+              <strong>Priya Sharma</strong>
+            </div>
+            <p>James asks why pipeline is down despite more leads. Priya runs a cohort analysis: January leads converted to SQL at 22%, but March dropped to 15%. "Aggregate numbers looked fine because volume increased," Priya explains. "But per-cohort quality is declining. Our new LinkedIn campaign is driving quantity over quality."</p>
+          </div>
+        </div>
 
         <h3>Why Cohorts Matter</h3>
         <p>Aggregate conversion rates can be misleading. Imagine:</p>
@@ -1350,34 +2707,39 @@ Metrics: Enterprise MQLs, MQL→SQL rate, sourced pipeline by channel</code></pr
           <button class="copy-btn">Copy</button>
           <pre><code>-- Lead cohort progression
 WITH cohorts AS (
-  SELECT 
+  SELECT
     DATE_TRUNC('month', created_date) as cohort_month,
-    lead_id,
-    created_date,
-    mql_date,
-    sql_date,
-    opp_created_date,
-    closed_won_date
+    lead_id, created_date, mql_date, sql_date,
+    opp_created_date, closed_won_date
   FROM leads
 )
-SELECT 
+SELECT
   cohort_month,
   COUNT(lead_id) as total_leads,
   COUNT(mql_date) as mqls,
   COUNT(sql_date) as sqls,
-  COUNT(opp_created_date) as opportunities,
   COUNT(closed_won_date) as closed_won,
   ROUND(100.0 * COUNT(mql_date) / COUNT(lead_id), 1) as lead_to_mql_rate,
-  ROUND(100.0 * COUNT(sql_date) / NULLIF(COUNT(mql_date), 0), 1) as mql_to_sql_rate,
-  ROUND(100.0 * COUNT(closed_won_date) / NULLIF(COUNT(opp_created_date), 0), 1) as opp_to_win_rate
+  ROUND(100.0 * COUNT(sql_date) / NULLIF(COUNT(mql_date), 0), 1) as mql_to_sql_rate
 FROM cohorts
 GROUP BY cohort_month
 ORDER BY cohort_month;</code></pre>
         </div>
 
-        <h3>Cohort Heatmap</h3>
-        <p>A cohort heatmap shows how each cohort progresses week-over-week or month-over-month:</p>
+        <!-- Quick Reference -->
+        <div class="quick-reference">
+          <div class="quick-reference-header">
+            <span class="quick-reference-icon">📋</span>
+            <span class="quick-reference-title">Quick Reference: Cohort Analysis Types</span>
+          </div>
+          <div class="quick-reference-content">
+            <p><strong>Lead Cohorts:</strong> Group by lead creation month, track MQL/SQL/Opp progression</p>
+            <p><strong>Campaign Cohorts:</strong> Group by first-touch campaign, compare conversion rates</p>
+            <p><strong>Vintage Analysis:</strong> Track how pipeline from each quarter eventually converts to revenue</p>
+          </div>
+        </div>
 
+        <h3>Cohort Heatmap</h3>
         <table>
           <thead>
             <tr><th>Cohort</th><th>Month 0</th><th>Month 1</th><th>Month 2</th><th>Month 3</th><th>Month 4</th></tr>
@@ -1391,58 +2753,91 @@ ORDER BY cohort_month;</code></pre>
         </table>
 
         <div class="callout callout-info">
-          <strong>What this reveals:</strong> February's cohort converted to MQL at a higher rate than January (16.7% vs 18%), but SQL conversion dropped (22.5% vs 20%). Something changed in lead quality or sales process.
-        </div>
-
-        <h3>Pipeline Contribution Report</h3>
-        <p>Calculating marketing's pipeline contribution by channel:</p>
-
-        <div class="code-block" data-language="sql">
-          <button class="copy-btn">Copy</button>
-          <pre><code>-- Monthly pipeline contribution by source channel
-SELECT 
-  DATE_TRUNC('month', o.created_date) as month,
-  COALESCE(first_touch.channel, 'Unknown') as source_channel,
-  COUNT(DISTINCT o.opportunity_id) as opportunities,
-  SUM(o.amount) as pipeline_created,
-  SUM(CASE WHEN o.is_won THEN o.amount ELSE 0 END) as revenue_won
-FROM opportunities o
-LEFT JOIN (
-  SELECT 
-    contact_id, 
-    channel,
-    ROW_NUMBER() OVER (PARTITION BY contact_id ORDER BY touch_timestamp) as rn
-  FROM touchpoints
-) first_touch ON o.primary_contact_id = first_touch.contact_id AND first_touch.rn = 1
-WHERE o.created_date >= DATE_TRUNC('year', CURRENT_DATE)
-GROUP BY 1, 2
-ORDER BY month, pipeline_created DESC;</code></pre>
+          <strong>What this reveals:</strong> February's cohort converted to MQL at a higher rate than January, but SQL conversion dropped. Something changed in lead quality or sales process.
         </div>
 
         <h3>Vintage Analysis</h3>
-        <p>Vintage analysis tracks how pipeline created in a given period eventually converts to revenue. Essential for understanding marketing's lagged contribution:</p>
+        <p>Vintage analysis tracks how pipeline created in a given period eventually converts to revenue—essential for understanding marketing's lagged contribution.</p>
 
-        <div class="code-block" data-language="sql">
-          <button class="copy-btn">Copy</button>
-          <pre><code>-- Pipeline vintage: how much of each quarter's pipeline has converted?
-SELECT 
-  DATE_TRUNC('quarter', o.created_date) as pipeline_quarter,
-  SUM(o.amount) as total_pipeline,
-  SUM(CASE WHEN o.is_won THEN o.amount ELSE 0 END) as won_revenue,
-  SUM(CASE WHEN o.stage = 'Closed Lost' THEN o.amount ELSE 0 END) as lost_pipeline,
-  SUM(CASE WHEN o.stage NOT IN ('Closed Won', 'Closed Lost') THEN o.amount ELSE 0 END) as open_pipeline,
-  ROUND(100.0 * SUM(CASE WHEN o.is_won THEN o.amount ELSE 0 END) / SUM(o.amount), 1) as win_rate
-FROM opportunities o
-GROUP BY 1
-ORDER BY 1;</code></pre>
+        <!-- Knowledge Check -->
+        <div class="knowledge-check" data-answer="c">
+          <div class="knowledge-check-header">
+            <span class="knowledge-check-icon">✓</span>
+            <span class="knowledge-check-title">Knowledge Check</span>
+          </div>
+          <p class="knowledge-check-question">NovaTech's aggregate MQL→SQL conversion is 20%. But Priya's cohort analysis shows January at 25%, February at 20%, March at 12%. What does this reveal?</p>
+          <div class="quiz-options">
+            <label class="quiz-option">
+              <input type="radio" name="cohort-quiz" value="a">
+              <span>The aggregate rate of 20% is the most accurate measure</span>
+            </label>
+            <label class="quiz-option">
+              <input type="radio" name="cohort-quiz" value="b">
+              <span>They should focus only on January cohort since it performed best</span>
+            </label>
+            <label class="quiz-option">
+              <input type="radio" name="cohort-quiz" value="c">
+              <span>Lead quality is declining over time—investigate what changed</span>
+            </label>
+            <label class="quiz-option">
+              <input type="radio" name="cohort-quiz" value="d">
+              <span>March leads just need more time to convert</span>
+            </label>
+          </div>
+          <button class="quiz-btn" onclick="checkQuiz(this)">Check Answer</button>
+          <div class="quiz-feedback">
+            <p class="feedback-correct">Correct! The declining trend (25% → 20% → 12%) indicates lead quality is deteriorating. The aggregate masks this. Time to investigate: new channels? Changed targeting? Sales capacity issues?</p>
+            <p class="feedback-incorrect">Not quite. The cohort trend (25% → 20% → 12%) reveals a quality problem that aggregates hide. Something is changing month-over-month—you need to investigate the cause.</p>
+          </div>
+        </div>
+
+        <!-- Next Up Link -->
+        <div class="next-up-link">
+          <a href="#mmm" class="next-up-content">
+            <div class="next-up-section">
+              <span class="next-up-label">Next Up</span>
+              <span class="next-up-number">Section 15</span>
+              <span class="next-up-title">Marketing Mix Modeling</span>
+            </div>
+            <span class="next-up-arrow">→</span>
+          </a>
         </div>
       </section>
 
       <!-- Section 15: Marketing Mix Modeling -->
       <section id="mmm">
-        <h2>Marketing Mix Modeling Basics <a href="#mmm" class="anchor-link">#</a></h2>
+        <!-- Hero Card -->
+        <div class="hero-card">
+          <div class="hero-number">15</div>
+          <h2 class="hero-title">Marketing Mix Modeling (MMM)</h2>
+          <p class="hero-subtitle">Statistical modeling of aggregate spend and outcomes</p>
+        </div>
 
-        <p>Marketing Mix Modeling (MMM) is a statistical approach that measures marketing effectiveness using aggregate data. Unlike attribution (which tracks individual journeys), MMM uses regression analysis on historical spend and outcomes.</p>
+        <!-- TL;DR Box -->
+        <div class="tldr-box">
+          <div class="tldr-header">
+            <span class="tldr-icon">⚡</span>
+            <span class="tldr-label">TL;DR</span>
+          </div>
+          <div class="tldr-content">
+            <p>MMM uses regression on historical spend + outcomes to measure channel effectiveness. Unlike attribution, it doesn't need tracking—just aggregate data. But it requires 2-3 years of history, spend variation, and statistical expertise. Most B2B companies under $100M ARR don't need it—attribution + incrementality tests cover most cases.</p>
+          </div>
+        </div>
+
+        <!-- Scenario Card -->
+        <div class="scenario-card">
+          <div class="scenario-header">
+            <span class="scenario-icon">🎬</span>
+            <span class="scenario-label">NovaTech Scenario</span>
+          </div>
+          <div class="scenario-content">
+            <div class="scenario-character">
+              <span class="role-tag role-cfo">CFO</span>
+              <strong>Tom Richardson</strong>
+            </div>
+            <p>Tom wants board-level confidence in marketing ROI. "Attribution shows digital works, but what about our $500K conference spend? It's invisible to tracking." Priya suggests MMM: "We'll model 3 years of spend and revenue data, including events. The regression coefficients will show each channel's contribution." Tom nods: "Finally, something the board will trust—it's not dependent on cookies."</p>
+          </div>
+        </div>
 
         <h3>What MMM Is</h3>
         <p>MMM builds a statistical model that predicts business outcomes (revenue, conversions) based on marketing inputs (spend by channel, timing, external factors). The model coefficients tell you how much each input contributes to the outcome.</p>
@@ -1451,66 +2846,137 @@ ORDER BY 1;</code></pre>
           Revenue = β₀ + β₁(Paid Search) + β₂(LinkedIn) + β₃(Events) + β₄(Seasonality) + ε
         </div>
 
-        <h3>When to Use MMM vs Attribution</h3>
+        <!-- Quick Reference -->
+        <div class="quick-reference">
+          <div class="quick-reference-header">
+            <span class="quick-reference-icon">📋</span>
+            <span class="quick-reference-title">Quick Reference: MMM vs Attribution</span>
+          </div>
+          <div class="quick-reference-content">
+            <p><strong>Use Attribution when:</strong> Most journeys trackable, primarily digital, tactical weekly decisions</p>
+            <p><strong>Use MMM when:</strong> Significant dark funnel, offline spend (TV, events), long cycles that break tracking</p>
+            <p><strong>Data needed:</strong> 2-3 years history, spend variation by channel, weekly/monthly aggregates</p>
+          </div>
+        </div>
 
-        <table>
-          <thead>
-            <tr><th>Factor</th><th>Use Attribution</th><th>Use MMM</th></tr>
-          </thead>
-          <tbody>
-            <tr><td>Tracking coverage</td><td>Most journeys trackable</td><td>Significant dark funnel</td></tr>
-            <tr><td>Channel mix</td><td>Primarily digital</td><td>Includes offline (TV, events, OOH)</td></tr>
-            <tr><td>Decision timeframe</td><td>Tactical, weekly</td><td>Strategic, quarterly</td></tr>
-            <tr><td>Data requirements</td><td>User-level touchpoints</td><td>Aggregate spend + outcomes</td></tr>
-            <tr><td>Sales cycle</td><td>Shorter cycles where tracking persists</td><td>Long cycles where tracking breaks</td></tr>
-          </tbody>
-        </table>
-
-        <h3>Data Requirements</h3>
-        <p>MMM needs historical data, typically 2-3 years minimum:</p>
-        <ul>
-          <li><strong>Marketing spend:</strong> Weekly or monthly spend by channel</li>
-          <li><strong>Business outcomes:</strong> Revenue, conversions, leads by same time period</li>
-          <li><strong>External factors:</strong> Seasonality, economic indicators, competitor activity</li>
-          <li><strong>Price/promotion:</strong> If relevant, pricing changes and promotional periods</li>
-        </ul>
+        <h3>Key Concepts</h3>
+        <p><strong>Adstock:</strong> Marketing impact carries over. An ad seen today might influence a purchase next month. Typical decay rate: 30-50% per period.</p>
+        <p><strong>Diminishing returns:</strong> The first $10K on a channel has more impact than the 10th. MMM finds optimal spend levels.</p>
+        <p><strong>Saturation:</strong> Beyond some point, additional spend produces minimal incremental impact.</p>
 
         <div class="callout callout-warning">
           <strong>Limitation:</strong> MMM requires variation in spend. If you've spent $50K/month on LinkedIn every month for 3 years, there's no variation to model. You need historical experiments (spend changes) for MMM to work.
         </div>
 
-        <h3>Key Concepts</h3>
-
-        <p><strong>Adstock:</strong> Marketing doesn't work instantly. An ad seen today might influence a purchase next month. Adstock models this carryover effect. A typical adstock decay rate is 0.3-0.5 (30-50% of impact carries to the next period).</p>
-
-        <p><strong>Diminishing returns:</strong> The first $10K on a channel has more impact than the 10th $10K. MMM can model this non-linear relationship to find optimal spend levels.</p>
-
-        <p><strong>Saturation:</strong> Beyond some point, additional spend produces minimal incremental impact. MMM identifies where you're hitting saturation by channel.</p>
-
-        <h3>Limitations</h3>
-        <ul>
-          <li><strong>Correlation vs causation:</strong> MMM finds correlations. It can't prove causation without experimental validation.</li>
-          <li><strong>Historical data:</strong> Models the past, which may not predict the future if market conditions change.</li>
-          <li><strong>Aggregation:</strong> Can't tell you which specific campaigns or creatives worked—only channel-level performance.</li>
-          <li><strong>Complexity:</strong> Requires statistical expertise to build and validate properly.</li>
-        </ul>
-
         <div class="callout callout-tip">
           <strong>In practice:</strong> Most B2B companies under $100M ARR don't need MMM. Attribution, incrementality tests, and cohort analysis cover most use cases. Consider MMM when you have significant offline spend, long sales cycles that break tracking, or when you need board-level confidence in marketing ROI.
+        </div>
+
+        <!-- Knowledge Check -->
+        <div class="knowledge-check" data-answer="d">
+          <div class="knowledge-check-header">
+            <span class="knowledge-check-icon">✓</span>
+            <span class="knowledge-check-title">Knowledge Check</span>
+          </div>
+          <p class="knowledge-check-question">NovaTech spends $500K/year on conferences but attribution shows 0% from events. When should they consider MMM?</p>
+          <div class="quiz-options">
+            <label class="quiz-option">
+              <input type="radio" name="mmm-quiz" value="a">
+              <span>Never—attribution is always more accurate than MMM</span>
+            </label>
+            <label class="quiz-option">
+              <input type="radio" name="mmm-quiz" value="b">
+              <span>Immediately—conferences are invisible so MMM is required</span>
+            </label>
+            <label class="quiz-option">
+              <input type="radio" name="mmm-quiz" value="c">
+              <span>Only if they're under $100M ARR</span>
+            </label>
+            <label class="quiz-option">
+              <input type="radio" name="mmm-quiz" value="d">
+              <span>When they have significant offline spend and 2-3 years of historical data with spend variation</span>
+            </label>
+          </div>
+          <button class="quiz-btn" onclick="checkQuiz(this)">Check Answer</button>
+          <div class="quiz-feedback">
+            <p class="feedback-correct">Correct! MMM works with aggregate data—it doesn't need tracking. But it requires 2-3 years of history and spend variation. For offline channels like events that attribution can't capture, MMM can reveal their true contribution.</p>
+            <p class="feedback-incorrect">Not quite. MMM is useful when tracking fails (offline spend, long cycles). But it needs 2-3 years of data with spend variation. Self-reported attribution can also help measure dark funnel without the complexity of MMM.</p>
+          </div>
+        </div>
+
+        <!-- Next Up Link -->
+        <div class="next-up-link">
+          <a href="#stakeholder-reporting" class="next-up-content">
+            <div class="next-up-section">
+              <span class="next-up-label">Next Up</span>
+              <span class="next-up-number">Section 16</span>
+              <span class="next-up-title">Stakeholder Reporting</span>
+            </div>
+            <span class="next-up-arrow">→</span>
+          </a>
         </div>
       </section>
 
       <!-- Section 16: Stakeholder Reporting -->
       <section id="stakeholder-reporting">
-        <h2>Reporting for Different Stakeholders <a href="#stakeholder-reporting" class="anchor-link">#</a></h2>
+        <!-- Hero Card -->
+        <div class="hero-card">
+          <div class="hero-number">16</div>
+          <h2 class="hero-title">Stakeholder Reporting</h2>
+          <p class="hero-subtitle">Tailoring metrics and models to different audiences</p>
+        </div>
 
-        <p>The same data tells different stories to different audiences. What the CMO needs isn't what the demand gen manager needs isn't what finance needs.</p>
+        <!-- TL;DR Box -->
+        <div class="tldr-box">
+          <div class="tldr-header">
+            <span class="tldr-icon">⚡</span>
+            <span class="tldr-label">TL;DR</span>
+          </div>
+          <div class="tldr-content">
+            <p>Same data, different stories. CMO wants marketing contribution to revenue. Finance wants conservative, auditable sourced metrics. Sales wants lead quality. Demand gen wants channel performance. Match the model to the audience: first-touch for finance (defensible), multi-touch for demand gen (full funnel), last-touch for sales (conversion trigger).</p>
+          </div>
+        </div>
+
+        <!-- Scenario Card -->
+        <div class="scenario-card">
+          <div class="scenario-header">
+            <span class="scenario-icon">🎬</span>
+            <span class="scenario-label">NovaTech Scenario</span>
+          </div>
+          <div class="scenario-content">
+            <div class="scenario-character">
+              <span class="role-tag role-mops">Marketing Ops</span>
+              <strong>Maya Chen</strong>
+            </div>
+            <p>Maya got the same feedback three times in one week: "Great data, wrong story." James (CMO) wanted the high-level revenue impact. Derek (Sales) wanted to know why MQLs were down in his region. Tom (CFO) asked why she was showing "influenced" numbers that he couldn't audit. She realized she was building one report and hoping it worked for everyone. Now she builds stakeholder-specific views from the same data, leading with what each audience actually needs to decide.</p>
+          </div>
+        </div>
+
+        <!-- Quick Reference -->
+        <div class="quick-reference">
+          <div class="quick-reference-header">
+            <span class="quick-reference-icon">📋</span>
+            <span class="quick-reference-title">Quick Reference: Model by Audience</span>
+          </div>
+          <div class="quick-reference-content">
+            <table>
+              <thead>
+                <tr><th>Audience</th><th>Model</th><th>Why</th></tr>
+              </thead>
+              <tbody>
+                <tr><td>CMO/Board</td><td>First-touch (sourced)</td><td>Clear, defensible, ties to lead gen</td></tr>
+                <tr><td>Finance</td><td>First-touch (sourced)</td><td>Conservative, auditable</td></tr>
+                <tr><td>Sales</td><td>Last-touch</td><td>Shows conversion trigger</td></tr>
+                <tr><td>Demand Gen</td><td>Multi-touch (linear/position)</td><td>Full funnel contribution</td></tr>
+                <tr><td>Content Team</td><td>Time-decay or linear</td><td>Credits mid-funnel work</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
 
         <h3>CMO / Executive Team</h3>
         <p><strong>They care about:</strong> Marketing's contribution to revenue, efficiency of spend, progress toward goals.</p>
-
         <p><strong>Report format:</strong> Monthly or quarterly executive summary, 1-2 pages max.</p>
-
         <p><strong>Key metrics:</strong></p>
         <ul>
           <li>Marketing-sourced pipeline and revenue</li>
@@ -1540,9 +3006,7 @@ Risk: Events pipeline down 30%—conference cancellation impact.</code></pre>
 
         <h3>Demand Gen Manager</h3>
         <p><strong>They care about:</strong> Campaign performance, channel optimization, lead quality.</p>
-
         <p><strong>Report format:</strong> Weekly operational dashboard with drill-down capability.</p>
-
         <p><strong>Key metrics:</strong></p>
         <ul>
           <li>Lead volume by source and campaign</li>
@@ -1558,7 +3022,7 @@ Risk: Events pipeline down 30%—conference cancellation impact.</code></pre>
 
 Lead Volume: 342 new leads (↑12% WoW)
 ├── Paid Search: 128 (CPL: $145)
-├── LinkedIn: 89 (CPL: $210)  
+├── LinkedIn: 89 (CPL: $210)
 ├── Content Syndication: 67 (CPL: $95)
 └── Organic: 58 (CPL: $0)
 
@@ -1574,9 +3038,7 @@ Action Items:
 
         <h3>Finance / CFO</h3>
         <p><strong>They care about:</strong> Spend efficiency, budget adherence, ROI, forecasting accuracy.</p>
-
         <p><strong>Report format:</strong> Monthly financial review with YoY and budget comparisons.</p>
-
         <p><strong>Key metrics:</strong></p>
         <ul>
           <li>Actual vs. budgeted spend by category</li>
@@ -1592,9 +3054,7 @@ Action Items:
 
         <h3>Sales Leadership</h3>
         <p><strong>They care about:</strong> Lead quality, handoff efficiency, what's working for their team.</p>
-
         <p><strong>Report format:</strong> Weekly pipeline review, lead quality scorecard.</p>
-
         <p><strong>Key metrics:</strong></p>
         <ul>
           <li>MQL volume by segment and territory</li>
@@ -1604,32 +3064,105 @@ Action Items:
           <li>Sourced vs. sales-generated pipeline split</li>
         </ul>
 
-        <h3>Report Design Principles</h3>
-        <ol>
-          <li><strong>Lead with the answer:</strong> Don't make them dig. Put the key number first.</li>
-          <li><strong>Compare to something:</strong> A number without context is meaningless. Show vs. target, vs. last period, vs. benchmark.</li>
-          <li><strong>Highlight exceptions:</strong> What's off track? What needs attention?</li>
-          <li><strong>Enable action:</strong> Every metric should suggest what to do next.</li>
-          <li><strong>Match the cadence:</strong> Executives don't need daily updates. Ops teams do.</li>
-        </ol>
+        <!-- Deep Dive: Report Design Principles -->
+        <details class="deep-dive">
+          <summary class="deep-dive-toggle">
+            <span class="deep-dive-icon">🔍</span>
+            <span class="deep-dive-title">Deep Dive: Report Design Principles</span>
+            <span class="deep-dive-arrow">▼</span>
+          </summary>
+          <div class="deep-dive-content">
+            <ol>
+              <li><strong>Lead with the answer:</strong> Don't make them dig. Put the key number first.</li>
+              <li><strong>Compare to something:</strong> A number without context is meaningless. Show vs. target, vs. last period, vs. benchmark.</li>
+              <li><strong>Highlight exceptions:</strong> What's off track? What needs attention?</li>
+              <li><strong>Enable action:</strong> Every metric should suggest what to do next.</li>
+              <li><strong>Match the cadence:</strong> Executives don't need daily updates. Ops teams do.</li>
+            </ol>
 
-        <div class="callout callout-info">
-          <strong>The golden rule:</strong> Before building a report, ask: "What decision will this data inform?" If you can't answer that, you don't need the report.
+            <div class="callout callout-info">
+              <strong>The golden rule:</strong> Before building a report, ask: "What decision will this data inform?" If you can't answer that, you don't need the report.
+            </div>
+          </div>
+        </details>
+
+        <!-- Knowledge Check -->
+        <div class="knowledge-check" data-answer="b">
+          <div class="knowledge-check-header">
+            <span class="knowledge-check-icon">✓</span>
+            <span class="knowledge-check-title">Knowledge Check</span>
+          </div>
+          <p class="knowledge-check-question">NovaTech's CFO Tom asks Maya for the Q4 marketing performance report. Tom is skeptical of marketing metrics and wants numbers he can defend to the board. Which approach should Maya take?</p>
+          <div class="quiz-options">
+            <label class="quiz-option">
+              <input type="radio" name="reporting-quiz" value="a">
+              <span>Lead with influenced pipeline ($45M) since it's the biggest number and shows marketing's reach</span>
+            </label>
+            <label class="quiz-option">
+              <input type="radio" name="reporting-quiz" value="b">
+              <span>Lead with sourced pipeline and revenue, show CAC trend, and include actual vs. budget spend</span>
+            </label>
+            <label class="quiz-option">
+              <input type="radio" name="reporting-quiz" value="c">
+              <span>Use position-based attribution to show marketing's full funnel contribution</span>
+            </label>
+            <label class="quiz-option">
+              <input type="radio" name="reporting-quiz" value="d">
+              <span>Send the same executive dashboard she shares with James (CMO)</span>
+            </label>
+          </div>
+          <button class="quiz-btn" onclick="checkQuiz(this)">Check Answer</button>
+          <div class="quiz-feedback">
+            <p class="feedback-correct">Correct! Finance wants conservative, auditable numbers. Sourced metrics have clear cause-and-effect. "Influenced" numbers are hard to defend and often draw skepticism. Maya should lead with what she can prove.</p>
+            <p class="feedback-incorrect">Not quite. Finance doesn't trust "influenced" metrics—they can't audit them. Tom needs conservative, defensible numbers: sourced pipeline, actual CAC, spend vs. budget. Different stakeholders need different views from the same data.</p>
+          </div>
         </div>
 
-        <h3>Attribution Model Selection by Audience</h3>
-        <table>
-          <thead>
-            <tr><th>Audience</th><th>Recommended Model</th><th>Rationale</th></tr>
-          </thead>
-          <tbody>
-            <tr><td>CMO/Board</td><td>First-touch (sourced)</td><td>Clear, defensible, ties to lead gen</td></tr>
-            <tr><td>Demand Gen</td><td>Multi-touch (linear or position)</td><td>Shows full funnel contribution</td></tr>
-            <tr><td>Finance</td><td>First-touch (sourced)</td><td>Conservative, auditable</td></tr>
-            <tr><td>Sales</td><td>Last-touch</td><td>Shows what triggered the hand-raise</td></tr>
-            <tr><td>Content Team</td><td>Linear or time-decay</td><td>Credits mid-funnel contribution</td></tr>
-          </tbody>
-        </table>
+        <!-- Guide Completion Card -->
+        <div class="guide-complete-card">
+          <div class="guide-complete-icon">🎓</div>
+          <h3 class="guide-complete-title">Guide Complete!</h3>
+          <p class="guide-complete-message">You've finished Guide 3: Marketing Analytics & Attribution. You now understand the full attribution spectrum—from simple first/last touch through multi-touch models, account-based considerations, the dark funnel challenge, incrementality testing, and how to report metrics to different stakeholders.</p>
+          <div class="guide-complete-stats">
+            <div class="stat">
+              <span class="stat-number">16</span>
+              <span class="stat-label">Sections</span>
+            </div>
+            <div class="stat">
+              <span class="stat-number">6</span>
+              <span class="stat-label">Attribution Models</span>
+            </div>
+            <div class="stat">
+              <span class="stat-number">16</span>
+              <span class="stat-label">Knowledge Checks</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Series Completion Card -->
+        <div class="series-complete-card">
+          <div class="series-complete-icon">🏆</div>
+          <h3 class="series-complete-title">Series Complete!</h3>
+          <p class="series-complete-message">Congratulations! You've completed all three guides in the B2B Marketing for Analysts series. You now have a comprehensive understanding of B2B marketing fundamentals, the martech stack with ABM strategies, and analytics with attribution modeling.</p>
+          <div class="series-guides">
+            <div class="series-guide completed">
+              <span class="guide-check">✓</span>
+              <span class="guide-name">Guide 1: B2B Marketing Fundamentals</span>
+            </div>
+            <div class="series-guide completed">
+              <span class="guide-check">✓</span>
+              <span class="guide-name">Guide 2: Martech & ABM</span>
+            </div>
+            <div class="series-guide completed">
+              <span class="guide-check">✓</span>
+              <span class="guide-name">Guide 3: Analytics & Attribution</span>
+            </div>
+          </div>
+          <div class="series-complete-cta">
+            <a href="guide-1-b2b-marketing-fundamentals.html" class="series-link">Review Guide 1</a>
+            <a href="guide-2-martech-abm.html" class="series-link">Review Guide 2</a>
+          </div>
+        </div>
       </section>
 
       <footer class="footer">
@@ -1689,6 +3222,75 @@ Action Items:
 
     window.addEventListener('scroll', updateActiveNav);
     updateActiveNav();
+
+    // Progress Tracker
+    function updateProgressBar() {
+      const winScroll = document.body.scrollTop || document.documentElement.scrollTop;
+      const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+      const scrolled = (winScroll / height) * 100;
+      document.getElementById('progressBar').style.width = scrolled + '%';
+    }
+
+    window.addEventListener('scroll', updateProgressBar);
+    updateProgressBar();
+
+    // Knowledge Check Quiz System
+    function initQuizzes() {
+      document.querySelectorAll('.knowledge-check').forEach(quiz => {
+        const btn = quiz.querySelector('.quiz-btn');
+        const options = quiz.querySelectorAll('.quiz-option');
+        const feedback = quiz.querySelector('.quiz-feedback');
+        const correctAnswer = quiz.dataset.answer;
+
+        btn.addEventListener('click', () => {
+          const selected = quiz.querySelector('input[type="radio"]:checked');
+          if (!selected) return;
+
+          const selectedValue = selected.value;
+          const isCorrect = selectedValue === correctAnswer;
+
+          options.forEach(opt => {
+            opt.classList.remove('correct', 'incorrect');
+          });
+
+          const selectedOption = selected.closest('.quiz-option');
+          selectedOption.classList.add(isCorrect ? 'correct' : 'incorrect');
+
+          if (!isCorrect) {
+            options.forEach(opt => {
+              const input = opt.querySelector('input');
+              if (input.value === correctAnswer) {
+                opt.classList.add('correct');
+              }
+            });
+          }
+
+          feedback.classList.remove('correct', 'incorrect');
+          feedback.classList.add('show', isCorrect ? 'correct' : 'incorrect');
+
+          btn.disabled = true;
+          options.forEach(opt => {
+            opt.querySelector('input').disabled = true;
+          });
+        });
+      });
+    }
+
+    document.addEventListener('DOMContentLoaded', initQuizzes);
+
+    // Smooth scroll for anchor links
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+      anchor.addEventListener('click', function(e) {
+        e.preventDefault();
+        const target = document.querySelector(this.getAttribute('href'));
+        if (target) {
+          target.scrollIntoView({
+            behavior: 'smooth',
+            block: 'start'
+          });
+        }
+      });
+    });
   </script>
 </body>
 </html>

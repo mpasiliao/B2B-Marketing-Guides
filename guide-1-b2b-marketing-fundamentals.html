@@ -6,55 +6,84 @@
   <title>Guide 1: B2B Marketing Fundamentals</title>
   <style>
     :root {
-      --nav-width: 260px;
-      --content-max-width: 800px;
-      --font-body: system-ui, -apple-system, sans-serif;
+      --nav-width: 280px;
+      --content-max-width: 860px;
+      --font-body: 'Inter', system-ui, -apple-system, sans-serif;
       --font-mono: 'SF Mono', Consolas, monospace;
-      
+      --font-narrative: 'Georgia', serif;
+
+      /* NEW Design System Colors */
+      --navy: #1e3a5f;
+      --navy-light: #2d4a6f;
+      --coral: #e07a5f;
+      --coral-light: #e89a84;
+      --teal: #2a9d8f;
+      --teal-light: #3ab5a5;
+      --amber: #e9c46a;
+      --amber-light: #f0d68a;
+      --cream: #faf8f5;
+      --cream-dark: #f0ede8;
+
       /* Light theme */
       --bg-primary: #ffffff;
       --bg-secondary: #f8f9fa;
+      --bg-tertiary: var(--cream);
       --bg-code: #1e1e1e;
       --text-primary: #1a1a1a;
       --text-secondary: #6b7280;
       --text-code: #d4d4d4;
       --border-color: #e5e7eb;
-      --accent: #2563eb;
-      --accent-hover: #1d4ed8;
-      
+      --accent: var(--navy);
+      --accent-hover: var(--navy-light);
+
+      /* Component-specific */
+      --hero-bg: linear-gradient(135deg, var(--navy) 0%, var(--navy-light) 100%);
+      --tldr-bg: var(--cream);
+      --tldr-border: var(--teal);
+      --scenario-bg: #fff;
+      --scenario-border: var(--coral);
+      --quiz-bg: var(--cream);
+      --quiz-border: var(--navy);
+
       /* Callout colors */
       --callout-warning-bg: #fef3c7;
-      --callout-warning-border: #f59e0b;
+      --callout-warning-border: var(--amber);
       --callout-tip-bg: #d1fae5;
-      --callout-tip-border: #10b981;
+      --callout-tip-border: var(--teal);
       --callout-caution-bg: #fee2e2;
       --callout-caution-border: #ef4444;
-      --callout-info-bg: #dbeafe;
-      --callout-info-border: #3b82f6;
+      --callout-info-bg: #e8f0fa;
+      --callout-info-border: var(--navy);
       --callout-success-bg: #dcfce7;
-      --callout-success-border: #22c55e;
+      --callout-success-border: var(--teal);
     }
 
     [data-theme="dark"] {
       --bg-primary: #111827;
       --bg-secondary: #1f2937;
+      --bg-tertiary: #1a2332;
       --bg-code: #0d1117;
       --text-primary: #f9fafb;
       --text-secondary: #9ca3af;
       --border-color: #374151;
       --accent: #60a5fa;
       --accent-hover: #93c5fd;
-      
+
+      --hero-bg: linear-gradient(135deg, #1a2e4a 0%, #2d4a6f 100%);
+      --tldr-bg: #1a2332;
+      --scenario-bg: #1a2332;
+      --quiz-bg: #1a2332;
+
       --callout-warning-bg: #422006;
-      --callout-warning-border: #f59e0b;
+      --callout-warning-border: var(--amber);
       --callout-tip-bg: #022c22;
-      --callout-tip-border: #10b981;
+      --callout-tip-border: var(--teal);
       --callout-caution-bg: #450a0a;
       --callout-caution-border: #ef4444;
       --callout-info-bg: #172554;
       --callout-info-border: #3b82f6;
       --callout-success-bg: #052e16;
-      --callout-success-border: #22c55e;
+      --callout-success-border: var(--teal);
     }
 
     * { box-sizing: border-box; margin: 0; padding: 0; }
@@ -63,7 +92,8 @@
       font-family: var(--font-body);
       background: var(--bg-primary);
       color: var(--text-primary);
-      line-height: 1.6;
+      line-height: 1.7;
+      font-size: 18px;
     }
 
     /* Navigation */
@@ -146,13 +176,15 @@
       margin: 0 auto;
     }
 
-    /* Typography */
+    /* Typography - Enhanced */
     h1, h2, h3, h4 { font-weight: 600; line-height: 1.3; }
-    h1 { font-size: 2.25rem; margin-bottom: 1.5rem; }
-    h2 { font-size: 1.5rem; margin: 2.5rem 0 1rem; padding-top: 1.5rem; border-top: 1px solid var(--border-color); }
-    h3 { font-size: 1.25rem; margin: 2rem 0 0.75rem; }
-    h4 { font-size: 1.1rem; margin: 1.5rem 0 0.5rem; }
-    p { margin-bottom: 1rem; }
+    h1 { font-size: 2.5rem; margin-bottom: 2rem; }
+    h2 { font-size: 1.75rem; margin: 4rem 0 1.5rem; padding-top: 2rem; border-top: 2px solid var(--border-color); }
+    h3 { font-size: 1.35rem; margin: 2.5rem 0 1rem; color: var(--navy); }
+    h4 { font-size: 1.15rem; margin: 2rem 0 0.75rem; }
+    p { margin-bottom: 1.25rem; }
+
+    [data-theme="dark"] h3 { color: var(--accent); }
 
     /* Anchor links */
     .anchor-link {
@@ -316,6 +348,615 @@
 
     li { margin-bottom: 0.5rem; }
 
+    /* ============================================
+       NEW COMPONENT LIBRARY - Redesign System
+       ============================================ */
+
+    /* 1. Section Hero Card */
+    .section-hero {
+      background: var(--hero-bg);
+      color: white;
+      padding: 2rem 2.5rem;
+      border-radius: 12px;
+      margin-bottom: 2rem;
+      display: flex;
+      align-items: center;
+      gap: 1.5rem;
+    }
+
+    .section-hero-icon {
+      font-size: 3rem;
+      flex-shrink: 0;
+    }
+
+    .section-hero-content h2 {
+      color: white;
+      margin: 0 0 0.5rem 0;
+      padding: 0;
+      border: none;
+      font-size: 1.75rem;
+    }
+
+    .section-hero-content p {
+      margin: 0;
+      opacity: 0.9;
+      font-size: 1.1rem;
+    }
+
+    /* 2. TL;DR Box */
+    .tldr-box {
+      background: var(--tldr-bg);
+      border-left: 4px solid var(--tldr-border);
+      padding: 1.5rem 2rem;
+      border-radius: 0 8px 8px 0;
+      margin: 2rem 0;
+    }
+
+    .tldr-box-header {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      font-weight: 700;
+      color: var(--teal);
+      margin-bottom: 1rem;
+      font-size: 0.9rem;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+
+    .tldr-box ul {
+      margin: 0;
+      padding-left: 1.25rem;
+    }
+
+    .tldr-box li {
+      margin-bottom: 0.5rem;
+      font-weight: 500;
+    }
+
+    .tldr-box li:last-child {
+      margin-bottom: 0;
+    }
+
+    /* 3. Scenario Card */
+    .scenario-card {
+      background: var(--scenario-bg);
+      border: 2px solid var(--scenario-border);
+      border-radius: 12px;
+      padding: 0;
+      margin: 2.5rem 0;
+      overflow: hidden;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+    }
+
+    .scenario-header {
+      background: var(--coral);
+      color: white;
+      padding: 1rem 1.5rem;
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+    }
+
+    .scenario-header-icon {
+      font-size: 1.25rem;
+    }
+
+    .scenario-header-title {
+      font-weight: 700;
+      font-size: 1rem;
+      text-transform: uppercase;
+      letter-spacing: 0.03em;
+    }
+
+    .scenario-body {
+      padding: 1.5rem 2rem;
+    }
+
+    .scenario-character {
+      display: flex;
+      align-items: flex-start;
+      gap: 1rem;
+      margin-bottom: 1.5rem;
+      padding-bottom: 1.5rem;
+      border-bottom: 1px solid var(--border-color);
+    }
+
+    .scenario-avatar {
+      width: 60px;
+      height: 60px;
+      border-radius: 50%;
+      background: var(--navy);
+      color: white;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 700;
+      font-size: 1.25rem;
+      flex-shrink: 0;
+    }
+
+    .scenario-character-info h4 {
+      margin: 0 0 0.25rem 0;
+      font-size: 1.1rem;
+    }
+
+    .scenario-character-role {
+      color: var(--text-secondary);
+      font-size: 0.9rem;
+      margin: 0;
+    }
+
+    .scenario-quote {
+      font-family: var(--font-narrative);
+      font-style: italic;
+      font-size: 1.15rem;
+      color: var(--text-primary);
+      margin: 1.5rem 0;
+      padding: 1rem 1.5rem;
+      border-left: 3px solid var(--coral);
+      background: var(--bg-secondary);
+    }
+
+    .scenario-narrative {
+      font-size: 1rem;
+      line-height: 1.8;
+    }
+
+    .scenario-narrative p {
+      margin-bottom: 1rem;
+    }
+
+    .scenario-takeaway {
+      background: var(--cream);
+      padding: 1rem 1.5rem;
+      margin: 1.5rem -2rem -1.5rem -2rem;
+      border-top: 1px solid var(--border-color);
+    }
+
+    [data-theme="dark"] .scenario-takeaway {
+      background: var(--bg-secondary);
+    }
+
+    .scenario-takeaway-header {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      font-weight: 700;
+      color: var(--coral);
+      margin-bottom: 0.5rem;
+      font-size: 0.85rem;
+      text-transform: uppercase;
+    }
+
+    .scenario-takeaway p {
+      margin: 0;
+      font-weight: 500;
+    }
+
+    /* 4. Deep Dive Accordion */
+    .deep-dive {
+      border: 2px solid var(--navy);
+      border-radius: 8px;
+      margin: 2rem 0;
+      background: var(--bg-primary);
+    }
+
+    .deep-dive summary {
+      padding: 1rem 1.5rem;
+      cursor: pointer;
+      font-weight: 600;
+      background: var(--bg-secondary);
+      border-radius: 6px;
+      list-style: none;
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      color: var(--navy);
+    }
+
+    [data-theme="dark"] .deep-dive summary {
+      color: var(--accent);
+    }
+
+    .deep-dive summary::before {
+      content: '🔬';
+      font-size: 1.1rem;
+    }
+
+    .deep-dive summary::after {
+      content: '▶';
+      margin-left: auto;
+      transition: transform 0.2s;
+      font-size: 0.8rem;
+    }
+
+    .deep-dive[open] summary::after {
+      transform: rotate(90deg);
+    }
+
+    .deep-dive[open] summary {
+      border-radius: 6px 6px 0 0;
+      border-bottom: 1px solid var(--border-color);
+    }
+
+    .deep-dive-content {
+      padding: 1.5rem;
+    }
+
+    /* 5. Knowledge Check */
+    .knowledge-check {
+      background: var(--quiz-bg);
+      border: 2px solid var(--quiz-border);
+      border-radius: 12px;
+      padding: 0;
+      margin: 3rem 0;
+      overflow: hidden;
+    }
+
+    .knowledge-check-header {
+      background: var(--navy);
+      color: white;
+      padding: 1rem 1.5rem;
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+    }
+
+    .knowledge-check-header-icon {
+      font-size: 1.25rem;
+    }
+
+    .knowledge-check-header-title {
+      font-weight: 700;
+      font-size: 1rem;
+      text-transform: uppercase;
+      letter-spacing: 0.03em;
+    }
+
+    .knowledge-check-body {
+      padding: 1.5rem 2rem;
+    }
+
+    .quiz-question {
+      font-weight: 600;
+      font-size: 1.1rem;
+      margin-bottom: 1.5rem;
+    }
+
+    .quiz-options {
+      list-style: none;
+      padding: 0;
+      margin: 0 0 1.5rem 0;
+    }
+
+    .quiz-option {
+      margin-bottom: 0.75rem;
+    }
+
+    .quiz-option label {
+      display: flex;
+      align-items: flex-start;
+      gap: 0.75rem;
+      padding: 1rem;
+      background: var(--bg-primary);
+      border: 2px solid var(--border-color);
+      border-radius: 8px;
+      cursor: pointer;
+      transition: all 0.15s;
+    }
+
+    .quiz-option label:hover {
+      border-color: var(--navy);
+      background: var(--bg-secondary);
+    }
+
+    .quiz-option input {
+      margin-top: 0.2rem;
+      accent-color: var(--navy);
+    }
+
+    .quiz-option input:checked + span {
+      font-weight: 600;
+    }
+
+    .quiz-option.correct label {
+      border-color: var(--teal);
+      background: rgba(42, 157, 143, 0.1);
+    }
+
+    .quiz-option.incorrect label {
+      border-color: #ef4444;
+      background: rgba(239, 68, 68, 0.1);
+    }
+
+    .quiz-btn {
+      background: var(--navy);
+      color: white;
+      border: none;
+      padding: 0.875rem 2rem;
+      border-radius: 8px;
+      font-weight: 600;
+      font-size: 1rem;
+      cursor: pointer;
+      transition: background 0.15s;
+    }
+
+    .quiz-btn:hover {
+      background: var(--navy-light);
+    }
+
+    .quiz-btn:disabled {
+      background: var(--text-secondary);
+      cursor: not-allowed;
+    }
+
+    .quiz-feedback {
+      margin-top: 1.5rem;
+      padding: 1.25rem;
+      border-radius: 8px;
+      display: none;
+    }
+
+    .quiz-feedback.show {
+      display: block;
+    }
+
+    .quiz-feedback.correct {
+      background: rgba(42, 157, 143, 0.15);
+      border: 1px solid var(--teal);
+    }
+
+    .quiz-feedback.incorrect {
+      background: rgba(239, 68, 68, 0.1);
+      border: 1px solid #ef4444;
+    }
+
+    .quiz-feedback-header {
+      font-weight: 700;
+      margin-bottom: 0.5rem;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .quiz-feedback.correct .quiz-feedback-header {
+      color: var(--teal);
+    }
+
+    .quiz-feedback.incorrect .quiz-feedback-header {
+      color: #ef4444;
+    }
+
+    /* 6. Quick Reference Card */
+    .quick-ref {
+      background: var(--cream);
+      border: 1px solid var(--border-color);
+      border-radius: 12px;
+      padding: 1.5rem 2rem;
+      margin: 2rem 0;
+    }
+
+    [data-theme="dark"] .quick-ref {
+      background: var(--bg-secondary);
+    }
+
+    .quick-ref-header {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      font-weight: 700;
+      color: var(--navy);
+      margin-bottom: 1rem;
+      font-size: 1.1rem;
+    }
+
+    [data-theme="dark"] .quick-ref-header {
+      color: var(--accent);
+    }
+
+    .quick-ref table {
+      margin: 0;
+      font-size: 0.95rem;
+    }
+
+    /* 7. Progress Tracker */
+    .progress-tracker {
+      position: fixed;
+      top: 0;
+      left: var(--nav-width);
+      right: 0;
+      height: 4px;
+      background: var(--border-color);
+      z-index: 99;
+    }
+
+    .progress-bar {
+      height: 100%;
+      background: var(--coral);
+      width: 0%;
+      transition: width 0.1s;
+    }
+
+    /* 8. Role Tag */
+    .role-tag {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.35rem;
+      padding: 0.25rem 0.75rem;
+      border-radius: 100px;
+      font-size: 0.75rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.03em;
+    }
+
+    .role-tag.analyst {
+      background: rgba(42, 157, 143, 0.15);
+      color: var(--teal);
+    }
+
+    .role-tag.marketer {
+      background: rgba(224, 122, 95, 0.15);
+      color: var(--coral);
+    }
+
+    .role-tag.executive {
+      background: rgba(30, 58, 95, 0.15);
+      color: var(--navy);
+    }
+
+    .role-tag.all {
+      background: rgba(233, 196, 106, 0.25);
+      color: #b8860b;
+    }
+
+    /* 9. Next Up Link */
+    .next-up {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      background: var(--bg-secondary);
+      border: 1px solid var(--border-color);
+      border-radius: 8px;
+      padding: 1.25rem 1.5rem;
+      margin-top: 3rem;
+      text-decoration: none;
+      color: var(--text-primary);
+      transition: all 0.15s;
+    }
+
+    .next-up:hover {
+      border-color: var(--coral);
+      transform: translateX(4px);
+    }
+
+    .next-up-label {
+      font-size: 0.8rem;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      color: var(--text-secondary);
+      margin-bottom: 0.25rem;
+    }
+
+    .next-up-title {
+      font-weight: 600;
+      color: var(--coral);
+    }
+
+    .next-up-arrow {
+      font-size: 1.5rem;
+      color: var(--coral);
+    }
+
+    /* 10. Journey Comparison Visual */
+    .journey-comparison {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 2rem;
+      margin: 2rem 0;
+    }
+
+    .journey-column {
+      background: var(--bg-secondary);
+      border-radius: 12px;
+      padding: 1.5rem;
+    }
+
+    .journey-column h4 {
+      margin-top: 0;
+      text-align: center;
+      padding-bottom: 1rem;
+      border-bottom: 2px solid var(--border-color);
+    }
+
+    .journey-column.b2c h4 {
+      color: var(--teal);
+      border-color: var(--teal);
+    }
+
+    .journey-column.b2b h4 {
+      color: var(--coral);
+      border-color: var(--coral);
+    }
+
+    .journey-steps {
+      list-style: none;
+      padding: 0;
+      margin: 1rem 0 0 0;
+    }
+
+    .journey-step {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      padding: 0.75rem 0;
+      border-bottom: 1px dashed var(--border-color);
+    }
+
+    .journey-step:last-child {
+      border-bottom: none;
+    }
+
+    .journey-step-icon {
+      width: 32px;
+      height: 32px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.9rem;
+      flex-shrink: 0;
+    }
+
+    .journey-column.b2c .journey-step-icon {
+      background: rgba(42, 157, 143, 0.15);
+    }
+
+    .journey-column.b2b .journey-step-icon {
+      background: rgba(224, 122, 95, 0.15);
+    }
+
+    .journey-step-text {
+      font-size: 0.95rem;
+    }
+
+    .journey-step-time {
+      margin-left: auto;
+      font-size: 0.8rem;
+      color: var(--text-secondary);
+      font-weight: 500;
+    }
+
+    .journey-total {
+      text-align: center;
+      margin-top: 1rem;
+      padding: 1rem;
+      background: var(--bg-primary);
+      border-radius: 8px;
+      font-weight: 600;
+    }
+
+    @media (max-width: 768px) {
+      .journey-comparison {
+        grid-template-columns: 1fr;
+      }
+
+      .section-hero {
+        flex-direction: column;
+        text-align: center;
+      }
+
+      .scenario-character {
+        flex-direction: column;
+        text-align: center;
+      }
+
+      .progress-tracker {
+        left: 0;
+      }
+    }
+
     /* Footer */
     .footer {
       margin-top: 4rem;
@@ -349,6 +990,11 @@
   </style>
 </head>
 <body>
+  <!-- Progress Tracker -->
+  <div class="progress-tracker">
+    <div class="progress-bar" id="progressBar"></div>
+  </div>
+
   <nav class="nav">
     <div class="nav-title">Contents</div>
     <ul class="nav-list">
@@ -381,947 +1027,2421 @@
 
       <!-- Section 1: B2B vs B2C -->
       <section id="b2b-vs-b2c">
-        <h2>B2B vs B2C Differences <a href="#b2b-vs-b2c" class="anchor-link">#</a></h2>
-        
-        <p>B2B (business-to-business) and B2C (business-to-consumer) marketing operate under fundamentally different rules. Understanding these differences explains why B2B measurement is harder, sales cycles are longer, and the metrics that matter are different.</p>
 
-        <h3>The Core Differences</h3>
-
-        <table>
-          <thead>
-            <tr>
-              <th>Dimension</th>
-              <th>B2C</th>
-              <th>B2B</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td><strong>Decision makers</strong></td>
-              <td>1 person (individual buyer)</td>
-              <td>3-10+ people (buying committee)</td>
-            </tr>
-            <tr>
-              <td><strong>Sales cycle</strong></td>
-              <td>Minutes to days</td>
-              <td>30-365+ days</td>
-            </tr>
-            <tr>
-              <td><strong>Deal value (ACV)</strong></td>
-              <td>$10-500 typical</td>
-              <td>$10K-1M+ typical</td>
-            </tr>
-            <tr>
-              <td><strong>Purchase motivation</strong></td>
-              <td>Emotional + practical</td>
-              <td>ROI + risk mitigation</td>
-            </tr>
-            <tr>
-              <td><strong>Relationship</strong></td>
-              <td>Transactional</td>
-              <td>Ongoing partnership</td>
-            </tr>
-            <tr>
-              <td><strong>Volume</strong></td>
-              <td>High (thousands to millions)</td>
-              <td>Low (hundreds to thousands)</td>
-            </tr>
-          </tbody>
-        </table>
-
-        <h3>Concrete Example: Enterprise Software vs Sneakers</h3>
-
-        <p><strong>Buying sneakers (B2C):</strong> You see an Instagram ad, click through, browse for 5 minutes, add to cart, and buy. Total time: maybe 20 minutes. Decision maker: you. Budget: your money. Risk: minimal—if you don't like them, return them.</p>
-
-        <p><strong>Buying enterprise CRM software (B2B):</strong> A sales rep at a 500-person company realizes their spreadsheet-based system isn't scaling. They research options for 2 weeks, then bring it to their manager. The manager asks IT to evaluate security and integration requirements. Finance needs to approve the $150K/year budget. Legal reviews the contract. The VP of Sales makes the final call. Implementation takes 3 months. Total time to purchase: 6-9 months. Decision makers: 6+. Risk: massive—a bad choice costs hundreds of thousands and months of lost productivity.</p>
-
-        <div class="callout callout-info">
-          <strong>Why this matters for analysts:</strong> In B2C, you can often measure success with straightforward metrics like ROAS (return on ad spend) calculated over days or weeks. In B2B, that same ad might not generate attributable revenue for 6+ months, and the person who clicked the ad may not be the person who signs the contract.
+        <!-- Hero Card -->
+        <div class="section-hero">
+          <div class="section-hero-icon">🔄</div>
+          <div class="section-hero-content">
+            <h2>B2B vs B2C Differences</h2>
+            <p>Why everything you learned about consumer marketing needs to be rethought for B2B.</p>
+          </div>
         </div>
 
-        <h3>Implications for Marketing</h3>
-
-        <p><strong>Content depth:</strong> B2B buyers need substantial information to make a case internally. A 30-second video might sell sneakers; enterprise software needs whitepapers, case studies, ROI calculators, and technical documentation.</p>
-
-        <p><strong>Multi-threading:</strong> You're not marketing to a person—you're marketing to a buying committee. Each stakeholder has different concerns. The IT person cares about security; the CFO cares about cost; the end users care about ease of use.</p>
-
-        <p><strong>Relationship over transaction:</strong> B2B customers often sign multi-year contracts and may stay for 5+ years. The lifetime value of keeping a customer happy vastly exceeds the cost of acquiring them. Marketing doesn't stop at the sale—customer marketing, advocacy programs, and expansion campaigns matter.</p>
-
-        <div class="callout callout-warning">
-          <strong>Common mistake:</strong> Applying B2C attribution models and timelines to B2B. If you're evaluating a campaign that ran last month based on revenue it generated, you're probably missing 80%+ of its eventual impact.
+        <!-- TL;DR Box -->
+        <div class="tldr-box">
+          <div class="tldr-box-header">
+            <span>⚡</span> TL;DR — 30-Second Summary
+          </div>
+          <ul>
+            <li>B2B involves 3-10+ decision makers vs. B2C's single buyer</li>
+            <li>Sales cycles run 30-365+ days, not minutes</li>
+            <li>Deal values are $10K-$1M+, requiring ROI justification</li>
+            <li>Attribution is fundamentally different—the ad clicker rarely signs the contract</li>
+            <li>Never apply B2C measurement timelines to B2B campaigns</li>
+          </ul>
         </div>
+
+        <!-- Scenario Card -->
+        <div class="scenario-card">
+          <div class="scenario-header">
+            <span class="scenario-header-icon">📍</span>
+            <span class="scenario-header-title">Scenario: The Facebook Ads Reality Check</span>
+          </div>
+          <div class="scenario-body">
+            <div class="scenario-character">
+              <div class="scenario-avatar">MC</div>
+              <div class="scenario-character-info">
+                <h4>Maya Chen</h4>
+                <p class="scenario-character-role">Marketing Ops Manager, NovaTech</p>
+              </div>
+            </div>
+
+            <div class="scenario-quote">
+              "Priya, I know you crushed it with Facebook ads at your last internship. But I need you to forget almost everything you learned there. Here's why..."
+            </div>
+
+            <div class="scenario-narrative">
+              <p>Priya Sharma, NovaTech's new data analyst, had just joined from a summer internship at a D2C skincare brand. She'd run Facebook campaigns that generated 4x ROAS in two weeks. Her first suggestion at NovaTech? "Why don't we scale up our Facebook spend? I can build the same attribution models I used before."</p>
+
+              <p>Maya pulled up her laptop. "Let me show you our last closed deal. First touch: a LinkedIn ad in March. The person who clicked? A junior engineer researching tools for a hackathon project. He mentioned it to his manager in April. The manager downloaded our ROI calculator in May. Their VP attended our webinar in June. IT security ran their evaluation in July. Legal negotiated for three weeks in August. We closed in September—six months after that first ad click."</p>
+
+              <p>Maya continued: "If we measured that LinkedIn ad's performance two weeks after it ran? Zero revenue. Zero pipeline. The 'failure' we'd have killed was actually the first domino in a $42,000 deal."</p>
+            </div>
+
+            <div class="scenario-takeaway">
+              <div class="scenario-takeaway-header">
+                <span>💡</span> THE TAKEAWAY
+              </div>
+              <p>B2B attribution doesn't work on B2C timelines. The person who clicks your ad is rarely the person who signs the contract, and measuring too early makes winning campaigns look like losers.</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Core Content: Journey Comparison Visual -->
+        <h3>The Buyer Journey: A Side-by-Side Comparison</h3>
+
+        <div class="journey-comparison">
+          <div class="journey-column b2c">
+            <h4>🛒 B2C: Buying Sneakers</h4>
+            <ul class="journey-steps">
+              <li class="journey-step">
+                <span class="journey-step-icon">📱</span>
+                <span class="journey-step-text">See Instagram ad</span>
+                <span class="journey-step-time">0 min</span>
+              </li>
+              <li class="journey-step">
+                <span class="journey-step-icon">👀</span>
+                <span class="journey-step-text">Browse product page</span>
+                <span class="journey-step-time">5 min</span>
+              </li>
+              <li class="journey-step">
+                <span class="journey-step-icon">🛒</span>
+                <span class="journey-step-text">Add to cart & checkout</span>
+                <span class="journey-step-time">15 min</span>
+              </li>
+            </ul>
+            <div class="journey-total">
+              <strong>Total:</strong> 20 minutes, 1 person, $150
+            </div>
+          </div>
+
+          <div class="journey-column b2b">
+            <h4>🏢 B2B: Buying Enterprise Software</h4>
+            <ul class="journey-steps">
+              <li class="journey-step">
+                <span class="journey-step-icon">🔍</span>
+                <span class="journey-step-text">Research & discovery</span>
+                <span class="journey-step-time">Week 1-4</span>
+              </li>
+              <li class="journey-step">
+                <span class="journey-step-icon">📊</span>
+                <span class="journey-step-text">Internal business case</span>
+                <span class="journey-step-time">Week 5-8</span>
+              </li>
+              <li class="journey-step">
+                <span class="journey-step-icon">👥</span>
+                <span class="journey-step-text">Committee evaluation</span>
+                <span class="journey-step-time">Week 9-14</span>
+              </li>
+              <li class="journey-step">
+                <span class="journey-step-icon">🔒</span>
+                <span class="journey-step-text">Security & legal review</span>
+                <span class="journey-step-time">Week 15-20</span>
+              </li>
+              <li class="journey-step">
+                <span class="journey-step-icon">✍️</span>
+                <span class="journey-step-text">Negotiation & close</span>
+                <span class="journey-step-time">Week 21-26</span>
+              </li>
+            </ul>
+            <div class="journey-total">
+              <strong>Total:</strong> 6 months, 6+ people, $150,000
+            </div>
+          </div>
+        </div>
+
+        <!-- Quick Reference Card -->
+        <div class="quick-ref">
+          <div class="quick-ref-header">
+            <span>📋</span> Quick Reference: B2B vs B2C at a Glance
+          </div>
+          <table>
+            <thead>
+              <tr>
+                <th>Dimension</th>
+                <th>B2C</th>
+                <th>B2B</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><strong>Decision makers</strong></td>
+                <td>1 person</td>
+                <td>3-10+ people (buying committee)</td>
+              </tr>
+              <tr>
+                <td><strong>Sales cycle</strong></td>
+                <td>Minutes to days</td>
+                <td>30-365+ days</td>
+              </tr>
+              <tr>
+                <td><strong>Deal value</strong></td>
+                <td>$10-500</td>
+                <td>$10K-1M+</td>
+              </tr>
+              <tr>
+                <td><strong>Purchase driver</strong></td>
+                <td>Emotional + practical</td>
+                <td>ROI + risk mitigation</td>
+              </tr>
+              <tr>
+                <td><strong>Relationship</strong></td>
+                <td>Transactional</td>
+                <td>Ongoing partnership</td>
+              </tr>
+              <tr>
+                <td><strong>Volume</strong></td>
+                <td>Thousands to millions</td>
+                <td>Hundreds to thousands</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <!-- Core Content: Implications -->
+        <h3>What This Means for Marketing</h3>
+
+        <p><strong>Content depth matters.</strong> B2B buyers need ammunition to make their case internally. A 30-second video might sell sneakers, but enterprise software requires whitepapers, case studies, ROI calculators, and technical documentation. Your champion needs to convince their CFO, their IT team, and their legal department—they need more than a catchy tagline.</p>
+
+        <p><strong>Multi-threading is essential.</strong> You're not marketing to a person—you're marketing to a buying committee. Each stakeholder has different concerns. IT cares about security and integrations. Finance cares about TCO and payment terms. End users care about ease of use. One message won't work for all.</p>
+
+        <p><strong>Relationships compound.</strong> B2B customers sign multi-year contracts and may stay 5+ years. The lifetime value of keeping a customer happy vastly exceeds acquisition costs. Marketing doesn't stop at the sale—customer marketing, advocacy programs, and expansion campaigns drive serious revenue.</p>
+
+        <!-- Deep Dive Accordion -->
+        <details class="deep-dive">
+          <summary>Deep Dive: Attribution Timelines and Why They Break in B2B</summary>
+          <div class="deep-dive-content">
+            <p><strong>The fundamental problem:</strong> B2C attribution models assume the person who sees an ad is the person who buys. In B2B, this is almost never true.</p>
+
+            <p>Consider a typical B2B journey:</p>
+            <ul>
+              <li><strong>First touch:</strong> Junior analyst clicks a LinkedIn ad (March)</li>
+              <li><strong>Multiple touches:</strong> Manager downloads whitepaper, VP attends webinar (April-June)</li>
+              <li><strong>Opportunity creation:</strong> Sales starts working the deal (July)</li>
+              <li><strong>Closed-won:</strong> Contract signed (September)</li>
+            </ul>
+
+            <p>If you're using 30-day attribution windows or measuring campaign ROI monthly, that LinkedIn ad shows zero return. But it was the catalyst for a $42K deal.</p>
+
+            <h4>Recommended approach:</h4>
+            <ul>
+              <li>Use 90-180 day attribution windows minimum</li>
+              <li>Track at the account level, not just the lead level</li>
+              <li>Measure leading indicators (MQLs, pipeline) before lagging indicators (revenue)</li>
+              <li>Accept that some impact will never be directly attributable—demand gen works even when you can't prove it</li>
+            </ul>
+          </div>
+        </details>
+
+        <!-- Knowledge Check -->
+        <div class="knowledge-check" data-answer="c">
+          <div class="knowledge-check-header">
+            <span class="knowledge-check-header-icon">✅</span>
+            <span class="knowledge-check-header-title">Knowledge Check</span>
+          </div>
+          <div class="knowledge-check-body">
+            <p class="quiz-question">You're running a LinkedIn campaign for a $50K ACV product. Your CFO asks why the campaign shows no revenue after 6 weeks. What's the best response?</p>
+
+            <ul class="quiz-options">
+              <li class="quiz-option">
+                <label>
+                  <input type="radio" name="q1" value="a">
+                  <span>The campaign is underperforming and should be paused</span>
+                </label>
+              </li>
+              <li class="quiz-option">
+                <label>
+                  <input type="radio" name="q1" value="b">
+                  <span>LinkedIn doesn't work for B2B—we should try Google Ads instead</span>
+                </label>
+              </li>
+              <li class="quiz-option">
+                <label>
+                  <input type="radio" name="q1" value="c">
+                  <span>6 weeks is too early to measure revenue impact—show pipeline metrics and explain typical sales cycle length</span>
+                </label>
+              </li>
+              <li class="quiz-option">
+                <label>
+                  <input type="radio" name="q1" value="d">
+                  <span>Lower the price to shorten the sales cycle</span>
+                </label>
+              </li>
+            </ul>
+
+            <button class="quiz-btn">Check Answer</button>
+
+            <div class="quiz-feedback">
+              <div class="quiz-feedback-header"></div>
+              <p>At $50K ACV, sales cycles typically run 3-6 months. Measuring revenue after 6 weeks will almost always show zero. The right approach is to show leading indicators like MQLs, SQLs, and pipeline created—and educate stakeholders on appropriate measurement timelines for B2B.</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Next Up Link -->
+        <a href="#icp-personas" class="next-up">
+          <div>
+            <div class="next-up-label">Next Up</div>
+            <div class="next-up-title">ICP & Buyer Personas →</div>
+          </div>
+          <span class="next-up-arrow">→</span>
+        </a>
+
       </section>
 
       <!-- Section 2: ICP and Buyer Personas -->
       <section id="icp-personas">
-        <h2>ICP and Buyer Personas <a href="#icp-personas" class="anchor-link">#</a></h2>
 
-        <p>Before you market to anyone, you need to know who you're marketing to. This involves two complementary concepts: the Ideal Customer Profile (ICP) and buyer personas.</p>
+        <!-- Hero Card -->
+        <div class="section-hero">
+          <div class="section-hero-icon">🎯</div>
+          <div class="section-hero-content">
+            <h2>ICP & Buyer Personas</h2>
+            <p>Define who you're selling to—at the company level and the human level.</p>
+          </div>
+        </div>
 
+        <!-- TL;DR Box -->
+        <div class="tldr-box">
+          <div class="tldr-box-header">
+            <span>⚡</span> TL;DR — 30-Second Summary
+          </div>
+          <ul>
+            <li><strong>ICP (Ideal Customer Profile)</strong> defines which <em>companies</em> to target—firmographics + technographics</li>
+            <li><strong>Buyer Personas</strong> define which <em>people</em> within those companies influence the purchase</li>
+            <li>Build ICP from your best customers (highest NPS, lowest churn, largest deals)</li>
+            <li>Anti-ICP is just as important—know who to avoid</li>
+            <li>Personas must be validated with data, not imagined in a conference room</li>
+          </ul>
+        </div>
+
+        <!-- Scenario Card -->
+        <div class="scenario-card">
+          <div class="scenario-header">
+            <span class="scenario-header-icon">📍</span>
+            <span class="scenario-header-title">Scenario: The "Target Everyone" Trap</span>
+          </div>
+          <div class="scenario-body">
+            <div class="scenario-character">
+              <div class="scenario-avatar">DW</div>
+              <div class="scenario-character-info">
+                <h4>Derek Williams</h4>
+                <p class="scenario-character-role">VP of Marketing, NovaTech</p>
+              </div>
+            </div>
+
+            <div class="scenario-quote">
+              "Why are we limiting ourselves? Let's just target everyone who might need project management software. Cast a wider net!"
+            </div>
+
+            <div class="scenario-narrative">
+              <p>Derek had just come from a board meeting where the message was clear: grow faster. His instinct was to expand targeting. "We're leaving money on the table," he told Maya. "Let's go after companies of all sizes."</p>
+
+              <p>Maya pulled up a Looker dashboard she'd been dreading to share. "Derek, I ran the numbers on our last 200 closed deals. Look at the pattern." The data was brutal: companies under 150 employees churned at 3x the rate of mid-market. Companies over 3,000 employees had 8-month sales cycles and required enterprise features NovaTech didn't have. The sweet spot—200 to 2,000 employees—had 40% higher LTV and 60% faster sales cycles.</p>
+
+              <p>"We tried 'target everyone' last Q2," Maya continued. "We spent $80K on campaigns reaching small businesses. We got 400 leads. 12 became customers. 9 churned within 6 months. Net revenue? Negative $15K after CAC."</p>
+
+              <p>Derek stared at the screen. "So when we target everyone, we actually lose money on most of them."</p>
+            </div>
+
+            <div class="scenario-takeaway">
+              <div class="scenario-takeaway-header">
+                <span>💡</span> THE TAKEAWAY
+              </div>
+              <p>A tight ICP isn't a limitation—it's a multiplier. Targeting companies likely to succeed means higher win rates, lower churn, and better unit economics. "More leads" from bad-fit accounts is negative ROI.</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Core Content: ICP -->
         <h3>Ideal Customer Profile (ICP)</h3>
 
-        <p>Your ICP defines the <em>companies</em> most likely to buy and succeed with your product. It's a firmographic and technographic profile that helps you prioritize accounts.</p>
+        <p>Your ICP defines the <em>companies</em> most likely to buy and succeed with your product. It's built from two data categories:</p>
 
-        <h4>Firmographics (company characteristics)</h4>
-        <ul>
-          <li><strong>Company size:</strong> Employee count and/or revenue (e.g., "500-5,000 employees" or "$50M-500M ARR")</li>
-          <li><strong>Industry:</strong> Vertical markets (e.g., "SaaS, fintech, healthcare tech")</li>
-          <li><strong>Geography:</strong> Regions where you can sell and support (e.g., "North America and Western Europe")</li>
-          <li><strong>Growth stage:</strong> Startup, growth, mature (often indicated by funding stage or employee growth rate)</li>
-        </ul>
-
-        <h4>Technographics (technology characteristics)</h4>
-        <ul>
-          <li><strong>Tech stack:</strong> Tools they use that indicate fit or integration opportunity (e.g., "Uses Salesforce" or "Has a data warehouse")</li>
-          <li><strong>Technical maturity:</strong> How sophisticated their operations are</li>
-          <li><strong>Existing solutions:</strong> What they currently use in your category (competitor, DIY, nothing)</li>
-        </ul>
-
-        <div class="callout callout-tip">
-          <strong>In practice:</strong> Look at your best existing customers—the ones with highest NPS, lowest churn, fastest sales cycles, and largest deal sizes. What do they have in common? That's your ICP. Conversely, look at churned customers and failed implementations. What did they have in common? Exclude those characteristics.
+        <div class="quick-ref">
+          <div class="quick-ref-header">
+            <span>🏢</span> ICP Building Blocks
+          </div>
+          <table>
+            <thead>
+              <tr>
+                <th>Firmographics</th>
+                <th>Technographics</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><strong>Company size:</strong> Employee count or revenue range</td>
+                <td><strong>Tech stack:</strong> Tools indicating fit or integration needs</td>
+              </tr>
+              <tr>
+                <td><strong>Industry:</strong> Vertical markets you serve well</td>
+                <td><strong>Technical maturity:</strong> Sophistication of operations</td>
+              </tr>
+              <tr>
+                <td><strong>Geography:</strong> Regions you can sell and support</td>
+                <td><strong>Existing solutions:</strong> Competitor, DIY, or greenfield</td>
+              </tr>
+              <tr>
+                <td><strong>Growth stage:</strong> Startup, growth, or mature</td>
+                <td><strong>Data infrastructure:</strong> Warehouse, BI tools, etc.</td>
+              </tr>
+            </tbody>
+          </table>
         </div>
 
-        <h4>Example ICP</h4>
+        <!-- NovaTech ICP Example -->
+        <div class="scenario-card" style="border-color: var(--teal);">
+          <div class="scenario-header" style="background: var(--teal);">
+            <span class="scenario-header-icon">📋</span>
+            <span class="scenario-header-title">Example: NovaTech's ICP</span>
+          </div>
+          <div class="scenario-body">
+            <p><strong>NovaTech</strong> sells project management software for engineering teams at $35K ACV. Here's their validated ICP:</p>
 
-        <p>For a B2B marketing analytics platform:</p>
-        <ul>
-          <li><strong>Company size:</strong> 200-2,000 employees</li>
-          <li><strong>Revenue:</strong> $20M-$500M ARR</li>
-          <li><strong>Industry:</strong> B2B SaaS, technology services</li>
-          <li><strong>Geography:</strong> US, Canada, UK</li>
-          <li><strong>Tech stack:</strong> Uses Salesforce CRM, has a marketing automation platform (HubSpot or Marketo), uses multiple paid channels</li>
-          <li><strong>Team structure:</strong> Has a marketing ops or analytics function (at least 1 dedicated person)</li>
-          <li><strong>Negative indicators:</strong> <em>Not</em> companies with deal sizes under $5K ACV (attribution less valuable), <em>not</em> purely product-led growth companies (different measurement needs)</li>
-        </ul>
+            <table>
+              <tbody>
+                <tr>
+                  <td><strong>Company size</strong></td>
+                  <td>200-2,000 employees</td>
+                </tr>
+                <tr>
+                  <td><strong>Revenue</strong></td>
+                  <td>$20M-$200M ARR</td>
+                </tr>
+                <tr>
+                  <td><strong>Industry</strong></td>
+                  <td>B2B SaaS, technology services, fintech</td>
+                </tr>
+                <tr>
+                  <td><strong>Geography</strong></td>
+                  <td>US, Canada, UK, Western Europe</td>
+                </tr>
+                <tr>
+                  <td><strong>Tech stack</strong></td>
+                  <td>Uses GitHub/GitLab, has 10+ engineers, uses Slack</td>
+                </tr>
+                <tr>
+                  <td><strong>Team structure</strong></td>
+                  <td>Has dedicated engineering management layer</td>
+                </tr>
+              </tbody>
+            </table>
 
+            <h4 style="color: #ef4444; margin-top: 1.5rem;">🚫 Anti-ICP (Who to Avoid)</h4>
+            <ul>
+              <li>Companies under 100 employees (churn 3x higher)</li>
+              <li>Agencies and consultancies (different workflow needs)</li>
+              <li>Companies without dedicated engineering teams</li>
+              <li>Enterprise 5,000+ (need features we don't have yet)</li>
+            </ul>
+          </div>
+        </div>
+
+        <!-- Buyer Personas -->
         <h3>Buyer Personas</h3>
 
-        <p>While ICP defines the <em>company</em>, personas define the <em>people</em> within that company who influence or make purchase decisions. Each persona has different motivations, concerns, and content preferences.</p>
+        <p>While ICP defines the <em>company</em>, personas define the <em>people</em> within those companies. Each persona has different motivations, pain points, and content preferences.</p>
 
-        <h4>Example Persona: Marketing Operations Manager</h4>
-
-        <table>
-          <tbody>
-            <tr>
-              <td><strong>Title</strong></td>
-              <td>Marketing Operations Manager, Sr. Marketing Analyst</td>
-            </tr>
-            <tr>
-              <td><strong>Reports to</strong></td>
-              <td>VP of Marketing or CMO</td>
-            </tr>
-            <tr>
-              <td><strong>Role in purchase</strong></td>
-              <td>Champion, Technical Evaluator</td>
-            </tr>
-            <tr>
-              <td><strong>Goals</strong></td>
-              <td>Prove marketing ROI, reduce manual reporting time, improve data quality</td>
-            </tr>
-            <tr>
-              <td><strong>Pain points</strong></td>
-              <td>Spending 20+ hours/week on manual reporting, can't answer attribution questions, data lives in silos</td>
-            </tr>
-            <tr>
-              <td><strong>Objections</strong></td>
-              <td>"We've tried tools before and they required too much setup," "Our data is too messy"</td>
-            </tr>
-            <tr>
-              <td><strong>Preferred content</strong></td>
-              <td>Product demos, technical documentation, case studies with implementation details</td>
-            </tr>
-            <tr>
-              <td><strong>Channels</strong></td>
-              <td>LinkedIn, industry Slack communities, peer review sites (G2)</td>
-            </tr>
-          </tbody>
-        </table>
-
-        <div class="callout callout-caution">
-          <strong>Common mistake:</strong> Creating personas based on assumptions rather than data. Interview actual customers. Look at closed-won deals: who was involved? What content did they consume? What objections did they raise? Personas should be validated, not imagined.
+        <div class="quick-ref">
+          <div class="quick-ref-header">
+            <span>👤</span> Example Persona: Marketing Operations Manager
+          </div>
+          <table>
+            <tbody>
+              <tr>
+                <td><strong>Titles</strong></td>
+                <td>Marketing Ops Manager, Sr. Marketing Analyst, Revenue Ops</td>
+              </tr>
+              <tr>
+                <td><strong>Reports to</strong></td>
+                <td>VP of Marketing or CMO</td>
+              </tr>
+              <tr>
+                <td><strong>Role in purchase</strong></td>
+                <td>Champion, Technical Evaluator</td>
+              </tr>
+              <tr>
+                <td><strong>Goals</strong></td>
+                <td>Prove marketing ROI, reduce manual reporting, improve data quality</td>
+              </tr>
+              <tr>
+                <td><strong>Pain points</strong></td>
+                <td>20+ hrs/week on manual reporting, can't answer attribution questions, siloed data</td>
+              </tr>
+              <tr>
+                <td><strong>Objections</strong></td>
+                <td>"We've tried tools before," "Our data is too messy"</td>
+              </tr>
+              <tr>
+                <td><strong>Content preferences</strong></td>
+                <td>Product demos, technical docs, implementation case studies</td>
+              </tr>
+              <tr>
+                <td><strong>Channels</strong></td>
+                <td>LinkedIn, industry Slack communities, G2 reviews</td>
+              </tr>
+            </tbody>
+          </table>
         </div>
+
+        <!-- Deep Dive -->
+        <details class="deep-dive">
+          <summary>Deep Dive: Building Data-Driven Personas</summary>
+          <div class="deep-dive-content">
+            <p><strong>The cardinal sin:</strong> Creating personas in a conference room based on assumptions. "Let's call her Marketing Mary—she's 35, drinks lattes, and loves data." This is fiction, not strategy.</p>
+
+            <h4>How to build validated personas:</h4>
+            <ol>
+              <li><strong>Interview 10-15 recent customers.</strong> Ask: How did you find us? What problem were you solving? Who else was involved in the decision? What almost stopped you from buying?</li>
+              <li><strong>Analyze closed-won deals.</strong> What titles were involved? What content did they consume? How long was the sales cycle?</li>
+              <li><strong>Talk to sales.</strong> Which objections come up repeatedly? What questions do different roles ask?</li>
+              <li><strong>Look at churned customers.</strong> Were they a certain persona type? Did they have different expectations?</li>
+            </ol>
+
+            <h4>Persona validation checklist:</h4>
+            <ul>
+              <li>Can you name 5+ real customers who fit this persona?</li>
+              <li>Does sales recognize this person from their calls?</li>
+              <li>Do the pain points come from actual quotes, not guesses?</li>
+              <li>Have you validated the content preferences with engagement data?</li>
+            </ul>
+          </div>
+        </details>
+
+        <!-- Knowledge Check -->
+        <div class="knowledge-check" data-answer="b">
+          <div class="knowledge-check-header">
+            <span class="knowledge-check-header-icon">✅</span>
+            <span class="knowledge-check-header-title">Knowledge Check</span>
+          </div>
+          <div class="knowledge-check-body">
+            <p class="quiz-question">Your company's best customers are mid-market SaaS companies (200-1,000 employees). A new campaign generates 300 leads, but 80% are from companies under 50 employees. What should you do?</p>
+
+            <ul class="quiz-options">
+              <li class="quiz-option">
+                <label>
+                  <input type="radio" name="q2" value="a">
+                  <span>Celebrate the lead volume and pass them all to sales</span>
+                </label>
+              </li>
+              <li class="quiz-option">
+                <label>
+                  <input type="radio" name="q2" value="b">
+                  <span>Adjust targeting to focus on ICP—those 240 leads will likely churn even if they convert</span>
+                </label>
+              </li>
+              <li class="quiz-option">
+                <label>
+                  <input type="radio" name="q2" value="c">
+                  <span>Expand your ICP to include small businesses since there's clearly demand</span>
+                </label>
+              </li>
+              <li class="quiz-option">
+                <label>
+                  <input type="radio" name="q2" value="d">
+                  <span>Create a new product tier for small businesses</span>
+                </label>
+              </li>
+            </ul>
+
+            <button class="quiz-btn">Check Answer</button>
+
+            <div class="quiz-feedback">
+              <div class="quiz-feedback-header"></div>
+              <p>Lead volume from bad-fit accounts is vanity metrics. If your data shows small companies churn at high rates, those 240 leads represent wasted sales time and negative ROI. Fix the targeting, not the ICP. The ICP is based on where you actually win and retain—don't let campaign results override customer success data.</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Next Up -->
+        <a href="#buying-committee" class="next-up">
+          <div>
+            <div class="next-up-label">Next Up</div>
+            <div class="next-up-title">Buying Committee / Decision-Making Unit →</div>
+          </div>
+          <span class="next-up-arrow">→</span>
+        </a>
+
       </section>
 
       <!-- Section 3: Buying Committee -->
       <section id="buying-committee">
-        <h2>Buying Committee / Decision-Making Unit <a href="#buying-committee" class="anchor-link">#</a></h2>
 
-        <p>B2B purchases are rarely made by a single person. The <em>buying committee</em> (also called the Decision-Making Unit or DMU) is the group of people who collectively influence or make the purchase decision. Understanding these roles helps you create content and campaigns that address each stakeholder's needs.</p>
-
-        <h3>Key Roles</h3>
-
-        <table>
-          <thead>
-            <tr>
-              <th>Role</th>
-              <th>What they do</th>
-              <th>What they care about</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td><strong>Champion</strong></td>
-              <td>Internal advocate who pushes the purchase forward</td>
-              <td>Making themselves look good, solving their problem, ease of implementation</td>
-            </tr>
-            <tr>
-              <td><strong>Economic Buyer</strong></td>
-              <td>Controls the budget and makes final purchasing decision</td>
-              <td>ROI, total cost of ownership, strategic alignment</td>
-            </tr>
-            <tr>
-              <td><strong>Technical Evaluator</strong></td>
-              <td>Assesses whether the solution meets technical requirements</td>
-              <td>Security, integrations, scalability, implementation complexity</td>
-            </tr>
-            <tr>
-              <td><strong>End User</strong></td>
-              <td>Will actually use the product day-to-day</td>
-              <td>Ease of use, time savings, how it affects their workflow</td>
-            </tr>
-            <tr>
-              <td><strong>Blocker</strong></td>
-              <td>Has the power to kill the deal (often legal, procurement, or security)</td>
-              <td>Risk, compliance, vendor stability, contractual terms</td>
-            </tr>
-          </tbody>
-        </table>
-
-        <h3>A Realistic Scenario</h3>
-
-        <p>Let's walk through how a mid-market company might buy a customer data platform (CDP):</p>
-
-        <p><strong>1. Problem recognition:</strong> Sarah, a Marketing Operations Manager (future <em>Champion</em>), realizes their customer data is fragmented across 8 systems. She spends 15 hours weekly on manual data reconciliation and can't answer basic questions about customer journeys.</p>
-
-        <p><strong>2. Initial research:</strong> Sarah searches "customer data platform comparison" and reads several G2 reviews and analyst reports. She downloads a whitepaper from Vendor A's website (now a lead in Vendor A's system). She also asks in a Marketing Ops Slack community for recommendations.</p>
-
-        <p><strong>3. Building the case:</strong> Sarah puts together a business case document and brings it to her VP of Marketing, Marcus (<em>Economic Buyer</em>). Marcus is interested but needs IT sign-off.</p>
-
-        <p><strong>4. Technical evaluation:</strong> Sarah loops in David, the Data Engineer (<em>Technical Evaluator</em>). David's concerns: "How does this integrate with our warehouse? What's the data latency? Who manages the schema?" He needs technical documentation, not marketing fluff.</p>
-
-        <p><strong>5. Security review:</strong> The deal is progressing, but now InfoSec needs to review. Jennifer from Security (<em>Blocker</em>) requires SOC 2 Type II compliance, data residency in the US, and a security questionnaire. If Vendor A can't provide these, the deal is dead.</p>
-
-        <p><strong>6. Final approval:</strong> Marcus takes the recommendation to the CFO for budget approval. The CFO wants to see ROI projections and payment terms. Legal reviews the MSA and negotiates terms.</p>
-
-        <p><strong>7. Decision:</strong> After 4 months and touching 7 people across 4 departments, they sign with Vendor A.</p>
-
-        <div class="callout callout-info">
-          <strong>Why this matters for analysts:</strong> Attribution in B2B is fundamentally about connecting marketing touches across multiple people to a single account-level outcome. If you only track Sarah's whitepaper download, you're missing David's technical documentation views and Jennifer's security page visits. Account-based measurement exists because of buying committees.
+        <!-- Hero Card -->
+        <div class="section-hero">
+          <div class="section-hero-icon">👥</div>
+          <div class="section-hero-content">
+            <h2>Buying Committee / Decision-Making Unit</h2>
+            <p>B2B deals involve 3-10+ people. Know who they are and what they need.</p>
+          </div>
         </div>
 
-        <h3>Implications for Marketing</h3>
-
-        <ul>
-          <li><strong>Multi-threaded campaigns:</strong> You need content for each role. Technical docs for David. ROI calculators for Marcus. Security certifications for Jennifer.</li>
-          <li><strong>Account-level tracking:</strong> Track engagement at the account level, not just the lead level. Multiple people from the same company engaging = buying signal.</li>
-          <li><strong>Champion enablement:</strong> Give your champion the tools to sell internally: battle cards, slides they can present, objection-handling documents.</li>
-        </ul>
-
-        <div class="callout callout-tip">
-          <strong>In practice:</strong> When analyzing won/lost deals, ask sales what roles were involved and what content influenced each person. This data is gold for persona development and content strategy.
+        <!-- TL;DR Box -->
+        <div class="tldr-box">
+          <div class="tldr-box-header">
+            <span>⚡</span> TL;DR — 30-Second Summary
+          </div>
+          <ul>
+            <li>B2B purchases involve a <strong>buying committee</strong>—multiple stakeholders with different concerns</li>
+            <li>Key roles: Champion (advocate), Economic Buyer (budget), Technical Evaluator (specs), Blocker (risk)</li>
+            <li>Each role needs different content—one message doesn't fit all</li>
+            <li>Track engagement at the <strong>account level</strong>, not just individual leads</li>
+            <li>Enable your champion with internal-selling tools (battle cards, ROI calculators, slides)</li>
+          </ul>
         </div>
+
+        <!-- Scenario Card -->
+        <div class="scenario-card">
+          <div class="scenario-header">
+            <span class="scenario-header-icon">📍</span>
+            <span class="scenario-header-title">Scenario: The CDP Purchase Journey</span>
+          </div>
+          <div class="scenario-body">
+            <div class="scenario-character">
+              <div class="scenario-avatar">SP</div>
+              <div class="scenario-character-info">
+                <h4>Sarah Park</h4>
+                <p class="scenario-character-role">Demand Gen Manager, NovaTech</p>
+              </div>
+            </div>
+
+            <div class="scenario-quote">
+              "I spend 15 hours every week reconciling customer data across 8 different systems. I can't even answer basic questions about our customer journey."
+            </div>
+
+            <div class="scenario-narrative">
+              <p><strong>Month 1 — Problem Recognition:</strong> Sarah realizes their customer data is fragmented and starts researching CDPs. She downloads a whitepaper from Vendor A, reads G2 reviews, and asks for recommendations in a Marketing Ops Slack community.</p>
+
+              <p><strong>Month 2 — Building the Case:</strong> Sarah creates a business case and brings it to Derek, the VP of Marketing (<em>Economic Buyer</em>). Derek is interested but needs IT sign-off before committing budget.</p>
+
+              <p><strong>Month 3 — Technical Evaluation:</strong> Sarah loops in David, NovaTech's Data Engineer (<em>Technical Evaluator</em>). David's concerns: "How does this integrate with Snowflake? What's the data latency? Who manages the schema?" He needs technical documentation, not marketing materials.</p>
+
+              <p><strong>Month 4 — The Blocker:</strong> The deal is progressing until Jennifer from Security steps in. She requires SOC 2 Type II compliance, US data residency, and a completed security questionnaire. If Vendor A can't provide these, the deal is dead—no matter how much Sarah loves the product.</p>
+
+              <p><strong>Month 5 — Final Approval:</strong> Derek takes the recommendation to Tom Reeves, the CFO, for budget approval. Tom wants ROI projections. Legal reviews the MSA. After 4 months and 7 people across 4 departments, they sign.</p>
+            </div>
+
+            <div class="scenario-takeaway">
+              <div class="scenario-takeaway-header">
+                <span>💡</span> THE TAKEAWAY
+              </div>
+              <p>If you only tracked Sarah's whitepaper download, you'd miss David's technical doc views and Jennifer's security page visits. Account-based measurement exists because of buying committees—multiple touches across multiple people lead to one deal.</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Quick Reference: Buying Committee Roles -->
+        <h3>The Five Key Roles</h3>
+
+        <div class="quick-ref">
+          <div class="quick-ref-header">
+            <span>👤</span> Buying Committee Role Cards
+          </div>
+          <table>
+            <thead>
+              <tr>
+                <th>Role</th>
+                <th>What They Do</th>
+                <th>What They Care About</th>
+                <th>Content They Need</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><strong>🏆 Champion</strong></td>
+                <td>Internal advocate pushing the purchase</td>
+                <td>Looking good, solving their problem, easy implementation</td>
+                <td>Battle cards, internal slides, objection handlers</td>
+              </tr>
+              <tr>
+                <td><strong>💰 Economic Buyer</strong></td>
+                <td>Controls budget, makes final decision</td>
+                <td>ROI, total cost of ownership, strategic fit</td>
+                <td>ROI calculators, executive summaries, case studies</td>
+              </tr>
+              <tr>
+                <td><strong>🔧 Technical Evaluator</strong></td>
+                <td>Assesses technical requirements</td>
+                <td>Security, integrations, scalability, complexity</td>
+                <td>API docs, architecture diagrams, implementation guides</td>
+              </tr>
+              <tr>
+                <td><strong>👤 End User</strong></td>
+                <td>Will use the product daily</td>
+                <td>Ease of use, time savings, workflow impact</td>
+                <td>Product demos, UI tours, training materials</td>
+              </tr>
+              <tr>
+                <td><strong>🚫 Blocker</strong></td>
+                <td>Can kill the deal (legal, security, procurement)</td>
+                <td>Risk, compliance, vendor stability, terms</td>
+                <td>Security certifications, compliance docs, SLAs</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <!-- Implications -->
+        <h3>What This Means for Marketing</h3>
+
+        <p><strong>Multi-threaded campaigns are essential.</strong> You need content for each role in the committee. Technical docs for the evaluator. ROI calculators for the economic buyer. Security certifications for the blocker. One-size-fits-all content leaves gaps.</p>
+
+        <p><strong>Track at the account level.</strong> When multiple people from the same company engage with your content, that's a buying signal. If you only track individual leads, you miss the pattern of a committee forming around a purchase.</p>
+
+        <p><strong>Enable your champion.</strong> Your champion has to sell internally when you're not in the room. Give them tools: pre-built slides they can present, battle cards comparing you to alternatives, ROI frameworks they can customize for their CFO.</p>
+
+        <!-- Deep Dive -->
+        <details class="deep-dive">
+          <summary>Deep Dive: Mapping Content to Committee Roles</summary>
+          <div class="deep-dive-content">
+            <p>When auditing your content library, map each asset to the committee roles it serves:</p>
+
+            <table>
+              <thead>
+                <tr>
+                  <th>Content Type</th>
+                  <th>Primary Role</th>
+                  <th>Secondary Roles</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>Product demo video</td>
+                  <td>End User, Champion</td>
+                  <td>Economic Buyer</td>
+                </tr>
+                <tr>
+                  <td>ROI calculator</td>
+                  <td>Economic Buyer</td>
+                  <td>Champion</td>
+                </tr>
+                <tr>
+                  <td>API documentation</td>
+                  <td>Technical Evaluator</td>
+                  <td>—</td>
+                </tr>
+                <tr>
+                  <td>SOC 2 report</td>
+                  <td>Blocker (Security)</td>
+                  <td>Technical Evaluator</td>
+                </tr>
+                <tr>
+                  <td>Case study</td>
+                  <td>Champion, Economic Buyer</td>
+                  <td>All roles</td>
+                </tr>
+                <tr>
+                  <td>Implementation guide</td>
+                  <td>Technical Evaluator</td>
+                  <td>Champion</td>
+                </tr>
+              </tbody>
+            </table>
+
+            <p><strong>Content gap analysis:</strong> If you have 20 pieces of top-of-funnel content but zero security documentation, you'll generate interest but lose deals at the blocker stage.</p>
+          </div>
+        </details>
+
+        <!-- Knowledge Check -->
+        <div class="knowledge-check" data-answer="c">
+          <div class="knowledge-check-header">
+            <span class="knowledge-check-header-icon">✅</span>
+            <span class="knowledge-check-header-title">Knowledge Check</span>
+          </div>
+          <div class="knowledge-check-body">
+            <p class="quiz-question">A lead downloads 3 ebooks but they're a junior analyst at a target account. Their VP is the likely decision-maker. What's the risk?</p>
+
+            <ul class="quiz-options">
+              <li class="quiz-option">
+                <label>
+                  <input type="radio" name="q3" value="a">
+                  <span>No risk—junior analysts are great champions</span>
+                </label>
+              </li>
+              <li class="quiz-option">
+                <label>
+                  <input type="radio" name="q3" value="b">
+                  <span>The analyst will never become a customer</span>
+                </label>
+              </li>
+              <li class="quiz-option">
+                <label>
+                  <input type="radio" name="q3" value="c">
+                  <span>The analyst may not have the influence to push the deal forward—you need to also engage the VP</span>
+                </label>
+              </li>
+              <li class="quiz-option">
+                <label>
+                  <input type="radio" name="q3" value="d">
+                  <span>Disqualify the lead since they're not a decision-maker</span>
+                </label>
+              </li>
+            </ul>
+
+            <button class="quiz-btn">Check Answer</button>
+
+            <div class="quiz-feedback">
+              <div class="quiz-feedback-header"></div>
+              <p>Junior employees can be valuable champions, but they often lack the authority to push deals through. The risk is that you invest in nurturing someone who can't actually influence the purchase. Smart B2B marketing multi-threads: nurture the analyst AND run campaigns to engage the VP and other committee members at the same account.</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Next Up -->
+        <a href="#b2b-funnel" class="next-up">
+          <div>
+            <div class="next-up-label">Next Up</div>
+            <div class="next-up-title">The B2B Funnel →</div>
+          </div>
+          <span class="next-up-arrow">→</span>
+        </a>
+
       </section>
 
       <!-- Section 4: The B2B Funnel -->
       <section id="b2b-funnel">
-        <h2>The B2B Funnel <a href="#b2b-funnel" class="anchor-link">#</a></h2>
 
-        <p>The funnel is how B2B companies track potential customers from first awareness through to becoming a customer. While every company customizes their funnel stages, most B2B organizations use some variant of this model.</p>
+        <!-- Hero Card -->
+        <div class="section-hero">
+          <div class="section-hero-icon">📊</div>
+          <div class="section-hero-content">
+            <h2>The B2B Funnel</h2>
+            <p>Track prospects from first touch to closed deal—and learn the math that makes it work.</p>
+          </div>
+        </div>
 
+        <!-- TL;DR Box -->
+        <div class="tldr-box">
+          <div class="tldr-box-header">
+            <span>⚡</span> TL;DR — 30-Second Summary
+          </div>
+          <ul>
+            <li>Standard stages: Visitor → Lead → MQL → SQL → Opportunity → Closed Won</li>
+            <li><strong>MQL</strong> = fits ICP + shows engagement. <strong>SQL</strong> = sales verified via conversation</li>
+            <li>Typical conversions: 2% visitor→lead, 20% lead→MQL, 50% MQL→SQL, 25% opp→won</li>
+            <li>Work backwards from revenue targets to calculate required top-of-funnel volume</li>
+            <li>If MQL→SQL rate is below 40%, your MQL definition is too loose</li>
+          </ul>
+        </div>
+
+        <!-- Scenario Card -->
+        <div class="scenario-card">
+          <div class="scenario-header">
+            <span class="scenario-header-icon">📍</span>
+            <span class="scenario-header-title">Scenario: The Great MQL Debate</span>
+          </div>
+          <div class="scenario-body">
+            <div class="scenario-character">
+              <div class="scenario-avatar">JO</div>
+              <div class="scenario-character-info">
+                <h4>James Okonkwo</h4>
+                <p class="scenario-character-role">Sales Director, NovaTech</p>
+              </div>
+            </div>
+
+            <div class="scenario-quote">
+              "Another 47 MQLs last week. I had my team call all of them. Want to guess how many were worth talking to? Eight. Eight actual conversations with someone who had budget and a real timeline."
+            </div>
+
+            <div class="scenario-narrative">
+              <p>Maya opened her dashboard. "Based on disposition data, 22 converted to SAL—"</p>
+
+              <p>"Eight," James interrupted. "The rest were students, competitors, or people who thought they were downloading a free template, not requesting a sales call."</p>
+
+              <p>Derek stepped in. "Our MQL numbers look great to the board—"</p>
+
+              <p>"The board doesn't have to make 40 calls to find 8 real prospects," James said. "My team is burning out on garbage leads."</p>
+
+              <p>Maya pulled up the lead scoring breakdown. The pattern was clear: 31 of the rejected leads had hit MQL threshold purely on content downloads—no pricing page visits, no demo requests, no buying signals. They'd accumulated points but showed zero intent.</p>
+
+              <p>"We're scoring engagement too heavily," Maya said. "Someone downloading 6 ebooks isn't necessarily ready to buy. Let's create a High-Intent MQL tier that requires at least one buying signal."</p>
+
+              <p>Three weeks later, sales follow-up time dropped from 18 hours to 4 hours. SAL conversion jumped from 17% to 58%.</p>
+            </div>
+
+            <div class="scenario-takeaway">
+              <div class="scenario-takeaway-header">
+                <span>💡</span> THE TAKEAWAY
+              </div>
+              <p>MQL definitions aren't academic—they directly impact sales efficiency and team morale. A loose MQL floods sales with noise. The best criteria balance volume with genuine buying signals.</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Funnel Stages Reference -->
         <h3>Standard Funnel Stages</h3>
 
-        <table>
-          <thead>
-            <tr>
-              <th>Stage</th>
-              <th>Definition</th>
-              <th>Typical Trigger</th>
-              <th>Owner</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td><strong>Visitor</strong></td>
-              <td>Anonymous website visitor</td>
-              <td>Arrives on website</td>
-              <td>Marketing</td>
-            </tr>
-            <tr>
-              <td><strong>Lead</strong></td>
-              <td>Known person who has provided contact info</td>
-              <td>Form fill, content download, event registration</td>
-              <td>Marketing</td>
-            </tr>
-            <tr>
-              <td><strong>MQL</strong></td>
-              <td>Marketing Qualified Lead - meets firmographic + engagement criteria</td>
-              <td>Lead score threshold, fits ICP, shows buying intent</td>
-              <td>Marketing</td>
-            </tr>
-            <tr>
-              <td><strong>SQL</strong></td>
-              <td>Sales Qualified Lead - validated by sales as worth pursuing</td>
-              <td>Sales accepts after initial conversation</td>
-              <td>Sales</td>
-            </tr>
-            <tr>
-              <td><strong>Opportunity</strong></td>
-              <td>Active deal in pipeline with defined scope</td>
-              <td>Discovery call completed, budget confirmed</td>
-              <td>Sales</td>
-            </tr>
-            <tr>
-              <td><strong>Closed Won</strong></td>
-              <td>Deal signed, customer acquired</td>
-              <td>Contract executed</td>
-              <td>Sales</td>
-            </tr>
-          </tbody>
-        </table>
+        <div class="quick-ref">
+          <div class="quick-ref-header">
+            <span>📈</span> The B2B Funnel at a Glance
+          </div>
+          <table>
+            <thead>
+              <tr>
+                <th>Stage</th>
+                <th>Definition</th>
+                <th>Trigger</th>
+                <th>Owner</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><strong>Visitor</strong></td>
+                <td>Anonymous website visitor</td>
+                <td>Arrives on site</td>
+                <td>Marketing</td>
+              </tr>
+              <tr>
+                <td><strong>Lead</strong></td>
+                <td>Known person with contact info</td>
+                <td>Form fill, content download</td>
+                <td>Marketing</td>
+              </tr>
+              <tr>
+                <td><strong>MQL</strong></td>
+                <td>Marketing Qualified Lead</td>
+                <td>Fits ICP + engagement threshold</td>
+                <td>Marketing</td>
+              </tr>
+              <tr>
+                <td><strong>SQL</strong></td>
+                <td>Sales Qualified Lead</td>
+                <td>Sales validates via conversation</td>
+                <td>Sales</td>
+              </tr>
+              <tr>
+                <td><strong>Opportunity</strong></td>
+                <td>Active deal in pipeline</td>
+                <td>Discovery complete, budget confirmed</td>
+                <td>Sales</td>
+              </tr>
+              <tr>
+                <td><strong>Closed Won</strong></td>
+                <td>Customer acquired</td>
+                <td>Contract signed</td>
+                <td>Sales</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
 
+        <!-- Qualification Criteria -->
         <h3>What "Qualified" Actually Means</h3>
 
-        <p><strong>Marketing Qualified (MQL):</strong> This person or account meets basic criteria suggesting they could be a customer and has shown enough engagement to warrant sales attention. Typical MQL criteria:</p>
-
+        <p><strong>Marketing Qualified (MQL)</strong> — meets basic criteria suggesting they could be a customer:</p>
         <ul>
-          <li><strong>Fit criteria:</strong> Company matches ICP (right size, industry, geography)</li>
-          <li><strong>Engagement criteria:</strong> Has taken a high-intent action (demo request, pricing page visit, multiple content downloads) or accumulated enough lead score points</li>
-          <li><strong>Recency:</strong> Engaged recently (not just 18 months ago)</li>
+          <li><strong>Fit:</strong> Company matches ICP (size, industry, geography)</li>
+          <li><strong>Engagement:</strong> High-intent action (demo request, pricing page) OR sufficient lead score</li>
+          <li><strong>Recency:</strong> Engaged recently, not 18 months ago</li>
         </ul>
 
-        <p><strong>Sales Qualified (SQL):</strong> Sales has had a conversation with this lead and confirmed they have genuine potential to become a customer. Typical SQL criteria (often using BANT or MEDDIC frameworks):</p>
-
+        <p><strong>Sales Qualified (SQL)</strong> — sales has confirmed genuine potential (often using BANT):</p>
         <ul>
-          <li><strong>Budget:</strong> They have or can get budget for a solution</li>
+          <li><strong>Budget:</strong> They have or can get funding</li>
           <li><strong>Authority:</strong> You're talking to someone who can influence the decision</li>
-          <li><strong>Need:</strong> They have a real problem your solution addresses</li>
-          <li><strong>Timeline:</strong> They're looking to make a decision in a reasonable timeframe</li>
+          <li><strong>Need:</strong> They have a real problem you solve</li>
+          <li><strong>Timeline:</strong> Looking to decide in a reasonable timeframe</li>
         </ul>
 
-        <div class="callout callout-warning">
-          <strong>Common mistake:</strong> Defining MQL too loosely, which floods sales with unqualified leads, or too strictly, which means missed opportunities. Watch your MQL-to-SQL acceptance rate—if sales is rejecting 50%+ of MQLs, your MQL definition needs work.
+        <!-- Funnel Math -->
+        <h3>Funnel Math: Working Backwards from Revenue</h3>
+
+        <div class="quick-ref">
+          <div class="quick-ref-header">
+            <span>🔢</span> Typical B2B SaaS Conversion Rates
+          </div>
+          <table>
+            <thead>
+              <tr>
+                <th>Stage Transition</th>
+                <th>Typical Rate</th>
+                <th>What It Means</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>Visitor → Lead</td>
+                <td>1-3%</td>
+                <td>100 visitors = 1-3 leads</td>
+              </tr>
+              <tr>
+                <td>Lead → MQL</td>
+                <td>10-30%</td>
+                <td>Most leads don't fit or engage enough</td>
+              </tr>
+              <tr>
+                <td>MQL → SQL</td>
+                <td>40-70%</td>
+                <td>Sales accepts after review</td>
+              </tr>
+              <tr>
+                <td>SQL → Opportunity</td>
+                <td>50-70%</td>
+                <td>Discovery reveals real potential</td>
+              </tr>
+              <tr>
+                <td>Opportunity → Won</td>
+                <td>20-35%</td>
+                <td>Not every opp converts</td>
+              </tr>
+            </tbody>
+          </table>
         </div>
 
-        <h3>Funnel Math: Understanding the Numbers</h3>
-
-        <p>Here are realistic conversion rates for a typical B2B SaaS company selling to mid-market:</p>
-
-        <table>
-          <thead>
-            <tr>
-              <th>Stage Transition</th>
-              <th>Typical Conversion Rate</th>
-              <th>What It Means</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td>Visitor → Lead</td>
-              <td>1-3%</td>
-              <td>100 visitors = 1-3 leads</td>
-            </tr>
-            <tr>
-              <td>Lead → MQL</td>
-              <td>10-30%</td>
-              <td>Most leads don't fit or don't engage enough</td>
-            </tr>
-            <tr>
-              <td>MQL → SQL</td>
-              <td>40-70%</td>
-              <td>Sales accepts/rejects after initial review</td>
-            </tr>
-            <tr>
-              <td>SQL → Opportunity</td>
-              <td>50-70%</td>
-              <td>Discovery reveals real potential (or not)</td>
-            </tr>
-            <tr>
-              <td>Opportunity → Closed Won</td>
-              <td>20-35%</td>
-              <td>Not every opportunity converts</td>
-            </tr>
-          </tbody>
-        </table>
-
-        <p><strong>The math in action:</strong> If you need 10 new customers per month, working backwards:</p>
-        <ul>
-          <li>10 closed-won at 25% win rate = 40 opportunities needed</li>
-          <li>40 opportunities at 60% SQL→Opp rate = 67 SQLs needed</li>
-          <li>67 SQLs at 50% MQL→SQL rate = 134 MQLs needed</li>
-          <li>134 MQLs at 20% Lead→MQL rate = 670 leads needed</li>
-          <li>670 leads at 2% Visitor→Lead rate = 33,500 visitors needed</li>
-        </ul>
-
-        <div class="callout callout-tip">
-          <strong>In practice:</strong> This back-of-napkin math helps you quickly assess whether targets are realistic. If marketing is being asked to generate 500 MQLs but only has budget to drive 10,000 visitors, the math doesn't work.
+        <div class="callout callout-info">
+          <strong>The math in action:</strong> Need 10 new customers/month?
+          <ul style="margin-top: 0.5rem; margin-bottom: 0;">
+            <li>10 won ÷ 25% win rate = <strong>40 opportunities</strong></li>
+            <li>40 opps ÷ 60% SQL→Opp = <strong>67 SQLs</strong></li>
+            <li>67 SQLs ÷ 50% MQL→SQL = <strong>134 MQLs</strong></li>
+            <li>134 MQLs ÷ 20% Lead→MQL = <strong>670 leads</strong></li>
+            <li>670 leads ÷ 2% conversion = <strong>33,500 visitors</strong></li>
+          </ul>
         </div>
+
+        <!-- Deep Dive -->
+        <details class="deep-dive">
+          <summary>Deep Dive: Diagnosing Funnel Problems</summary>
+          <div class="deep-dive-content">
+            <p>When a funnel stage underperforms, diagnose before acting:</p>
+
+            <table>
+              <thead>
+                <tr>
+                  <th>Problem</th>
+                  <th>Possible Causes</th>
+                  <th>Investigation</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td><strong>Low visitor→lead</strong></td>
+                  <td>Weak CTAs, bad traffic quality, friction in forms</td>
+                  <td>Check traffic sources, A/B test forms</td>
+                </tr>
+                <tr>
+                  <td><strong>Low lead→MQL</strong></td>
+                  <td>Wrong audience, MQL criteria too strict</td>
+                  <td>Analyze lead sources, review scoring model</td>
+                </tr>
+                <tr>
+                  <td><strong>Low MQL→SQL</strong></td>
+                  <td>MQL too loose, sales not following up, bad fit</td>
+                  <td>Review rejection reasons, check follow-up times</td>
+                </tr>
+                <tr>
+                  <td><strong>Low SQL→Opp</strong></td>
+                  <td>Poor discovery, wrong personas, pricing issues</td>
+                  <td>Listen to sales calls, review lost reasons</td>
+                </tr>
+                <tr>
+                  <td><strong>Low win rate</strong></td>
+                  <td>Competitive losses, product gaps, pricing</td>
+                  <td>Win/loss analysis, competitive intel</td>
+                </tr>
+              </tbody>
+            </table>
+
+            <p><strong>Key rule:</strong> Don't optimize top-of-funnel if bottom-of-funnel is broken. Driving more visitors to a leaky funnel wastes budget.</p>
+          </div>
+        </details>
+
+        <!-- Knowledge Check -->
+        <div class="knowledge-check" data-answer="d">
+          <div class="knowledge-check-header">
+            <span class="knowledge-check-header-icon">✅</span>
+            <span class="knowledge-check-header-title">Knowledge Check</span>
+          </div>
+          <div class="knowledge-check-body">
+            <p class="quiz-question">Your MQL→SQL rate drops from 50% to 30% over 2 months. What's the MOST likely explanation?</p>
+
+            <ul class="quiz-options">
+              <li class="quiz-option">
+                <label>
+                  <input type="radio" name="q4" value="a">
+                  <span>Sales team is too slow to follow up</span>
+                </label>
+              </li>
+              <li class="quiz-option">
+                <label>
+                  <input type="radio" name="q4" value="b">
+                  <span>MQL threshold is too low, letting weak leads through</span>
+                </label>
+              </li>
+              <li class="quiz-option">
+                <label>
+                  <input type="radio" name="q4" value="c">
+                  <span>Marketing is generating leads from new channels</span>
+                </label>
+              </li>
+              <li class="quiz-option">
+                <label>
+                  <input type="radio" name="q4" value="d">
+                  <span>Could be any of these—you need to investigate</span>
+                </label>
+              </li>
+            </ul>
+
+            <button class="quiz-btn">Check Answer</button>
+
+            <div class="quiz-feedback">
+              <div class="quiz-feedback-header"></div>
+              <p>A conversion drop could stem from any of these causes. The first step is to segment: Is the drop across all sources or specific to one channel? Is sales follow-up time constant? Good analysts don't assume—they diagnose. Check rejection reasons, source performance, and timing patterns before jumping to solutions.</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Next Up -->
+        <a href="#lead-lifecycle" class="next-up">
+          <div>
+            <div class="next-up-label">Next Up</div>
+            <div class="next-up-title">Lead Lifecycle & Handoffs →</div>
+          </div>
+          <span class="next-up-arrow">→</span>
+        </a>
+
       </section>
 
       <!-- Section 5: Lead Lifecycle and Handoffs -->
       <section id="lead-lifecycle">
-        <h2>Lead Lifecycle and Handoffs <a href="#lead-lifecycle" class="anchor-link">#</a></h2>
 
-        <p>The transition points between marketing and sales are where many B2B organizations fail. Leads fall through cracks, sales ignores marketing leads, marketing claims leads that sales says were garbage. This section covers the mechanics of lead management and common failure modes.</p>
+        <!-- Hero Card -->
+        <div class="section-hero">
+          <div class="section-hero-icon">🔄</div>
+          <div class="section-hero-content">
+            <h2>Lead Lifecycle & Handoffs</h2>
+            <p>Where deals die: the marketing-to-sales handoff and how to fix it.</p>
+          </div>
+        </div>
 
+        <!-- TL;DR Box -->
+        <div class="tldr-box">
+          <div class="tldr-box-header">
+            <span>⚡</span> TL;DR — 30-Second Summary
+          </div>
+          <ul>
+            <li>Lead states go beyond the funnel: New → Working → MQL → SAL → SQL → (Won/Recycled/Disqualified)</li>
+            <li><strong>Recycled ≠ Disqualified</strong>: Recycled goes back to nurture; disqualified is permanent</li>
+            <li>Lead scoring combines fit (firmographics) + engagement (behavior) + negative signals</li>
+            <li>Four failure modes: neglect, no feedback, vanity scoring, no recycling</li>
+            <li>Require reason codes for all rejections—they're gold for improving lead quality</li>
+          </ul>
+        </div>
+
+        <!-- Scenario Card -->
+        <div class="scenario-card">
+          <div class="scenario-header">
+            <span class="scenario-header-icon">📍</span>
+            <span class="scenario-header-title">Scenario: The Leaky Handoff</span>
+          </div>
+          <div class="scenario-body">
+            <div class="scenario-character">
+              <div class="scenario-avatar">MC</div>
+              <div class="scenario-character-info">
+                <h4>Maya Chen</h4>
+                <p class="scenario-character-role">Marketing Ops Manager, NovaTech</p>
+              </div>
+            </div>
+
+            <div class="scenario-quote">
+              "We sent 156 MQLs to sales last month. According to the CRM, only 89 were ever contacted. The other 67 just... disappeared."
+            </div>
+
+            <div class="scenario-narrative">
+              <p>Maya had been digging into the pipeline gap. Marketing was hitting MQL targets, but somehow the numbers weren't translating to opportunities.</p>
+
+              <p>"Look at this one," she said, pulling up a lead record. "Perfect ICP fit. They downloaded our pricing guide, attended a webinar, AND submitted a demo request. They sat uncontacted for 11 days. By the time sales called, they'd already signed with a competitor."</p>
+
+              <p>James from sales pushed back: "We're drowning in leads. Half of them are garbage. We have to prioritize."</p>
+
+              <p>Maya pulled up another report. "But you're not just deprioritizing—you're ignoring without leaving any feedback. 34 leads were marked 'Bad' with no reason code. I can't improve scoring if I don't know what's wrong."</p>
+
+              <p>They spent the next hour building a new system: tiered MQLs (Hot/Warm) with different SLAs, mandatory reason codes, and a weekly review of rejected leads. It wasn't perfect, but at least leads would stop falling into the void.</p>
+            </div>
+
+            <div class="scenario-takeaway">
+              <div class="scenario-takeaway-header">
+                <span>💡</span> THE TAKEAWAY
+              </div>
+              <p>The handoff between marketing and sales is where leads go to die. Without visibility, accountability, and feedback loops, even great leads vanish. Track every transition and require explanations for every rejection.</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Lead States -->
         <h3>Lead States Beyond the Basic Funnel</h3>
 
-        <p>Real lead management involves more states than the simple funnel suggests:</p>
+        <div class="quick-ref">
+          <div class="quick-ref-header">
+            <span>📋</span> Complete Lead Lifecycle States
+          </div>
+          <table>
+            <thead>
+              <tr>
+                <th>State</th>
+                <th>Meaning</th>
+                <th>What Happens Next</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><strong>New</strong></td>
+                <td>Just created, not yet evaluated</td>
+                <td>Automatic enrichment and scoring</td>
+              </tr>
+              <tr>
+                <td><strong>Working</strong></td>
+                <td>Marketing is nurturing</td>
+                <td>Nurture campaigns, scoring accumulation</td>
+              </tr>
+              <tr>
+                <td><strong>MQL</strong></td>
+                <td>Ready for sales handoff</td>
+                <td>Routed to sales rep</td>
+              </tr>
+              <tr>
+                <td><strong>SAL</strong></td>
+                <td>Sales Accepted Lead</td>
+                <td>Sales outreach, discovery</td>
+              </tr>
+              <tr>
+                <td><strong>SQL</strong></td>
+                <td>Qualified after conversation</td>
+                <td>Opportunity creation</td>
+              </tr>
+              <tr>
+                <td><strong>Recycled</strong></td>
+                <td>Not ready now—back to marketing</td>
+                <td>Re-enters nurture, can MQL again</td>
+              </tr>
+              <tr>
+                <td><strong>Disqualified</strong></td>
+                <td>Will never be a customer</td>
+                <td>Removed from active programs</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
 
-        <table>
-          <thead>
-            <tr>
-              <th>State</th>
-              <th>Meaning</th>
-              <th>What Happens Next</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td><strong>New</strong></td>
-              <td>Just created, not yet evaluated</td>
-              <td>Automatic enrichment and scoring</td>
-            </tr>
-            <tr>
-              <td><strong>Working</strong></td>
-              <td>Marketing is nurturing</td>
-              <td>Nurture campaigns, scoring</td>
-            </tr>
-            <tr>
-              <td><strong>MQL</strong></td>
-              <td>Ready for sales handoff</td>
-              <td>Routed to sales rep</td>
-            </tr>
-            <tr>
-              <td><strong>SAL</strong></td>
-              <td>Sales Accepted Lead - sales is working it</td>
-              <td>Sales outreach, discovery</td>
-            </tr>
-            <tr>
-              <td><strong>SQL</strong></td>
-              <td>Qualified after sales conversation</td>
-              <td>Opportunity creation</td>
-            </tr>
-            <tr>
-              <td><strong>Recycled</strong></td>
-              <td>Not ready now, returned to marketing</td>
-              <td>Back to nurture</td>
-            </tr>
-            <tr>
-              <td><strong>Disqualified</strong></td>
-              <td>Will never be a customer</td>
-              <td>Removed from active programs</td>
-            </tr>
-          </tbody>
-        </table>
-
-        <h3>The Handoff Process</h3>
-
-        <p><strong>Marketing → Sales handoff (MQL routing):</strong></p>
-        <ol>
-          <li>Lead hits MQL criteria (score threshold + fit criteria)</li>
-          <li>System routes to appropriate sales rep (by territory, segment, round-robin)</li>
-          <li>Sales rep gets notification (Slack, email, CRM task)</li>
-          <li>Clock starts on follow-up SLA</li>
-        </ol>
-
-        <p><strong>Sales → Marketing handoff (recycling):</strong></p>
-        <ol>
-          <li>Sales marks lead as "not ready" with reason code</li>
-          <li>Lead status changes to Recycled</li>
-          <li>Lead re-enters marketing nurture</li>
-          <li>Lead can MQL again later (with cooling-off period)</li>
-        </ol>
-
-        <h3>Common Failure Modes</h3>
+        <!-- Common Failure Modes -->
+        <h3>Four Failure Modes (and How to Fix Them)</h3>
 
         <div class="callout callout-caution">
-          <strong>Failure mode #1: Lead neglect.</strong> Sales gets swamped, MQLs sit untouched for days/weeks. By the time sales calls, the prospect has moved on or gone with a competitor. Fix: Strict SLAs with escalation and visibility into compliance.
+          <strong>🚨 Lead Neglect:</strong> MQLs sit untouched for days. By the time sales calls, the prospect went with a competitor.
+          <br><em>Fix: Strict SLAs with escalation and manager visibility into compliance.</em>
         </div>
 
         <div class="callout callout-caution">
-          <strong>Failure mode #2: MQL rejection without feedback.</strong> Sales marks leads as "bad" without explaining why. Marketing can't improve targeting or scoring. Fix: Require reason codes for rejection; review patterns monthly.
+          <strong>🚨 Rejection Without Feedback:</strong> Sales marks leads "bad" without explaining why. Marketing can't improve.
+          <br><em>Fix: Require reason codes; review rejection patterns monthly.</em>
         </div>
 
         <div class="callout callout-caution">
-          <strong>Failure mode #3: Scoring based on vanity metrics.</strong> Someone downloads 10 ebooks but they're a student writing a paper. They have a high lead score but will never buy. Fix: Weight high-intent actions heavily (demo requests, pricing page) vs. content consumption.
+          <strong>🚨 Vanity Scoring:</strong> Student downloads 10 ebooks, gets high score. Never going to buy.
+          <br><em>Fix: Weight high-intent actions (demo, pricing) over content consumption.</em>
         </div>
 
         <div class="callout callout-caution">
-          <strong>Failure mode #4: No recycling process.</strong> Leads that aren't ready get marked disqualified instead of recycled. You lose the chance to nurture them until they are ready. Fix: Make recycling the default, disqualification the exception.
+          <strong>🚨 No Recycling:</strong> "Not ready" leads get disqualified instead of recycled. Lost forever.
+          <br><em>Fix: Make recycling the default, disqualification the exception.</em>
         </div>
 
-        <h3>Lead Scoring Basics</h3>
+        <!-- Lead Scoring -->
+        <h3>Lead Scoring Model</h3>
 
-        <p>Lead scoring assigns points based on fit and engagement to prioritize leads:</p>
+        <div class="quick-ref">
+          <div class="quick-ref-header">
+            <span>🎯</span> Sample Lead Scoring Matrix
+          </div>
+          <table>
+            <thead>
+              <tr>
+                <th>Category</th>
+                <th>Signal</th>
+                <th>Points</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td rowspan="3"><strong>Fit</strong></td>
+                <td>Company size 200-2000</td>
+                <td>+20</td>
+              </tr>
+              <tr>
+                <td>Target industry</td>
+                <td>+15</td>
+              </tr>
+              <tr>
+                <td>Director+ title</td>
+                <td>+10</td>
+              </tr>
+              <tr>
+                <td rowspan="4"><strong>Engagement</strong></td>
+                <td>Demo request</td>
+                <td>+50</td>
+              </tr>
+              <tr>
+                <td>Pricing page visit</td>
+                <td>+30</td>
+              </tr>
+              <tr>
+                <td>Case study download</td>
+                <td>+10</td>
+              </tr>
+              <tr>
+                <td>Email open</td>
+                <td>+1</td>
+              </tr>
+              <tr>
+                <td rowspan="2"><strong>Negative</strong></td>
+                <td>Competitor company</td>
+                <td>-100</td>
+              </tr>
+              <tr>
+                <td>Student email domain</td>
+                <td>-50</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
 
-        <table>
-          <thead>
-            <tr>
-              <th>Category</th>
-              <th>Signal</th>
-              <th>Points</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td rowspan="3"><strong>Fit (demographic/firmographic)</strong></td>
-              <td>Company size 200-2000</td>
-              <td>+20</td>
-            </tr>
-            <tr>
-              <td>Target industry</td>
-              <td>+15</td>
-            </tr>
-            <tr>
-              <td>Director+ title</td>
-              <td>+10</td>
-            </tr>
-            <tr>
-              <td rowspan="4"><strong>Engagement (behavioral)</strong></td>
-              <td>Demo request</td>
-              <td>+50</td>
-            </tr>
-            <tr>
-              <td>Pricing page visit</td>
-              <td>+30</td>
-            </tr>
-            <tr>
-              <td>Case study download</td>
-              <td>+10</td>
-            </tr>
-            <tr>
-              <td>Email open</td>
-              <td>+1</td>
-            </tr>
-            <tr>
-              <td rowspan="2"><strong>Negative signals</strong></td>
-              <td>Competitor company</td>
-              <td>-100</td>
-            </tr>
-            <tr>
-              <td>Student email domain</td>
-              <td>-50</td>
-            </tr>
-          </tbody>
-        </table>
+        <p><strong>MQL threshold = 50 points.</strong> A perfect-fit company that requests a demo (20+15+10+50 = 95) immediately MQLs. A student downloading content accumulates negative points and never reaches threshold.</p>
 
-        <p>MQL threshold might be 50 points. This model ensures that a perfect-fit company that requests a demo (20+15+10+50 = 95) immediately becomes an MQL, while a student downloading content accumulates negative points and never MQLs.</p>
+        <!-- Deep Dive -->
+        <details class="deep-dive">
+          <summary>Deep Dive: Building a Recycling Program</summary>
+          <div class="deep-dive-content">
+            <p><strong>Why recycling matters:</strong> A lead that's "not ready now" might be ready in 6 months. If you disqualify them, you lose that opportunity. If you recycle them back to nurture, you stay top-of-mind until timing is right.</p>
+
+            <h4>Recycling best practices:</h4>
+            <ul>
+              <li><strong>Cooling-off period:</strong> Prevent immediate re-MQL. Wait 30-90 days before they can hit threshold again.</li>
+              <li><strong>Score decay:</strong> Reduce engagement scores over time. A webinar from 6 months ago isn't as relevant today.</li>
+              <li><strong>Re-engagement triggers:</strong> If a recycled lead visits the pricing page, fast-track them back to sales.</li>
+              <li><strong>Reason-based nurture:</strong> "Not ready - timeline" gets different nurture than "Not ready - evaluating competitors".</li>
+            </ul>
+          </div>
+        </details>
+
+        <!-- Knowledge Check -->
+        <div class="knowledge-check" data-answer="b">
+          <div class="knowledge-check-header">
+            <span class="knowledge-check-header-icon">✅</span>
+            <span class="knowledge-check-header-title">Knowledge Check</span>
+          </div>
+          <div class="knowledge-check-body">
+            <p class="quiz-question">A lead from a target account has a score of 45 (just under your 50-point MQL threshold). They work at a competitor. What should happen?</p>
+
+            <ul class="quiz-options">
+              <li class="quiz-option">
+                <label>
+                  <input type="radio" name="q5" value="a">
+                  <span>Keep nurturing—they're close to MQL threshold</span>
+                </label>
+              </li>
+              <li class="quiz-option">
+                <label>
+                  <input type="radio" name="q5" value="b">
+                  <span>The -100 competitor penalty should drop them to -55, disqualifying them</span>
+                </label>
+              </li>
+              <li class="quiz-option">
+                <label>
+                  <input type="radio" name="q5" value="c">
+                  <span>MQL them anyway—they're from a target account</span>
+                </label>
+              </li>
+              <li class="quiz-option">
+                <label>
+                  <input type="radio" name="q5" value="d">
+                  <span>Recycle them for later outreach</span>
+                </label>
+              </li>
+            </ul>
+
+            <button class="quiz-btn">Check Answer</button>
+
+            <div class="quiz-feedback">
+              <div class="quiz-feedback-header"></div>
+              <p>Negative signals should outweigh positive engagement. A competitor with 45 points minus the -100 competitor penalty = -55. They should be automatically disqualified (not recycled—they'll never be a customer). This is why negative scoring is critical: it prevents sending obvious non-buyers to sales no matter how much content they consume.</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Next Up -->
+        <a href="#sales-marketing-sla" class="next-up">
+          <div>
+            <div class="next-up-label">Next Up</div>
+            <div class="next-up-title">Sales/Marketing SLAs →</div>
+          </div>
+          <span class="next-up-arrow">→</span>
+        </a>
+
       </section>
 
       <!-- Section 6: Sales/Marketing SLAs -->
       <section id="sales-marketing-sla">
-        <h2>Sales/Marketing SLAs <a href="#sales-marketing-sla" class="anchor-link">#</a></h2>
 
-        <p>A Service Level Agreement (SLA) between sales and marketing formalizes the handoff process and creates mutual accountability. Without an SLA, you get finger-pointing: marketing says sales doesn't follow up, sales says marketing sends bad leads.</p>
+        <!-- Hero Card -->
+        <div class="section-hero">
+          <div class="section-hero-icon">🤝</div>
+          <div class="section-hero-content">
+            <h2>Sales/Marketing SLAs</h2>
+            <p>Formalize the handoff with mutual commitments and end the finger-pointing.</p>
+          </div>
+        </div>
 
+        <!-- TL;DR Box -->
+        <div class="tldr-box">
+          <div class="tldr-box-header">
+            <span>⚡</span> TL;DR — 30-Second Summary
+          </div>
+          <ul>
+            <li>An <strong>SLA</strong> creates mutual accountability: Marketing commits to lead quality, Sales commits to follow-up</li>
+            <li>Key marketing commitments: MQL volume, quality criteria, enrichment, routing accuracy</li>
+            <li>Key sales commitments: Follow-up time, contact attempts, disposition reasons, status updates</li>
+            <li>Build a shared dashboard both teams review weekly—visibility creates accountability</li>
+            <li>Review and adjust quarterly based on actual performance</li>
+          </ul>
+        </div>
+
+        <!-- Scenario Card -->
+        <div class="scenario-card">
+          <div class="scenario-header">
+            <span class="scenario-header-icon">📍</span>
+            <span class="scenario-header-title">Scenario: The Accountability Gap</span>
+          </div>
+          <div class="scenario-body">
+            <div class="scenario-character">
+              <div class="scenario-avatar">TR</div>
+              <div class="scenario-character-info">
+                <h4>Tom Reeves</h4>
+                <p class="scenario-character-role">CFO, NovaTech</p>
+              </div>
+            </div>
+
+            <div class="scenario-quote">
+              "We spent $400K on marketing last quarter. Sales says the leads were garbage. Marketing says sales didn't follow up. I don't know who to believe because nobody has data."
+            </div>
+
+            <div class="scenario-narrative">
+              <p>Tom had called an emergency meeting after Q3 pipeline came in 30% under target. The room was tense.</p>
+
+              <p>James from Sales opened: "Marketing gave us 800 MQLs. Half were students or competitors. The other half didn't have budget."</p>
+
+              <p>Derek from Marketing countered: "We hit our MQL targets. It's not our fault if sales takes two weeks to call them back."</p>
+
+              <p>Maya had been quietly pulling data. "Both of you are partially right," she said. "I can show you exactly where the breakdown happened." She shared her screen: 47% of MQLs were never contacted within 7 days. Of those contacted quickly, 61% converted to SQLs. Of those contacted after 7 days, only 18% converted.</p>
+
+              <p>"But," Maya continued, "23% of MQLs came from a content syndication vendor with a 6% SQL rate. We need to fix that source."</p>
+
+              <p>Tom nodded. "So we need commitments from both sides. Written down. With tracking."</p>
+            </div>
+
+            <div class="scenario-takeaway">
+              <div class="scenario-takeaway-header">
+                <span>💡</span> THE TAKEAWAY
+              </div>
+              <p>Without an SLA and the data to track it, every pipeline miss turns into a blame game. Formalize commitments from both teams and make the metrics visible to leadership. Arguments disappear when replaced by data.</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- What SLA Covers -->
         <h3>What an SLA Should Cover</h3>
 
-        <p><strong>Marketing commits to:</strong></p>
-        <ul>
-          <li>Deliver X MQLs per month/quarter</li>
-          <li>MQLs will meet defined quality criteria (ICP fit, minimum score)</li>
-          <li>Leads will be enriched with specific data fields</li>
-          <li>Routing will be accurate to the correct rep</li>
-        </ul>
+        <div class="journey-comparison">
+          <div class="journey-column" style="border-top: 3px solid var(--teal);">
+            <h4 style="color: var(--teal);">📣 Marketing Commits To</h4>
+            <ul class="journey-steps">
+              <li class="journey-step" style="border: none; padding: 0.5rem 0;">
+                <span>Deliver X MQLs per month/quarter</span>
+              </li>
+              <li class="journey-step" style="border: none; padding: 0.5rem 0;">
+                <span>MQLs meet defined quality criteria</span>
+              </li>
+              <li class="journey-step" style="border: none; padding: 0.5rem 0;">
+                <span>Leads enriched with required data fields</span>
+              </li>
+              <li class="journey-step" style="border: none; padding: 0.5rem 0;">
+                <span>Accurate routing to correct rep</span>
+              </li>
+            </ul>
+          </div>
 
-        <p><strong>Sales commits to:</strong></p>
-        <ul>
-          <li>Contact MQLs within X hours of assignment</li>
-          <li>Make Y contact attempts before recycling</li>
-          <li>Provide disposition reason for rejected leads</li>
-          <li>Update lead status within X days</li>
-        </ul>
-
-        <h3>Example SLA Terms</h3>
-
-        <table>
-          <thead>
-            <tr>
-              <th>Metric</th>
-              <th>SLA Target</th>
-              <th>Measurement</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td>Lead follow-up time</td>
-              <td>&lt; 4 business hours for hot leads, &lt; 24 hours for warm</td>
-              <td>Time from MQL to first activity logged</td>
-            </tr>
-            <tr>
-              <td>Contact attempts</td>
-              <td>Minimum 6 touches over 14 days</td>
-              <td>Activities logged per lead</td>
-            </tr>
-            <tr>
-              <td>Lead disposition</td>
-              <td>100% of MQLs dispositioned within 30 days</td>
-              <td>% of MQLs still in "New" status after 30 days</td>
-            </tr>
-            <tr>
-              <td>Rejection reason</td>
-              <td>100% of rejected leads have reason code</td>
-              <td>% with blank rejection reason</td>
-            </tr>
-            <tr>
-              <td>MQL quality</td>
-              <td>&gt;50% MQL to SQL conversion</td>
-              <td>SQLs / MQLs</td>
-            </tr>
-            <tr>
-              <td>Pipeline generated</td>
-              <td>$X pipeline from marketing-sourced leads</td>
-              <td>Sum of opportunity value with marketing source</td>
-            </tr>
-          </tbody>
-        </table>
-
-        <div class="callout callout-tip">
-          <strong>In practice:</strong> Build an SLA dashboard that both marketing and sales leadership review weekly. Public visibility creates accountability. When sales isn't following up, marketing has data. When marketing sends bad leads, sales has data.
+          <div class="journey-column" style="border-top: 3px solid var(--coral);">
+            <h4 style="color: var(--coral);">📞 Sales Commits To</h4>
+            <ul class="journey-steps">
+              <li class="journey-step" style="border: none; padding: 0.5rem 0;">
+                <span>Contact MQLs within X hours</span>
+              </li>
+              <li class="journey-step" style="border: none; padding: 0.5rem 0;">
+                <span>Make Y attempts before recycling</span>
+              </li>
+              <li class="journey-step" style="border: none; padding: 0.5rem 0;">
+                <span>Provide disposition reason codes</span>
+              </li>
+              <li class="journey-step" style="border: none; padding: 0.5rem 0;">
+                <span>Update lead status within X days</span>
+              </li>
+            </ul>
+          </div>
         </div>
 
-        <h3>Feedback Loops</h3>
-
-        <p>The SLA should include mechanisms for continuous improvement:</p>
-
-        <ul>
-          <li><strong>Weekly pipeline review:</strong> Marketing + Sales review new MQLs, follow-up status, and conversion rates</li>
-          <li><strong>Monthly lead quality review:</strong> Analyze patterns in rejected leads—is it a targeting issue, scoring issue, or sales capacity issue?</li>
-          <li><strong>Quarterly SLA review:</strong> Adjust targets based on historical performance and business goals</li>
-        </ul>
-
-        <div class="callout callout-info">
-          <strong>Why this matters for analysts:</strong> You'll likely own or contribute to SLA reporting. This means building queries that track follow-up time, conversion rates by source, and rejection reasons. These metrics are among the most politically charged in any organization—get the definitions right and the data clean.
+        <!-- Example SLA Terms -->
+        <div class="quick-ref">
+          <div class="quick-ref-header">
+            <span>📋</span> Example SLA Terms
+          </div>
+          <table>
+            <thead>
+              <tr>
+                <th>Metric</th>
+                <th>Target</th>
+                <th>Measurement</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>Follow-up time</td>
+                <td>&lt; 4 hrs (hot), &lt; 24 hrs (warm)</td>
+                <td>Time from MQL to first activity</td>
+              </tr>
+              <tr>
+                <td>Contact attempts</td>
+                <td>Min 6 touches over 14 days</td>
+                <td>Activities logged per lead</td>
+              </tr>
+              <tr>
+                <td>Disposition</td>
+                <td>100% within 30 days</td>
+                <td>% still "New" after 30 days</td>
+              </tr>
+              <tr>
+                <td>Rejection reasons</td>
+                <td>100% have reason code</td>
+                <td>% with blank reason</td>
+              </tr>
+              <tr>
+                <td>MQL quality</td>
+                <td>&gt;50% MQL→SQL rate</td>
+                <td>SQLs / MQLs</td>
+              </tr>
+            </tbody>
+          </table>
         </div>
+
+        <!-- Deep Dive -->
+        <details class="deep-dive">
+          <summary>Deep Dive: Building SLA Dashboards</summary>
+          <div class="deep-dive-content">
+            <p>An effective SLA dashboard should be reviewed weekly by both teams and include:</p>
+
+            <h4>Marketing accountability metrics:</h4>
+            <ul>
+              <li>MQLs delivered vs. target</li>
+              <li>MQL quality score (avg fit + engagement)</li>
+              <li>Source breakdown with conversion rates</li>
+              <li>Routing accuracy (% to correct rep)</li>
+            </ul>
+
+            <h4>Sales accountability metrics:</h4>
+            <ul>
+              <li>Avg time to first contact</li>
+              <li>% contacted within SLA</li>
+              <li>Avg contact attempts before disposition</li>
+              <li>% with rejection reason codes</li>
+            </ul>
+
+            <h4>Shared metrics:</h4>
+            <ul>
+              <li>MQL→SQL rate by source</li>
+              <li>Pipeline generated from MQLs</li>
+              <li>Rejection reason distribution</li>
+            </ul>
+          </div>
+        </details>
+
+        <!-- Knowledge Check -->
+        <div class="knowledge-check" data-answer="c">
+          <div class="knowledge-check-header">
+            <span class="knowledge-check-header-icon">✅</span>
+            <span class="knowledge-check-header-title">Knowledge Check</span>
+          </div>
+          <div class="knowledge-check-body">
+            <p class="quiz-question">Sales is rejecting 40% of MQLs with reason code "No Budget." Marketing says the leads are fine. Who's right, and what should happen?</p>
+
+            <ul class="quiz-options">
+              <li class="quiz-option">
+                <label>
+                  <input type="radio" name="q6" value="a">
+                  <span>Sales is right—marketing needs to add budget qualification to MQL criteria</span>
+                </label>
+              </li>
+              <li class="quiz-option">
+                <label>
+                  <input type="radio" name="q6" value="b">
+                  <span>Marketing is right—budget discovery is sales' job, not a marketing filter</span>
+                </label>
+              </li>
+              <li class="quiz-option">
+                <label>
+                  <input type="radio" name="q6" value="c">
+                  <span>Need more data—are these prospects genuinely unable to buy, or just not prioritizing budget yet?</span>
+                </label>
+              </li>
+              <li class="quiz-option">
+                <label>
+                  <input type="radio" name="q6" value="d">
+                  <span>Fire the content syndication vendor</span>
+                </label>
+              </li>
+            </ul>
+
+            <button class="quiz-btn">Check Answer</button>
+
+            <div class="quiz-feedback">
+              <div class="quiz-feedback-header"></div>
+              <p>"No budget" often means "not a priority right now" rather than "will never have budget." The right response is to dig deeper: Are these good-fit companies that need more nurturing? Are they truly outside your ICP's budget range? Are sales reps using "no budget" as a catch-all rejection? Without understanding the root cause, you can't fix the problem.</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Next Up -->
+        <a href="#demand-vs-lead-gen" class="next-up">
+          <div>
+            <div class="next-up-label">Next Up</div>
+            <div class="next-up-title">Demand Gen vs Lead Gen →</div>
+          </div>
+          <span class="next-up-arrow">→</span>
+        </a>
+
       </section>
 
       <!-- Section 7: Demand Gen vs Lead Gen -->
       <section id="demand-vs-lead-gen">
-        <h2>Demand Gen vs Lead Gen <a href="#demand-vs-lead-gen" class="anchor-link">#</a></h2>
 
-        <p>These terms are often used interchangeably, but they represent fundamentally different approaches to marketing—and require different measurement approaches.</p>
-
-        <h3>Lead Generation</h3>
-
-        <p><strong>Definition:</strong> Activities designed to capture contact information from potential customers.</p>
-
-        <p><strong>Characteristics:</strong></p>
-        <ul>
-          <li>Focus on form fills and contact capture</li>
-          <li>Gated content (give email to download)</li>
-          <li>Direct response campaigns</li>
-          <li>Measurable by lead volume and cost per lead</li>
-        </ul>
-
-        <p><strong>Examples:</strong> Gated ebooks, webinar registrations, demo request forms, content syndication, lead capture at trade shows.</p>
-
-        <h3>Demand Generation</h3>
-
-        <p><strong>Definition:</strong> Activities designed to create awareness, interest, and preference for your product—whether or not you capture contact information.</p>
-
-        <p><strong>Characteristics:</strong></p>
-        <ul>
-          <li>Focus on building brand and category awareness</li>
-          <li>Ungated content (freely accessible)</li>
-          <li>Brand building, thought leadership, community</li>
-          <li>Harder to measure directly—often shows up in branded search, direct traffic, and "dark funnel" (see Guide 3)</li>
-        </ul>
-
-        <p><strong>Examples:</strong> Ungated blog content, podcasts, YouTube videos, LinkedIn posts, speaking at conferences, community building, PR.</p>
-
-        <h3>Why the Distinction Matters</h3>
-
-        <table>
-          <thead>
-            <tr>
-              <th>Aspect</th>
-              <th>Lead Gen</th>
-              <th>Demand Gen</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td><strong>Time horizon</strong></td>
-              <td>Short-term (this quarter's pipeline)</td>
-              <td>Long-term (future quarter's pipeline)</td>
-            </tr>
-            <tr>
-              <td><strong>Attribution</strong></td>
-              <td>Relatively straightforward (lead filled form)</td>
-              <td>Difficult (how do you attribute a podcast listener?)</td>
-            </tr>
-            <tr>
-              <td><strong>Executive appeal</strong></td>
-              <td>Easy to report ("we generated 500 leads")</td>
-              <td>Harder to justify ("trust us, people are more aware")</td>
-            </tr>
-            <tr>
-              <td><strong>Risk</strong></td>
-              <td>Can annoy prospects with aggressive gating</td>
-              <td>Can spend budget without visible results</td>
-            </tr>
-          </tbody>
-        </table>
-
-        <div class="callout callout-warning">
-          <strong>Common mistake:</strong> Over-indexing on lead gen because it's easier to measure. Companies that gate everything and only do direct-response campaigns often find their pipeline eventually dries up—they've exhausted people ready to buy <em>now</em> without building awareness among people who will buy <em>later</em>.
+        <!-- Hero Card -->
+        <div class="section-hero">
+          <div class="section-hero-icon">🎯</div>
+          <div class="section-hero-content">
+            <h2>Demand Gen vs Lead Gen</h2>
+            <p>Two different games with different rules—know which one you're playing.</p>
+          </div>
         </div>
 
-        <h3>The Healthy Mix</h3>
+        <!-- TL;DR Box -->
+        <div class="tldr-box">
+          <div class="tldr-box-header">
+            <span>⚡</span> TL;DR — 30-Second Summary
+          </div>
+          <ul>
+            <li><strong>Lead Gen</strong> = capture contact info (gated content, forms, events) — measurable by CPL</li>
+            <li><strong>Demand Gen</strong> = build awareness and preference (ungated content, podcasts, brand) — shows up in dark funnel</li>
+            <li>Lead gen feeds this quarter's pipeline; demand gen feeds future quarters</li>
+            <li>Over-indexing on lead gen exhausts "ready to buy" prospects without building future pipeline</li>
+            <li>Track both separately—and advocate for demand gen metrics beyond leads</li>
+          </ul>
+        </div>
 
-        <p>Most successful B2B companies do both:</p>
+        <!-- Scenario Card -->
+        <div class="scenario-card">
+          <div class="scenario-header">
+            <span class="scenario-header-icon">📍</span>
+            <span class="scenario-header-title">Scenario: The Podcast Problem</span>
+          </div>
+          <div class="scenario-body">
+            <div class="scenario-character">
+              <div class="scenario-avatar">SP</div>
+              <div class="scenario-character-info">
+                <h4>Sarah Park</h4>
+                <p class="scenario-character-role">Demand Gen Manager, NovaTech</p>
+              </div>
+            </div>
+
+            <div class="scenario-quote">
+              "I want to launch a podcast. Derek asked me how many leads it would generate. When I said 'probably zero direct leads,' he looked at me like I was crazy."
+            </div>
+
+            <div class="scenario-narrative">
+              <p>Sarah had been pushing for a podcast for months. She knew the audience was there—engineering leaders who spent their commutes listening to industry content. But Derek wanted leads.</p>
+
+              <p>"How do I justify the budget if we can't show ROI?" Derek asked.</p>
+
+              <p>Maya pulled up a dashboard. "Look at our self-reported attribution from the last 6 months. 34% of demo requests selected 'Podcast' when asked how they heard about us. But we don't have a podcast."</p>
+
+              <p>The room went silent.</p>
+
+              <p>"They're listening to <em>other</em> podcasts that mention us," Maya explained. "Competitors have shows. Industry analysts host us as guests. People hear about us, then Google us later. The attribution shows up as 'Direct' or 'Organic Search' in GA4, but they self-report podcasts as the actual source."</p>
+
+              <p>Sarah jumped in: "And when we gate everything, we're only capturing people ready to buy RIGHT NOW. The podcast builds our audience for next quarter, and the quarter after that."</p>
+            </div>
+
+            <div class="scenario-takeaway">
+              <div class="scenario-takeaway-header">
+                <span>💡</span> THE TAKEAWAY
+              </div>
+              <p>Lead gen feeds today's pipeline. Demand gen builds tomorrow's. If you only do lead gen, you'll eventually exhaust everyone ready to buy and wonder why the well ran dry. Both matter—but they measure differently.</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Comparison -->
+        <h3>The Two Approaches Compared</h3>
+
+        <div class="journey-comparison">
+          <div class="journey-column" style="border-top: 3px solid var(--teal);">
+            <h4 style="color: var(--teal);">📥 Lead Generation</h4>
+            <p style="margin-bottom: 1rem;"><strong>Goal:</strong> Capture contact information</p>
+            <ul class="journey-steps">
+              <li class="journey-step" style="border: none; padding: 0.5rem 0;"><span>Gated ebooks & whitepapers</span></li>
+              <li class="journey-step" style="border: none; padding: 0.5rem 0;"><span>Webinar registrations</span></li>
+              <li class="journey-step" style="border: none; padding: 0.5rem 0;"><span>Demo request forms</span></li>
+              <li class="journey-step" style="border: none; padding: 0.5rem 0;"><span>Content syndication</span></li>
+              <li class="journey-step" style="border: none; padding: 0.5rem 0;"><span>Trade show lead capture</span></li>
+            </ul>
+            <div class="journey-total" style="color: var(--teal);">
+              <strong>Metric:</strong> CPL, Lead Volume
+            </div>
+          </div>
+
+          <div class="journey-column" style="border-top: 3px solid var(--coral);">
+            <h4 style="color: var(--coral);">📣 Demand Generation</h4>
+            <p style="margin-bottom: 1rem;"><strong>Goal:</strong> Build awareness & preference</p>
+            <ul class="journey-steps">
+              <li class="journey-step" style="border: none; padding: 0.5rem 0;"><span>Ungated blog content</span></li>
+              <li class="journey-step" style="border: none; padding: 0.5rem 0;"><span>Podcasts & YouTube</span></li>
+              <li class="journey-step" style="border: none; padding: 0.5rem 0;"><span>LinkedIn thought leadership</span></li>
+              <li class="journey-step" style="border: none; padding: 0.5rem 0;"><span>Speaking & PR</span></li>
+              <li class="journey-step" style="border: none; padding: 0.5rem 0;"><span>Community building</span></li>
+            </ul>
+            <div class="journey-total" style="color: var(--coral);">
+              <strong>Metric:</strong> Brand Search, Dark Funnel
+            </div>
+          </div>
+        </div>
+
+        <div class="quick-ref">
+          <div class="quick-ref-header">
+            <span>📊</span> Key Differences
+          </div>
+          <table>
+            <thead>
+              <tr>
+                <th>Aspect</th>
+                <th>Lead Gen</th>
+                <th>Demand Gen</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><strong>Time horizon</strong></td>
+                <td>This quarter</td>
+                <td>Future quarters</td>
+              </tr>
+              <tr>
+                <td><strong>Attribution</strong></td>
+                <td>Straightforward (form fill)</td>
+                <td>Difficult (dark funnel)</td>
+              </tr>
+              <tr>
+                <td><strong>Executive appeal</strong></td>
+                <td>Easy ("500 leads")</td>
+                <td>Hard ("trust us")</td>
+              </tr>
+              <tr>
+                <td><strong>Risk</strong></td>
+                <td>Gate fatigue, annoys prospects</td>
+                <td>Budget without visible results</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <h3>Finding the Right Mix</h3>
+
+        <p>Most B2B companies need both. The ratio depends on your business model:</p>
 
         <ul>
-          <li><strong>Demand gen</strong> builds the audience and creates preference (podcast listeners, blog readers, newsletter subscribers)</li>
-          <li><strong>Lead gen</strong> captures and converts that audience when they're ready to evaluate solutions</li>
+          <li><strong>Enterprise (12-month cycles, $100K+ ACV):</strong> 70% demand gen / 30% lead gen</li>
+          <li><strong>Mid-market (3-6 month cycles):</strong> 50/50 balance</li>
+          <li><strong>SMB/PLG (30-day cycles):</strong> 30% demand gen / 70% lead gen</li>
         </ul>
 
-        <p>The ratio depends on sales cycle length, deal size, and market maturity. A company selling to enterprises with 12-month sales cycles might be 70% demand gen / 30% lead gen. A company with 30-day cycles might flip that ratio.</p>
+        <!-- Deep Dive -->
+        <details class="deep-dive">
+          <summary>Deep Dive: Measuring Demand Gen</summary>
+          <div class="deep-dive-content">
+            <p>Since demand gen doesn't produce forms fills, you need proxy metrics:</p>
 
-        <div class="callout callout-tip">
-          <strong>In practice:</strong> If someone asks "what's your cost per lead?" ask "for lead gen specifically, or overall marketing?" These should be tracked separately. And if the only metric leadership looks at is leads/MQLs, advocate for adding demand gen metrics like branded search volume, direct traffic, and self-reported attribution data.
+            <h4>Leading indicators:</h4>
+            <ul>
+              <li><strong>Branded search volume:</strong> More people searching for your company name = awareness growing</li>
+              <li><strong>Direct traffic:</strong> People typing your URL directly</li>
+              <li><strong>Self-reported attribution:</strong> "How did you hear about us?" on forms</li>
+              <li><strong>Share of voice:</strong> Mentions vs. competitors</li>
+            </ul>
+
+            <h4>How to advocate for demand gen budget:</h4>
+            <ol>
+              <li>Add "How did you hear about us?" to demo request forms</li>
+              <li>Track branded search trends over time</li>
+              <li>Show correlation between demand gen activity and future pipeline</li>
+              <li>Highlight competitors investing in brand (they know something)</li>
+            </ol>
+          </div>
+        </details>
+
+        <!-- Knowledge Check -->
+        <div class="knowledge-check" data-answer="b">
+          <div class="knowledge-check-header">
+            <span class="knowledge-check-header-icon">✅</span>
+            <span class="knowledge-check-header-title">Knowledge Check</span>
+          </div>
+          <div class="knowledge-check-body">
+            <p class="quiz-question">Your company gates all content and does 100% lead gen. Pipeline is strong this quarter, but 6sense shows your share of voice is declining. What's the likely future risk?</p>
+
+            <ul class="quiz-options">
+              <li class="quiz-option">
+                <label>
+                  <input type="radio" name="q7" value="a">
+                  <span>No risk—if pipeline is strong now, keep doing what works</span>
+                </label>
+              </li>
+              <li class="quiz-option">
+                <label>
+                  <input type="radio" name="q7" value="b">
+                  <span>You're capturing everyone ready to buy NOW but not building future demand—pipeline may dry up in 2-3 quarters</span>
+                </label>
+              </li>
+              <li class="quiz-option">
+                <label>
+                  <input type="radio" name="q7" value="c">
+                  <span>You should gate even more content to maximize leads</span>
+                </label>
+              </li>
+              <li class="quiz-option">
+                <label>
+                  <input type="radio" name="q7" value="d">
+                  <span>Share of voice doesn't matter if you're generating leads</span>
+                </label>
+              </li>
+            </ul>
+
+            <button class="quiz-btn">Check Answer</button>
+
+            <div class="quiz-feedback">
+              <div class="quiz-feedback-header"></div>
+              <p>100% lead gen means you're only capturing people in-market RIGHT NOW. With declining share of voice, fewer people will think of you when they enter the market. Today's pipeline comes from awareness built 6-12 months ago. If you're not building awareness now, you're borrowing from future quarters. This is a common trap—pipeline looks great until it suddenly doesn't.</p>
+            </div>
+          </div>
         </div>
+
+        <!-- Next Up -->
+        <a href="#content-role" class="next-up">
+          <div>
+            <div class="next-up-label">Next Up</div>
+            <div class="next-up-title">Content's Role in B2B →</div>
+          </div>
+          <span class="next-up-arrow">→</span>
+        </a>
+
       </section>
 
       <!-- Section 8: Content's Role -->
       <section id="content-role">
-        <h2>Content's Role in B2B <a href="#content-role" class="anchor-link">#</a></h2>
 
-        <p>Content is the fuel for B2B marketing. But not all content is created equal—different content types serve different purposes at different funnel stages for different personas.</p>
+        <!-- Hero Card -->
+        <div class="section-hero">
+          <div class="section-hero-icon">📝</div>
+          <div class="section-hero-content">
+            <h2>Content's Role in B2B</h2>
+            <p>The right content, for the right persona, at the right stage—not everything for everyone.</p>
+          </div>
+        </div>
 
+        <!-- TL;DR Box -->
+        <div class="tldr-box">
+          <div class="tldr-box-header">
+            <span>⚡</span> TL;DR — 30-Second Summary
+          </div>
+          <ul>
+            <li>Different content types serve different purposes—map them to funnel stages and personas</li>
+            <li><strong>Awareness:</strong> Educate on problems (blogs, podcasts), don't pitch</li>
+            <li><strong>Consideration:</strong> Help evaluate solutions (guides, webinars, whitepapers)</li>
+            <li><strong>Decision:</strong> Reduce risk and differentiate (case studies, ROI calcs, security docs)</li>
+            <li>Most companies have too much TOFU content and not enough BOFU—audit regularly</li>
+          </ul>
+        </div>
+
+        <!-- Scenario Card -->
+        <div class="scenario-card">
+          <div class="scenario-header">
+            <span class="scenario-header-icon">📍</span>
+            <span class="scenario-header-title">Scenario: The Missing Case Studies</span>
+          </div>
+          <div class="scenario-body">
+            <div class="scenario-character">
+              <div class="scenario-avatar">PS</div>
+              <div class="scenario-character-info">
+                <h4>Priya Sharma</h4>
+                <p class="scenario-character-role">Data Analyst, NovaTech</p>
+              </div>
+            </div>
+
+            <div class="scenario-quote">
+              "We have 147 blog posts and 23 ebooks. But when sales asks for case studies to share with prospects in late-stage deals... we have two. From 2019."
+            </div>
+
+            <div class="scenario-narrative">
+              <p>Priya had been analyzing content engagement across the funnel. The pattern was clear: NovaTech's content library was top-heavy.</p>
+
+              <p>"Look at this," she showed Maya. "We generate plenty of leads at the top. But when someone reaches the decision stage, they're looking for proof. Case studies, ROI calculators, competitive comparisons. We have almost nothing."</p>
+
+              <p>Maya checked the analytics. "Our pricing page has a 67% bounce rate. Nobody can find what they need to make the case internally."</p>
+
+              <p>James from Sales jumped in: "I've been asking for case studies for six months. When prospects ask 'Who else like us uses this?' I have to scramble. Meanwhile, competitors have industry-specific case studies ready to go."</p>
+
+              <p>Derek made a decision: "Next quarter, we're flipping our content ratio. Less thought leadership, more decision-stage content. Let's prioritize what helps close deals."</p>
+            </div>
+
+            <div class="scenario-takeaway">
+              <div class="scenario-takeaway-header">
+                <span>💡</span> THE TAKEAWAY
+              </div>
+              <p>Content shouldn't just attract traffic—it should help close deals. Audit your library by funnel stage. If you're drowning in awareness content but starving for decision-stage assets, fix the balance.</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Content Matrix -->
         <h3>Content Types and Their Functions</h3>
 
-        <table>
-          <thead>
-            <tr>
-              <th>Content Type</th>
-              <th>Primary Function</th>
-              <th>Best For (Stage)</th>
-              <th>Best For (Persona)</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td><strong>Blog posts</strong></td>
-              <td>SEO, education, thought leadership</td>
-              <td>Awareness, early consideration</td>
-              <td>All personas researching</td>
-            </tr>
-            <tr>
-              <td><strong>Ebooks/guides</strong></td>
-              <td>In-depth education, lead capture</td>
-              <td>Consideration</td>
-              <td>Champions, practitioners</td>
-            </tr>
-            <tr>
-              <td><strong>Whitepapers</strong></td>
-              <td>Research, credibility building</td>
-              <td>Consideration</td>
-              <td>Technical evaluators, executives</td>
-            </tr>
-            <tr>
-              <td><strong>Case studies</strong></td>
-              <td>Social proof, use case validation</td>
-              <td>Late consideration, decision</td>
-              <td>Economic buyers, champions</td>
-            </tr>
-            <tr>
-              <td><strong>Webinars</strong></td>
-              <td>Education, lead capture, nurture</td>
-              <td>Consideration</td>
-              <td>Practitioners, champions</td>
-            </tr>
-            <tr>
-              <td><strong>Product demos</strong></td>
-              <td>Show product capabilities</td>
-              <td>Decision</td>
-              <td>End users, technical evaluators</td>
-            </tr>
-            <tr>
-              <td><strong>Comparison pages</strong></td>
-              <td>Competitive differentiation</td>
-              <td>Decision</td>
-              <td>Champions building internal case</td>
-            </tr>
-            <tr>
-              <td><strong>ROI calculators</strong></td>
-              <td>Business case building</td>
-              <td>Decision</td>
-              <td>Champions, economic buyers</td>
-            </tr>
-            <tr>
-              <td><strong>Technical docs</strong></td>
-              <td>Implementation, integration details</td>
-              <td>Decision</td>
-              <td>Technical evaluators</td>
-            </tr>
-            <tr>
-              <td><strong>Security/compliance docs</strong></td>
-              <td>Risk mitigation</td>
-              <td>Decision</td>
-              <td>Blockers (security, legal)</td>
-            </tr>
-          </tbody>
-        </table>
+        <div class="quick-ref">
+          <div class="quick-ref-header">
+            <span>📋</span> Content-to-Stage-to-Persona Matrix
+          </div>
+          <table>
+            <thead>
+              <tr>
+                <th>Content Type</th>
+                <th>Function</th>
+                <th>Stage</th>
+                <th>Persona</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><strong>Blog posts</strong></td>
+                <td>SEO, education</td>
+                <td>Awareness</td>
+                <td>All</td>
+              </tr>
+              <tr>
+                <td><strong>Ebooks/Guides</strong></td>
+                <td>Deep education, lead capture</td>
+                <td>Consideration</td>
+                <td>Champions</td>
+              </tr>
+              <tr>
+                <td><strong>Webinars</strong></td>
+                <td>Education, nurture</td>
+                <td>Consideration</td>
+                <td>Practitioners</td>
+              </tr>
+              <tr>
+                <td><strong>Case studies</strong></td>
+                <td>Social proof</td>
+                <td>Decision</td>
+                <td>Economic buyers</td>
+              </tr>
+              <tr>
+                <td><strong>ROI calculators</strong></td>
+                <td>Business case</td>
+                <td>Decision</td>
+                <td>Champions, CFO</td>
+              </tr>
+              <tr>
+                <td><strong>Technical docs</strong></td>
+                <td>Integration details</td>
+                <td>Decision</td>
+                <td>Tech evaluators</td>
+              </tr>
+              <tr>
+                <td><strong>Security docs</strong></td>
+                <td>Risk mitigation</td>
+                <td>Decision</td>
+                <td>Blockers</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
 
+        <!-- Journey Mapping -->
         <h3>Mapping Content to the Buyer Journey</h3>
 
-        <p><strong>Awareness stage:</strong> Prospect doesn't know they have a problem (or doesn't know solutions exist). Content should educate on the problem space, not pitch your product.</p>
+        <p><strong>Awareness:</strong> They don't know they have a problem yet. Educate—don't pitch.</p>
         <ul>
           <li>"The State of B2B Marketing Data" (industry research)</li>
           <li>"Why Your Attribution Model is Lying to You" (problem education)</li>
         </ul>
 
-        <p><strong>Consideration stage:</strong> Prospect knows they have a problem and is evaluating solution categories. Content should help them understand what to look for.</p>
+        <p><strong>Consideration:</strong> They know the problem, evaluating categories. Help them understand what to look for.</p>
         <ul>
           <li>"How to Evaluate Marketing Analytics Platforms" (buyer's guide)</li>
           <li>"CDP vs DMP vs Data Warehouse: Which Do You Need?" (category education)</li>
         </ul>
 
-        <p><strong>Decision stage:</strong> Prospect is evaluating specific vendors. Content should differentiate your solution and reduce risk.</p>
+        <p><strong>Decision:</strong> They're comparing vendors. Differentiate and reduce risk.</p>
         <ul>
-          <li>"How Acme Corp Increased Pipeline 40% in 6 Months" (case study)</li>
-          <li>"Platform Security & Compliance Overview" (objection handling)</li>
+          <li>"How Acme Corp Increased Pipeline 40%" (case study)</li>
+          <li>"Security & Compliance Overview" (objection handling)</li>
         </ul>
 
-        <div class="callout callout-tip">
-          <strong>In practice:</strong> Audit your content library against this framework. Most B2B companies have too much top-of-funnel content and not enough bottom-of-funnel content. They have blog posts but no case studies, or case studies but no competitive comparison pages.
+        <!-- Deep Dive -->
+        <details class="deep-dive">
+          <summary>Deep Dive: Content Audit Framework</summary>
+          <div class="deep-dive-content">
+            <p>Run this audit quarterly:</p>
+
+            <h4>1. Map existing content:</h4>
+            <ul>
+              <li>List all content assets</li>
+              <li>Tag by funnel stage (TOFU/MOFU/BOFU)</li>
+              <li>Tag by persona</li>
+              <li>Note last update date</li>
+            </ul>
+
+            <h4>2. Identify gaps:</h4>
+            <ul>
+              <li>Any stage with fewer than 3 assets?</li>
+              <li>Any persona without dedicated content?</li>
+              <li>Any content older than 2 years?</li>
+            </ul>
+
+            <h4>3. Common gaps to check:</h4>
+            <ul>
+              <li>Case studies by industry vertical</li>
+              <li>Competitive comparison pages</li>
+              <li>ROI/TCO calculators</li>
+              <li>Security documentation</li>
+              <li>Technical integration guides</li>
+            </ul>
+          </div>
+        </details>
+
+        <!-- Knowledge Check -->
+        <div class="knowledge-check" data-answer="c">
+          <div class="knowledge-check-header">
+            <span class="knowledge-check-header-icon">✅</span>
+            <span class="knowledge-check-header-title">Knowledge Check</span>
+          </div>
+          <div class="knowledge-check-body">
+            <p class="quiz-question">A prospect downloads 5 blog posts but never reaches the demo request page. What content might be missing?</p>
+
+            <ul class="quiz-options">
+              <li class="quiz-option">
+                <label>
+                  <input type="radio" name="q8" value="a">
+                  <span>More blog posts—they clearly like that format</span>
+                </label>
+              </li>
+              <li class="quiz-option">
+                <label>
+                  <input type="radio" name="q8" value="b">
+                  <span>Longer ebooks with more detail</span>
+                </label>
+              </li>
+              <li class="quiz-option">
+                <label>
+                  <input type="radio" name="q8" value="c">
+                  <span>Mid-funnel content that bridges education to evaluation (buyer's guides, comparison pages)</span>
+                </label>
+              </li>
+              <li class="quiz-option">
+                <label>
+                  <input type="radio" name="q8" value="d">
+                  <span>Better CTAs on the blog posts</span>
+                </label>
+              </li>
+            </ul>
+
+            <button class="quiz-btn">Check Answer</button>
+
+            <div class="quiz-feedback">
+              <div class="quiz-feedback-header"></div>
+              <p>If prospects consume TOFU content but don't progress, you likely have a mid-funnel gap. They've learned about the problem but don't have resources to start evaluating solutions. Buyer's guides, comparison pages, and evaluation checklists help bridge from "learning" to "shopping." Without them, you've educated the market but let competitors close the deals.</p>
+            </div>
+          </div>
         </div>
 
-        <h3>Content for Different Personas</h3>
+        <!-- Next Up -->
+        <a href="#b2b-channels" class="next-up">
+          <div>
+            <div class="next-up-label">Next Up</div>
+            <div class="next-up-title">Common B2B Channels →</div>
+          </div>
+          <span class="next-up-arrow">→</span>
+        </a>
 
-        <p>The same topic requires different treatment for different audiences:</p>
-
-        <p><strong>Topic: Data integration capabilities</strong></p>
-        <ul>
-          <li><strong>For champions:</strong> "Connect all your marketing data in one place"—benefits-focused, outcome-oriented</li>
-          <li><strong>For technical evaluators:</strong> API documentation, supported integrations list, data latency specs—detailed technical specs</li>
-          <li><strong>For economic buyers:</strong> "Reduce data infrastructure costs by 30%"—ROI and efficiency angle</li>
-        </ul>
-
-        <div class="callout callout-warning">
-          <strong>Common mistake:</strong> Creating content that's too product-focused too early in the funnel. If someone is just learning about the problem space, don't pitch your product—educate them. You'll lose credibility if every piece of content is a veiled sales pitch.
-        </div>
       </section>
 
       <!-- Section 9: B2B Channels -->
       <section id="b2b-channels">
-        <h2>Common B2B Channels <a href="#b2b-channels" class="anchor-link">#</a></h2>
 
-        <p>B2B marketers use multiple channels, each with different strengths, costs, and measurement challenges.</p>
+        <!-- Hero Card -->
+        <div class="section-hero">
+          <div class="section-hero-icon">📡</div>
+          <div class="section-hero-content">
+            <h2>Common B2B Channels</h2>
+            <p>Where to reach your buyers—and what to expect from each channel.</p>
+          </div>
+        </div>
 
+        <!-- TL;DR Box -->
+        <div class="tldr-box">
+          <div class="tldr-box-header">
+            <span>⚡</span> TL;DR — 30-Second Summary
+          </div>
+          <ul>
+            <li><strong>Paid Search:</strong> High intent, capture active demand ($5-50+ CPC)</li>
+            <li><strong>LinkedIn:</strong> Precise targeting, expensive ($8-15+ CPC)</li>
+            <li><strong>Content Syndication:</strong> Volume at scale, needs heavy qualification (20-40% garbage rate)</li>
+            <li><strong>SEO:</strong> Long-term investment, 6-12 months to results, compounds over time</li>
+            <li>Track by pipeline contribution, not just CPL—cheap leads that don't convert are worthless</li>
+          </ul>
+        </div>
+
+        <!-- Scenario Card -->
+        <div class="scenario-card">
+          <div class="scenario-header">
+            <span class="scenario-header-icon">📍</span>
+            <span class="scenario-header-title">Scenario: The Channel Mix Crisis</span>
+          </div>
+          <div class="scenario-body">
+            <div class="scenario-character">
+              <div class="scenario-avatar">DW</div>
+              <div class="scenario-character-info">
+                <h4>Derek Williams</h4>
+                <p class="scenario-character-role">VP of Marketing, NovaTech</p>
+              </div>
+            </div>
+
+            <div class="scenario-quote">
+              "Content syndication is generating leads at $35 each. LinkedIn is $120 per lead. Why are we spending anything on LinkedIn?"
+            </div>
+
+            <div class="scenario-narrative">
+              <p>Maya had been dreading this conversation. Derek was looking at CPL in isolation, and the numbers looked damning for LinkedIn.</p>
+
+              <p>"Let me show you the full picture," Maya said, pulling up her attribution dashboard. "Content syndication leads convert to SQL at 8%. LinkedIn converts at 34%. By the time we get to pipeline, content syndication costs $437 per SQL. LinkedIn costs $353."</p>
+
+              <p>Derek leaned forward. "So the cheap leads are actually more expensive?"</p>
+
+              <p>"Worse," Maya continued. "Content syndication SQLs close at 12%. LinkedIn SQLs close at 28%. Content syndication's cost per customer is $3,641. LinkedIn's is $1,261. LinkedIn is nearly 3x more efficient."</p>
+
+              <p>James from Sales nodded. "LinkedIn leads know who we are before I call. Syndication leads have no idea why they're hearing from me."</p>
+            </div>
+
+            <div class="scenario-takeaway">
+              <div class="scenario-takeaway-header">
+                <span>💡</span> THE TAKEAWAY
+              </div>
+              <p>CPL is a vanity metric. What matters is cost per pipeline dollar or cost per customer. A channel that looks cheap at lead gen might be expensive by the time you account for conversion rates through the full funnel.</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Channel Overview -->
         <h3>Channel Overview</h3>
 
-        <table>
-          <thead>
-            <tr>
-              <th>Channel</th>
-              <th>Primary Use</th>
-              <th>Cost Model</th>
-              <th>B2B Strengths</th>
-              <th>B2B Challenges</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td><strong>Paid Search (Google Ads)</strong></td>
-              <td>Capture high-intent demand</td>
-              <td>CPC ($5-50+ for B2B keywords)</td>
-              <td>High intent, measurable, scalable</td>
-              <td>Expensive keywords, limited volume for niche</td>
-            </tr>
-            <tr>
-              <td><strong>LinkedIn Ads</strong></td>
-              <td>Reach specific professional audiences</td>
-              <td>CPC ($8-15+) or CPM</td>
-              <td>Precise firmographic/job targeting</td>
-              <td>Expensive, lower intent than search</td>
-            </tr>
-            <tr>
-              <td><strong>Content Syndication</strong></td>
-              <td>Lead generation at scale</td>
-              <td>CPL ($20-80+)</td>
-              <td>Predictable lead volume</td>
-              <td>Lower quality, requires heavy qualification</td>
-            </tr>
-            <tr>
-              <td><strong>Email Marketing</strong></td>
-              <td>Nurture existing leads, customer marketing</td>
-              <td>Low marginal cost</td>
-              <td>Owned channel, high ROI</td>
-              <td>Requires existing audience, deliverability</td>
-            </tr>
-            <tr>
-              <td><strong>Organic Search (SEO)</strong></td>
-              <td>Long-term traffic, thought leadership</td>
-              <td>Content creation + time</td>
-              <td>Compounding returns, high intent</td>
-              <td>Slow, competitive, requires expertise</td>
-            </tr>
-            <tr>
-              <td><strong>Events (in-person)</strong></td>
-              <td>Relationship building, pipeline acceleration</td>
-              <td>$$$$ (booth + travel + time)</td>
-              <td>High engagement, multi-threading</td>
-              <td>Expensive, hard to measure, time-intensive</td>
-            </tr>
-            <tr>
-              <td><strong>Webinars</strong></td>
-              <td>Education, lead gen, nurture</td>
-              <td>Moderate (platform + promotion)</td>
-              <td>Scalable, content creation, lead data</td>
-              <td>Attendance rates declining, often low intent</td>
-            </tr>
-            <tr>
-              <td><strong>Podcast / Video</strong></td>
-              <td>Demand gen, thought leadership</td>
-              <td>Production + promotion</td>
-              <td>Builds trust, brand awareness</td>
-              <td>Hard to attribute, slow to build audience</td>
-            </tr>
-          </tbody>
-        </table>
+        <div class="quick-ref">
+          <div class="quick-ref-header">
+            <span>📊</span> B2B Channel Comparison
+          </div>
+          <table>
+            <thead>
+              <tr>
+                <th>Channel</th>
+                <th>Use Case</th>
+                <th>Cost</th>
+                <th>Strength</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><strong>Paid Search</strong></td>
+                <td>Capture high-intent demand</td>
+                <td>$5-50+ CPC</td>
+                <td>High intent, measurable</td>
+              </tr>
+              <tr>
+                <td><strong>LinkedIn</strong></td>
+                <td>Target specific audiences</td>
+                <td>$8-15+ CPC</td>
+                <td>Precise firmographic targeting</td>
+              </tr>
+              <tr>
+                <td><strong>Content Syndi.</strong></td>
+                <td>Lead volume at scale</td>
+                <td>$20-80+ CPL</td>
+                <td>Predictable volume</td>
+              </tr>
+              <tr>
+                <td><strong>Email</strong></td>
+                <td>Nurture, customer marketing</td>
+                <td>Low marginal cost</td>
+                <td>Owned channel, high ROI</td>
+              </tr>
+              <tr>
+                <td><strong>SEO</strong></td>
+                <td>Long-term traffic</td>
+                <td>Content + time</td>
+                <td>Compounds, high intent</td>
+              </tr>
+              <tr>
+                <td><strong>Events</strong></td>
+                <td>Relationship building</td>
+                <td>$$$$</td>
+                <td>High engagement, enterprise</td>
+              </tr>
+              <tr>
+                <td><strong>Webinars</strong></td>
+                <td>Education, lead gen</td>
+                <td>Moderate</td>
+                <td>Scalable, lead data</td>
+              </tr>
+              <tr>
+                <td><strong>Podcast/Video</strong></td>
+                <td>Demand gen, brand</td>
+                <td>Production</td>
+                <td>Builds trust</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
 
+        <!-- When to Use -->
         <h3>When to Use Each Channel</h3>
 
-        <p><strong>Paid Search:</strong> Use when there's existing search demand for your category. If people are actively searching "marketing attribution software," be there. Works best for bottom-of-funnel capture.</p>
+        <p><strong>Paid Search:</strong> When people actively search for your category. High intent, but expensive B2B keywords ($30-50+ for competitive terms).</p>
 
-        <p><strong>LinkedIn:</strong> Use for top-of-funnel awareness and mid-funnel nurture with specific audiences. If you know exactly who you're targeting (by title, company size, industry), LinkedIn lets you reach them directly.</p>
+        <p><strong>LinkedIn:</strong> When you need to reach specific titles/industries. Lower intent than search, but unmatched targeting precision.</p>
 
-        <p><strong>Content Syndication:</strong> Use when you need lead volume at scale and have capacity to qualify aggressively. Expect 20-40% of leads to be garbage. Build this into your model.</p>
+        <p><strong>Content Syndication:</strong> When you need volume and have qualification capacity. Expect 20-40% garbage—build it into your model.</p>
 
-        <p><strong>Email:</strong> Use for everything—nurture, product updates, event promotion, customer marketing. It's your owned channel. Segment and personalize aggressively.</p>
+        <p><strong>SEO:</strong> Start now—it takes 6-12 months. Focus on high-intent keywords first ("marketing attribution software" not "what is marketing").</p>
 
-        <p><strong>SEO:</strong> Use as a long-term investment. Start now—it takes 6-12 months to see results. Focus on high-intent keywords first, then broaden.</p>
+        <p><strong>Events:</strong> For enterprise deals ($100K+ ACV) where relationships matter. Hard to make ROI work for SMB.</p>
 
-        <p><strong>Events:</strong> Use for enterprise deals where relationships matter. If your ACV is $100K+, events ROI can work. If ACV is $10K, the math is harder.</p>
+        <!-- Deep Dive -->
+        <details class="deep-dive">
+          <summary>Deep Dive: Channel Performance Benchmarks</summary>
+          <div class="deep-dive-content">
+            <p>Know what "good" looks like for each channel:</p>
 
-        <div class="callout callout-info">
-          <strong>Why this matters for analysts:</strong> You'll need to understand the typical performance expectations for each channel. A 1% click-through rate on LinkedIn might be good; on email, it's terrible. A $50 cost per lead from content syndication is standard; from organic, it's infinite (but that's not how you measure organic).
+            <table>
+              <thead>
+                <tr>
+                  <th>Channel</th>
+                  <th>Metric</th>
+                  <th>Benchmark</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>Google Ads</td>
+                  <td>CTR</td>
+                  <td>3-5% (search)</td>
+                </tr>
+                <tr>
+                  <td>LinkedIn</td>
+                  <td>CTR</td>
+                  <td>0.4-0.8%</td>
+                </tr>
+                <tr>
+                  <td>Email</td>
+                  <td>Open rate</td>
+                  <td>20-30%</td>
+                </tr>
+                <tr>
+                  <td>Email</td>
+                  <td>CTR</td>
+                  <td>2-5%</td>
+                </tr>
+                <tr>
+                  <td>Webinar</td>
+                  <td>Attendance rate</td>
+                  <td>35-45% of registrants</td>
+                </tr>
+              </tbody>
+            </table>
+
+            <h4>Channel mix by ACV:</h4>
+            <ul>
+              <li><strong>$10K ACV:</strong> Focus on scalable digital (paid, SEO, content)</li>
+              <li><strong>$50K ACV:</strong> Add LinkedIn, webinars, targeted programs</li>
+              <li><strong>$100K+ ACV:</strong> Events, ABM, executive dinners become viable</li>
+            </ul>
+          </div>
+        </details>
+
+        <!-- Knowledge Check -->
+        <div class="knowledge-check" data-answer="d">
+          <div class="knowledge-check-header">
+            <span class="knowledge-check-header-icon">✅</span>
+            <span class="knowledge-check-header-title">Knowledge Check</span>
+          </div>
+          <div class="knowledge-check-body">
+            <p class="quiz-question">Channel A: $30 CPL, 15% MQL→SQL rate. Channel B: $90 CPL, 50% MQL→SQL rate. Which is more efficient for pipeline generation?</p>
+
+            <ul class="quiz-options">
+              <li class="quiz-option">
+                <label>
+                  <input type="radio" name="q9" value="a">
+                  <span>Channel A—it's 3x cheaper per lead</span>
+                </label>
+              </li>
+              <li class="quiz-option">
+                <label>
+                  <input type="radio" name="q9" value="b">
+                  <span>Channel B—quality matters more than volume</span>
+                </label>
+              </li>
+              <li class="quiz-option">
+                <label>
+                  <input type="radio" name="q9" value="c">
+                  <span>They're about equal</span>
+                </label>
+              </li>
+              <li class="quiz-option">
+                <label>
+                  <input type="radio" name="q9" value="d">
+                  <span>Channel B is more efficient: $180/SQL vs $200/SQL</span>
+                </label>
+              </li>
+            </ul>
+
+            <button class="quiz-btn">Check Answer</button>
+
+            <div class="quiz-feedback">
+              <div class="quiz-feedback-header"></div>
+              <p>Channel A: $30 ÷ 15% = $200 per SQL. Channel B: $90 ÷ 50% = $180 per SQL. Despite being 3x more expensive per lead, Channel B is actually more efficient when you factor in conversion rates. This is why evaluating channels by CPL alone is misleading—always calculate cost per qualified outcome.</p>
+            </div>
+          </div>
         </div>
 
-        <h3>Channel Mix Considerations</h3>
+        <!-- Next Up -->
+        <a href="#key-metrics" class="next-up">
+          <div>
+            <div class="next-up-label">Next Up</div>
+            <div class="next-up-title">Key Metrics →</div>
+          </div>
+          <span class="next-up-arrow">→</span>
+        </a>
 
-        <p>Your channel mix depends on:</p>
-        <ul>
-          <li><strong>Deal size:</strong> Higher ACV supports more expensive channels</li>
-          <li><strong>Sales cycle length:</strong> Longer cycles need more nurture channels</li>
-          <li><strong>Market maturity:</strong> Established categories have search volume; emerging categories need education-focused channels</li>
-          <li><strong>Target audience:</strong> Where do your buyers spend time? (Developers: communities, Stack Overflow. Executives: LinkedIn, events.)</li>
-        </ul>
-
-        <div class="callout callout-tip">
-          <strong>In practice:</strong> Track channel performance at every funnel stage, not just at lead gen. A channel that generates cheap leads that never convert to pipeline is worthless. A channel with expensive leads that close at 50% might be your best performer.
-        </div>
       </section>
 
       <!-- Section 10: Key Metrics -->
       <section id="key-metrics">
-        <h2>Key Metrics <a href="#key-metrics" class="anchor-link">#</a></h2>
+        <!-- Hero Card -->
+        <div class="hero-card">
+          <div class="hero-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M3 3v18h18"/>
+              <path d="M18.7 8l-5.1 5.2-2.8-2.7L7 14.3"/>
+            </svg>
+          </div>
+          <h2>Key Metrics <a href="#key-metrics" class="anchor-link">#</a></h2>
+          <p class="hero-subtitle">The numbers you'll calculate, report on, and be asked about constantly</p>
+        </div>
 
-        <p>These are the metrics you'll calculate, report on, and be asked about constantly. Know how to calculate each one and what "good" looks like.</p>
+        <!-- TL;DR Box -->
+        <div class="tldr-box">
+          <div class="tldr-header">
+            <span class="tldr-icon">
+              <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <circle cx="12" cy="12" r="10"/>
+                <path d="M12 16v-4"/>
+                <path d="M12 8h.01"/>
+              </svg>
+            </span>
+            <span class="tldr-title">TL;DR</span>
+          </div>
+          <ul class="tldr-list">
+            <li><strong>Funnel metrics</strong> track volume (leads, MQLs, SQLs) and conversion rates between stages</li>
+            <li><strong>Efficiency metrics</strong> (CAC, LTV, LTV:CAC ratio) show if you're acquiring customers profitably</li>
+            <li><strong>Marketing-specific metrics</strong> (CPL, pipeline sourced/influenced) prove marketing's revenue impact</li>
+            <li><strong>3:1 to 5:1 LTV:CAC</strong> is the healthy range - lower means spending too much, higher means underinvesting</li>
+          </ul>
+        </div>
+
+        <!-- Scenario Card -->
+        <div class="scenario-card">
+          <div class="scenario-header">
+            <span class="scenario-icon">
+              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/>
+                <circle cx="9" cy="7" r="4"/>
+                <path d="M22 21v-2a4 4 0 0 0-3-3.87"/>
+                <path d="M16 3.13a4 4 0 0 1 0 7.75"/>
+              </svg>
+            </span>
+            <span class="scenario-label">NovaTech Scenario</span>
+          </div>
+          <div class="scenario-content">
+            <p><span class="role-tag role-mops">Maya Chen (MOps)</span> has her quarterly board prep meeting in two days. The CMO asks: "I need a slide showing our unit economics - CAC, LTV, payback period. And compare it to last quarter."</p>
+            <p>Maya knows exactly where to pull each number and how to calculate them. She also knows to include <em>full</em> CAC (not just marketing costs) and to add context on why the numbers changed. Her dashboard is set up to answer these questions in minutes, not hours.</p>
+            <p><strong>Your goal:</strong> Build the same muscle memory. Know what each metric means, how to calculate it, what "good" looks like, and where the gotchas hide.</p>
+          </div>
+        </div>
 
         <h3>Funnel Metrics</h3>
+
+        <!-- Quick Reference: Conversion Rate Benchmarks -->
+        <div class="quick-reference">
+          <div class="quick-reference-header">
+            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M14.5 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7.5L14.5 2z"/>
+              <polyline points="14 2 14 8 20 8"/>
+            </svg>
+            <span>Conversion Rate Benchmarks</span>
+          </div>
+          <div class="quick-reference-content">
+            <table>
+              <thead>
+                <tr>
+                  <th>Stage Transition</th>
+                  <th>Typical Range</th>
+                  <th>Good</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>Lead → MQL</td>
+                  <td>10-30%</td>
+                  <td>&gt;25%</td>
+                </tr>
+                <tr>
+                  <td>MQL → SQL</td>
+                  <td>40-70%</td>
+                  <td>&gt;60%</td>
+                </tr>
+                <tr>
+                  <td>SQL → Opportunity</td>
+                  <td>50-70%</td>
+                  <td>&gt;60%</td>
+                </tr>
+                <tr>
+                  <td>Opportunity → Closed Won</td>
+                  <td>20-35%</td>
+                  <td>&gt;30%</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
 
         <h4>Conversion Rates</h4>
         <p>The percentage of records that progress from one stage to the next.</p>
@@ -1335,39 +3455,6 @@ MQL to SQL Rate = SQLs / MQLs × 100
 If you had 200 MQLs and 80 became SQLs: 80/200 = 40% conversion rate</code></pre>
         </div>
 
-        <p><strong>Benchmarks:</strong></p>
-        <table>
-          <thead>
-            <tr>
-              <th>Stage Transition</th>
-              <th>Typical Range</th>
-              <th>Good</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td>Lead → MQL</td>
-              <td>10-30%</td>
-              <td>&gt;25%</td>
-            </tr>
-            <tr>
-              <td>MQL → SQL</td>
-              <td>40-70%</td>
-              <td>&gt;60%</td>
-            </tr>
-            <tr>
-              <td>SQL → Opportunity</td>
-              <td>50-70%</td>
-              <td>&gt;60%</td>
-            </tr>
-            <tr>
-              <td>Opportunity → Closed Won</td>
-              <td>20-35%</td>
-              <td>&gt;30%</td>
-            </tr>
-          </tbody>
-        </table>
-
         <h4>Pipeline Velocity</h4>
         <p>How fast deals move through your pipeline. Measured in days per stage or overall cycle time.</p>
 
@@ -1380,7 +3467,40 @@ Average Sales Cycle = Sum of all cycle lengths / Number of closed deals
 Stage Velocity = Average days spent in each stage</code></pre>
         </div>
 
-        <p><strong>Benchmarks:</strong> Varies wildly by deal size and segment. SMB might be 30-60 days. Mid-market: 60-120 days. Enterprise: 120-365+ days.</p>
+        <!-- Quick Reference: Sales Cycle Benchmarks -->
+        <div class="quick-reference">
+          <div class="quick-reference-header">
+            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <circle cx="12" cy="12" r="10"/>
+              <polyline points="12 6 12 12 16 14"/>
+            </svg>
+            <span>Sales Cycle Benchmarks by Segment</span>
+          </div>
+          <div class="quick-reference-content">
+            <table>
+              <thead>
+                <tr>
+                  <th>Segment</th>
+                  <th>Typical Cycle Length</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>SMB</td>
+                  <td>30-60 days</td>
+                </tr>
+                <tr>
+                  <td>Mid-Market</td>
+                  <td>60-120 days</td>
+                </tr>
+                <tr>
+                  <td>Enterprise</td>
+                  <td>120-365+ days</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
 
         <h3>Efficiency Metrics</h3>
 
@@ -1434,12 +3554,43 @@ CAC = $26,000
 LTV:CAC = $200,000 / $26,000 = 7.7:1</code></pre>
         </div>
 
-        <p><strong>Benchmarks:</strong></p>
-        <ul>
-          <li><strong>&lt;3:1</strong> - You're spending too much to acquire customers. Unsustainable.</li>
-          <li><strong>3:1 to 5:1</strong> - Healthy range for most B2B companies.</li>
-          <li><strong>&gt;5:1</strong> - You might be under-investing in growth. Could acquire more customers.</li>
-        </ul>
+        <!-- Quick Reference: LTV:CAC Interpretation -->
+        <div class="quick-reference">
+          <div class="quick-reference-header">
+            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/>
+            </svg>
+            <span>LTV:CAC Ratio Interpretation</span>
+          </div>
+          <div class="quick-reference-content">
+            <table>
+              <thead>
+                <tr>
+                  <th>Ratio</th>
+                  <th>Interpretation</th>
+                  <th>Action</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>&lt;3:1</td>
+                  <td>Spending too much to acquire</td>
+                  <td>Reduce CAC or increase retention</td>
+                </tr>
+                <tr>
+                  <td>3:1 - 5:1</td>
+                  <td>Healthy range</td>
+                  <td>Maintain current approach</td>
+                </tr>
+                <tr>
+                  <td>&gt;5:1</td>
+                  <td>Under-investing in growth</td>
+                  <td>Could spend more to acquire</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
 
         <h4>CAC Payback Period</h4>
         <p>How long until you recover the cost of acquiring a customer.</p>
@@ -1460,52 +3611,35 @@ CAC Payback = $26,000 / ($50,000 × 0.80) = 0.65 years = ~8 months</code></pre>
 
         <h3>Marketing-Specific Metrics</h3>
 
-        <h4>Cost Per Lead (CPL)</h4>
+        <h4>Cost Per Lead (CPL) & Cost Per MQL</h4>
 
         <div class="code-block" data-language="formula">
           <button class="copy-btn">Copy</button>
           <pre><code>CPL = Marketing Spend on Channel / Leads Generated
 
+Cost per MQL = Marketing Spend / MQLs Generated
+            (or) CPL / Lead-to-MQL Conversion Rate
+
 Example:
 LinkedIn spend: $50,000
 Leads from LinkedIn: 500
+Lead-to-MQL rate: 20%
 
-CPL = $50,000 / 500 = $100 per lead</code></pre>
-        </div>
-
-        <p><strong>Benchmarks:</strong> Varies enormously by channel and vertical. B2B SaaS: $50-200 typical for paid channels. Enterprise: $200-500+.</p>
-
-        <h4>Cost Per MQL</h4>
-
-        <div class="code-block" data-language="formula">
-          <button class="copy-btn">Copy</button>
-          <pre><code>Cost per MQL = Marketing Spend / MQLs Generated
-
-Or: CPL / Lead-to-MQL Conversion Rate
-
-Example:
-CPL = $100
-Lead-to-MQL rate = 20%
-
+CPL = $50,000 / 500 = $100 per lead
 Cost per MQL = $100 / 0.20 = $500 per MQL</code></pre>
         </div>
 
-        <h4>Marketing-Sourced Pipeline</h4>
-        <p>Total pipeline value from opportunities where marketing generated the initial lead.</p>
+        <p><strong>Benchmarks:</strong> B2B SaaS CPL: $50-200 typical for paid channels. Enterprise: $200-500+.</p>
+
+        <h4>Marketing-Sourced vs. Marketing-Influenced Pipeline</h4>
 
         <div class="code-block" data-language="formula">
           <button class="copy-btn">Copy</button>
-          <pre><code>Marketing-Sourced Pipeline = Sum of opportunity values where 
-                             opportunity source = marketing channel</code></pre>
-        </div>
+          <pre><code>Marketing-Sourced Pipeline = Sum of opportunity values where
+                             opportunity source = marketing channel
 
-        <h4>Marketing-Influenced Pipeline</h4>
-        <p>Total pipeline value from opportunities where marketing touched any contact at the account, regardless of who sourced the initial opportunity.</p>
-
-        <div class="code-block" data-language="formula">
-          <button class="copy-btn">Copy</button>
-          <pre><code>Marketing-Influenced Pipeline = Sum of opportunity values where 
-                                any contact at the account engaged 
+Marketing-Influenced Pipeline = Sum of opportunity values where
+                                any contact at the account engaged
                                 with marketing before opportunity close</code></pre>
         </div>
 
@@ -1513,55 +3647,186 @@ Cost per MQL = $100 / 0.20 = $500 per MQL</code></pre>
           <strong>Why this matters for analysts:</strong> Marketing-influenced is always higher than marketing-sourced. Some companies report both; others only report one. Know which metric is being discussed and be consistent. Marketing-sourced is more conservative; marketing-influenced captures more of marketing's actual impact but can be gamed.
         </div>
 
-        <h3>Building Your Metrics Dashboard</h3>
-
-        <p>A good B2B marketing dashboard includes:</p>
-
-        <table>
-          <thead>
-            <tr>
-              <th>Metric Category</th>
-              <th>Metrics</th>
-              <th>Update Frequency</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td><strong>Volume</strong></td>
-              <td>Leads, MQLs, SQLs, Opportunities, Closed Won</td>
-              <td>Daily/Weekly</td>
-            </tr>
-            <tr>
-              <td><strong>Conversion</strong></td>
-              <td>Stage-by-stage conversion rates</td>
-              <td>Weekly</td>
-            </tr>
-            <tr>
-              <td><strong>Velocity</strong></td>
-              <td>Stage duration, overall cycle time</td>
-              <td>Monthly</td>
-            </tr>
-            <tr>
-              <td><strong>Efficiency</strong></td>
-              <td>CPL, Cost per MQL, CAC (blended and by channel)</td>
-              <td>Monthly</td>
-            </tr>
-            <tr>
-              <td><strong>Pipeline</strong></td>
-              <td>Sourced pipeline, influenced pipeline, coverage ratio</td>
-              <td>Weekly</td>
-            </tr>
-            <tr>
-              <td><strong>Revenue</strong></td>
-              <td>Closed-won, ACV, LTV:CAC, payback period</td>
-              <td>Monthly/Quarterly</td>
-            </tr>
-          </tbody>
-        </table>
-
-        <div class="callout callout-success">
-          <strong>Key takeaway:</strong> Metrics are only useful if they drive action. For each metric you report, know: What would we do differently if this number changed? If the answer is "nothing," reconsider whether you need it.
+        <!-- Quick Reference: Dashboard Metrics -->
+        <div class="quick-reference">
+          <div class="quick-reference-header">
+            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <rect x="3" y="3" width="18" height="18" rx="2" ry="2"/>
+              <line x1="3" y1="9" x2="21" y2="9"/>
+              <line x1="9" y1="21" x2="9" y2="9"/>
+            </svg>
+            <span>Dashboard Metrics at a Glance</span>
+          </div>
+          <div class="quick-reference-content">
+            <table>
+              <thead>
+                <tr>
+                  <th>Category</th>
+                  <th>Key Metrics</th>
+                  <th>Frequency</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>Volume</td>
+                  <td>Leads, MQLs, SQLs, Opps, Closed Won</td>
+                  <td>Daily/Weekly</td>
+                </tr>
+                <tr>
+                  <td>Conversion</td>
+                  <td>Stage-by-stage rates</td>
+                  <td>Weekly</td>
+                </tr>
+                <tr>
+                  <td>Velocity</td>
+                  <td>Stage duration, cycle time</td>
+                  <td>Monthly</td>
+                </tr>
+                <tr>
+                  <td>Efficiency</td>
+                  <td>CPL, Cost per MQL, CAC</td>
+                  <td>Monthly</td>
+                </tr>
+                <tr>
+                  <td>Pipeline</td>
+                  <td>Sourced, influenced, coverage</td>
+                  <td>Weekly</td>
+                </tr>
+                <tr>
+                  <td>Revenue</td>
+                  <td>Closed-won, ACV, LTV:CAC</td>
+                  <td>Monthly/Quarterly</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
         </div>
+
+        <!-- Deep Dive Accordion -->
+        <details class="deep-dive">
+          <summary class="deep-dive-toggle">
+            <span class="deep-dive-icon">
+              <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <circle cx="11" cy="11" r="8"/>
+                <path d="m21 21-4.3-4.3"/>
+                <path d="M11 8v6"/>
+                <path d="M8 11h6"/>
+              </svg>
+            </span>
+            Deep Dive: The Metrics That Actually Get You Promoted
+          </summary>
+          <div class="deep-dive-content">
+            <p>Every metric above matters, but some have outsized impact on your career. Here's the hierarchy:</p>
+
+            <h4>Tier 1: The Board-Level Metrics</h4>
+            <p>These are what executives care about:</p>
+            <ul>
+              <li><strong>Pipeline coverage ratio:</strong> Open pipeline ÷ Revenue target. 3x-4x coverage is healthy.</li>
+              <li><strong>LTV:CAC:</strong> Proves the business model works.</li>
+              <li><strong>Marketing-sourced revenue:</strong> Hard proof of marketing's value.</li>
+            </ul>
+
+            <h4>Tier 2: The Optimization Levers</h4>
+            <p>These help you find problems and opportunities:</p>
+            <ul>
+              <li><strong>Stage conversion rates:</strong> Where is the funnel leaking?</li>
+              <li><strong>CPL by channel:</strong> Where should we invest more/less?</li>
+              <li><strong>Velocity by segment:</strong> Which deals close fastest?</li>
+            </ul>
+
+            <h4>Tier 3: Diagnostic Metrics</h4>
+            <p>Useful for troubleshooting but not for reporting:</p>
+            <ul>
+              <li>Email open/click rates</li>
+              <li>Page views per session</li>
+              <li>Form completion rates</li>
+            </ul>
+
+            <h4>The "No Vanity Metrics" Rule</h4>
+            <p>For every metric you report, ask: "If this number changed, what would we do differently?" If the answer is "nothing" or "I don't know," it's a vanity metric. Kill it.</p>
+
+            <p><strong>Examples of vanity metrics masquerading as real metrics:</strong></p>
+            <ul>
+              <li>Total website traffic (unless you can tie it to pipeline)</li>
+              <li>Social media followers (unless they convert)</li>
+              <li>Email list size (unengaged subscribers are worthless)</li>
+              <li>Number of MQLs (if SQL rate is terrible)</li>
+            </ul>
+          </div>
+        </details>
+
+        <!-- Knowledge Check -->
+        <div class="knowledge-check" data-answer="b">
+          <div class="knowledge-check-header">
+            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <circle cx="12" cy="12" r="10"/>
+              <path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"/>
+              <path d="M12 17h.01"/>
+            </svg>
+            Knowledge Check
+          </div>
+          <p class="knowledge-check-question">Your company's LTV:CAC ratio is 8:1. Based on standard benchmarks, what does this likely indicate?</p>
+          <div class="quiz-options">
+            <label class="quiz-option">
+              <input type="radio" name="metrics-quiz" value="a">
+              <span>The company is overspending on customer acquisition</span>
+            </label>
+            <label class="quiz-option">
+              <input type="radio" name="metrics-quiz" value="b">
+              <span>The company could be investing more in growth and acquisition</span>
+            </label>
+            <label class="quiz-option">
+              <input type="radio" name="metrics-quiz" value="c">
+              <span>The company has achieved the ideal unit economics</span>
+            </label>
+            <label class="quiz-option">
+              <input type="radio" name="metrics-quiz" value="d">
+              <span>Customer retention is too low</span>
+            </label>
+          </div>
+          <button class="quiz-btn">Check Answer</button>
+          <div class="quiz-feedback">
+            <p class="feedback-correct">Correct! An LTV:CAC ratio above 5:1 suggests under-investment in growth. The company is being too conservative with acquisition spending and could acquire more customers profitably.</p>
+            <p class="feedback-incorrect">Not quite. An 8:1 LTV:CAC ratio is above the "healthy" range of 3:1-5:1. This doesn't mean the business is unhealthy, but it does suggest the company could afford to spend more on acquisition while still maintaining profitable unit economics.</p>
+          </div>
+        </div>
+
+        <!-- Guide Completion Card -->
+        <div class="hero-card" style="background: linear-gradient(135deg, var(--teal), var(--navy)); margin-top: 3rem;">
+          <div class="hero-icon" style="color: var(--amber);">
+            <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/>
+              <polyline points="22 4 12 14.01 9 11.01"/>
+            </svg>
+          </div>
+          <h2 style="color: white;">Guide 1 Complete!</h2>
+          <p class="hero-subtitle" style="color: rgba(255,255,255,0.9);">You've completed B2B Marketing Fundamentals</p>
+          <div style="background: rgba(255,255,255,0.1); border-radius: 8px; padding: 1.5rem; margin-top: 1.5rem; text-align: left;">
+            <p style="color: white; margin-bottom: 1rem;"><strong>You now understand:</strong></p>
+            <ul style="color: rgba(255,255,255,0.9); margin: 0; padding-left: 1.5rem;">
+              <li>How B2B differs from B2C and why it matters</li>
+              <li>ICPs, personas, and the buying committee</li>
+              <li>The B2B funnel and lead lifecycle stages</li>
+              <li>Sales & marketing alignment through SLAs</li>
+              <li>Demand gen vs. lead gen strategies</li>
+              <li>Content's role and key B2B channels</li>
+              <li>The metrics that prove marketing's impact</li>
+            </ul>
+          </div>
+        </div>
+
+        <!-- Next Guide Teaser -->
+        <div class="next-up-link" style="margin-top: 2rem;">
+          <a href="guide-2-martech-stack-abm.html" class="next-up-content">
+            <span class="next-up-label">Continue Learning</span>
+            <div class="next-up-section">
+              <span class="next-up-number">Guide 2</span>
+              <span class="next-up-title">Martech Stack & ABM</span>
+            </div>
+            <span class="next-up-arrow">→</span>
+          </a>
+        </div>
+
       </section>
 
       <footer class="footer">
@@ -1621,6 +3886,88 @@ Cost per MQL = $100 / 0.20 = $500 per MQL</code></pre>
 
     window.addEventListener('scroll', updateActiveNav);
     updateActiveNav();
+
+    // Progress Tracker
+    function updateProgressBar() {
+      const winScroll = document.body.scrollTop || document.documentElement.scrollTop;
+      const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+      const scrolled = (winScroll / height) * 100;
+      document.getElementById('progressBar').style.width = scrolled + '%';
+    }
+
+    window.addEventListener('scroll', updateProgressBar);
+    updateProgressBar();
+
+    // Knowledge Check Quiz System
+    function initQuizzes() {
+      document.querySelectorAll('.knowledge-check').forEach(quiz => {
+        const btn = quiz.querySelector('.quiz-btn');
+        const options = quiz.querySelectorAll('.quiz-option');
+        const feedback = quiz.querySelector('.quiz-feedback');
+        const correctAnswer = quiz.dataset.answer;
+
+        btn.addEventListener('click', () => {
+          const selected = quiz.querySelector('input[type="radio"]:checked');
+          if (!selected) return;
+
+          const selectedValue = selected.value;
+          const isCorrect = selectedValue === correctAnswer;
+
+          // Clear previous states
+          options.forEach(opt => {
+            opt.classList.remove('correct', 'incorrect');
+          });
+
+          // Mark selected option
+          const selectedOption = selected.closest('.quiz-option');
+          selectedOption.classList.add(isCorrect ? 'correct' : 'incorrect');
+
+          // If incorrect, also show the correct answer
+          if (!isCorrect) {
+            options.forEach(opt => {
+              const input = opt.querySelector('input');
+              if (input.value === correctAnswer) {
+                opt.classList.add('correct');
+              }
+            });
+          }
+
+          // Show feedback
+          feedback.classList.remove('correct', 'incorrect');
+          feedback.classList.add('show', isCorrect ? 'correct' : 'incorrect');
+
+          // Update feedback content
+          const feedbackHeader = feedback.querySelector('.quiz-feedback-header');
+          feedbackHeader.innerHTML = isCorrect
+            ? '✅ Correct!'
+            : '❌ Not quite right';
+
+          // Disable further interaction
+          btn.disabled = true;
+          options.forEach(opt => {
+            opt.querySelector('input').disabled = true;
+            opt.querySelector('label').style.cursor = 'default';
+          });
+        });
+      });
+    }
+
+    // Initialize quizzes when DOM is ready
+    document.addEventListener('DOMContentLoaded', initQuizzes);
+
+    // Smooth scroll for anchor links
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+      anchor.addEventListener('click', function(e) {
+        e.preventDefault();
+        const target = document.querySelector(this.getAttribute('href'));
+        if (target) {
+          target.scrollIntoView({
+            behavior: 'smooth',
+            block: 'start'
+          });
+        }
+      });
+    });
   </script>
 </body>
 </html>
