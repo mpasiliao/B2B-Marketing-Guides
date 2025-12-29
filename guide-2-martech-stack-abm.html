@@ -33,28 +33,6 @@
       --callout-success-border: #22c55e;
     }
 
-    [data-theme="dark"] {
-      --bg-primary: #111827;
-      --bg-secondary: #1f2937;
-      --bg-code: #0d1117;
-      --text-primary: #f9fafb;
-      --text-secondary: #9ca3af;
-      --border-color: #374151;
-      --accent: #60a5fa;
-      --accent-hover: #93c5fd;
-      
-      --callout-warning-bg: #422006;
-      --callout-warning-border: #f59e0b;
-      --callout-tip-bg: #022c22;
-      --callout-tip-border: #10b981;
-      --callout-caution-bg: #450a0a;
-      --callout-caution-border: #ef4444;
-      --callout-info-bg: #172554;
-      --callout-info-border: #3b82f6;
-      --callout-success-bg: #052e16;
-      --callout-success-border: #22c55e;
-    }
-
     * { box-sizing: border-box; margin: 0; padding: 0; }
 
     body {
@@ -104,26 +82,6 @@
       background: var(--accent);
       color: white;
     }
-
-    .theme-toggle {
-      position: absolute;
-      bottom: 1.5rem;
-      left: 1.5rem;
-      right: 1.5rem;
-    }
-
-    .theme-toggle button {
-      width: 100%;
-      padding: 0.5rem;
-      background: var(--bg-primary);
-      border: 1px solid var(--border-color);
-      border-radius: 4px;
-      color: var(--text-primary);
-      cursor: pointer;
-      font-size: 0.875rem;
-    }
-
-    .theme-toggle button:hover { border-color: var(--accent); }
 
     .main {
       margin-left: var(--nav-width);
@@ -302,16 +260,9 @@
     .diagram-svg .arrow { stroke: #94a3b8; }
 
     /* SVG theme colors - dark mode */
-    [data-theme="dark"] .diagram-svg .box-fill { fill: #1e293b; }
-    [data-theme="dark"] .diagram-svg .box-stroke { stroke: #4b5563; }
-    [data-theme="dark"] .diagram-svg .box-highlight { stroke: #60a5fa; }
-    [data-theme="dark"] .diagram-svg .text-title { fill: #60a5fa; }
-    [data-theme="dark"] .diagram-svg .text-primary { fill: #f9fafb; }
-    [data-theme="dark"] .diagram-svg .text-secondary { fill: #9ca3af; }
-    [data-theme="dark"] .diagram-svg .arrow { stroke: #6b7280; }
 
     @media print {
-      .nav, .theme-toggle, .copy-btn { display: none; }
+      .nav, .copy-btn { display: none; }
       .main { margin-left: 0; padding: 1rem; }
       .code-block, .callout, table { break-inside: avoid; }
     }
@@ -325,7 +276,6 @@
         border-bottom: 1px solid var(--border-color);
       }
       .main { margin-left: 0; }
-      .theme-toggle { position: static; margin-top: 1rem; }
     }
 
     /* ===== NEW DESIGN SYSTEM ===== */
@@ -342,13 +292,6 @@
       --scenario-border: var(--coral);
       --deep-dive-bg: #eff6ff;
       --deep-dive-border: var(--navy);
-    }
-
-    [data-theme="dark"] {
-      --cream: #1a1a2e;
-      --tldr-bg: #0d2818;
-      --scenario-bg: linear-gradient(135deg, #2d1f1a 0%, #1a1510 100%);
-      --deep-dive-bg: #1a2332;
     }
 
     /* Progress Tracker */
@@ -476,13 +419,6 @@
     .role-exec { background: #ede9fe; color: #5b21b6; }
     .role-analytics { background: #cffafe; color: #0e7490; }
 
-    [data-theme="dark"] .role-mops { background: #1e3a5f; color: #93c5fd; }
-    [data-theme="dark"] .role-sales { background: #4a1d3d; color: #f9a8d4; }
-    [data-theme="dark"] .role-demand { background: #064e3b; color: #6ee7b7; }
-    [data-theme="dark"] .role-content { background: #451a03; color: #fcd34d; }
-    [data-theme="dark"] .role-exec { background: #2e1065; color: #c4b5fd; }
-    [data-theme="dark"] .role-analytics { background: #164e63; color: #67e8f9; }
-
     /* Deep Dive Accordion */
     .deep-dive {
       background: var(--deep-dive-bg);
@@ -512,8 +448,6 @@
     .deep-dive[open] .deep-dive-icon { transform: rotate(45deg); }
     .deep-dive-content { padding: 0 1.25rem 1.25rem; }
     .deep-dive-content > *:first-child { margin-top: 0; }
-
-    [data-theme="dark"] .deep-dive-toggle { color: #93c5fd; }
 
     /* Quick Reference Cards */
     .quick-reference {
@@ -557,8 +491,6 @@
       margin-bottom: 1rem;
     }
 
-    [data-theme="dark"] .knowledge-check-header { color: var(--amber); }
-
     .knowledge-check-question {
       font-weight: 500;
       margin-bottom: 1rem;
@@ -581,9 +513,6 @@
     .quiz-option:hover { border-color: var(--amber); }
     .quiz-option.correct { background: #dcfce7; border-color: #22c55e; }
     .quiz-option.incorrect { background: #fee2e2; border-color: #ef4444; }
-
-    [data-theme="dark"] .quiz-option.correct { background: #052e16; }
-    [data-theme="dark"] .quiz-option.incorrect { background: #450a0a; }
 
     .quiz-btn {
       background: var(--navy);
@@ -609,9 +538,6 @@
     .quiz-feedback.show { display: block; }
     .quiz-feedback.correct { background: #dcfce7; }
     .quiz-feedback.incorrect { background: #fee2e2; }
-
-    [data-theme="dark"] .quiz-feedback.correct { background: #052e16; }
-    [data-theme="dark"] .quiz-feedback.incorrect { background: #450a0a; }
 
     .feedback-correct, .feedback-incorrect { display: none; margin: 0; }
     .quiz-feedback.correct .feedback-correct { display: block; }
@@ -648,6 +574,50 @@
     .next-up-number { display: block; font-size: 0.875rem; opacity: 0.8; }
     .next-up-title { display: block; font-size: 1.1rem; font-weight: 600; }
     .next-up-arrow { font-size: 1.5rem; opacity: 0.8; }
+
+    /* Guide Completion Card */
+    .guide-completion-card {
+      background: var(--hero-gradient);
+      color: white;
+      border-radius: 12px;
+      padding: 2rem;
+      margin: 3rem 0 2rem;
+      text-align: center;
+    }
+
+    .completion-header {
+      margin-bottom: 1rem;
+    }
+
+    .completion-icon {
+      font-size: 3rem;
+      display: block;
+      margin-bottom: 0.5rem;
+    }
+
+    .completion-title {
+      margin: 0;
+      font-size: 1.5rem;
+    }
+
+    .completion-content {
+      text-align: left;
+    }
+
+    .completion-content p {
+      opacity: 0.9;
+      margin-bottom: 1rem;
+    }
+
+    .completion-content ul {
+      margin: 0;
+      padding-left: 1.5rem;
+    }
+
+    .completion-content li {
+      margin-bottom: 0.5rem;
+      opacity: 0.9;
+    }
   </style>
 </head>
 <body>
@@ -674,10 +644,7 @@
       <li><a href="#abm">Account-Based Marketing</a></li>
       <li><a href="#auditing">Stack Auditing</a></li>
     </ul>
-    <div class="theme-toggle">
-      <button onclick="toggleTheme()">Toggle Dark Mode</button>
-    </div>
-  </nav>
+</nav>
 
   <main class="main">
     <div class="content">
@@ -889,19 +856,7 @@
             <p class="feedback-incorrect">Not quite. The key issue is that the tool spans all four stack layers. When a tool claims to collect, store, activate, AND measure, it likely lacks depth in any single area. Specialized tools typically outperform all-in-one solutions.</p>
           </div>
         </div>
-
-        <!-- Next Up Link -->
-        <div class="next-up-link">
-          <a href="#crm" class="next-up-content">
-            <span class="next-up-label">Next Section</span>
-            <div class="next-up-section">
-              <span class="next-up-number">Section 2</span>
-              <span class="next-up-title">CRM Systems</span>
-            </div>
-            <span class="next-up-arrow">→</span>
-          </a>
-        </div>
-      </section>
+        </section>
 
       <!-- Section 2: CRM -->
       <section id="crm">
@@ -1120,19 +1075,7 @@
             <p class="feedback-incorrect">Not quite. Lead conversion creates an Opportunity record, so it should only happen when there's a real sales opportunity. Converting too early (at MQL or form fill) creates pipeline noise and makes reporting unreliable.</p>
           </div>
         </div>
-
-        <!-- Next Up Link -->
-        <div class="next-up-link">
-          <a href="#map" class="next-up-content">
-            <span class="next-up-label">Next Section</span>
-            <div class="next-up-section">
-              <span class="next-up-number">Section 3</span>
-              <span class="next-up-title">Marketing Automation Platform</span>
-            </div>
-            <span class="next-up-arrow">→</span>
-          </a>
-        </div>
-      </section>
+        </section>
 
       <!-- Section 3: MAP -->
       <section id="map">
@@ -1369,19 +1312,7 @@ THRESHOLDS
             <p class="feedback-incorrect">Not quite. The issue is that low-intent actions (whitepaper downloads) are weighted too heavily. The fix is to rebalance: reduce points for content consumption, increase points for buying signals like pricing visits and demo requests.</p>
           </div>
         </div>
-
-        <!-- Next Up Link -->
-        <div class="next-up-link">
-          <a href="#cdp" class="next-up-content">
-            <span class="next-up-label">Next Section</span>
-            <div class="next-up-section">
-              <span class="next-up-number">Section 4</span>
-              <span class="next-up-title">Customer Data Platform</span>
-            </div>
-            <span class="next-up-arrow">→</span>
-          </a>
-        </div>
-      </section>
+        </section>
 
       <!-- Section 4: CDP -->
       <section id="cdp">
@@ -1615,19 +1546,7 @@ THRESHOLDS
             <p class="feedback-incorrect">Not quite. When you need to combine data from 3+ systems for recurring marketing use cases, a CDP is the right tool. Manual exports don't scale, CRM integrations get complex, and ignoring segmentation reduces campaign effectiveness.</p>
           </div>
         </div>
-
-        <!-- Next Up Link -->
-        <div class="next-up-link">
-          <a href="#analytics" class="next-up-content">
-            <span class="next-up-label">Next Section</span>
-            <div class="next-up-section">
-              <span class="next-up-number">Section 5</span>
-              <span class="next-up-title">Analytics Platforms</span>
-            </div>
-            <span class="next-up-arrow">→</span>
-          </a>
-        </div>
-      </section>
+        </section>
 
       <!-- Section 5: Analytics -->
       <section id="analytics">
@@ -1788,19 +1707,7 @@ THRESHOLDS
             <p class="feedback-incorrect">Not quite. The fundamental issue is that GA4 tracks individual user sessions without connecting them to CRM accounts and opportunities. Bridging this gap requires identity resolution and data integration.</p>
           </div>
         </div>
-
-        <!-- Next Up Link -->
-        <div class="next-up-link">
-          <a href="#intent" class="next-up-content">
-            <span class="next-up-label">Next Section</span>
-            <div class="next-up-section">
-              <span class="next-up-number">Section 6</span>
-              <span class="next-up-title">Intent Data Platforms</span>
-            </div>
-            <span class="next-up-arrow">→</span>
-          </a>
-        </div>
-      </section>
+        </section>
 
       <!-- Section 6: Intent Data -->
       <section id="intent">
@@ -2009,19 +1916,7 @@ THRESHOLDS
             <p class="feedback-incorrect">Not quite. Intent data is noisy—a "surge" at a large company could be one person reading one article. It's useful for prioritization, but you need outreach to understand actual buying intent and committee alignment.</p>
           </div>
         </div>
-
-        <!-- Next Up Link -->
-        <div class="next-up-link">
-          <a href="#enrichment" class="next-up-content">
-            <span class="next-up-label">Next Section</span>
-            <div class="next-up-section">
-              <span class="next-up-number">Section 7</span>
-              <span class="next-up-title">Enrichment Tools</span>
-            </div>
-            <span class="next-up-arrow">→</span>
-          </a>
-        </div>
-      </section>
+        </section>
 
       <!-- Section 7: Enrichment -->
       <section id="enrichment">
@@ -2220,19 +2115,7 @@ THRESHOLDS
             <p class="feedback-incorrect">Not quite. The main risk is data accuracy. Enrichment vendors typically have 10-20% error rates—outdated titles, wrong company info, stale contact details. Sales actually gets more data than a short form would provide, and API latency is usually sub-second.</p>
           </div>
         </div>
-
-        <!-- Next Up Link -->
-        <div class="next-up-link">
-          <a href="#integrations" class="next-up-content">
-            <span class="next-up-label">Next Section</span>
-            <div class="next-up-section">
-              <span class="next-up-number">Section 8</span>
-              <span class="next-up-title">Integration Patterns</span>
-            </div>
-            <span class="next-up-arrow">→</span>
-          </a>
-        </div>
-      </section>
+        </section>
 
       <!-- Section 8: Integrations -->
       <section id="integrations">
@@ -2526,19 +2409,7 @@ THRESHOLDS
             <p class="feedback-incorrect">Not quite. The root cause is usually lack of ownership and monitoring, not tool quality or team size. Integrations silently fail when no one is specifically responsible for watching them. Documentation and alerting are essential.</p>
           </div>
         </div>
-
-        <!-- Next Up Link -->
-        <div class="next-up-link">
-          <a href="#identity" class="next-up-content">
-            <span class="next-up-label">Next Section</span>
-            <div class="next-up-section">
-              <span class="next-up-number">Section 9</span>
-              <span class="next-up-title">Identity Resolution</span>
-            </div>
-            <span class="next-up-arrow">→</span>
-          </a>
-        </div>
-      </section>
+        </section>
 
       <!-- Section 9: Identity Resolution -->
       <section id="identity">
@@ -2571,7 +2442,7 @@ THRESHOLDS
               <span class="role-tag role-analytics">Analytics</span>
               <strong>Priya Sharma</strong>
             </div>
-            <p>Priya is trying to build a report showing which accounts are most engaged. Problem: the same person—John Smith at Acme—shows up five times in the database. He's jsmith@acme.com, john.smith@acme.com, jsmith@gmail.com (personal), and two duplicates with typos. "Our 'top engaged account' report is fiction," Priya tells the team. "Acme looks like 5 accounts, not 1. Until we solve identity, every account-level metric is wrong."</p>
+            <p>Priya is trying to build a report showing which accounts are most engaged. Problem: the same person—John Smith at Acme—shows up five times in the database. He's <a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="8fe5fce2e6fbe7cfeeece2eaa1ece0e2">[email&#160;protected]</a>, <a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="90fafff8febee3fdf9e4f8d0f1f3fdf5bef3fffd">[email&#160;protected]</a>, <a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="4f253c22263b270f28222e2623612c2022">[email&#160;protected]</a> (personal), and two duplicates with typos. "Our 'top engaged account' report is fiction," Priya tells the team. "Acme looks like 5 accounts, not 1. Until we solve identity, every account-level metric is wrong."</p>
           </div>
         </div>
 
@@ -2720,19 +2591,7 @@ LinkedIn: John T. Smith, Acme Corporation</code></pre>
             <p class="feedback-incorrect">Not quite. The right first step is prevention—implementing duplicate checks at point of entry. Merging existing records is important but won't stop new duplicates. Requiring work email loses conversions, and a CDP is expensive overkill if basic prevention isn't in place first.</p>
           </div>
         </div>
-
-        <!-- Next Up Link -->
-        <div class="next-up-link">
-          <a href="#data-hygiene" class="next-up-content">
-            <span class="next-up-label">Next Section</span>
-            <div class="next-up-section">
-              <span class="next-up-number">Section 10</span>
-              <span class="next-up-title">Data Hygiene</span>
-            </div>
-            <span class="next-up-arrow">→</span>
-          </a>
-        </div>
-      </section>
+        </section>
 
       <!-- Section 10: Data Hygiene -->
       <section id="data-hygiene">
@@ -2920,19 +2779,7 @@ After normalization:
             <p class="feedback-incorrect">Not quite. Having 17 variations of the same country is a consistency problem—the data is complete and likely accurate, but it's not standardized. Consistency means recording the same information the same way every time.</p>
           </div>
         </div>
-
-        <!-- Next Up Link -->
-        <div class="next-up-link">
-          <a href="#privacy" class="next-up-content">
-            <span class="next-up-label">Next Section</span>
-            <div class="next-up-section">
-              <span class="next-up-number">Section 11</span>
-              <span class="next-up-title">Privacy and Consent</span>
-            </div>
-            <span class="next-up-arrow">→</span>
-          </a>
-        </div>
-      </section>
+        </section>
 
       <!-- Section 11: Privacy -->
       <section id="privacy">
@@ -3106,19 +2953,7 @@ After normalization:
             <p class="feedback-incorrect">Not quite. Workarounds are temporary and often violate privacy regulations. Allocating unknowns is guesswork. Ignoring them misses 40% of conversions. The right approach: invest in first-party data and self-reported attribution to work within the new reality.</p>
           </div>
         </div>
-
-        <!-- Next Up Link -->
-        <div class="next-up-link">
-          <a href="#vendors" class="next-up-content">
-            <span class="next-up-label">Next Section</span>
-            <div class="next-up-section">
-              <span class="next-up-number">Section 12</span>
-              <span class="next-up-title">Vendor Landscape</span>
-            </div>
-            <span class="next-up-arrow">→</span>
-          </a>
-        </div>
-      </section>
+        </section>
 
       <!-- Section 12: Vendors -->
       <section id="vendors">
@@ -3368,19 +3203,7 @@ After normalization:
             <p class="feedback-incorrect">Not quite. The key insight was about utilization, not cost or features. Maya found they were only using 40% of HubSpot's capabilities. More powerful tools don't help if you're not using what you have. The right approach: maximize current platform before investing in more complexity.</p>
           </div>
         </div>
-
-        <!-- Next Up Link -->
-        <div class="next-up-link">
-          <a href="#abm" class="next-up-content">
-            <span class="next-up-label">Next Section</span>
-            <div class="next-up-section">
-              <span class="next-up-number">Section 13</span>
-              <span class="next-up-title">Account-Based Marketing</span>
-            </div>
-            <span class="next-up-arrow">→</span>
-          </a>
-        </div>
-      </section>
+        </section>
 
       <!-- Section 13: ABM -->
       <section id="abm">
@@ -3663,19 +3486,7 @@ After normalization:
             <p class="feedback-incorrect">Not quite. The key wasn't technology, budget, or target size—it was orchestration. ABM works because you coordinate multiple channels (ads, mail, content, outreach) around the same accounts. Sarah's pilot used the same budget, just focused and coordinated.</p>
           </div>
         </div>
-
-        <!-- Next Up Link -->
-        <div class="next-up-link">
-          <a href="#auditing" class="next-up-content">
-            <span class="next-up-label">Next Section</span>
-            <div class="next-up-section">
-              <span class="next-up-number">Section 14</span>
-              <span class="next-up-title">Evaluating & Auditing a Stack</span>
-            </div>
-            <span class="next-up-arrow">→</span>
-          </a>
-        </div>
-      </section>
+        </section>
 
       <!-- Section 14: Auditing -->
       <section id="auditing">
@@ -3942,23 +3753,8 @@ MAP Health Check:
     </div>
   </main>
 
-  <script>
-    function toggleTheme() {
-      const html = document.documentElement;
-      const current = html.getAttribute('data-theme');
-      const next = current === 'dark' ? 'light' : 'dark';
-      html.setAttribute('data-theme', next);
-      localStorage.setItem('theme', next);
-    }
-
-    const savedTheme = localStorage.getItem('theme');
-    if (savedTheme) {
-      document.documentElement.setAttribute('data-theme', savedTheme);
-    } else if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
-      document.documentElement.setAttribute('data-theme', 'dark');
-    }
-
-    document.querySelectorAll('.copy-btn').forEach(btn => {
+  <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+document.querySelectorAll('.copy-btn').forEach(btn => {
       btn.addEventListener('click', async () => {
         const code = btn.closest('.code-block').querySelector('code').textContent;
         await navigator.clipboard.writeText(code);
@@ -4043,21 +3839,4 @@ MAP Health Check:
       });
     }
 
-    document.addEventListener('DOMContentLoaded', initQuizzes);
-
-    // Smooth scroll for anchor links
-    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-      anchor.addEventListener('click', function(e) {
-        e.preventDefault();
-        const target = document.querySelector(this.getAttribute('href'));
-        if (target) {
-          target.scrollIntoView({
-            behavior: 'smooth',
-            block: 'start'
-          });
-        }
-      });
-    });
-  </script>
-</body>
-</html>
+    document.addEventListener('DOMContentLoaded', initQuiz

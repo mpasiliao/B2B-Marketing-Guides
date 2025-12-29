@@ -58,34 +58,6 @@
       --callout-success-border: var(--teal);
     }
 
-    [data-theme="dark"] {
-      --bg-primary: #111827;
-      --bg-secondary: #1f2937;
-      --bg-tertiary: #1a2332;
-      --bg-code: #0d1117;
-      --text-primary: #f9fafb;
-      --text-secondary: #9ca3af;
-      --border-color: #374151;
-      --accent: #60a5fa;
-      --accent-hover: #93c5fd;
-
-      --hero-bg: linear-gradient(135deg, #1a2e4a 0%, #2d4a6f 100%);
-      --tldr-bg: #1a2332;
-      --scenario-bg: #1a2332;
-      --quiz-bg: #1a2332;
-
-      --callout-warning-bg: #422006;
-      --callout-warning-border: var(--amber);
-      --callout-tip-bg: #022c22;
-      --callout-tip-border: var(--teal);
-      --callout-caution-bg: #450a0a;
-      --callout-caution-border: #ef4444;
-      --callout-info-bg: #172554;
-      --callout-info-border: #3b82f6;
-      --callout-success-bg: #052e16;
-      --callout-success-border: var(--teal);
-    }
-
     * { box-sizing: border-box; margin: 0; padding: 0; }
 
     body {
@@ -142,27 +114,6 @@
     }
 
     /* Theme toggle */
-    .theme-toggle {
-      position: absolute;
-      bottom: 1.5rem;
-      left: 1.5rem;
-      right: 1.5rem;
-    }
-
-    .theme-toggle button {
-      width: 100%;
-      padding: 0.5rem;
-      background: var(--bg-primary);
-      border: 1px solid var(--border-color);
-      border-radius: 4px;
-      color: var(--text-primary);
-      cursor: pointer;
-      font-size: 0.875rem;
-    }
-
-    .theme-toggle button:hover {
-      border-color: var(--accent);
-    }
 
     /* Main content */
     .main {
@@ -183,8 +134,6 @@
     h3 { font-size: 1.35rem; margin: 2.5rem 0 1rem; color: var(--navy); }
     h4 { font-size: 1.15rem; margin: 2rem 0 0.75rem; }
     p { margin-bottom: 1.25rem; }
-
-    [data-theme="dark"] h3 { color: var(--accent); }
 
     /* Anchor links */
     .anchor-link {
@@ -383,6 +332,39 @@
       font-size: 1.1rem;
     }
 
+    /* Hero Card (alternate style) */
+    .hero-card {
+      background: var(--hero-bg);
+      color: white;
+      padding: 2.5rem;
+      border-radius: 12px;
+      margin-bottom: 2rem;
+      text-align: center;
+    }
+
+    .hero-card h2 {
+      color: white;
+      margin: 1rem 0 0.5rem 0;
+      padding: 0;
+      border: none;
+      font-size: 1.75rem;
+    }
+
+    .hero-card .anchor-link {
+      color: rgba(255,255,255,0.6);
+    }
+
+    .hero-icon {
+      color: var(--amber);
+      margin-bottom: 0.5rem;
+    }
+
+    .hero-subtitle {
+      margin: 0;
+      opacity: 0.9;
+      font-size: 1.1rem;
+    }
+
     /* 2. TL;DR Box */
     .tldr-box {
       background: var(--tldr-bg);
@@ -514,10 +496,6 @@
       border-top: 1px solid var(--border-color);
     }
 
-    [data-theme="dark"] .scenario-takeaway {
-      background: var(--bg-secondary);
-    }
-
     .scenario-takeaway-header {
       display: flex;
       align-items: center;
@@ -553,10 +531,6 @@
       align-items: center;
       gap: 0.75rem;
       color: var(--navy);
-    }
-
-    [data-theme="dark"] .deep-dive summary {
-      color: var(--accent);
     }
 
     .deep-dive summary::before {
@@ -737,10 +711,6 @@
       margin: 2rem 0;
     }
 
-    [data-theme="dark"] .quick-ref {
-      background: var(--bg-secondary);
-    }
-
     .quick-ref-header {
       display: flex;
       align-items: center;
@@ -749,10 +719,6 @@
       color: var(--navy);
       margin-bottom: 1rem;
       font-size: 1.1rem;
-    }
-
-    [data-theme="dark"] .quick-ref-header {
-      color: var(--accent);
     }
 
     .quick-ref table {
@@ -968,7 +934,7 @@
 
     /* Print styles */
     @media print {
-      .nav, .theme-toggle, .copy-btn { display: none; }
+      .nav, .copy-btn { display: none; }
       .main { margin-left: 0; padding: 1rem; }
       .code-block { break-inside: avoid; }
       .callout { break-inside: avoid; }
@@ -985,7 +951,6 @@
         border-bottom: 1px solid var(--border-color);
       }
       .main { margin-left: 0; }
-      .theme-toggle { position: static; margin-top: 1rem; }
     }
   </style>
 </head>
@@ -1009,10 +974,7 @@
       <li><a href="#b2b-channels">Common B2B Channels</a></li>
       <li><a href="#key-metrics">Key Metrics</a></li>
     </ul>
-    <div class="theme-toggle">
-      <button onclick="toggleTheme()">Toggle Dark Mode</button>
-    </div>
-  </nav>
+</nav>
 
   <main class="main">
     <div class="content">
@@ -1277,17 +1239,7 @@
             </div>
           </div>
         </div>
-
-        <!-- Next Up Link -->
-        <a href="#icp-personas" class="next-up">
-          <div>
-            <div class="next-up-label">Next Up</div>
-            <div class="next-up-title">ICP & Buyer Personas →</div>
-          </div>
-          <span class="next-up-arrow">→</span>
-        </a>
-
-      </section>
+</section>
 
       <!-- Section 2: ICP and Buyer Personas -->
       <section id="icp-personas">
@@ -1553,17 +1505,7 @@
             </div>
           </div>
         </div>
-
-        <!-- Next Up -->
-        <a href="#buying-committee" class="next-up">
-          <div>
-            <div class="next-up-label">Next Up</div>
-            <div class="next-up-title">Buying Committee / Decision-Making Unit →</div>
-          </div>
-          <span class="next-up-arrow">→</span>
-        </a>
-
-      </section>
+</section>
 
       <!-- Section 3: Buying Committee -->
       <section id="buying-committee">
@@ -1787,17 +1729,7 @@
             </div>
           </div>
         </div>
-
-        <!-- Next Up -->
-        <a href="#b2b-funnel" class="next-up">
-          <div>
-            <div class="next-up-label">Next Up</div>
-            <div class="next-up-title">The B2B Funnel →</div>
-          </div>
-          <span class="next-up-arrow">→</span>
-        </a>
-
-      </section>
+</section>
 
       <!-- Section 4: The B2B Funnel -->
       <section id="b2b-funnel">
@@ -2091,17 +2023,7 @@
             </div>
           </div>
         </div>
-
-        <!-- Next Up -->
-        <a href="#lead-lifecycle" class="next-up">
-          <div>
-            <div class="next-up-label">Next Up</div>
-            <div class="next-up-title">Lead Lifecycle & Handoffs →</div>
-          </div>
-          <span class="next-up-arrow">→</span>
-        </a>
-
-      </section>
+</section>
 
       <!-- Section 5: Lead Lifecycle and Handoffs -->
       <section id="lead-lifecycle">
@@ -2368,17 +2290,7 @@
             </div>
           </div>
         </div>
-
-        <!-- Next Up -->
-        <a href="#sales-marketing-sla" class="next-up">
-          <div>
-            <div class="next-up-label">Next Up</div>
-            <div class="next-up-title">Sales/Marketing SLAs →</div>
-          </div>
-          <span class="next-up-arrow">→</span>
-        </a>
-
-      </section>
+</section>
 
       <!-- Section 6: Sales/Marketing SLAs -->
       <section id="sales-marketing-sla">
@@ -2607,17 +2519,7 @@
             </div>
           </div>
         </div>
-
-        <!-- Next Up -->
-        <a href="#demand-vs-lead-gen" class="next-up">
-          <div>
-            <div class="next-up-label">Next Up</div>
-            <div class="next-up-title">Demand Gen vs Lead Gen →</div>
-          </div>
-          <span class="next-up-arrow">→</span>
-        </a>
-
-      </section>
+</section>
 
       <!-- Section 7: Demand Gen vs Lead Gen -->
       <section id="demand-vs-lead-gen">
@@ -2837,17 +2739,7 @@
             </div>
           </div>
         </div>
-
-        <!-- Next Up -->
-        <a href="#content-role" class="next-up">
-          <div>
-            <div class="next-up-label">Next Up</div>
-            <div class="next-up-title">Content's Role in B2B →</div>
-          </div>
-          <span class="next-up-arrow">→</span>
-        </a>
-
-      </section>
+</section>
 
       <!-- Section 8: Content's Role -->
       <section id="content-role">
@@ -3075,17 +2967,7 @@
             </div>
           </div>
         </div>
-
-        <!-- Next Up -->
-        <a href="#b2b-channels" class="next-up">
-          <div>
-            <div class="next-up-label">Next Up</div>
-            <div class="next-up-title">Common B2B Channels →</div>
-          </div>
-          <span class="next-up-arrow">→</span>
-        </a>
-
-      </section>
+</section>
 
       <!-- Section 9: B2B Channels -->
       <section id="b2b-channels">
@@ -3331,17 +3213,7 @@
             </div>
           </div>
         </div>
-
-        <!-- Next Up -->
-        <a href="#key-metrics" class="next-up">
-          <div>
-            <div class="next-up-label">Next Up</div>
-            <div class="next-up-title">Key Metrics →</div>
-          </div>
-          <span class="next-up-arrow">→</span>
-        </a>
-
-      </section>
+</section>
 
       <!-- Section 10: Key Metrics -->
       <section id="key-metrics">
@@ -3758,36 +3630,45 @@ Marketing-Influenced Pipeline = Sum of opportunity values where
         <!-- Knowledge Check -->
         <div class="knowledge-check" data-answer="b">
           <div class="knowledge-check-header">
-            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-              <circle cx="12" cy="12" r="10"/>
-              <path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"/>
-              <path d="M12 17h.01"/>
-            </svg>
-            Knowledge Check
+            <span class="knowledge-check-header-icon">✅</span>
+            <span class="knowledge-check-header-title">Knowledge Check</span>
           </div>
-          <p class="knowledge-check-question">Your company's LTV:CAC ratio is 8:1. Based on standard benchmarks, what does this likely indicate?</p>
-          <div class="quiz-options">
-            <label class="quiz-option">
-              <input type="radio" name="metrics-quiz" value="a">
-              <span>The company is overspending on customer acquisition</span>
-            </label>
-            <label class="quiz-option">
-              <input type="radio" name="metrics-quiz" value="b">
-              <span>The company could be investing more in growth and acquisition</span>
-            </label>
-            <label class="quiz-option">
-              <input type="radio" name="metrics-quiz" value="c">
-              <span>The company has achieved the ideal unit economics</span>
-            </label>
-            <label class="quiz-option">
-              <input type="radio" name="metrics-quiz" value="d">
-              <span>Customer retention is too low</span>
-            </label>
-          </div>
-          <button class="quiz-btn">Check Answer</button>
-          <div class="quiz-feedback">
-            <p class="feedback-correct">Correct! An LTV:CAC ratio above 5:1 suggests under-investment in growth. The company is being too conservative with acquisition spending and could acquire more customers profitably.</p>
-            <p class="feedback-incorrect">Not quite. An 8:1 LTV:CAC ratio is above the "healthy" range of 3:1-5:1. This doesn't mean the business is unhealthy, but it does suggest the company could afford to spend more on acquisition while still maintaining profitable unit economics.</p>
+          <div class="knowledge-check-body">
+            <p class="quiz-question">Your company's LTV:CAC ratio is 8:1. Based on standard benchmarks, what does this likely indicate?</p>
+
+            <ul class="quiz-options">
+              <li class="quiz-option">
+                <label>
+                  <input type="radio" name="metrics-quiz" value="a">
+                  <span>The company is overspending on customer acquisition</span>
+                </label>
+              </li>
+              <li class="quiz-option">
+                <label>
+                  <input type="radio" name="metrics-quiz" value="b">
+                  <span>The company could be investing more in growth and acquisition</span>
+                </label>
+              </li>
+              <li class="quiz-option">
+                <label>
+                  <input type="radio" name="metrics-quiz" value="c">
+                  <span>The company has achieved the ideal unit economics</span>
+                </label>
+              </li>
+              <li class="quiz-option">
+                <label>
+                  <input type="radio" name="metrics-quiz" value="d">
+                  <span>Customer retention is too low</span>
+                </label>
+              </li>
+            </ul>
+
+            <button class="quiz-btn">Check Answer</button>
+
+            <div class="quiz-feedback">
+              <div class="quiz-feedback-header"></div>
+              <p>An 8:1 LTV:CAC ratio is above the "healthy" range of 3:1-5:1. This suggests the company could afford to spend more on acquisition while still maintaining profitable unit economics—they're being too conservative with growth investment.</p>
+            </div>
           </div>
         </div>
 
@@ -3816,16 +3697,13 @@ Marketing-Influenced Pipeline = Sum of opportunity values where
         </div>
 
         <!-- Next Guide Teaser -->
-        <div class="next-up-link" style="margin-top: 2rem;">
-          <a href="guide-2-martech-stack-abm.html" class="next-up-content">
-            <span class="next-up-label">Continue Learning</span>
-            <div class="next-up-section">
-              <span class="next-up-number">Guide 2</span>
-              <span class="next-up-title">Martech Stack & ABM</span>
-            </div>
-            <span class="next-up-arrow">→</span>
-          </a>
-        </div>
+        <a href="guide-2-martech-stack-abm.html" class="next-up" style="margin-top: 2rem;">
+          <div>
+            <div class="next-up-label">Continue Learning</div>
+            <div class="next-up-title">Guide 2: Martech Stack & ABM →</div>
+          </div>
+          <span class="next-up-arrow">→</span>
+        </a>
 
       </section>
 
@@ -3836,22 +3714,6 @@ Marketing-Influenced Pipeline = Sum of opportunity values where
   </main>
 
   <script>
-    // Theme toggle with persistence
-    function toggleTheme() {
-      const html = document.documentElement;
-      const current = html.getAttribute('data-theme');
-      const next = current === 'dark' ? 'light' : 'dark';
-      html.setAttribute('data-theme', next);
-      localStorage.setItem('theme', next);
-    }
-
-    // Load saved theme
-    const savedTheme = localStorage.getItem('theme');
-    if (savedTheme) {
-      document.documentElement.setAttribute('data-theme', savedTheme);
-    } else if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
-      document.documentElement.setAttribute('data-theme', 'dark');
-    }
 
     // Copy button functionality
     document.querySelectorAll('.copy-btn').forEach(btn => {

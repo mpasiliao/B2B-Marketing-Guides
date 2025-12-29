@@ -35,28 +35,6 @@
       --callout-success-border: #22c55e;
     }
 
-    [data-theme="dark"] {
-      --bg-primary: #111827;
-      --bg-secondary: #1f2937;
-      --bg-code: #0d1117;
-      --text-primary: #f9fafb;
-      --text-secondary: #9ca3af;
-      --border-color: #374151;
-      --accent: #60a5fa;
-      --accent-hover: #93c5fd;
-      
-      --callout-warning-bg: #422006;
-      --callout-warning-border: #f59e0b;
-      --callout-tip-bg: #022c22;
-      --callout-tip-border: #10b981;
-      --callout-caution-bg: #450a0a;
-      --callout-caution-border: #ef4444;
-      --callout-info-bg: #172554;
-      --callout-info-border: #3b82f6;
-      --callout-success-bg: #052e16;
-      --callout-success-border: #22c55e;
-    }
-
     * { box-sizing: border-box; margin: 0; padding: 0; }
 
     body {
@@ -112,27 +90,6 @@
     }
 
     /* Theme toggle */
-    .theme-toggle {
-      position: absolute;
-      bottom: 1.5rem;
-      left: 1.5rem;
-      right: 1.5rem;
-    }
-
-    .theme-toggle button {
-      width: 100%;
-      padding: 0.5rem;
-      background: var(--bg-primary);
-      border: 1px solid var(--border-color);
-      border-radius: 4px;
-      color: var(--text-primary);
-      cursor: pointer;
-      font-size: 0.875rem;
-    }
-
-    .theme-toggle button:hover {
-      border-color: var(--accent);
-    }
 
     /* Main content */
     .main {
@@ -352,7 +309,7 @@
 
     /* Print styles */
     @media print {
-      .nav, .theme-toggle, .copy-btn { display: none; }
+      .nav, .copy-btn { display: none; }
       .main { margin-left: 0; padding: 1rem; }
       .code-block { break-inside: avoid; }
       .callout { break-inside: avoid; }
@@ -369,7 +326,6 @@
         border-bottom: 1px solid var(--border-color);
       }
       .main { margin-left: 0; }
-      .theme-toggle { position: static; margin-top: 1rem; }
     }
 
     /* ===== NEW DESIGN SYSTEM ===== */
@@ -811,10 +767,7 @@
       <li><a href="#mmm">Marketing Mix Modeling</a></li>
       <li><a href="#stakeholder-reporting">Stakeholder Reporting</a></li>
     </ul>
-    <div class="theme-toggle">
-      <button onclick="toggleTheme()">Toggle Dark Mode</button>
-    </div>
-  </nav>
+</nav>
 
   <main class="main">
     <div class="content">
@@ -991,19 +944,7 @@ n ≈ 4,500 per variant</code></pre>
             <p class="feedback-incorrect">Not quite. The key issue is overlapping confidence intervals. While more conversions help, the specific threshold depends on the effect size you're trying to detect. With overlapping CIs, you can't confidently say one variant is better.</p>
           </div>
         </div>
-
-        <!-- Next Up Link -->
-        <div class="next-up-link">
-          <a href="#first-touch" class="next-up-content">
-            <span class="next-up-label">Next Section</span>
-            <div class="next-up-section">
-              <span class="next-up-number">Section 2</span>
-              <span class="next-up-title">First-Touch Attribution</span>
-            </div>
-            <span class="next-up-arrow">→</span>
-          </a>
-        </div>
-      </section>
+        </section>
 
       <!-- Section 2: First-Touch Attribution -->
       <section id="first-touch">
@@ -1127,19 +1068,7 @@ JOIN first_touches ft ON c.contact_id = ft.contact_id AND ft.rn = 1</code></pre>
             <p class="feedback-incorrect">Not quite. First-touch isn't inaccurate—it correctly identifies the first touchpoint. The limitation is that it ignores the entire conversion journey that happened afterward, which often includes the activities that actually influenced the purchase decision.</p>
           </div>
         </div>
-
-        <!-- Next Up Link -->
-        <div class="next-up-link">
-          <a href="#last-touch" class="next-up-content">
-            <span class="next-up-label">Next Section</span>
-            <div class="next-up-section">
-              <span class="next-up-number">Section 3</span>
-              <span class="next-up-title">Last-Touch Attribution</span>
-            </div>
-            <span class="next-up-arrow">→</span>
-          </a>
-        </div>
-      </section>
+        </section>
 
       <!-- Section 3: Last-Touch Attribution -->
       <section id="last-touch">
@@ -1250,19 +1179,7 @@ JOIN last_touches lt ON c.contact_id = lt.contact_id AND lt.rn = 1</code></pre>
             <p class="feedback-incorrect">Not quite. The insight isn't that outreach is ineffective or that last-touch is wrong—it's that last-touch shows what triggered conversion, not what built the intent. Both perspectives (first-touch and last-touch) tell part of the story.</p>
           </div>
         </div>
-
-        <!-- Next Up Link -->
-        <div class="next-up-link">
-          <a href="#linear" class="next-up-content">
-            <span class="next-up-label">Next Section</span>
-            <div class="next-up-section">
-              <span class="next-up-number">Section 4</span>
-              <span class="next-up-title">Linear Attribution</span>
-            </div>
-            <span class="next-up-arrow">→</span>
-          </a>
-        </div>
-      </section>
+        </section>
 
       <!-- Section 4: Linear Attribution -->
       <section id="linear">
@@ -1377,25 +1294,13 @@ GROUP BY t.channel, t.campaign</code></pre>
               <span>$0K (linear only credits marketing touches)</span>
             </label>
           </div>
-          <button class="quiz-btn" onclick="checkQuiz(this)">Check Answer</button>
+          <button class="quiz-btn">Check Answer</button>
           <div class="quiz-feedback">
             <p class="feedback-correct">Correct! Linear attribution splits credit equally: $80K ÷ 8 touches = $10K each. This is "fair" but doesn't account for touchpoint importance.</p>
             <p class="feedback-incorrect">Not quite. Linear attribution splits credit equally across ALL touchpoints regardless of their perceived importance. $80K ÷ 8 = $10K each.</p>
           </div>
         </div>
-
-        <!-- Next Up Link -->
-        <div class="next-up-link">
-          <a href="#time-decay" class="next-up-content">
-            <div class="next-up-section">
-              <span class="next-up-label">Next Up</span>
-              <span class="next-up-number">Section 05</span>
-              <span class="next-up-title">Time-Decay Attribution</span>
-            </div>
-            <span class="next-up-arrow">→</span>
-          </a>
-        </div>
-      </section>
+        </section>
 
       <!-- Section 5: Time-Decay Attribution -->
       <section id="time-decay">
@@ -1507,25 +1412,13 @@ normalized = [w/total for w in weights]
               <span>The half-life should be measured in hours, not days</span>
             </label>
           </div>
-          <button class="quiz-btn" onclick="checkQuiz(this)">Check Answer</button>
+          <button class="quiz-btn">Check Answer</button>
           <div class="quiz-feedback">
             <p class="feedback-correct">Correct! With a 7-day half-life, a touch from 90 days ago gets ~0.0001% weight. In long sales cycles, you need 30-60 day half-lives to credit early touchpoints appropriately.</p>
             <p class="feedback-incorrect">Not quite. The issue is the half-life is too short—early touchpoints become nearly invisible. A touch from 90 days ago with a 7-day half-life gets almost no credit.</p>
           </div>
         </div>
-
-        <!-- Next Up Link -->
-        <div class="next-up-link">
-          <a href="#position-based" class="next-up-content">
-            <div class="next-up-section">
-              <span class="next-up-label">Next Up</span>
-              <span class="next-up-number">Section 06</span>
-              <span class="next-up-title">Position-Based Attribution</span>
-            </div>
-            <span class="next-up-arrow">→</span>
-          </a>
-        </div>
-      </section>
+        </section>
 
       <!-- Section 6: Position-Based Attribution -->
       <section id="position-based">
@@ -1645,25 +1538,13 @@ result = position_based_attribution(touches, 100000)
               <span>$0K (middle touches don't get credit)</span>
             </label>
           </div>
-          <button class="quiz-btn" onclick="checkQuiz(this)">Check Answer</button>
+          <button class="quiz-btn">Check Answer</button>
           <div class="quiz-feedback">
             <p class="feedback-correct">Correct! First touch = $80K (40%), last touch = $80K (40%), remaining $40K (20%) split among 8 middle touches = $5K each.</p>
             <p class="feedback-incorrect">Not quite. 40% goes to first ($80K), 40% to last ($80K), and 20% ($40K) is split among the 8 middle touches = $5K each.</p>
           </div>
         </div>
-
-        <!-- Next Up Link -->
-        <div class="next-up-link">
-          <a href="#account-vs-contact" class="next-up-content">
-            <div class="next-up-section">
-              <span class="next-up-label">Next Up</span>
-              <span class="next-up-number">Section 07</span>
-              <span class="next-up-title">Account-Level vs Contact-Level</span>
-            </div>
-            <span class="next-up-arrow">→</span>
-          </a>
-        </div>
-      </section>
+        </section>
 
       <!-- Section 7: Account-Level vs Contact-Level -->
       <section id="account-vs-contact">
@@ -1798,25 +1679,13 @@ JOIN account_touches at ON o.account_id = at.account_id AND at.rn = 1</code></pr
               <span>They should switch to last-touch attribution instead</span>
             </label>
           </div>
-          <button class="quiz-btn" onclick="checkQuiz(this)">Check Answer</button>
+          <button class="quiz-btn">Check Answer</button>
           <div class="quiz-feedback">
             <p class="feedback-correct">Correct! The primary contact (first form filler) often isn't the decision-maker. Account-level attribution reveals how the whole buying committee was engaged, not just the first person to fill out a form.</p>
             <p class="feedback-incorrect">Not quite. The problem is that contact-level only credits the individual, missing how decision-makers (CTO, CFO, etc.) were actually engaged through different channels.</p>
           </div>
         </div>
-
-        <!-- Next Up Link -->
-        <div class="next-up-link">
-          <a href="#sourced-influenced" class="next-up-content">
-            <div class="next-up-section">
-              <span class="next-up-label">Next Up</span>
-              <span class="next-up-number">Section 08</span>
-              <span class="next-up-title">Sourced vs Influenced Pipeline</span>
-            </div>
-            <span class="next-up-arrow">→</span>
-          </a>
-        </div>
-      </section>
+        </section>
 
       <!-- Section 8: Sourced vs Influenced Pipeline -->
       <section id="sourced-influenced">
@@ -1952,25 +1821,13 @@ GROUP BY t.channel;</code></pre>
               <span>Set engagement threshold—only count deals with actual engagement, not just emails sent</span>
             </label>
           </div>
-          <button class="quiz-btn" onclick="checkQuiz(this)">Check Answer</button>
+          <button class="quiz-btn">Check Answer</button>
           <div class="quiz-feedback">
             <p class="feedback-correct">Correct! "Influenced" with no engagement threshold is misleading. Require active engagement (clicks, downloads, attendance) to claim influence credibly. Unopened emails don't count.</p>
             <p class="feedback-incorrect">Not quite. Adding sourced + influenced double-counts. Claiming influence for unopened emails is a weak claim. Set engagement thresholds (3+ engaged touches) for credibility.</p>
           </div>
         </div>
-
-        <!-- Next Up Link -->
-        <div class="next-up-link">
-          <a href="#mta-challenges" class="next-up-content">
-            <div class="next-up-section">
-              <span class="next-up-label">Next Up</span>
-              <span class="next-up-number">Section 09</span>
-              <span class="next-up-title">MTA Challenges in B2B</span>
-            </div>
-            <span class="next-up-arrow">→</span>
-          </a>
-        </div>
-      </section>
+        </section>
 
       <!-- Section 9: MTA Challenges in B2B -->
       <section id="mta-challenges">
@@ -2068,25 +1925,13 @@ GROUP BY t.channel;</code></pre>
               <span>The attribution model is broken and should be replaced</span>
             </label>
           </div>
-          <button class="quiz-btn" onclick="checkQuiz(this)">Check Answer</button>
+          <button class="quiz-btn">Check Answer</button>
           <div class="quiz-feedback">
             <p class="feedback-correct">Correct! Conferences create awareness in the "dark funnel." When attendees later research you, they use organic search—which gets the tracking credit. Both data sources reveal different parts of the journey.</p>
             <p class="feedback-incorrect">Not quite. Self-reported data reveals the dark funnel. People hear about you at conferences, then search for you later. Tracking shows search; self-reported shows what drove the search. Use both.</p>
           </div>
         </div>
-
-        <!-- Next Up Link -->
-        <div class="next-up-link">
-          <a href="#dark-funnel" class="next-up-content">
-            <div class="next-up-section">
-              <span class="next-up-label">Next Up</span>
-              <span class="next-up-number">Section 10</span>
-              <span class="next-up-title">Self-Reported & Dark Funnel</span>
-            </div>
-            <span class="next-up-arrow">→</span>
-          </a>
-        </div>
-      </section>
+        </section>
 
       <!-- Section 10: Dark Funnel and Self-Reported -->
       <section id="dark-funnel">
@@ -2220,25 +2065,13 @@ ORDER BY leads DESC;</code></pre>
               <span>The tracking system is broken</span>
             </label>
           </div>
-          <button class="quiz-btn" onclick="checkQuiz(this)">Check Answer</button>
+          <button class="quiz-btn">Check Answer</button>
           <div class="quiz-feedback">
             <p class="feedback-correct">Correct! Podcasts are part of the "dark funnel"—channels that influence decisions but can't be tracked. People hear about you on a podcast, then search or go direct to your site. Self-reported data reveals this invisible value.</p>
             <p class="feedback-incorrect">Not quite. The gap between self-reported and tracked reveals the dark funnel. Podcasts work, but you can't track them. People hear you on a podcast and later visit your site directly—self-reported captures what tracking misses.</p>
           </div>
         </div>
-
-        <!-- Next Up Link -->
-        <div class="next-up-link">
-          <a href="#incrementality" class="next-up-content">
-            <div class="next-up-section">
-              <span class="next-up-label">Next Up</span>
-              <span class="next-up-number">Section 11</span>
-              <span class="next-up-title">Incrementality Testing</span>
-            </div>
-            <span class="next-up-arrow">→</span>
-          </a>
-        </div>
-      </section>
+        </section>
 
       <!-- Section 11: Incrementality -->
       <section id="incrementality">
@@ -2359,25 +2192,13 @@ If Group B had 100,000 people:
               <span>4,200 (the control rate)</span>
             </label>
           </div>
-          <button class="quiz-btn" onclick="checkQuiz(this)">Check Answer</button>
+          <button class="quiz-btn">Check Answer</button>
           <div class="quiz-feedback">
             <p class="feedback-correct">Correct! Only the difference matters: 5.1% - 4.2% = 0.9 percentage points. Of 100K exposed, ~900 converted because of the ads. The other 4,200 would have converted anyway. Attribution over-credited by 5.6x.</p>
             <p class="feedback-incorrect">Not quite. The control group converted at 4.2% without ads. Only the difference (0.9%) represents conversions caused by the ads. Of 100K people, that's ~900 incremental conversions.</p>
           </div>
         </div>
-
-        <!-- Next Up Link -->
-        <div class="next-up-link">
-          <a href="#experimentation" class="next-up-content">
-            <div class="next-up-section">
-              <span class="next-up-label">Next Up</span>
-              <span class="next-up-number">Section 12</span>
-              <span class="next-up-title">Experimentation Design</span>
-            </div>
-            <span class="next-up-arrow">→</span>
-          </a>
-        </div>
-      </section>
+        </section>
 
       <!-- Section 12: Experimentation Design -->
       <section id="experimentation">
@@ -2495,25 +2316,13 @@ Decision: If success criteria met, implement Variant B. Otherwise, keep A.</code
               <span>Stop the test and switch to the new CTA immediately</span>
             </label>
           </div>
-          <button class="quiz-btn" onclick="checkQuiz(this)">Check Answer</button>
+          <button class="quiz-btn">Check Answer</button>
           <div class="quiz-feedback">
             <p class="feedback-correct">Correct! Multiple peeks inflate false positive rates from 5% to 15% or higher. A p=0.03 result after 5 days of a 21-day test isn't trustworthy. Let it run to completion or use sequential testing methods.</p>
             <p class="feedback-incorrect">Not quite. Stopping early because of an interim result is "peeking"—it inflates your false positive rate. What looks like p=0.03 is actually more like p=0.15 when you peek multiple times. Run to completion.</p>
           </div>
         </div>
-
-        <!-- Next Up Link -->
-        <div class="next-up-link">
-          <a href="#measurement-frameworks" class="next-up-content">
-            <div class="next-up-section">
-              <span class="next-up-label">Next Up</span>
-              <span class="next-up-number">Section 13</span>
-              <span class="next-up-title">Measurement Frameworks</span>
-            </div>
-            <span class="next-up-arrow">→</span>
-          </a>
-        </div>
-      </section>
+        </section>
 
       <!-- Section 13: Measurement Frameworks -->
       <section id="measurement-frameworks">
@@ -2637,25 +2446,13 @@ Metrics: Enterprise MQLs, MQL→SQL rate, sourced pipeline by channel</code></pr
               <span>Only track revenue—everything else is vanity metrics</span>
             </label>
           </div>
-          <button class="quiz-btn" onclick="checkQuiz(this)">Check Answer</button>
+          <button class="quiz-btn">Check Answer</button>
           <div class="quiz-feedback">
             <p class="feedback-correct">Correct! Start with the business objective (ARR growth), work backward to identify 3-5 KPIs that prove marketing is moving the needle. Leading indicators for ops, lagging for exec—but both must connect to revenue.</p>
             <p class="feedback-incorrect">Not quite. 200 metrics is noise. You need a framework that connects business objectives → marketing goals → tactics → metrics. Focus on the vital few that prove impact on revenue.</p>
           </div>
         </div>
-
-        <!-- Next Up Link -->
-        <div class="next-up-link">
-          <a href="#cohort-analysis" class="next-up-content">
-            <div class="next-up-section">
-              <span class="next-up-label">Next Up</span>
-              <span class="next-up-number">Section 14</span>
-              <span class="next-up-title">Cohort Analysis</span>
-            </div>
-            <span class="next-up-arrow">→</span>
-          </a>
-        </div>
-      </section>
+        </section>
 
       <!-- Section 14: Cohort Analysis -->
       <section id="cohort-analysis">
@@ -2784,25 +2581,13 @@ ORDER BY cohort_month;</code></pre>
               <span>March leads just need more time to convert</span>
             </label>
           </div>
-          <button class="quiz-btn" onclick="checkQuiz(this)">Check Answer</button>
+          <button class="quiz-btn">Check Answer</button>
           <div class="quiz-feedback">
             <p class="feedback-correct">Correct! The declining trend (25% → 20% → 12%) indicates lead quality is deteriorating. The aggregate masks this. Time to investigate: new channels? Changed targeting? Sales capacity issues?</p>
             <p class="feedback-incorrect">Not quite. The cohort trend (25% → 20% → 12%) reveals a quality problem that aggregates hide. Something is changing month-over-month—you need to investigate the cause.</p>
           </div>
         </div>
-
-        <!-- Next Up Link -->
-        <div class="next-up-link">
-          <a href="#mmm" class="next-up-content">
-            <div class="next-up-section">
-              <span class="next-up-label">Next Up</span>
-              <span class="next-up-number">Section 15</span>
-              <span class="next-up-title">Marketing Mix Modeling</span>
-            </div>
-            <span class="next-up-arrow">→</span>
-          </a>
-        </div>
-      </section>
+        </section>
 
       <!-- Section 15: Marketing Mix Modeling -->
       <section id="mmm">
@@ -2897,25 +2682,13 @@ ORDER BY cohort_month;</code></pre>
               <span>When they have significant offline spend and 2-3 years of historical data with spend variation</span>
             </label>
           </div>
-          <button class="quiz-btn" onclick="checkQuiz(this)">Check Answer</button>
+          <button class="quiz-btn">Check Answer</button>
           <div class="quiz-feedback">
             <p class="feedback-correct">Correct! MMM works with aggregate data—it doesn't need tracking. But it requires 2-3 years of history and spend variation. For offline channels like events that attribution can't capture, MMM can reveal their true contribution.</p>
             <p class="feedback-incorrect">Not quite. MMM is useful when tracking fails (offline spend, long cycles). But it needs 2-3 years of data with spend variation. Self-reported attribution can also help measure dark funnel without the complexity of MMM.</p>
           </div>
         </div>
-
-        <!-- Next Up Link -->
-        <div class="next-up-link">
-          <a href="#stakeholder-reporting" class="next-up-content">
-            <div class="next-up-section">
-              <span class="next-up-label">Next Up</span>
-              <span class="next-up-number">Section 16</span>
-              <span class="next-up-title">Stakeholder Reporting</span>
-            </div>
-            <span class="next-up-arrow">→</span>
-          </a>
-        </div>
-      </section>
+        </section>
 
       <!-- Section 16: Stakeholder Reporting -->
       <section id="stakeholder-reporting">
@@ -3111,7 +2884,7 @@ Action Items:
               <span>Send the same executive dashboard she shares with James (CMO)</span>
             </label>
           </div>
-          <button class="quiz-btn" onclick="checkQuiz(this)">Check Answer</button>
+          <button class="quiz-btn">Check Answer</button>
           <div class="quiz-feedback">
             <p class="feedback-correct">Correct! Finance wants conservative, auditable numbers. Sourced metrics have clear cause-and-effect. "Influenced" numbers are hard to defend and often draw skepticism. Maya should lead with what she can prove.</p>
             <p class="feedback-incorrect">Not quite. Finance doesn't trust "influenced" metrics—they can't audit them. Tom needs conservative, defensible numbers: sourced pipeline, actual CAC, spend vs. budget. Different stakeholders need different views from the same data.</p>
@@ -3172,22 +2945,6 @@ Action Items:
   </main>
 
   <script>
-    // Theme toggle with persistence
-    function toggleTheme() {
-      const html = document.documentElement;
-      const current = html.getAttribute('data-theme');
-      const next = current === 'dark' ? 'light' : 'dark';
-      html.setAttribute('data-theme', next);
-      localStorage.setItem('theme', next);
-    }
-
-    // Load saved theme
-    const savedTheme = localStorage.getItem('theme');
-    if (savedTheme) {
-      document.documentElement.setAttribute('data-theme', savedTheme);
-    } else if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
-      document.documentElement.setAttribute('data-theme', 'dark');
-    }
 
     // Copy button functionality
     document.querySelectorAll('.copy-btn').forEach(btn => {
